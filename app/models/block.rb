@@ -1,6 +1,12 @@
 class Block
 
   def getXML
-    "<html><bullshit></bullshit></html>"
+    xml = ""
+
+    File.open("#{Rails.root}/app/assets/blocks/test.svg") do |f|
+      xml += f.read
+    end
+
+    return xml
   end
 end
