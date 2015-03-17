@@ -1,28 +1,19 @@
-== README
+#Terminology Used in this Project
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Quilt: Made up of many blocks
 
-Things you may want to cover:
+Block: Repeating geometric pattern. Uses an SVG file to represent it. Made up of many patches.
 
-* Ruby version
+Patch: Individual pieces of fabric in a cut and sew project. Each path in the SVG represents a patch.
 
-* System dependencies
+Pattern: Raster image applied to each patch
 
-* Configuration
+#API Usage
 
-* Database creation
+To get a link to a pattern:
+http://localhost:3000/api/v1/designs?design_id=1
+where design_id is the pattern desired
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+To get SVG for a block:
+http://localhost:3000/api/v1/blocks?block_id=1
+where block_id is the block's SVG desired

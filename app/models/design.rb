@@ -5,7 +5,8 @@ class Design
   end
 
   def get_design_link
-    "#{Rails.root}/app/assets/blocks/test#{@block_id}.png"
+    "/app/assets/designs/design#{@design_id}.png"
+    
   end
 
 end
