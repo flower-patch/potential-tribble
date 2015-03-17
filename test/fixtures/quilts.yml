@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  seam_allowance: 9.99
+  public: false
+  preview_thumb_url: MyString
+  block_template_id: MyString
+  integer: MyString
+  project_template_id: MyString
+  integer: MyString
+  yardage: MyString
+
+two:
+  name: MyString
+  seam_allowance: 9.99
+  public: false
+  preview_thumb_url: MyString
+  block_template_id: MyString
+  integer: MyString
+  project_template_id: MyString
+  integer: MyString
+  yardage: MyString

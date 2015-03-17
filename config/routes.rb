@@ -1,4 +1,26 @@
 Rails.application.routes.draw do
+  get 'block_templates/choose_block'
+  post 'block_templates/choose_block'
+
+  get 'project_templates/choose_project'
+  post 'project_templates/choose_project'
+
+  get 'quilts/welcome'
+  post 'quilts/welcome'
+
+  get 'quilts/choose_project'
+  post 'quilts/choose_project'
+
+  get 'quilts/edit_project'
+  post 'quilts/edit_project'
+
+  get 'quilts/preview_project'
+  post 'quilts/preview_project'
+
+  get 'quilts/next_steps'
+  post 'quilts/next_steps'
+
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
   resources :unicorns
@@ -10,7 +32,7 @@ Rails.application.routes.draw do
     end
   end
   # You can have the root of your site routed with "root"
-  root 'unicorns#index'
+  root 'quilts#welcome'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
