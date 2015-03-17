@@ -27,8 +27,12 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
-      resources :blocks
-      resources :designs
+      # resources :designs
+      get 'patterns/list'
+      get 'patterns/get'
+
+      get 'blocks/get'
+      get 'blocks/list'
     end
   end
   # You can have the root of your site routed with "root"

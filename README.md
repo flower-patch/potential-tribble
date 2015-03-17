@@ -11,9 +11,27 @@ Pattern: Raster image applied to each patch
 #API Usage
 
 To get a link to a pattern:
-http://localhost:3000/api/v1/designs?design_id=1
-where design_id is the pattern desired
+
+http://localhost:3000/api/v1/designs/get?design_id=1
+
+where design_id is the pattern desired. (JSON formatted)
+
+----
+
+To get a JSON list of all available links to pattern files:
+
+http://localhost:3000/api/v1/designs/list
+
+----
 
 To get SVG for a block:
-http://localhost:3000/api/v1/blocks?block_id=1
+
+http://localhost:3000/api/v1/blocks/get?block_id=1
+
 where block_id is the block's SVG desired
+
+----
+
+To get a JSON list of all available links to block SVG files:
+
+http://localhost:3000/api/v1/blocks/list
