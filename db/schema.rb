@@ -24,13 +24,13 @@ ActiveRecord::Schema.define(version: 20150318150245) do
 
   create_table "quilts", force: :cascade do |t|
     t.string   "name"
-    t.decimal  "seam_allowance",    precision: 3, scale: 2
+    t.decimal  "seam_allowance",      precision: 3, scale: 2
     t.boolean  "public"
     t.string   "preview_thumb_url"
-    t.string   "block_template_id"
+    t.string   "project_template_id"
     t.string   "yardage"
-    t.datetime "created_at",                                null: false
-    t.datetime "updated_at",                                null: false
+    t.datetime "created_at",                                  null: false
+    t.datetime "updated_at",                                  null: false
     t.text     "svg"
   end
 
