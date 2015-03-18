@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  patch_template_id: 1
+  quilt_id: 1
+  pattern_url: MyString
+
+two:
+  patch_template_id: 1
+  quilt_id: 1
+  pattern_url: MyString

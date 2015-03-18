@@ -1,0 +1,2 @@
+module BlockTemplatesHelper
+end
