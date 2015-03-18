@@ -35,3 +35,16 @@ where block_id is the block's SVG desired
 To get a JSON list of all available links to block SVG files:
 
 http://localhost:3000/api/v1/blocks/list
+
+#Scripts
+
+Adding a new block SVG:
+add the file to the assets folder
+
+run
+rails r bin/add_block.rb
+in the terminal to do the necessary housekeeping (add to table, parse the paths, etc)
+
+----
+
+<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>
