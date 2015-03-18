@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
   get 'quilts/welcome'
   post 'quilts/welcome'
-  
-  get 'block_templates/choose_block'
-  post 'block_templates/choose_block'
+
+  get 'quilts/choose_block'
+  post 'quilts/choose_block'
 
   get 'project_templates/choose_project'
   post 'project_templates/choose_project'

@@ -11,29 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150317155002) do
-
-  create_table "block_templates", force: :cascade do |t|
-    t.string   "name"
-    t.string   "block_svg_url"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
-  end
-
-  create_table "patch_templates", force: :cascade do |t|
-    t.string   "svg_pathid"
-    t.integer  "block_template_id"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
-  end
-
-  create_table "patches", force: :cascade do |t|
-    t.integer  "patch_template_id"
-    t.integer  "quilt_id"
-    t.string   "pattern_url"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
-  end
+ActiveRecord::Schema.define(version: 20150318150245) do
 
   create_table "project_templates", force: :cascade do |t|
     t.string   "name"
@@ -46,15 +24,14 @@ ActiveRecord::Schema.define(version: 20150317155002) do
 
   create_table "quilts", force: :cascade do |t|
     t.string   "name"
-    t.decimal  "seam_allowance",      precision: 3, scale: 2
+    t.decimal  "seam_allowance",    precision: 3, scale: 2
     t.boolean  "public"
     t.string   "preview_thumb_url"
     t.string   "block_template_id"
-    t.string   "integer"
-    t.string   "project_template_id"
     t.string   "yardage"
-    t.datetime "created_at",                                  null: false
-    t.datetime "updated_at",                                  null: false
+    t.datetime "created_at",                                null: false
+    t.datetime "updated_at",                                null: false
+    t.text     "svg"
   end
 
 end

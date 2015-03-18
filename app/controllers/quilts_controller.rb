@@ -2,6 +2,9 @@ class QuiltsController < ApplicationController
   def welcome
   end
 
+  def choose_block
+  end
+
   def edit_project
   end
 
