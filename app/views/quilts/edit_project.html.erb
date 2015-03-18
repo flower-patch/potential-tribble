@@ -1,6 +1,6 @@
 <h1>Quilts#edit_project</h1>
 <p>Find me in app/views/quilts/edit_project.html.erb</p>
-<%= form_for(@quilt) do |f| %>
+<%= form_for @quilt do |f| %>
   <% if @quilt.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@quilt.errors.count, "error") %> prohibited this quilt from being saved:</h2>
