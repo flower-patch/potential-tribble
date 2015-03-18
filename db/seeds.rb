@@ -5,5 +5,3 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Arthur Aardvark', city: cities.first)
-
-BlockTemplate.create(name:"Flying Goat", block_svg_url: "/test2.svg")

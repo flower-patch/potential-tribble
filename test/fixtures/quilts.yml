@@ -5,10 +5,8 @@ one:
   seam_allowance: 9.99
   public: false
   preview_thumb_url: MyString
-  block_template_id: MyString
-  integer: MyString
+  svg: MyString
   project_template_id: MyString
-  integer: MyString
   yardage: MyString
 
 two:
@@ -17,7 +15,5 @@ two:
   public: false
   preview_thumb_url: MyString
   block_template_id: MyString
-  integer: MyString
-  project_template_id: MyString
-  integer: MyString
+  svg: MyString
   yardage: MyString
