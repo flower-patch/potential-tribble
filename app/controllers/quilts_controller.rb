@@ -6,6 +6,7 @@ class QuiltsController < ApplicationController
   end
 
   def edit_project
+    @quilt = Quilt.new
   end
 
   def preview_project

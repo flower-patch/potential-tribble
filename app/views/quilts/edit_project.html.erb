@@ -1,2 +1,23 @@
 <h1>Quilts#edit_project</h1>
 <p>Find me in app/views/quilts/edit_project.html.erb</p>
+<%= form_for(@quilt) do |f| %>
+  <% if @quilt.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@quilt.errors.count, "error") %> prohibited this quilt from being saved:</h2>
+
+      <ul>
+      <% @quilt.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= f.label :svg %><br>
+    <%= f.text_field :svg %>
+  </div>
+  <div >
+    <%= f.submit "Save Project" %>
+  </div>
+<% end %>
