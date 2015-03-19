@@ -25,6 +25,7 @@ class QuiltsController < ApplicationController
 
   def create
     @quilt = Quilt.new(quilt_params)
+    @quilt.in_progress = true
     if @quilt.save
       redirect_to quilts_preview_project_path, notice: 'Quilt was successfully created.'
     else
