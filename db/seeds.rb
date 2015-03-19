@@ -6,6 +6,10 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Arthur Aardvark', city: cities.first)
 
+BlockTemplate.create(name: "Nine Patch", block_svg_url: "test1.svg")
+BlockTemplate.create(name: "Nine Patch 2", block_svg_url: "test2.svg")
+BlockTemplate.create(name: "Star", block_svg_url: "test3.svg")
+
 
 ProjectTemplate.create( name: "Single Patch", example_thumb_url: "dummythumb.png", description: "Make a single patch and use it in a project of your choosing")
 ProjectTemplate.create( name: "Doll", example_thumb_url: "dummythumb.png", description: "Make a doll sized quilt")

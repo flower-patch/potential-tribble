@@ -4,10 +4,19 @@ class QuiltsController < ApplicationController
   end
 
   def choose_block
+    @blocks = BlockTemplate.all
   end
 
   def edit_project
     @quilt = Quilt.new
+
+    @starting_svg = "this should never show up"
+    if params[:block_id]
+      @starting_svg = "test#{params[:block_id]}"
+    elsif params[:quilt_id]
+      #FIXME starting_svg should be the full svg pulled from the db
+      @starting_svg = "#{params[:quilt_id]}"
+    end
   end
 
   def create
@@ -31,5 +40,5 @@ class QuiltsController < ApplicationController
     params.require(:quilt).permit(:name, :public, :preview_thumb_url, :seam_allowance, :project_template_id, :yardage, :svg)
   end
 
-  
+
 end
