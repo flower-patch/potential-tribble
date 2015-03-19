@@ -5,7 +5,7 @@ class QuiltsController < ApplicationController
 
   def choose_block
     if params[:quilt_id]
-      redirect_to quilts_edit_project_path(quilt_id: params[:quilt_id])
+      redirect_to quilts_edit_project_path(quilt_id: params[:quilt_id], project_id: params[:project_id])
     end
   end
 
