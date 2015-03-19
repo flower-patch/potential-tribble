@@ -1,21 +1,36 @@
-<div class="edit-view"
+<div class="edit-view">
   <h1>Edit Your Block</h1>
-  <%= form_for(@quilt) do |f| %>
+
+  <div>
+    <ul class="palette">
+    </ul>
+  </div>
+
+
+  <%= form_for(@quilt) do |f|  %>
+
   <% if @quilt.errors.any? %>
   <div id="error_explanation">
     <h2><%= pluralize(@quilt.errors.count, "error") %> prohibited this quilt from being saved:</h2>
 
     <ul>
       <% @quilt.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+      <li><%= message %></li>
       <% end %>
     </ul>
   </div>
   <% end %>
 
+  <div class="svg-editor">
+    <%= @starting_svg.html_safe %>
+  </div>
+
   <div>
-    <%= f.label :svg %><br>
-    <%= f.text_area :svg %>
+    <%= f.hidden_field :project_template_id, :value => params[:project_id] %>
+  </div>
+
+  <div>
+    <%= f.hidden_field :svg, :value => @starting_svg, class:"svg-input" %>
   </div>
   <div >
     <%= f.submit "Save Project" %>
