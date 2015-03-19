@@ -18,7 +18,6 @@ class QuiltsController < ApplicationController
     if params[:block_id]
       @starting_svg = Block.new( params[:block_id] ).getXML
     elsif params[:quilt_id]
-      #FIXME starting_svg should be the full svg pulled from the db
       @starting_svg = Quilt.find(params[:quilt_id]).svg
     end
   end

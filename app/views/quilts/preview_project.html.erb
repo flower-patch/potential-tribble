@@ -15,7 +15,9 @@
   <% end %>
 
   <%= hidden_field_tag :quilt_id, params[:quilt_id] %>
-  
+  <%# TODO: Make seam_allowance editable by user %>
+  <%= f.hidden_field :seam_allowance, :value => 0.25 %>
+
   <div>
     <%= f.label :name %>
     <%= f.text_field :name %>
