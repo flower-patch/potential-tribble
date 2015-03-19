@@ -13,5 +13,5 @@ class Block
 
     return xml
   end
-    
+
 end
