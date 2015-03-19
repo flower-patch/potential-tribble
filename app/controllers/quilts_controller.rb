@@ -5,6 +5,10 @@ class QuiltsController < ApplicationController
 
   def choose_block
     @blocks = BlockTemplate.all
+
+    if params[:quilt_id]
+      redirect_to quilts_edit_project_path(quilt_id: params[:quilt_id])
+    end
   end
 
   def edit_project
@@ -12,10 +16,10 @@ class QuiltsController < ApplicationController
 
     @starting_svg = "this should never show up"
     if params[:block_id]
-      @starting_svg = "test#{params[:block_id]}"
+      @starting_svg = Block.new( params[:block_id] ).getXML
     elsif params[:quilt_id]
       #FIXME starting_svg should be the full svg pulled from the db
-      @starting_svg = "#{params[:quilt_id]}"
+      @starting_svg = Quilt.find(params[:quilt_id]).svg
     end
   end
 

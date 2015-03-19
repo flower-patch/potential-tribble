@@ -2,9 +2,8 @@
 <h1>ProjectTemplates#choose_project</h1>
 
 <% @projects.each do |project| %>
-<p><%= link_to project.name, quilts_choose_block_path(quilt_id: params[:quilt_id]) %></p>
+<p><%= link_to project.name, quilts_choose_block_path(quilt_id: params[:quilt_id], project_id: project.id) %></p>
 <p><%= image_tag "#{project.example_thumb_url}"%></p>
 <p><%= project.description %></p>
 <p><%= project.directions_pdf_url %></p>
-<p><%= params[:quilt_id]%></p>
 <% end %>
