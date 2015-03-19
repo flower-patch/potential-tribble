@@ -4,6 +4,9 @@ class QuiltsController < ApplicationController
   end
 
   def choose_block
+    if params[:quilt_id]
+      redirect_to quilts_edit_project_path(quilt_id: params[:quilt_id])
+    end
   end
 
   def edit_project
@@ -31,5 +34,5 @@ class QuiltsController < ApplicationController
     params.require(:quilt).permit(:name, :public, :preview_thumb_url, :seam_allowance, :project_template_id, :yardage, :svg)
   end
 
-  
+
 end
