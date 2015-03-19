@@ -1,5 +1,6 @@
 class QuiltsController < ApplicationController
   def welcome
+    @quilts = Quilt.all
   end
 
   def choose_block
@@ -29,4 +30,6 @@ class QuiltsController < ApplicationController
   def quilt_params
     params.require(:quilt).permit(:name, :public, :preview_thumb_url, :seam_allowance, :project_template_id, :yardage, :svg)
   end
+
+  
 end
