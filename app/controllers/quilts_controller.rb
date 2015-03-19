@@ -40,6 +40,13 @@ class QuiltsController < ApplicationController
   end
 
   def next_steps
+    @quilt = Quilt.find(params[:quilt_id])
+    @quilt.in_progress = false
+    if @quilt.update(quilt_params)
+      flash.now[:notice] = 'Quilt was successfully created.'
+    else
+      render :preview_project
+    end
   end
 
   private
