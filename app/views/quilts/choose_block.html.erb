@@ -2,5 +2,5 @@
 <p>Find me in app/views/quilts/choose_block.html.erb</p>
 
 <% @blocks.each do |block| %>
-  <p><%= link_to block.name, quilts_edit_project_path(block_id: block.id) %></p>
+  <p><%= link_to block.name, quilts_edit_project_path(block_id: block.id, project_id: params[:project_id]) %></p>
 <% end %>

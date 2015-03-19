@@ -17,8 +17,7 @@
   </div>
 
   <div>
-    <%= f.label :svg %><br>
-    <%= f.text_area( :svg, :value => @starting_svg ) %>
+    <%= f.hidden_field :svg, :value => @starting_svg %>
   </div>
   <div >
     <%= f.submit "Save Project" %>
