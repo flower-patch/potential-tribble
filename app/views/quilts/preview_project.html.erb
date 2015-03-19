@@ -13,6 +13,9 @@
       </ul>
     </div>
   <% end %>
+
+  <%= hidden_field_tag :quilt_id, params[:quilt_id] %>
+  
   <div>
     <%= f.label :name %>
     <%= f.text_field :name %>
