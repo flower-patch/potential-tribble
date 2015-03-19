@@ -1,9 +1,0 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
-one:
-  svg_pathid: MyString
-  block_template_id: 1
-
-two:
-  svg_pathid: MyString
-  block_template_id: 1

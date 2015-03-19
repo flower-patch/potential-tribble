@@ -12,13 +12,13 @@
   <span>
     <%= link_to 'Welcome', root_path %>
     <%= link_to 'Choose a Project', project_templates_choose_project_path %>
-    <%= link_to 'Choose a Block', block_templates_choose_block_path %>
+    <%= link_to 'Choose a Block', quilts_choose_block_path %>
     <%= link_to 'Design Your Project', quilts_edit_project_path %>
     <%= link_to 'Project Preview', quilts_preview_project_path %>
     <%= link_to 'Next Steps', quilts_next_steps_path %>
   </span>
 
 <%= yield %>
-
+<%= link_to 'Unicorn Style Sheet', unicorns_path %>
 </body>
 </html>
