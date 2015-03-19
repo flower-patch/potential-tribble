@@ -159,6 +159,7 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   jquery-rails
   neat (~> 1.7.2)
+  nokogiri
   pg
   rails (= 4.2.0)
   rails-footnotes
