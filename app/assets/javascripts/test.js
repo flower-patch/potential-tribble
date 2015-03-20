@@ -22,6 +22,20 @@ $(function () {
       width: 50,
       height: 50
     }
+  }, {
+    id: 'fun-with-shapes-and-patterns.jpg',
+    url: 'http://www.crafthubs.com/thumbs/fun-with-shapes-and-patterns.jpg',
+    size: {
+      width: 50,
+      height: 50
+    }
+  }, {
+    id: '44250.jpg',
+    url: 'http://www.housefabric.com/assets/ProductDetail/44250.jpg',
+    size: {
+      width: 50,
+      height: 50
+    }
   }];
 
   function drawPalette(palette) {
@@ -128,6 +142,8 @@ $(function () {
     alert('save');
   });
 
-
+  $('.open-fabric-modal, .fabric-modal, .close-fabric-modal').click(function () {
+    $('.fabric-modal').toggleClass('show');
+  });
 
 });

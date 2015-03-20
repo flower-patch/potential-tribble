@@ -2,3 +2,72 @@
 /*------------------------------------*\
     #
 \*------------------------------------*/
+
+.edit-view {
+  @include outer-container;
+}
+
+.edit-block {
+  @include span-columns(6);
+}
+
+.choose-palette {
+  vertical-align: top;
+
+  @include span-columns(4);
+}
+
+.palette {
+  @include fill-parent();
+}
+
+
+.fabric-preview {
+  display: inline-block;
+  width: 40%;
+  box-sizing: border-box;
+  overflow: hidden;
+  position: relative;
+  padding: 2em;
+
+  &:after {
+    content: "";
+    padding-top: 100%;
+    display: block;
+  }
+
+  img {
+    position: absolute;
+    min-width: 100%;
+    min-height: 100%;
+  }
+}
+
+.choose-set {
+
+}
+
+.fabric-modal {
+  visibility: hidden;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.fabric-modal-box {
+  background: $white;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  width: $max-width;
+  height: 80%;
+}
+
+.show {
+  visibility: visible;
+}
