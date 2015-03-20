@@ -128,7 +128,8 @@ $(function () {
     //take html from div svg-editor
     //set as the value of the hidden field
     newSvg = $('.svg-editor').html();
-    console.log(newSvg);
+    // Testing
+    // console.log(newSvg);
     $('.svg-input').val(newSvg);
 
 
@@ -136,9 +137,9 @@ $(function () {
 
   $('form').submit(function(){
     saveQuilt();
-  
-    alert(newSvg);
-    alert('save');
+    // Testing
+    // alert(newSvg);
+    // alert('save');
   });
 
   $('.open-fabric-modal, .fabric-modal, .close-fabric-modal').click(function () {
