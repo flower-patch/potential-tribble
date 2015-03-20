@@ -122,8 +122,7 @@ $(function () {
 
   $('form').submit(function(){
     saveQuilt();
-    // var form = this;
-    // e.preventDefault();
+  
     alert(newSvg);
     alert('save');
   });
