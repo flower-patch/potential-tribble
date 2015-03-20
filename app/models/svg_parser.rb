@@ -1,4 +1,4 @@
-class Unicorn
+class SvgParser
   attr_reader :svg, :paths
 
   def initialize(svg)
