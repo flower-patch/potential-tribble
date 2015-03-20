@@ -30,33 +30,37 @@
       <%= f.hidden_field :svg, :value => @starting_svg, class:"svg-input" %>
     </div>
     <div >
-      <%= f.submit "Save Project" %>
+      <%= f.submit "Save Project", class:"save-project-btn" %>
     </div>
     <% end %>
 
+    <div class="choose-set">
+      <ul class="sets">
+        <li class="set">
+        </li>
+        <li class="set">
+        </li>
+        <li class="set">
+        </li>
+      </ul>
+    </div>
+
   </div>
+
 
   <div class="choose-palette">
-    <ul class="palette">
-    </ul>
     <button class="open-fabric-modal">Add fabrics</button>
-  </div>
-
-  <div class="choose-set">
-    <ul class="sets">
-      <li class="set">
-      </li>
-      <li class="set">
-      </li>
-      <li class="set">
-      </li>
+    <ul class="palette">
     </ul>
   </div>
 
   <div class="fabric-modal">
     <div class="fabric-modal-box">
-      <span class="close-fabric-modal"></span>
+      <span class="close-fabric-modal">X</span>
       <div class="fabric-modal-preview">
+        <img class="current-block">
+        <ul class="current-palette">
+        </ul>
       </div>
       <div class="fabric-modal-options">
         <input class="fabric-modal-search">

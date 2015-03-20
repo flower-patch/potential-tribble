@@ -49,9 +49,11 @@ h1 {
 
 main {
   margin-top: 2em;
-  margin-bottom: 2em;
+  margin-bottom: 4em;
   background-color: $white;
   min-height: 300px;
+  box-shadow: $default-shadow;
+
   @include outer-container;
   // @include span-columns(12);
   // @include shift(1);
@@ -64,28 +66,11 @@ main {
 .site-nav {
   background: $accent-light;
   height: 4em;
+  box-shadow: $default-shadow;
 }
 
-.progress-bar {
-  background-color: $white;
-  border-bottom: 1.5px dashed $light-pure-gray;
-  // @include outer-container;
-  @include fill-parent();
-  @include row(table);
-  @include pad();
-}
-
-.progress-stage {
-  font-size: 1em;
-  font-weight: $normal;
-  text-align: center;
-  @include span-columns(2);
-  @include fill-parent();
-
-}
 
 .app-content {
-  // @include pad();
 }
 
 svg {

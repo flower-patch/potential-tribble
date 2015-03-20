@@ -39,7 +39,7 @@ $(function () {
   }];
 
   function drawPalette(palette) {
-    $('.palette').html(palette.map(function (fabric) {
+    $('.palette, .current-palette').html(palette.map(function (fabric) {
       var li = $('<li class="fabric-preview"><img src="' + fabric.url +'"></li>');
       //.data(key, value) key= string 'fabric', value is fabric object
       // .data makes the thing a part of the DOM
@@ -124,24 +124,26 @@ $(function () {
 
   var newSvg;
 
+  // function previewQuilt () {
+  //
+  // }
+
   function saveQuilt () {
     //take html from div svg-editor
     //set as the value of the hidden field
     newSvg = $('.svg-editor').html();
     console.log(newSvg);
     $('.svg-input').val(newSvg);
-
-
   }
 
   $('form').submit(function(){
     saveQuilt();
-  
+
     alert(newSvg);
     alert('save');
   });
 
-  $('.open-fabric-modal, .fabric-modal, .close-fabric-modal').click(function () {
+  $('.open-fabric-modal, .close-fabric-modal').click(function () {
     $('.fabric-modal').toggleClass('show');
   });
 
