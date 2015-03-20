@@ -57,9 +57,13 @@ main {
   // @include shift(1);
 }
 
+.view-container {
+  padding: 0 2.378% 2.378% 2.378%;
+}
+
 .site-nav {
   background: $accent-light;
-  height: 2em;
+  height: 4em;
 }
 
 .progress-bar {
