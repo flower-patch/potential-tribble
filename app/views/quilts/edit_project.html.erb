@@ -1,46 +1,75 @@
-<<<<<<< HEAD
+<%= render :partial => 'shared/progress', :locals => {:page => 3} %>
 
+<div class="edit-view view-container">
+  <h1>Edit Your Block</h1>
 
-<!DOCTYPE html>
-<html>
-  <head>
-    <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,400italic|Kreon:300,400' rel='stylesheet' type='text/css'>j
-    <link rel="stylesheet" href="#">
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width">
-    <title>Title</title>
-  </head>
-  <body>
+  <div class="edit-block">
+    <%= form_for(@quilt) do |f|  %>
 
-    <h1>Quilts#edit_project</h1>
-    <!-- page 4 wireframe -->
-    <p>Find me in app/views/quilts/edit_project.html.erb</p>
-
-  </body>
-
-</html>
-=======
-<h1>Quilts#edit_project</h1>
-<p>Find me in app/views/quilts/edit_project.html.erb</p>
-<%= form_for @quilt do |f| %>
-  <% if @quilt.errors.any? %>
+    <% if @quilt.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@quilt.errors.count, "error") %> prohibited this quilt from being saved:</h2>
 
       <ul>
-      <% @quilt.errors.full_messages.each do |message| %>
+        <% @quilt.errors.full_messages.each do |message| %>
         <li><%= message %></li>
-      <% end %>
+        <% end %>
       </ul>
     </div>
-  <% end %>
+    <% end %>
 
-  <div>
-    <%= f.label :svg %><br>
-    <%= f.text_area :svg %>
+    <div class="svg-editor">
+      <%= @starting_svg.html_safe %>
+    </div>
+
+    <div>
+      <%= f.hidden_field :project_template_id, :value => params[:project_id] %>
+    </div>
+
+    <div>
+      <%= f.hidden_field :svg, :value => @starting_svg, class:"svg-input" %>
+    </div>
+    <div >
+      <%= f.submit "Save Project", class:"save-project-btn" %>
+    </div>
+    <% end %>
+
+    <div class="choose-set">
+      <ul class="sets">
+        <li class="set">
+        </li>
+        <li class="set">
+        </li>
+        <li class="set">
+        </li>
+      </ul>
+    </div>
+
   </div>
-  <div >
-    <%= f.submit "Save Project" %>
+
+
+  <div class="choose-palette">
+    <button class="open-fabric-modal">Add fabrics</button>
+    <ul class="palette">
+    </ul>
   </div>
-<% end %>
->>>>>>> master
+
+  <div class="fabric-modal">
+    <div class="fabric-modal-box">
+      <span class="close-fabric-modal">X</span>
+      <div class="fabric-modal-preview">
+        <img class="current-block">
+        <ul class="current-palette">
+        </ul>
+      </div>
+      <div class="fabric-modal-options">
+        <input class="fabric-modal-search">
+        <span class="search-icon"></span>
+        <ul class="fabric-modal-list">
+        </ul>
+      </div>
+    </div>
+  </div>
+
+
+</div>

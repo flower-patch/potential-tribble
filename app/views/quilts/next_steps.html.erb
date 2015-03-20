@@ -1,3 +1,18 @@
-<h1>Quilts#next_steps</h1>
-<!-- page 5 wireframe -->
-<p>Find me in app/views/quilts/next_steps.html.erb</p>
+<%= render :partial => 'shared/progress', :locals => {:page => 5} %>
+
+<div class="next-steps-view view-container">
+
+  <h1>Next Steps</h1>
+  <h2>Nice work! Now follow these steps to receive your design on fabric</h2>
+  <ol>
+    <li>Download your design– </li>
+    <li>Upload to the design at <a>spoonflower.com</a></li>
+    <li>Submit and pay for your order</li>
+    <li>When your package arrives, open and whip up your custom quilt masterpiece!</li>
+  </ol>
+
+  <h3>Happy quilting!</h3>
+
+</div>
+
+<%= @quilt.svg.html_safe %>

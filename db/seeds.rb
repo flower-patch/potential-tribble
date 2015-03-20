@@ -6,12 +6,16 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Arthur Aardvark', city: cities.first)
 
+BlockTemplate.create(name: "Nine Patch", block_svg_url: "test1.svg")
+BlockTemplate.create(name: "Nine Patch 2", block_svg_url: "test2.svg")
+BlockTemplate.create(name: "Star", block_svg_url: "test3.svg")
+
 
 ProjectTemplate.create( name: "Single Patch", example_thumb_url: "dummythumb.png", description: "Make a single patch and use it in a project of your choosing")
 ProjectTemplate.create( name: "Doll", example_thumb_url: "dummythumb.png", description: "Make a doll sized quilt")
 ProjectTemplate.create( name: "Queen Sized Quilt", example_thumb_url: "dummythumb.png", description: "Make a queen sized quilt")
 
-Quilt.create( name: "Default", seam_allowance: 0.25, public: true, preview_thumb_url: "dummythumb.png", project_template_id: 1, yardage: "fat quarter", svg:'<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+Quilt.create( in_progress: false, name: "Default", seam_allowance: 0.25, public: true, preview_thumb_url: "dummythumb.png", project_template_id: 1, yardage: "fat quarter", svg:'<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 
 <svg
@@ -122,7 +126,7 @@ Quilt.create( name: "Default", seam_allowance: 0.25, public: true, preview_thumb
   </g>
 </svg>
 ')
-Quilt.create( name: "Red", seam_allowance: 0.25, public: true, preview_thumb_url: "dummythumb.png", project_template_id: 2, yardage: "1", svg:'<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+Quilt.create( in_progress: false, name: "Red", seam_allowance: 0.25, public: true, preview_thumb_url: "dummythumb.png", project_template_id: 2, yardage: "1", svg:'<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 
 <svg
@@ -233,7 +237,7 @@ Quilt.create( name: "Red", seam_allowance: 0.25, public: true, preview_thumb_url
   </g>
 </svg>
 ')
-Quilt.create( name: "Goat", seam_allowance: 0.25, public: true, preview_thumb_url: "dummythumb.png", project_template_id: 3, yardage: "3", svg:'<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+Quilt.create( in_progress: false, name: "Goat", seam_allowance: 0.25, public: true, preview_thumb_url: "dummythumb.png", project_template_id: 3, yardage: "3", svg:'<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 
 <svg
@@ -344,7 +348,7 @@ Quilt.create( name: "Goat", seam_allowance: 0.25, public: true, preview_thumb_ur
   </g>
 </svg>
 ')
-Quilt.create( name: "Secret", seam_allowance: 0.25, public: false, preview_thumb_url: "dummythumb.png", project_template_id: 1, yardage: "fat quarter", svg:'<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+Quilt.create( in_progress: false, name: "Secret", seam_allowance: 0.25, public: false, preview_thumb_url: "dummythumb.png", project_template_id: 1, yardage: "fat quarter", svg:'<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 
 <svg
