@@ -1,0 +1,38 @@
+/*------------------------------------*\
+    # PREVIEW PAGE INPUTS / BUTTONS
+\*------------------------------------*/
+
+.quilt-name-container {
+  @include pad();
+}
+
+.quilt-name {
+  margin-top: 1em;
+  margin-left: .5em;
+  padding:.25em 0;
+  font-size: 1em;
+}
+
+
+.awesome-submit {
+  font-family: $serif;
+  font-weight: $thin;
+  line-height: 1.2em;
+  margin: 0.2em;
+  @include pad();
+}
+
+.awesome-submit-container {
+  @include pad();
+}
+
+.preview-svg {
+  width: 58%;
+  padding: 0 3em 7em 0;
+  margin-top: 2.358%;
+  border: 3px solid $neutral-bright;
+  display: inline-block;
+  background-color: $white;
+ @include shift(2.5);
+
+}
