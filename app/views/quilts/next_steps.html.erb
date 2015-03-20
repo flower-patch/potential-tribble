@@ -5,5 +5,23 @@
 
 <p>Full SVG</p>
 <%#= @quilt.svg %>
+<%= @quilt.get_paths_from_svg %>
 
-<%#= Quilt.get_spoonflower_images( "chevron" ) %>
+<%# FIXME: this if statement is a hack to avoid the pain of ERB commenting %>
+<% if false %>
+<% Fabric.get_spoonflower_images( "goat" ).each do |hash| %>
+  <p>Image ID:<%= hash[:id] %><p>
+  <%= image_tag hash[:thumbnail] %>
+  <br>
+<% end %>
+<% end %>
+
+
+<%# FIXME: this if statement is a hack to avoid the pain of ERB commenting %>
+<% if true %>
+<% Fabric.get_spoonflower_fabrics_by_color( "FAC8BF" ).each do |hash| %>
+  <p>Image ID:<%= hash[:id] %><p>
+  <%= image_tag hash[:thumbnail] %>
+  <br>
+<% end %>
+<% end %>
