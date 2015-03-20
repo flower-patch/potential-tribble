@@ -1,27 +1,7 @@
-<p>YOU'RE a silly unicorn!</p>
-<!-- Styleguide -->
-
-<p><%=@doodlebug%></p>
-<p><%=@rects%></p>
-<p><%=@magic%></p>
-<p>Achoo!<%=@sneeze%></p>
-
-<% @magic.each do |path| %>
-  <p><%= path %></p>
-<% end %>
-
-<% @magic.each do |path| %>
-  <p><%= path['id'] %></p>
-<% end %>
-
-<% @magic.each do |path| %>
+<h3>PATHS</h3>
+<% path = @unicorn.paths.first %>
+<p><%= @unicorn.all_path_ids %></p>
+<p><%= path['id'] %></p>
 <p>Donkye<%= path['style']%></p>
-<% end %>
-
-<% @magic.each do |path| %>
-<p><%= path['style'].split(';')%></p>
-<% end %>
-
-<% @magic.each do |path| %>
+<p><%= @unicorn.first_paths_style_split_up %></p>
 <p><%= path['d'].split%></p>
-<% end %>
