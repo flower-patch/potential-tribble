@@ -1,13 +1,40 @@
 <div class="preview-view">
 
-  <h1>Preview</h1>
-  <div class="preview-container">
-    <img>
-    <div class="preview-thumbnails">
-      <img>
-      <img>
-    </div>
-    <button class="save-project-btn">Save my quilt</button>
+  <h1>Quilts#preview_project</h1>
+  <!-- page 4 wireframe -->
+  <p>Find me in app/views/quilts/preview_project.html.erb</p>
+  <%= form_for @quilt, :url => { :action => "next_steps"} do |f| %>
+  <% if @quilt.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@quilt.errors.count, "error") %> prohibited this quilt from being saved:</h2>
+
+    <ul>
+      <% @quilt.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+      <% end %>
+    </ul>
   </div>
+  <% end %>
+
+  <%= @quilt.svg.html_safe %>
+
+  <%= hidden_field_tag :quilt_id, params[:quilt_id] %>
+  <%# TODO: Make seam_allowance editable by user %>
+  <%= f.hidden_field :seam_allowance, :value => 0.25 %>
+
+  <div>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+
+  <div>
+    <%= f.label "Check if you would like to make this quilt configuration public." %>
+    <%= f.check_box :public %>
+  </div>
+
+  <div>
+    <%= f.submit 'This Quilt Is Awesome.  I Approve.'%>
+  </div>
+  <% end %>
 
 </div>
