@@ -1,7 +1,27 @@
-
+<p>YOU'RE a silly unicorn!</p>
 <!-- Styleguide -->
 
+<p><%=@doodlebug%></p>
 <p><%=@rects%></p>
+<p><%=@magic%></p>
+<p>Achoo!<%=@sneeze%></p>
 
-<p>Click the unicorn to get the quilt block SVG.</p>
-<div id= "button-magic"></div>
+<% @magic.each do |path| %>
+  <p><%= path %></p>
+<% end %>
+
+<% @magic.each do |path| %>
+  <p><%= path['id'] %></p>
+<% end %>
+
+<% @magic.each do |path| %>
+<p>Donkye<%= path['style']%></p>
+<% end %>
+
+<% @magic.each do |path| %>
+<p><%= path['style'].split(';')%></p>
+<% end %>
+
+<% @magic.each do |path| %>
+<p><%= path['d'].split%></p>
+<% end %>
