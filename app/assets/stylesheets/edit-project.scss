@@ -68,6 +68,10 @@
   }
 }
 
+.save-project-btn {
+
+}
+
 .open-fabric-modal {
   // margin: 2em;
   @include span-columns(2 of 4);
@@ -107,6 +111,7 @@
   display: inline-block;
   width: 100%;
   .fabric-preview {
+
     display: inline-block;
   }
 }
