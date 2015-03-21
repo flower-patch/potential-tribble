@@ -1,0 +1,94 @@
+@font-face {
+  font-family: 'flowerpatch-icons';
+  src: url('../font/flowerpatch-icons.eot?47350060');
+  src: url('../font/flowerpatch-icons.eot?47350060#iefix') format('embedded-opentype'),
+       url('../font/flowerpatch-icons.woff?47350060') format('woff'),
+       url('../font/flowerpatch-icons.ttf?47350060') format('truetype'),
+       url('../font/flowerpatch-icons.svg?47350060#flowerpatch-icons') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+/* Chrome hack: SVG is rendered more smooth in Windozze. 100% magic, uncomment if you need it. */
+/* Note, that will break hinting! In other OS-es font will be not as sharp as it could be */
+/*
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+  @font-face {
+    font-family: 'flowerpatch-icons';
+    src: url('../font/flowerpatch-icons.svg?47350060#flowerpatch-icons') format('svg');
+  }
+}
+*/
+ 
+ [class^="icon-"]:before, [class*=" icon-"]:before {
+  font-family: "flowerpatch-icons";
+  font-style: normal;
+  font-weight: normal;
+  speak: none;
+ 
+  display: inline-block;
+  text-decoration: inherit;
+  width: 1em;
+  margin-right: .2em;
+  text-align: center;
+  /* opacity: .8; */
+ 
+  /* For safety - reset parent styles, that can break glyph codes*/
+  font-variant: normal;
+  text-transform: none;
+     
+  /* fix buttons height, for twitter bootstrap */
+  line-height: 1em;
+ 
+  /* Animation center compensation - margins should be symmetric */
+  /* remove if not needed */
+  margin-left: .2em;
+ 
+  /* you can be more comfortable with increased icons size */
+  /* font-size: 120%; */
+ 
+  /* Uncomment for 3D effect */
+  /* text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3); */
+}
+ 
+.icon-garden:before { content: '\21'; } /* '!' */
+.icon-plus-1:before { content: '\22'; } /* '&quot;' */
+.icon-gift:before { content: '\23'; } /* '#' */
+.icon-heart-2:before { content: '\24'; } /* '$' */
+.icon-upload-cloud-1:before { content: '\25'; } /* '%' */
+.icon-user:before { content: '\26'; } /* '&amp;' */
+.icon-user-outline:before { content: '\27'; } /* ''' */
+.icon-download-cloud-1:before { content: '\28'; } /* '(' */
+.icon-brush:before { content: '\29'; } /* ')' */
+.icon-link:before { content: '\2a'; } /* '*' */
+.icon-link-1:before { content: '\2b'; } /* '+' */
+.icon-dot-circled:before { content: '\2c'; } /* ',' */
+.icon-search:before { content: '\2d'; } /* '-' */
+.icon-circle-thin:before { content: '\2e'; } /* '.' */
+.icon-attach-2:before { content: '\2f'; } /* '/' */
+.icon-circle-empty:before { content: '\30'; } /* '0' */
+.icon-circle:before { content: '\31'; } /* '1' */
+.icon-mail:before { content: '\32'; } /* '2' */
+.icon-zoom-out:before { content: '\33'; } /* '3' */
+.icon-mail-2:before { content: '\34'; } /* '4' */
+.icon-zoom-in:before { content: '\35'; } /* '5' */
+.icon-ccw:before { content: '\36'; } /* '6' */
+.icon-arrows-cw:before { content: '\37'; } /* '7' */
+.icon-cw-circle:before { content: '\38'; } /* '8' */
+.icon-resize-full-circle:before { content: '\39'; } /* '9' */
+.icon-ok-3:before { content: '\3a'; } /* ':' */
+.icon-resize-full:before { content: '\3b'; } /* ';' */
+.icon-cancel-3:before { content: '\40'; } /* '@' */
+.icon-scissors:before { content: '\5d'; } /* ']' */
+.icon-dollar-1:before { content: '\5e'; } /* '^' */
+.icon-dollar:before { content: '\5f'; } /* '_' */
+.icon-magic:before { content: '\61'; } /* 'a' */
+.icon-palette:before { content: '\62'; } /* 'b' */
+.icon-down-dir:before { content: '\63'; } /* 'c' */
+.icon-left-dir:before { content: '\64'; } /* 'd' */
+.icon-up-dir:before { content: '\65'; } /* 'e' */
+.icon-right-dir:before { content: '\66'; } /* 'f' */
+.icon-star-1:before { content: '\6c'; } /* 'l' */
+.icon-star-2:before { content: '\6d'; } /* 'm' */
+.icon-heart-empty-1:before { content: '\76'; } /* 'v' */
+.icon-folder-open-1:before { content: '\7c'; } /* '|' */
+.icon-eye-2:before { content: '\7e'; } /* '~' */
