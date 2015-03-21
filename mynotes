@@ -1,0 +1,24 @@
+<h3>FUN WITH PATHS</h3>
+<!-- we can list all the path ids -->
+<p><%= @svg_parser.all_path_ids %></p>
+<p><%= @svg_parser.all_unique_image_ids %></p>
+<p><%= @svg_parser.all_paths_styles_split %></p>
+<p><%= @svg_parser.all_paths_coords_split %></p>
+<p><%= @svg_parser.all_paths_fill_values %></p>
+<p><%= @svg_parser.all_paths_coord_pairs %></p>
+<p>GUMDROP<%= @svg_parser.paths %>GUMDROP</p>
+<p>SHOULD BE 4321<%= @svg_parser.replace_fabric_urls("4321", "http://www.mycooldesign.amazonserver.com") %>AND DONE</p>
+
+<!-- lucky first path is the lab rat here -->
+<% path = @svg_parser.paths.first %>
+
+<p><%= path %></p>
+<p><%= path.keys %></p>
+<p><%= path['id'] %></p>
+<p><%= path['style']%></p>
+<p><%= path['d']%></p>
+
+<p><%= @svg_parser.first_path_style_split_up %></p>
+<p><%= @svg_parser.first_path_coords_split_up %></p>
+<p><%= @svg_parser.first_path_fill_as_string %></p>
+<p><%= @svg_parser.first_path_coords %></p>

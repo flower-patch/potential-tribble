@@ -49,10 +49,47 @@ class SvgParser
     end
     all_coord_pairs
   end
+#gsub time
+  # def replace_fabric_urls(image_id, new_url)
+  #   selected_paths = @paths.xpath('//*[contains(@image-id, ' + image_id +')]')
+  #   selected_paths.each do |p|
+  #
+  #     replacement_fill = "fill:#{new_url};stroke:#000000;stroke-width:0.99000001;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+  #     p["style"] = replacement_fill
+  #   end
+  #   selected_paths
+  # end
+
+  # this works as far as replacing style with what the old fill exactly was
+  # def replace_fabric_urls(image_id, new_url)
+  #   selected_paths = @paths.xpath('//*[contains(@image-id, ' + image_id +')]')
+  #   selected_paths.each do |p|
+  #     style_array = p["style"].split(';')
+  #     new_array = style_array.map{|s| s if s.start_with?("fill:")}
+  #     string = new_array.compact![0]
+  #     old_fill = string.scan(/:(\S*$)/)[0][0]
+  #     p["style"] = old_fill
+  #   end
+  #   selected_paths
+  # end
 
   def replace_fabric_urls(image_id, new_url)
-    @paths.xpath('//*[contains(@image-id, ' + image_id +')]')
-
+    selected_paths = @paths.xpath('//*[contains(@image-id, ' + image_id +')]')
+    selected_paths.each do |path|
+      style_array = path["style"].split(';')
+      fill_index = 0
+      fill_value = []
+      style_array.each_with_index do |style_attribute, index|
+        if style_attribute.start_with?("fill:")
+          fill_index = index
+        end
+      end
+      fill_value = ["fill:#{new_url}"]
+      style_array[fill_index] = fill_value
+      new_style = style_array.join(';')
+      path["style"] = new_style
+    end
+    selected_paths
   end
 
   # WILL NOT BE THE FIRST PATHS IN THE REAL WORLD...JUST TESTING
