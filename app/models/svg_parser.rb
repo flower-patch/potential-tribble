@@ -30,6 +30,20 @@ class SvgParser
     all_fill_values
   end
 
+  def all_paths_coord_pairs
+    array = all_paths_coords_split
+    all_coord_pairs = []
+    array.each do |a|
+      inner_array = a[1..-2]
+      coords_array = []
+      inner_array.each do |i|
+        coord_pair = i.split(',').map {|x| x.to_f }
+        coords_array << coord_pair
+      end
+      all_coord_pairs << coords_array
+    end
+    all_coord_pairs
+  end
 
   # WILL NOT BE THE FIRST PATHS IN THE REAL WORLD...JUST TESTING
   def first_path_style_split_up
