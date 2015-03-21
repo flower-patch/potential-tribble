@@ -70,32 +70,18 @@ $(function () {
     }
   });
 
+  editPatch(svg);
 
-  svg.selectAll('path').forEach(function (path) {
-    // required arbitrary boolean
-    var prevent = false;
-    // defines the functions called in timeout
-    var timer = 0;
-
-    path
-      .click(function () {
-      timer = setTimeout(function () {
-        if (!prevent) {
-          getGroup(path);
-        }
-        prevent = false;
-      }, 200);
-      })
-      .dblclick(function () {
-        clearTimeout(timer);
-        prevent = true;
-        applyFabricPatch(path);
-      });
-
-  });
+  function editPatch(block) {
+    block.selectAll('path').forEach(function (path) {
+      path.click(function () {
+          applyFabricPatch(path);
+        });
+    });
+  }
 
 
-  function applyFabricPatch (path) {
+  function applyFabricPatch(path) {
     //empty palette, nothing happens!
     if (!currFabric) return;
     //use id for snappy shtuffz
@@ -112,7 +98,7 @@ $(function () {
     path.attr('fill', pattern);
   }
 
-  function getGroup (path) {
+  function getGroup(path) {
     //empty palette, nothing happens!
     if (!currFabric) return;
     //use id for snappy shtuffz
@@ -124,20 +110,28 @@ $(function () {
 
   var newSvg;
 
-  // function previewQuilt () {
-  //
-  // }
 
-  function saveQuilt () {
+  function getCurrentSvg() {
     //take html from div svg-editor
-    //set as the value of the hidden field
     newSvg = $('.svg-editor').html();
-    // Testing
-    // console.log(newSvg);
+    return newSvg;
+  }
+
+
+  function previewQuilt() {
+    getCurrentSvg();
+    console.log(newSvg);
+    $('.current-block').html(newSvg);
+  }
+
+  function saveQuilt() {
+    getCurrentSvg();
+    console.log(newSvg);
+    //set as the value of the hidden field
     $('.svg-input').val(newSvg);
   }
 
-  $('form').submit(function(){
+  $('form').submit(function() {
     saveQuilt();
     alert(newSvg);
     alert('save');
@@ -146,8 +140,25 @@ $(function () {
     // alert('save');
   });
 
-  $('.open-fabric-modal, .close-fabric-modal').click(function () {
+  // $('.open-fabric-modal, .close-fabric-modal').on('click', function () {
+  //   $('.fabric-modal').toggleClass('show');
+  //   previewQuilt();
+  //   $('.svg-editor').html(newSvg);
+  //   editPatch(newSvg);
+  // });
+
+  $('.open-fabric-modal').on('click', function () {
     $('.fabric-modal').toggleClass('show');
+    previewQuilt();
+    newSvg = $('.current-block').html();
+    return newSvg;
+  });
+
+  $('.close-fabric-modal').on('click', function () {
+    $('.fabric-modal').toggleClass('show');
+    // $('.svg-editor').html(newSvg);
+    // newSvg = Snap(newSvg);
+    // editPatch(newSvg);
   });
 
 });
