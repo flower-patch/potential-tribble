@@ -1,9 +1,19 @@
-<!-- page 2 wireframe -->
-<h1>ProjectTemplates#choose_project</h1>
+<%= render :partial => 'shared/progress', :locals => {:page => 1} %>
 
-<% @projects.each do |project| %>
-<p><%= link_to project.name, quilts_choose_block_path(quilt_id: params[:quilt_id], project_id: project.id) %></p>
-<p><%= image_tag "#{project.example_thumb_url}"%></p>
-<p><%= project.description %></p>
-<p><%= project.directions_pdf_url %></p>
-<% end %>
+<div class="project-view view-container">
+
+
+  <h1>Choose a Project</h1>
+
+  <% @projects.each do |project| %>
+  <div class="card">
+    <%= image_tag "#{project.example_thumb_url}"%>
+    <!-- button equivalent -->
+    <h3><%= link_to project.name, quilts_choose_block_path(quilt_id: params[:quilt_id], project_id: project.id) %></h3>
+
+    <p><%= project.description %></p>
+    <p><%= project.directions_pdf_url %></p>
+  </div>
+  <% end %>
+
+</div>

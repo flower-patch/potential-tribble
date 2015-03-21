@@ -1,51 +1,101 @@
-// Global elements, nav-bar, type, colors etc.
-/*------------------------------------*\
-    #COLORS
-\*------------------------------------*/
-
-$seafoam-white: #c4ebd1;
-$seafoam-light: #aee3c0;
-$seafoam: #8cf2ae;
-$seafoam-dark: #8cf2ae;
-
-$cream: #feffe2;
-$yellow-eggshell: #eae3be;
-$tawny-gold: #e8af53;
-$fawn: #c09f67;
-$milk-chocolate: #b0886a;
-$grey-brown: #5d5558;
-
-
-$accent-lightest: $seafoam-white;
-$accent-light: $seafoam-light;
-$accent-mid: $seafoam;
-$accent-dark: $seafoam-dark;
-
-$neutral-lightest: $cream;
-$neutral-light: $yellow-eggshell;
-$neutral-bright: $tawny-gold;
-$neutral-mid: $fawn;
-$neutral-dark: $milk-chocolate;
-$neutral-darkest: $grey-brown;
-
-$white: #ffffff;
-$black: #000000;
-
-/*------------------------------------*\
-    #TYPOGRAPHY
-\*------------------------------------*/
-
-$serif: 'Kreon', serif;
-$sans-serif: 'Lato', sans-serif;
-
-
-$light: 300;
-$bold: 700;
-$normal: 400;
-
-$italic: italic;
+// Global elements such as divs, containers, inputs, buttons etc
 
 
 /*------------------------------------*\
-    #NAV-BAR
+    #NEAT Variables
 \*------------------------------------*/
+
+$max-width: em(960);
+
+
+
+/*------------------------------------*\
+    #Application Page Elements
+\*------------------------------------*/
+
+body {
+  background-color: $light-pure-gray;
+  background-image: image-url("fabric_1.png");
+  font-family: $sans-serif;
+  font-size: 12pt;
+  font-weight: $light;
+  color: $accent-darkest;
+}
+
+a {
+  text-decoration: none;
+  display: inline-block;
+}
+
+h1, h2, h3,
+button {
+  font-family: $serif;
+  font-weight: $thin;
+  line-height: 1.2em;
+
+  @include pad();
+
+}
+
+
+h1 {
+  font-size: 2.5em;
+  line-height: 1.2em;
+}
+
+main {
+  margin-top: 2em;
+  margin-bottom: 4em;
+  background-color: $white;
+  min-height: 300px;
+  box-shadow: $default-shadow;
+
+  @include outer-container;
+  // @include span-columns(12);
+  // @include shift(1);
+}
+
+.view-container {
+  padding: 0 2.378% 2.378% 2.378%;
+}
+
+.site-nav {
+  background: $accent-light;
+  height: 4em;
+  box-shadow: $default-shadow;
+}
+
+
+.app-content {
+}
+
+svg {
+  width: 500px;
+  height: 500px;
+
+}
+
+svg path {
+  stroke: rgb(150, 30, 200);
+  stroke-opacity: 0.5;
+}
+
+/*------------------------------------*\
+    #INPUTS / BUTTONS
+\*------------------------------------*/
+
+input {
+  margin:L 1em;
+}
+
+button {
+  margin: 0.2em;
+  @include pad(0.5em);
+}
+
+label {
+  font-size: 1.05em;
+}
+
+input[type=checkbox] {
+}

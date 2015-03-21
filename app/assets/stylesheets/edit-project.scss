@@ -1,0 +1,113 @@
+
+/*------------------------------------*\
+    #EDIT-VIEW
+\*------------------------------------*/
+
+.edit-view {
+  @include outer-container;
+}
+
+.edit-block {
+  @include span-columns(7);
+}
+
+.save-project-btn {
+  @include span-columns(3 of 7);
+  @include shift(2);
+}
+
+
+.choose-set {
+  // @include span-columns(6 of 8);
+  // @include shift(2);
+  margin: 0 auto;
+  @include span-columns(5 of 7);
+  @include shift(1);
+}
+
+.sets {
+}
+
+.set {
+  display: inline-block;
+  margin: 1em;
+  width: 5em;
+  height: 5em;
+  background: blue;
+}
+.choose-palette {
+  vertical-align: top;
+  overflow: hidden;
+
+  @include span-columns(5);
+}
+
+.palette {
+  @include span-columns(3 of 5);
+  @include shift(1);
+}
+
+
+.fabric-preview {
+  display: inline-block;
+  width: 40%;
+  max-width: 10em;
+  box-sizing: border-box;
+  overflow: hidden;
+  position: relative;
+  padding: 2em;
+
+  &:after {
+    content: "";
+    padding-top: 100%;
+    display: block;
+  }
+
+  img {
+    position: absolute;
+    min-width: 100%;
+    min-height: 100%;
+  }
+}
+
+.open-fabric-modal {
+  // margin: 2em;
+  @include span-columns(2 of 4);
+  margin: 2em auto;
+}
+
+.fabric-modal {
+  visibility: hidden;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.fabric-modal-preview {
+  border-bottom: $default-border;
+}
+
+.fabric-modal-box {
+  background: $white;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  width: $max-width;
+  height: 80%;
+}
+
+.current-palette {
+
+  .fabric-preview {
+    
+  }
+}
+
+.show {
+  visibility: visible;
+}

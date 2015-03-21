@@ -1,24 +1,38 @@
-<!DOCTYPE html>
+
+
+</nav><!DOCTYPE html>
 <!-- app wide stuff nav-bar, etc, functional links -->
 <html>
 <head>
   <title>PotentialTribble</title>
-  <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,400italic|Kreon:300,400' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Lato:100,300,400,300italic|Kreon:300,400' rel='stylesheet' type='text/css'>
   <%= stylesheet_link_tag    'application', media: 'all' %>
   <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <span>
-    <%= link_to 'Welcome', root_path %>
-    <%= link_to 'Choose a Project', project_templates_choose_project_path %>
-    <%= link_to 'Choose a Block', quilts_choose_block_path %>
-    <%= link_to 'Design Your Project', quilts_edit_project_path %>
-    <%= link_to 'Project Preview', quilts_preview_project_path %>
-    <%= link_to 'Next Steps', quilts_next_steps_path %>
-  </span>
 
-<%= yield %>
+  <nav class="site-nav">
+  </nav>
+
+  <main>
+    <!-- <nav class="progress-bar">
+
+      <%= link_to 'Choose a Project', project_templates_choose_project_path, class:"nav-link" %>
+      <%= link_to 'Choose a Block', quilts_choose_block_path, class:"nav-link" %>
+      <%= link_to 'Design Your Project', quilts_edit_project_path, class:"nav-link" %>
+      <%= link_to 'Project Preview', quilts_preview_project_path, class:"nav-link" %>
+      <%= link_to 'Next Steps', quilts_next_steps_path, class:"nav-link" %>
+    </nav> -->
+
+    <div class="app-content">
+      <!-- yield is the root-content equivalent, all views populate here -->
+      <%= yield %>
+
+
+    </div>
+
+  </main>
 
 </body>
 </html>

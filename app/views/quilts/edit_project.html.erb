@@ -1,25 +1,75 @@
-<h1>Quilts#edit_project</h1>
-<p>Find me in app/views/quilts/edit_project.html.erb</p>
-<%= form_for @quilt do |f| %>
-  <% if @quilt.errors.any? %>
+<%= render :partial => 'shared/progress', :locals => {:page => 3} %>
+
+<div class="edit-view view-container">
+  <h1>Edit Your Block</h1>
+
+  <div class="edit-block">
+    <%= form_for(@quilt) do |f|  %>
+
+    <% if @quilt.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@quilt.errors.count, "error") %> prohibited this quilt from being saved:</h2>
 
       <ul>
-      <% @quilt.errors.full_messages.each do |message| %>
+        <% @quilt.errors.full_messages.each do |message| %>
         <li><%= message %></li>
-      <% end %>
+        <% end %>
       </ul>
     </div>
-  <% end %>
-  <div>
-    <%= f.hidden_field :project_template_id, :value => params[:project_id] %>
+    <% end %>
+
+    <div class="svg-editor">
+      <%= @starting_svg.html_safe %>
+    </div>
+
+    <div>
+      <%= f.hidden_field :project_template_id, :value => params[:project_id] %>
+    </div>
+
+    <div>
+      <%= f.hidden_field :svg, :value => @starting_svg, class:"svg-input" %>
+    </div>
+    <div >
+      <%= f.submit "Save Project", class:"save-project-btn" %>
+    </div>
+    <% end %>
+
+    <div class="choose-set">
+      <ul class="sets">
+        <li class="set">
+        </li>
+        <li class="set">
+        </li>
+        <li class="set">
+        </li>
+      </ul>
+    </div>
+
   </div>
 
-  <div>
-    <%= f.hidden_field :svg, :value => @starting_svg %>
+
+  <div class="choose-palette">
+    <button class="open-fabric-modal">Add fabrics</button>
+    <ul class="palette">
+    </ul>
   </div>
-  <div >
-    <%= f.submit "Save Project" %>
+
+  <div class="fabric-modal">
+    <div class="fabric-modal-box">
+      <span class="close-fabric-modal">X</span>
+      <div class="fabric-modal-preview">
+        <img class="current-block">
+        <ul class="current-palette">
+        </ul>
+      </div>
+      <div class="fabric-modal-options">
+        <input class="fabric-modal-search">
+        <span class="search-icon"></span>
+        <ul class="fabric-modal-list">
+        </ul>
+      </div>
+    </div>
   </div>
-<% end %>
+
+
+</div>
