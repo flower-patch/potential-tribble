@@ -41,8 +41,9 @@ class SvgParser
       new_style = style_array.join(';')
       path["style"] = new_style
     end
-    # had this returning selected paths so I could see them...maybe doesn't need to return anything? maybe should return the whole changed svg?
-    selected_paths
+    # had this returning selected paths so I could see them...changed it to return the whole changed svg...might not need to return anything, depending on where we call it
+    # selected_paths
+    @svg
   end
 
 
