@@ -99,3 +99,21 @@ label {
 
 input[type=checkbox] {
 }
+
+
+/*------------------------------------*\
+    #CONTAINERS
+\*------------------------------------*/
+
+.paper-border {
+  border: 2px solid #e3e3e3;
+  padding: 5px;
+  display: inline-block;
+  margin: 0 0 7px 7px;
+  width: 21%;
+  float: left;
+}
+
+.hi {
+  background-color: red;
+}
