@@ -47,7 +47,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -55,10 +55,17 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1"
+<<<<<<< HEAD
      transform="translate(0,-230.30297)">
     <g
        id="group1"
        transform="matrix(0.95018458,0,0,-0.95032699,-96.212132,1380.3232)">
+=======
+     transform="translate(0,-242.36215)">
+    <g
+       id="group1"
+       transform="translate(-118.63635,-4.9680234e-6)">
+>>>>>>> master
       <path
          inkscape:connector-curvature="0"
          id="rect4144"
