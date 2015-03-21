@@ -1,134 +1,49 @@
 class SvgParser
   attr_reader :svg, :paths
 
+  # The svg is in fact, the svg.  Right now, in the controller, we are feeding it the test4 svg right from the file.  It also works to pass in Quilt.first.svg.  Eventually, we'll be calling it from somewhere and passing the svg that we want.
   def initialize(svg)
     @svg = Nokogiri::XML(svg)
     @paths = @svg.xpath('//*[contains(@style,"fill")]')
   end
 
+  # In case we needed to know all the unique path ids in the block, this dumps them out
   def all_path_ids
     @paths.map {|p| p[:id]}
   end
 
+  # This looks at all the image-ids (an id we will assign to each fabric design) and returns an array of the unique ones.  Eventually, we'll want a method that loops through each of these unique ids and runs the replace_fabric_url method.
   def all_unique_image_ids
     all_ids = @paths.map {|p| p['image-id']}
     all_ids.uniq
   end
 
-  def all_paths_styles_split
-    @paths.map {|p| p["style"].split(";")}
-  end
-
-  def all_paths_coords_split
-    @paths.map {|p| p["d"].split}
-  end
-
-  def all_paths_fill_values
-    array = all_paths_styles_split
-    all_fill_values = []
-    array.each do |a|
-      all_fills = a.map{|s| s if s.start_with?("fill:")}
-      fill_string = all_fills.compact![0]
-      fill_value = fill_string.scan(/:(\S*$)/)[0][0]
-      all_fill_values << fill_value
-    end
-    all_fill_values
-  end
-
-  def all_paths_coord_pairs
-    array = all_paths_coords_split
-    all_coord_pairs = []
-    array.each do |a|
-      inner_array = a[1..-2]
-      coords_array = []
-      inner_array.each do |i|
-        coord_pair = i.split(',').map {|x| x.to_f }
-        coords_array << coord_pair
-      end
-      all_coord_pairs << coords_array
-    end
-    all_coord_pairs
-  end
-#gsub time
-  # def replace_fabric_urls(image_id, new_url)
-  #   selected_paths = @paths.xpath('//*[contains(@image-id, ' + image_id +')]')
-  #   selected_paths.each do |p|
-  #
-  #     replacement_fill = "fill:#{new_url};stroke:#000000;stroke-width:0.99000001;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-  #     p["style"] = replacement_fill
-  #   end
-  #   selected_paths
-  # end
-
-  # this works as far as replacing style with what the old fill exactly was
-  # def replace_fabric_urls(image_id, new_url)
-  #   selected_paths = @paths.xpath('//*[contains(@image-id, ' + image_id +')]')
-  #   selected_paths.each do |p|
-  #     style_array = p["style"].split(';')
-  #     new_array = style_array.map{|s| s if s.start_with?("fill:")}
-  #     string = new_array.compact![0]
-  #     old_fill = string.scan(/:(\S*$)/)[0][0]
-  #     p["style"] = old_fill
-  #   end
-  #   selected_paths
-  # end
+  # There are a bunch more little methods I wrote for getting things out of the svg, but I moved those to the mynotes file...we can bring them back here as needed.  This is the big guy that takes the image-id and a new url and replaces the fill in the svg
 
   def replace_fabric_urls(image_id, new_url)
+    # can't do @paths.each...had to do .xpath to get them without all manner of Nokogiri::Element nastiness.  this finds all paths with the image id we are passing in with the variable (had to break the string for that to work)
     selected_paths = @paths.xpath('//*[contains(@image-id, ' + image_id +')]')
     selected_paths.each do |path|
+      # for every path, the "style" is a big old string.  split that puppy up, you'll get an array like ["fill:none", "stroke:#000000", ...]
       style_array = path["style"].split(';')
       fill_index = 0
-      fill_value = []
+      # typically, the fill is listed first, but in case it isn't, this finds where it is and notes the position. tried moving it in the file, works great.
       style_array.each_with_index do |style_attribute, index|
         if style_attribute.start_with?("fill:")
           fill_index = index
         end
       end
+      # here is where we put the url we want in
       fill_value = ["fill:#{new_url}"]
+      # and replace the correct element in the array of style elements
       style_array[fill_index] = fill_value
+      # and squish it all back together into a big long string and replace the path's style with the new magic
       new_style = style_array.join(';')
       path["style"] = new_style
     end
+    # had this returning selected paths so I could see them...maybe doesn't need to return anything? maybe should return the whole changed svg?
     selected_paths
   end
 
-  # WILL NOT BE THE FIRST PATHS IN THE REAL WORLD...JUST TESTING
-  def first_path_style_split_up
-    @paths.first["style"].split(";")
-  end
-
-  def first_path_coords_split_up
-    @paths.first["d"].split
-  end
-
-  def first_path_fill_as_string
-    array = first_path_style_split_up
-    # could have done array[0] but this way it doesn't rely on fill being first
-    new_array = array.map{|s| s if s.start_with?("fill:")}
-    string = new_array.compact![0]
-    string.scan(/:(\S*$)/)[0][0]
-  end
-
-  def first_path_coords
-    # lop off the m at the start and the z at the end
-    array = first_path_coords_split_up[1..-2]
-    coords_array = []
-    array.each do |a|
-      coord_pair = a.split(',').map {|x| x.to_f }
-      coords_array << coord_pair
-    end
-    coords_array
-  end
 
 end
-
-
-# What I actually need to get out of this is the fabric ID...where will that be stored?
-
-# irb(main):001:0> "fill:none".scan(/:(\S*$)/)
-# => [["none"]]
-# irb(main):002:0> "fill:none".scan(/:(\S*$)/)[0]
-# => ["none"]
-# irb(main):003:0> "fill:none".scan(/:(\S*$)/)[0][0]
-# => "none"
-# irb(main):004:0>
