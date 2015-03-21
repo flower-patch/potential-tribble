@@ -10,6 +10,11 @@ class SvgParser
     @paths.map {|p| p[:id]}
   end
 
+  def all_unique_image_ids
+    all_ids = @paths.map {|p| p['image-id']}
+    all_ids.uniq
+  end
+
   def all_paths_styles_split
     @paths.map {|p| p["style"].split(";")}
   end
@@ -43,6 +48,11 @@ class SvgParser
       all_coord_pairs << coords_array
     end
     all_coord_pairs
+  end
+
+  def replace_fabric_urls(image_id, new_url)
+    @paths.xpath('//*[contains(@image-id, ' + image_id +')]')
+
   end
 
   # WILL NOT BE THE FIRST PATHS IN THE REAL WORLD...JUST TESTING
