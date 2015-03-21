@@ -11,8 +11,8 @@
     <!-- button equivalent -->
     <h3><%= link_to project.name, quilts_choose_block_path(quilt_id: params[:quilt_id], project_id: project.id) %></h3>
 
-    <p><%= project.description %></p>
-    <p><%= project.directions_pdf_url %></p>
+    <p class="card-body-copy"><%= project.description %></p>
+    <p class="card-body-copy"><%= project.directions_pdf_url %></p>
   </div>
   <% end %>
 
