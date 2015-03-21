@@ -46,18 +46,18 @@ h1 {
 main {
   margin-top: 2em;
   margin-bottom: 4em;
-  background-color: $white;
+  // background-color: $white;
   min-height: 300px;
-  box-shadow: $default-shadow;
-
+  // box-shadow: $default-shadow;
+  padding: 0;
   @include outer-container;
   // @include span-columns(12);
   // @include shift(1);
 }
 
-.view-container {
-  padding: 0 2.378% 2.378% 2.378%;
-}
+// .view-container {
+//   padding: 0 2.378% 2.378% 2.378%;
+// }
 
 .site-nav {
   background: $accent-light;
@@ -67,6 +67,8 @@ main {
 
 
 .app-content {
+  @include fill-parent();
+
 }
 
 svg {
@@ -105,10 +107,12 @@ input[type=checkbox] {
     #CONTAINERS
 \*------------------------------------*/
 
+
+
 .paper-border {
-  border: 2px solid #e3e3e3;
-  padding: 5px;
+  // border: 1px solid $light-pure-gray;
+  padding: 7px;
   display: inline-block;
-  margin: 0 0 7px 7px;
   background-color: white;
+  box-shadow: $default-shadow;
 }

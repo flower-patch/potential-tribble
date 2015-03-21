@@ -1,0 +1,18 @@
+.width-welcome {
+  @include span-columns(12);
+  
+}
+
+.welcome-img {
+  background: orange;
+
+}
+
+.welcome-head {
+
+}
+
+.welcome-subhead {
+  line-height: 1em;
+  padding: 0;
+}
