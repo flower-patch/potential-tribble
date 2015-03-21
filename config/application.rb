@@ -22,9 +22,6 @@ module PotentialTribble
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
 
-    #Added fonts folder to the assets directory
-    config.assets.paths << Rails.root.join("app", "assets", "fonts")
-    
     config.active_record.raise_in_transactional_callbacks = true
   end
 end
