@@ -162,11 +162,11 @@ PLATFORMS
 DEPENDENCIES
   bourbon
   coffee-rails (~> 4.1.0)
-<<<<<<< HEAD
+
   font-awesome-rails
-=======
+
   httparty
->>>>>>> master
+
   jbuilder (~> 2.0)
   jquery-rails
   neat (~> 1.7.2)
