@@ -19,8 +19,6 @@
 
 
 .choose-set {
-  // @include span-columns(6 of 8);
-  // @include shift(2);
   margin: 0 auto;
   @include span-columns(5 of 7);
   @include shift(1);
@@ -81,6 +79,10 @@
   margin: 2em auto;
 }
 
+/*------------------------------------*\
+    #FABRIC-MODAL
+\*------------------------------------*/
+
 .fabric-modal {
   visibility: hidden;
   position: fixed;
@@ -102,14 +104,16 @@
   left: 50%;
   transform: translate(-50%, -50%);
 
-  width: $max-width;
+  width: 920px;
   height: 80%;
 }
 
 .current-palette {
-
+  display: inline-block;
+  width: 100%;
   .fabric-preview {
 
+    display: inline-block;
   }
 }
 
@@ -122,4 +126,14 @@
 
 .show {
   visibility: visible;
+}
+
+.current-block {
+  display: inline-block;
+
+  svg {
+    width: 150px ;
+  }
+
+  @include pad();
 }
