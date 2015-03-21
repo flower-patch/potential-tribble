@@ -4,11 +4,11 @@
 
 
 <p>Full SVG</p>
-<%= @quilt.svg.html_safe %>
+<%#= @quilt.svg.html_safe %>
 <%= @quilt.get_paths_from_svg %>
 
 <%# FIXME: this if statement is a hack to avoid the pain of ERB commenting %>
-<% if false %>
+<% if true %>
 <% Fabric.get_spoonflower_images( "goat" ).each do |hash| %>
   <p>Image ID:<%= hash[:id] %><p>
   <%= image_tag hash[:thumbnail] %>
@@ -18,8 +18,8 @@
 
 
 <%# FIXME: this if statement is a hack to avoid the pain of ERB commenting %>
-<% if true %>
-<% Fabric.get_spoonflower_fabrics_by_color( "BC8D09" ).each do |hash| %>
+<% if false %>
+<% Fabric.get_spoonflower_fabrics_by_color( "FF0000" ).each do |hash| %>
   <p>Image ID:<%= hash[:id] %><p>
   <%= image_tag hash[:thumbnail] %>
   <br>
