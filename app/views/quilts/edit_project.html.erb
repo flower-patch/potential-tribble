@@ -1,62 +1,87 @@
 <%= render :partial => 'shared/progress', :locals => {:page => 3} %>
 
 <div class="edit-view view-container">
+<<<<<<< HEAD
+ <!-- <h1>Edit Your Block</h1> -->
+=======
   <!-- <h1>Edit Your Block</h1> -->
+>>>>>>> 31031286bb5c5403ad7b3c865c49229674c307e6
 
-  <div class="edit-block">
-    <%= form_for(@quilt) do |f|  %>
+ <div class="edit-block">
+   <%= form_for(@quilt) do |f|  %>
 
-    <% if @quilt.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@quilt.errors.count, "error") %> prohibited this quilt from being saved:</h2>
+   <% if @quilt.errors.any? %>
+   <div id="error_explanation">
+     <h2><%= pluralize(@quilt.errors.count, "error") %> prohibited this quilt from being saved:</h2>
 
-      <ul>
-        <% @quilt.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-        <% end %>
-      </ul>
-    </div>
-    <% end %>
+     <ul>
+       <% @quilt.errors.full_messages.each do |message| %>
+       <li><%= message %></li>
+       <% end %>
+     </ul>
+   </div>
+   <% end %>
 
-    <div class="svg-editor">
-      <%= @starting_svg.html_safe %>
-    </div>
+   <div class="svg-editor-parent">
+     <div class="svg-editor">
+       <%= @starting_svg.html_safe %>
+     </div>
+   </div>
 
-    <div>
-      <%= f.hidden_field :project_template_id, :value => params[:project_id] %>
-    </div>
+   <div>
+     <%= f.hidden_field :project_template_id, :value => params[:project_id] %>
+   </div>
 
-    <div>
-      <%= f.hidden_field :svg, :value => @starting_svg, class:"svg-input" %>
-    </div>
-    <div >
-      <%= f.submit "Save Project", class:"save-project-btn" %>
-    </div>
-    <% end %>
+   <div>
+     <%= f.hidden_field :svg, :value => @starting_svg, class:"svg-input" %>
+   </div>
+   <div >
+     <%= f.submit "Save Project", class:"save-project-btn" %>
+   </div>
+   <% end %>
 
-    <div class="choose-set">
-      <ul class="sets">
-        <li class="set">
-        </li>
-        <li class="set">
-        </li>
-        <li class="set">
-        </li>
-      </ul>
-    </div>
+   <div class="choose-set">
+     <ul class="sets">
+       <li class="set">
+       </li>
+       <li class="set">
+       </li>
+       <li class="set">
+       </li>
+     </ul>
+   </div>
 
-  </div>
+ </div>
 
 <!-- Palette Section -->
 
-  <div class="choose-palette">
-    <button class="open-fabric-modal">Add fabrics</button>
-    <ul class="palette">
-    </ul>
-  </div>
+ <div class="choose-palette">
+   <button class="open-fabric-modal">Add fabrics</button>
+   <ul class="palette">
+   </ul>
+ </div>
 
 <!-- Fabric Modal -->
 
+<<<<<<< HEAD
+ <div class="fabric-modal">
+   <div class="fabric-modal-box">
+     <span class="close-fabric-modal">X</span>
+     <div class="fabric-modal-preview">
+       <div class="current-block">
+       </div>
+       <ul class="current-palette">
+       </ul>
+     </div>
+     <div class="fabric-modal-options">
+       <input class="fabric-modal-search">
+       <span class="search-icon"></span>
+       <ul class="fabric-modal-list">
+       </ul>
+     </div>
+   </div>
+ </div>
+=======
   <div class="fabric-modal">
     <div class="fabric-modal-box">
       <span class="close-fabric-modal">X</span>
@@ -74,6 +99,7 @@
       </div>
     </div>
   </div>
+>>>>>>> 31031286bb5c5403ad7b3c865c49229674c307e6
 
 
 </div>

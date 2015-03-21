@@ -117,6 +117,13 @@
   }
 }
 
+
+.current-block {
+  // No mouse / touch events occur in current block
+  pointer-events: none;
+  // set `pointer-events: auto;` to override this
+}
+
 .show {
   visibility: visible;
 }
