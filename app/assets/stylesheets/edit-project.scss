@@ -1,11 +1,10 @@
 
-
 /*------------------------------------*\
     #EDIT-VIEW
 \*------------------------------------*/
 
 .edit-view {
-  @include outer-container;
+  @include fill-parent();
 }
 
 .edit-block {
@@ -13,15 +12,15 @@
 }
 
 .save-project-btn {
-  @include span-columns(3 of 7);
-  @include shift(2);
+//   @include span-columns(3 of 7);
+//   @include shift(2);
 }
 
 
 .choose-set {
-  margin: 0 auto;
-  @include span-columns(5 of 7);
-  @include shift(1);
+  // margin: 0 auto;
+  // @include span-columns(5 of 7);
+  // @include shift(1);
 }
 
 .sets {
@@ -34,16 +33,17 @@
   height: 5em;
   background: blue;
 }
-.choose-palette {
-  vertical-align: top;
-  overflow: hidden;
 
-  @include span-columns(5);
+.choose-palette {
+  // vertical-align: top;
+  // overflow: scroll;
+  //
+  @include span-columns(4);
 }
 
 .palette {
-  @include span-columns(3 of 5);
-  @include shift(1);
+  // @include span-columns(2 of 5);
+  // @include shift(1);
 }
 
 
@@ -75,65 +75,7 @@
 
 .open-fabric-modal {
   // margin: 2em;
-  @include span-columns(2 of 4);
-  margin: 2em auto;
-}
-
-/*------------------------------------*\
-    #FABRIC-MODAL
-\*------------------------------------*/
-
-.fabric-modal {
-  visibility: hidden;
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: rgba(0, 0, 0, 0.3);
-}
-
-.fabric-modal-preview {
-  border-bottom: $default-border;
-}
-
-.fabric-modal-box {
-  background: $white;
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-
-  width: 920px;
-  height: 80%;
-}
-
-.current-palette {
-  display: inline-block;
-  width: 100%;
-  .fabric-preview {
-
-    display: inline-block;
-  }
-}
-
-
-.current-block {
-  // No mouse / touch events occur in current block
-  pointer-events: none;
-  // set `pointer-events: auto;` to override this
-}
-
-.show {
-  visibility: visible;
-}
-
-.current-block {
-  display: inline-block;
-
-  svg {
-    width: 150px ;
-  }
-
-  @include pad();
+  // @include span-columns(1 of 3);
+  // @include shift(1);
+  // margin: 2em auto;
 }

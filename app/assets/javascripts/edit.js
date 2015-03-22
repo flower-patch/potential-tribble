@@ -38,6 +38,33 @@ $(function () {
     }
   }];
 
+  function drawSets() {
+    var groups = $('.svg-editor').find('g g').clone();
+    // var groups = (svg.selectAll('g')).items;
+    console.log(groups);
+    for (var i = 0; i < groups.length; ++i) {
+      var baseSvg = $('.svg-editor').clone().remove('g').html();
+      console.log(baseSvg);
+
+      // why is this sometimes returning html, sometimes svg objects?
+      var set = $(groups[i]).html();
+      console.log(set);
+      // var set = $(i).html();
+      // console.log(set);
+      $('.sets').append('<li>' + set + '</li>');
+    }
+
+    // why was did this keep reading as undefined?
+    // groups.forEach(function(group) {
+    //   console.log(group);
+    //   var set = $(group).html();
+    //   console.log(set);
+    //   $('.sets').append(set);
+    // });
+  }
+
+  drawSets();
+
   function drawPalette(palette) {
     $('.palette, .current-palette').html(palette.map(function (fabric) {
       var li = $('<li class="fabric-preview"><img src="' + fabric.url +'"></li>');
@@ -52,20 +79,14 @@ $(function () {
 
   var currFabric = palette[0];
 
-  console.log(currFabric);
-
-
   $('.palette').on('click', '.fabric-preview', function () {
     currFabric = $(this).data('fabric');
-    console.log(currFabric);
   });
 
 
   svg.selectAll('path').forEach(function (path) {
     //this only works with fill:none; svg's
-    console.log(path.attr('fill'));
     if (!path.attr('fill') || path.attr('fill') === 'none') {
-      console.log(path);
       path.attr('fill', 'white');
     }
   });
@@ -130,36 +151,36 @@ $(function () {
     group.selectAll('path').forEach(applyFabricPatch);
   }
 
-  var newSvg;
+  var currSvg;
 
 
-  function getCurrentSvg() {
+  function getCurrSvg() {
     //take html from div svg-editor
-    newSvg = $('.svg-editor').html();
-    return newSvg;
+    currSvg = $('.svg-editor')
+    return currSvg;
   }
 
   //takes preview into the modal
   function previewQuilt() {
-    getCurrentSvg();
+    getCurrSvg();
     // FIX FOR a hellish bug with svgs & jQuery .html()
     // We take the svg-editor element and move it from the main content area
     // to the modal when the modal opens
-    var svgElement = $('.svg-editor');
-    $('.fabric-modal .current-block').append(svgElement);
+    // var svgElement = $('.svg-editor');
+    $('.fabric-modal .current-block').append(currSvg);
   }
 
   function saveQuilt() {
-    getCurrentSvg();
-    console.log(newSvg);
+    getCurrSvg();
+    // get the html of the currSvg object
+    currSvg = $(currSvg).html();
     //set as the value of the hidden field
-    $('.svg-input').val(newSvg);
+    $('.svg-input').val(currSvg);
   }
 
   $('form').submit(function() {
     saveQuilt();
-    alert(newSvg);
-    alert('save');
+    console.log(newSvg);
   });
 
 
@@ -172,8 +193,8 @@ $(function () {
     $('.fabric-modal').toggleClass('show');
     // Once the modal closes, move the svg-editor element back into its original
     // area (.svg-editor-parent), in the main content.
-    var svgElement = $('.fabric-modal .current-block').children();
-    $('.svg-editor-parent').append(svgElement);
+    currSvg = $('.fabric-modal .current-block').children();
+    $('.svg-editor-parent').append(currSvg);
   });
 
 });

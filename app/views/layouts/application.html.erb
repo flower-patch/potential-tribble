@@ -1,6 +1,4 @@
-
-
-</nav><!DOCTYPE html>
+<!DOCTYPE html>
 <!-- app wide stuff nav-bar, etc, functional links -->
 <html>
 <head>
@@ -12,25 +10,13 @@
 </head>
 <body>
 
-  <nav class="site-nav">
-  </nav>
+  <header class="site-nav">
+  </header>
 
-  <main>
-    <!-- <nav class="progress-bar">
+  <main class="app-content paper-border">
 
-      <%= link_to 'Choose a Project', project_templates_choose_project_path, class:"nav-link" %>
-      <%= link_to 'Choose a Block', quilts_choose_block_path, class:"nav-link" %>
-      <%= link_to 'Design Your Project', quilts_edit_project_path, class:"nav-link" %>
-      <%= link_to 'Project Preview', quilts_preview_project_path, class:"nav-link" %>
-      <%= link_to 'Next Steps', quilts_next_steps_path, class:"nav-link" %>
-    </nav> -->
-
-    <div class="app-content paper-border">
-      <!-- yield is the root-content equivalent, all views populate here -->
-      <%= yield %>
-
-
-    </div>
+    <!-- yield is the root-content equivalent, all views populate here -->
+    <%= yield %>
 
   </main>
 

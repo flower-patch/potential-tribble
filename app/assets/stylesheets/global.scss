@@ -7,6 +7,8 @@
 
 $max-width: em(960);
 
+$grid-columns: 12 !default;
+
 
 
 /*------------------------------------*\
@@ -66,10 +68,10 @@ main {
 }
 
 
-.app-content {
-  @include fill-parent();
-
-}
+// .app-content {
+//   @include fill-parent();
+//
+// }
 
 svg {
   width: 500px;
@@ -87,7 +89,7 @@ svg path {
 \*------------------------------------*/
 
 input {
-  margin:L 1em;
+  margin: 1em;
 }
 
 button {
@@ -112,7 +114,7 @@ input[type=checkbox] {
 .paper-border {
   // border: 1px solid $light-pure-gray;
   padding: 7px;
-  display: inline-block;
+  // display: inline-block;
   background-color: white;
   box-shadow: $default-shadow;
 }
