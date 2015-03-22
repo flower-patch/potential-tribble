@@ -1,12 +1,12 @@
 #Terminology Used in this Project
 
-Quilt: Made up of many blocks
+Quilt: Made up of many blocks.
 
 Block: Repeating geometric pattern. Uses an SVG file to represent it. Made up of many patches.
 
 Patch: Individual pieces of fabric in a cut and sew project. Each path in the SVG represents a patch.
 
-Pattern: Raster image applied to each patch
+Pattern: Raster image applied to each patch.
 
 #API Usage
 

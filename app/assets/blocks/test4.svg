@@ -27,8 +27,8 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.61765806"
-     inkscape:cx="212.57389"
-     inkscape:cy="422.59278"
+     inkscape:cx="423.77878"
+     inkscape:cy="464.72205"
      inkscape:document-units="in"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -53,35 +53,25 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1">
-    <g
-       id="g4228">
-      <path
-         image-id="4321"
-         inkscape:connector-curvature="0"
-         id="rect3393"
-         d="m 0.495,645.495 404.01001,0 0,404.01 -404.01001,0 z"
-         style="fill:none;stroke:#000000;stroke-width:0.99000001;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
-      <path
-         inkscape:connector-curvature="0"
-         image-id="4321"
-         id="rect4197"
-         d="m 405.495,240.495 404.01,0 0,404.01 -404.01,0 z"
-         style="fill:none;stroke:#000000;stroke-width:0.99000001;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
-    </g>
-    <g
-       id="g4224">
-      <path
-         inkscape:connector-curvature="0"
-         image-id="1234"
-         id="rect4195"
-         d="m 405.495,645.495 404.01,0 0,404.01 -404.01,0 z"
-         style="fill:none;stroke:#000000;stroke-width:0.99000001;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
-      <path
-         inkscape:connector-curvature="0"
-         image-id="1234"
-         id="rect4199"
-         d="m 0.495,240.495 404.01001,0 0,404.01 -404.01001,0 z"
-         style="fill:none;stroke:#000000;stroke-width:0.99000001;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
-    </g>
+    <path
+       style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 0,645 405,0 0,405 -405,0 z"
+       id="rect4236"
+       inkscape:connector-curvature="0" />
+    <path
+       inkscape:connector-curvature="0"
+       id="path4239"
+       d="m 405,240 405,0 0,405 -405,0 z"
+       style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    <path
+       style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 405,645 405,0 0,405 -405,0 z"
+       id="path4241"
+       inkscape:connector-curvature="0" />
+    <path
+       inkscape:connector-curvature="0"
+       id="path4243"
+       d="m 0,240 405,0 0,405 -405,0 z"
+       style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
   </g>
 </svg>
