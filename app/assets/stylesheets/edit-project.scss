@@ -4,6 +4,8 @@
 \*------------------------------------*/
 
 .edit-view {
+  text-align: center;
+
   @include span-columns(8);
   @include shift(1);
 }
@@ -15,25 +17,16 @@
 svg {
   width: 400px;
   height: 100%;
-  // margin-top: 4em;
-  // margin-bottom: 4em;
 
 }
 
 .svg-editor-parent {
-  // @include span-columns (5 of 7);
-  // @include shift(1)
 }
 
 .save-project-btn {
-//   @include span-columns(3 of 7);
-//   @include shift(2);
 }
 
 .choose-set {
-  // margin: 0 auto;
-  // @include span-columns(3 of 7);
-  // @include shift(2);
 }
 
 .sets {
@@ -49,14 +42,13 @@ svg {
 
 .choose-palette {
   vertical-align: top;
-  // overflow: scroll;
-  //
+  overflow: scroll;
+
   @include span-columns(3 of 8);
 }
 
 .palette {
-  // @include span-columns(2 of 5);
-  // @include shift(1);
+  text-align: left;
 }
 
 
@@ -87,8 +79,4 @@ svg {
 }
 
 .open-fabric-modal {
-  // margin: 2em;
-  // @include span-columns(1 of 3);
-  // @include shift(1);
-  // margin: 2em auto;
 }
