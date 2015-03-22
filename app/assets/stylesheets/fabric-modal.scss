@@ -1,0 +1,58 @@
+/*------------------------------------*\
+    #FABRIC-MODAL
+\*------------------------------------*/
+
+.fabric-modal {
+  visibility: hidden;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.fabric-modal-preview {
+  border-bottom: $default-border;
+}
+
+.fabric-modal-box {
+  background: $white;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  width: 920px;
+  height: 80%;
+}
+
+.current-palette {
+  display: inline-block;
+  width: 100%;
+  .fabric-preview {
+
+    display: inline-block;
+  }
+}
+
+
+.current-block {
+  // No mouse / touch events occur in current block
+  pointer-events: none;
+  // set `pointer-events: auto;` to override this
+}
+
+.show {
+  visibility: visible;
+}
+
+.current-block {
+  display: inline-block;
+
+  svg {
+    width: 150px ;
+  }
+
+  @include pad();
+}

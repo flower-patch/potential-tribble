@@ -1,6 +1,6 @@
 <%= render :partial => 'shared/progress', :locals => {:page => 4} %>
 
-<div class="preview-view view-container">
+<div class="preview-view">
 
   <h1>Quilts#preview_project</h1>
   <!-- page 4 wireframe -->
@@ -8,7 +8,8 @@
 
     <%= form_for @quilt, :url => { :action => "next_steps"} do |f| %>
 
-  <% if @quilt.errors.any? %>
+    <% if @quilt.errors.any? %>
+
   <div id="error_explanation">
     <h2><%= pluralize(@quilt.errors.count, "error") %> prohibited this quilt from being saved:</h2>
 
@@ -19,9 +20,11 @@
     </ul>
   </div>
   <% end %>
+
   <div class="preview-svg">
     <%= @quilt.svg.html_safe %>
   </div>
+
   <%= hidden_field_tag :quilt_id, params[:quilt_id] %>
   <%# TODO: Make seam_allowance editable by user %>
   <%= f.hidden_field :seam_allowance, :value => 0.25 %>

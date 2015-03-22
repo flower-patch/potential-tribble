@@ -1,6 +1,7 @@
 <%= render :partial => 'shared/progress', :locals => {:page => 5} %>
 
-<div class="next-steps-view view-container">
+
+<div class="next-steps-view">
 
   <h1>Next Steps</h1>
   <h2>Nice work! Now follow these steps to receive your design on fabric</h2>
@@ -15,6 +16,7 @@
 
 </div>
 
+<div>
 <%= @quilt.svg.html_safe %>
 
 <p>Full SVG</p>
@@ -39,3 +41,5 @@
   <br>
 <% end %>
 <% end %>
+
+</div>

@@ -5,6 +5,8 @@
 \*------------------------------------*/
 
 $max-width: em(960);
+$grid-columns: 12 !default;
+
 
 /*------------------------------------*\
     #Application Page Elements
@@ -63,10 +65,10 @@ main {
 }
 
 
-.app-content {
-  @include fill-parent();
-
-}
+// .app-content {
+//   @include fill-parent();
+//
+// }
 
 svg {
   width: 500px;
@@ -85,8 +87,8 @@ svg path {
 
 input {
   margin: 1em;
-
 }
+
 
 button {
   margin: 0.2em;
@@ -175,7 +177,7 @@ label {
 .paper-border {
   // border: 1px solid $light-pure-gray;
   padding: 7px;
-  display: inline-block;
+  // display: inline-block;
   background-color: white;
   box-shadow: $default-shadow;
 }
