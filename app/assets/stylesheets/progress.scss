@@ -6,7 +6,8 @@
 .progress-bar {
   background-color: $white;
   border-bottom: $default-border;
-  @include row(table);
+  @include fill-parent();
+  // @include row(table);
   @include pad();
 }
 

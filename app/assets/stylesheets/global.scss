@@ -5,9 +5,9 @@
     #NEAT Variables
 \*------------------------------------*/
 
-$max-width: em(960);
+$max-width: em(960) !global;
 
-$grid-columns: 10;
+$grid-columns: 10 !global;
 
 
 
@@ -66,12 +66,6 @@ main {
   height: 4em;
   box-shadow: $default-shadow;
 }
-
-
-// .app-content {
-//   @include fill-parent();
-//
-// }
 
 svg {
   width: 500px;
