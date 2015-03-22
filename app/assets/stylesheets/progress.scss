@@ -6,8 +6,8 @@
 .progress-bar {
   background-color: $white;
   border-bottom: $default-border;
+
   @include fill-parent();
-  // @include row(table);
   @include pad();
 }
 
@@ -15,6 +15,6 @@
   font-size: 1em;
   font-weight: $normal;
   text-align: center;
-  @include span-columns(2);
 
+  @include span-columns(2.4);
 }

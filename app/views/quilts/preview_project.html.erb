@@ -8,7 +8,8 @@
 
     <%= form_for @quilt, :url => { :action => "next_steps"} do |f| %>
 
-  <% if @quilt.errors.any? %>
+    <% if @quilt.errors.any? %>
+
   <div id="error_explanation">
     <h2><%= pluralize(@quilt.errors.count, "error") %> prohibited this quilt from being saved:</h2>
 
@@ -19,9 +20,11 @@
     </ul>
   </div>
   <% end %>
+
   <div class="preview-svg">
     <%= @quilt.svg.html_safe %>
   </div>
+
   <%= hidden_field_tag :quilt_id, params[:quilt_id] %>
   <%# TODO: Make seam_allowance editable by user %>
   <%= f.hidden_field :seam_allowance, :value => 0.25 %>
@@ -31,12 +34,17 @@
     <%= f.text_field :name, class: "quilt-name" %>
   </div>
 
-  <div class= "awesome-submit-container">
-    <%= f.label "Check if you would like to make this quilt configuration public." %>
-    <%= f.check_box :public, class: "public-checkbox."%>
+<div class="share-quilt-container">
+
+    <%= f.label "Check here to make your quilt public:."
+    %><label class="label-switch">
+      <%= f.check_box :public, class: "public-checkbox."%>
+    <div class ="checkbox"></div>
+    </label>
   </div>
 
-  <div>
+
+    <div class= "awesome-submit-container">
     <%= f.submit 'This Quilt Is Awesome.  I Approve.', class:"awesome-submit" %>
   </div>
   <% end %>
