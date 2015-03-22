@@ -5,13 +5,14 @@
 
 .edit-view {
   text-align: center;
+  margin: 4em;
 
-  @include span-columns(8);
+  @include span-columns(10);
   @include shift(1);
 }
 
 .edit-block {
-  @include span-columns(5 of 8);
+  @include span-columns(6 of 10);
 }
 
 svg {
@@ -44,7 +45,7 @@ svg {
   vertical-align: top;
   overflow: scroll;
 
-  @include span-columns(3 of 8);
+  @include span-columns(4 of 10);
 }
 
 .palette {
@@ -54,7 +55,7 @@ svg {
 
 .fabric-preview {
   display: inline-block;
-  width: 40%;
+  width: 50%;
   max-width: 10em;
   box-sizing: border-box;
   overflow: hidden;
@@ -78,5 +79,5 @@ svg {
 
 }
 
-.open-fabric-modal {
+.open-fabric-modal-btn {
 }

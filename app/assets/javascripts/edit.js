@@ -184,7 +184,7 @@ $(function () {
   });
 
 
-  $('.open-fabric-modal').on('click', function () {
+  $('.open-fabric-modal-btn').on('click', function () {
     $('.fabric-modal').toggleClass('show');
     previewQuilt();
   });
