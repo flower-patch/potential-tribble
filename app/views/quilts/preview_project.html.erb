@@ -31,12 +31,17 @@
     <%= f.text_field :name, class: "quilt-name" %>
   </div>
 
-  <div class= "awesome-submit-container">
-    <%= f.label "Check if you would like to make this quilt configuration public." %>
-    <%= f.check_box :public, class: "public-checkbox."%>
+<div class="share-quilt-container">
+
+    <%= f.label "Check here to make your quilt public:."
+    %><label class="label-switch">
+      <%= f.check_box :public, class: "public-checkbox."%>
+    <div class ="checkbox"></div>
+    </label>
   </div>
 
-  <div>
+
+    <div class= "awesome-submit-container">
     <%= f.submit 'This Quilt Is Awesome.  I Approve.', class:"awesome-submit" %>
   </div>
   <% end %>

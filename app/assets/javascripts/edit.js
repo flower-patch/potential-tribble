@@ -71,31 +71,35 @@ $(function () {
   });
 
 
-  svg.selectAll('path').forEach(function (path) {
-    // required arbitrary boolean
-    var prevent = false;
-    // defines the functions called in timeout
-    var timer = 0;
+  editPatch(svg);
 
-    path
+
+  function editPatch(block) {
+    block.selectAll('path').forEach(function (path) {
+      // required arbitrary boolean
+      var prevent = false;
+      // defines the functions called in timeout
+      var timer = 0;
+
+      path
       .click(function () {
-      timer = setTimeout(function () {
-        if (!prevent) {
-          getGroup(path);
-        }
-        prevent = false;
-      }, 200);
+        timer = setTimeout(function () {
+          if (!prevent) {
+            applyFabricPatch(path);
+          }
+          prevent = false;
+        }, 200);
       })
       .dblclick(function () {
         clearTimeout(timer);
         prevent = true;
-        applyFabricPatch(path);
+        clearFabricPatch(path);
       });
+    });
+  }
 
-  });
 
-
-  function applyFabricPatch (path) {
+  function applyFabricPatch(path) {
     //empty palette, nothing happens!
     if (!currFabric) return;
     //use id for snappy shtuffz
@@ -105,14 +109,18 @@ $(function () {
 
     if (!pattern) {
       pattern = svg.image(currFabric.url, 0, 0, currFabric.size.width, currFabric.size.height)
-       .toPattern(0, 0, currFabric.size.width, currFabric.size.height)
-       .attr({ id: svgId });
+      .toPattern(0, 0, currFabric.size.width, currFabric.size.height)
+      .attr({ id: svgId });
     }
 
     path.attr('fill', pattern);
   }
 
-  function getGroup (path) {
+  function clearFabricPatch(path) {
+    path.attr('fill', '#ffffff');
+  }
+
+  function getGroup(path) {
     //empty palette, nothing happens!
     if (!currFabric) return;
     //use id for snappy shtuffz
@@ -124,30 +132,48 @@ $(function () {
 
   var newSvg;
 
-  // function previewQuilt () {
-  //
-  // }
 
-  function saveQuilt () {
+  function getCurrentSvg() {
     //take html from div svg-editor
-    //set as the value of the hidden field
     newSvg = $('.svg-editor').html();
-    // Testing
-    // console.log(newSvg);
+    return newSvg;
+  }
+
+  //takes preview into the modal
+  function previewQuilt() {
+    getCurrentSvg();
+    // FIX FOR a hellish bug with svgs & jQuery .html()
+    // We take the svg-editor element and move it from the main content area
+    // to the modal when the modal opens
+    var svgElement = $('.svg-editor');
+    $('.fabric-modal .current-block').append(svgElement);
+  }
+
+  function saveQuilt() {
+    getCurrentSvg();
+    console.log(newSvg);
+    //set as the value of the hidden field
     $('.svg-input').val(newSvg);
   }
 
-  $('form').submit(function(){
+  $('form').submit(function() {
     saveQuilt();
     alert(newSvg);
     alert('save');
-    // Testing
-    // alert(newSvg);
-    // alert('save');
   });
 
-  $('.open-fabric-modal, .close-fabric-modal').click(function () {
+
+  $('.open-fabric-modal').on('click', function () {
     $('.fabric-modal').toggleClass('show');
+    previewQuilt();
+  });
+
+  $('.close-fabric-modal').on('click', function () {
+    $('.fabric-modal').toggleClass('show');
+    // Once the modal closes, move the svg-editor element back into its original
+    // area (.svg-editor-parent), in the main content.
+    var svgElement = $('.fabric-modal .current-block').children();
+    $('.svg-editor-parent').append(svgElement);
   });
 
 });

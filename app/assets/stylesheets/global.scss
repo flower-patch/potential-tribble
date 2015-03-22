@@ -1,13 +1,10 @@
 // Global elements such as divs, containers, inputs, buttons etc
 
-
 /*------------------------------------*\
     #NEAT Variables
 \*------------------------------------*/
 
 $max-width: em(960);
-
-
 
 /*------------------------------------*\
     #Application Page Elements
@@ -87,7 +84,8 @@ svg path {
 \*------------------------------------*/
 
 input {
-  margin:L 1em;
+  margin: 1em;
+
 }
 
 button {
@@ -99,14 +97,79 @@ label {
   font-size: 1.05em;
 }
 
-input[type=checkbox] {
+/*------------------------------------*\
+    #Switch Checkbox
+    variables found in variables.scss
+\*------------------------------------*/
+
+.label-switch {
+  border-radius: $switch-radius;
+  cursor: pointer;
+  display: inline-block;
+  height: $switch-height;
+  position: relative;
+  width: $switch-width;
+
+  input[type="checkbox"] {
+    display: none;
+
+    + .checkbox {
+      @include transition(all 0.3s ease);
+      // background: $switch-border-background;
+      border-radius: $switch-radius;
+      border: none;
+      cursor: pointer;
+      height: $switch-height;
+      margin: 0;
+      padding: 0;
+      position: relative;
+      width: $switch-width;
+      z-index: 0;
+
+      &:before {
+        @include position(absolute, 2px 0 0 2px);
+        @include transform(scale(1));
+        @include transition(all 0.3s ease);
+        background: $switch-background;
+        border-radius: $switch-radius;
+        content: "";
+        height: $knob-radius;
+        width: $switch-width - ($switch-padding * 2);
+        z-index: 1;
+      }
+
+      &:after {
+        @include position(absolute, 2px 0 0 2px);
+        @include transition(all 0.3s ease);
+        @include size($knob-size);
+        background: $switch-background;
+        border-radius: $knob-radius;
+        box-shadow: $switch-shadow;
+        content: "";
+        z-index: 2;
+      }
+    }
+
+    &:checked {
+      + .checkbox {
+        background: $base-accent-color;
+
+        &:before {
+          @include transform(scale(0));
+        }
+
+        &:after {
+          left: $switch-width - $knob-width - ($switch-padding);
+        }
+      }
+    }
+  }
 }
 
 
 /*------------------------------------*\
     #CONTAINERS
 \*------------------------------------*/
-
 
 
 .paper-border {
