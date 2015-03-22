@@ -63,7 +63,7 @@ $(function () {
     // });
   }
 
-  drawSets();
+  // drawSets();
 
   function drawPalette(palette) {
     $('.palette, .current-palette').html(palette.map(function (fabric) {

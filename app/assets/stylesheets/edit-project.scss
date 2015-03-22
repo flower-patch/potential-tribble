@@ -3,8 +3,13 @@
     #EDIT-VIEW
 \*------------------------------------*/
 
-.edit-view {
-  @include fill-parent();
+// .edit-view {
+//   @include fill-parent();
+// }
+
+svg {
+  width: 500px;
+
 }
 
 .edit-block {
@@ -19,8 +24,8 @@
 
 .choose-set {
   // margin: 0 auto;
-  // @include span-columns(5 of 7);
-  // @include shift(1);
+  @include span-columns(3 of 7);
+  @include shift(2);
 }
 
 .sets {
@@ -35,10 +40,10 @@
 }
 
 .choose-palette {
-  // vertical-align: top;
+  vertical-align: top;
   // overflow: scroll;
   //
-  @include span-columns(4);
+  @include span-columns(3);
 }
 
 .palette {
