@@ -4,22 +4,34 @@
 \*------------------------------------*/
 
 .edit-view {
-  text-align: center;
-  margin: 4em;
+  position: relative;
 
   @include span-columns(10);
   @include shift(1);
 }
 
 .edit-block {
-  @include span-columns(6 of 10);
+  @include span-columns(5 of 10);
 }
 
 svg {
   width: 400px;
   height: 100%;
+  cursor: pointer;
+  box-shadow: $default-shadow;
 
+  path {
+    stroke-width: 3px;
+    stroke: blue;
+
+    &:hover {
+      // transition: all 0.5s ease;
+      fill-opacity: 0.5;
+      outline: 10px auto $accent-mid;
+    }
+  }
 }
+
 
 .svg-editor-parent {
 }
@@ -28,39 +40,61 @@ svg {
 }
 
 .choose-set {
+  margin-top: 2em;
 }
 
 .sets {
+  width: 400px;
+  height: 8em;
+  text-align: center;
+  overflow-x: scroll;
+  white-space: nowrap;
 }
 
 .set {
+  box-shadow: $default-shadow;
   display: inline-block;
   margin: 1em;
   width: 5em;
   height: 5em;
-  background: blue;
+  cursor: pointer;
 }
 
 .choose-palette {
-  vertical-align: top;
-  overflow: scroll;
-
   @include span-columns(4 of 10);
+  @include shift(1);
+  text-align: center;
+  background: $lightest-gray;
+  box-shadow: inset $default-shadow;
+  vertical-align: top;
+  position: relative;
+}
+
+.add-fabric-message {
+  @include position(absolute, 80% 0 0 50%);
+  transform: translate(-50%, -50%);
+  width: 80%;
+  visibility: hidden;
+  vertical-align: baseline;
+  color: $mid-gray;
+
 }
 
 .palette {
   text-align: left;
+  height: $block-height;
+  overflow: auto;
 }
 
 
 .fabric-preview {
   display: inline-block;
-  width: 50%;
-  max-width: 10em;
-  box-sizing: border-box;
+  padding-right: 10px;
+  width: 40%;
   overflow: hidden;
   position: relative;
-  padding: 2em;
+  margin: 5%;
+  cursor: pointer;
 
   &:after {
     content: "";
@@ -76,8 +110,13 @@ svg {
 }
 
 .save-project-btn {
-
+  position: absolute;
+  bottom: 0.5em;
+  right: 3em;
 }
 
 .open-fabric-modal-btn {
+  position: absolute;
+  bottom: -1.3em;
+  right: -1.1em;
 }
