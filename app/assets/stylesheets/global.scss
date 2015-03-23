@@ -73,10 +73,30 @@ main {
   background: $accent-light;
   height: 4em;
   box-shadow: $default-shadow;
+  // opacity: 0.5;
 }
 
 .view-container {
   margin: 4em 0 2em 0;
+}
+
+.spoonflower-section {
+  display: inline-block;
+  float: right;
+  font-family: $serif;
+  margin: 0 2em;
+}
+
+.spoonflower-logo {
+  display: inline-block;
+  margin: 5em;
+}
+
+.spoonflower-tag {
+  padding: 0 1em 2.75em 0;
+  margin: auto 0;
+  display: inline-block;
+  vertical-align: middle;
 }
 
 svg {

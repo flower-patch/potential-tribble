@@ -82,7 +82,7 @@
   border-color: $accent-text;
   display: none;
   position: absolute;
-  z-index: 1;
+  z-index: -100;
 }
 
 .line-2 {
