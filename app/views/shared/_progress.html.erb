@@ -1,7 +1,38 @@
 <div class="progress-bar">
- <span class="<%= 'selected' if page == 1 %> progress-stage">Choose Project</span>
- <span class="<%= 'selected' if page == 2 %> progress-stage">Choose Block</span>
- <span class="<%= 'selected' if page == 3 %> progress-stage">Design Block</span>
- <span class="<%= 'selected' if page == 4 %> progress-stage">Preview Project</span>
- <span class="<%= 'selected' if page == 5 %> progress-stage">Next Steps</span>
+
+  <div class="progress-element">
+    <span class="<%= 'selected-text' if page == 1 %> circle one">
+      <span class="progress-number">1</span>
+    </span>
+    <span class="<%= 'selected' if page == 1 %> progress-stage">Choose Project</span>
+  </div>
+
+  <div class="progress-element">
+    <span class="<%= 'selected-text' if page == 2 %> circle two">
+      <span class="progress-number">2</span>
+    </span>
+    <span class="<%= 'selected' if page == 2 %> progress-stage">Choose Block</span>
+  </div>
+
+  <div class="progress-element">
+    <span class="<%= 'selected-text' if page == 3 %> circle three">
+      <span class="progress-number">3</span>
+    </span>
+    <span class="<%= 'selected' if page == 3 %> progress-stage">Design Block</span>
+  </div>
+
+  <div class="progress-element">
+    <span class="<%= 'selected-text' if page == 4 %> circle four">
+      <span class="progress-number">4</span>
+    </span>
+    <span class="<%= 'selected' if page == 4 %> progress-stage">Preview Project</span>
+  </div>
+
+  <div class="progress-element five">
+    <span class="<%= 'selected-text' if page == 5 %> circle five">
+      <span class="progress-number">5</span>
+    </span>
+    <span class="<%= 'selected' if page == 5 %> progress-stage">Next Steps</span>
+  </div>
+
 </div>
