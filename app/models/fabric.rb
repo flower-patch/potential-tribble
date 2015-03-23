@@ -1,6 +1,6 @@
 class Fabric
 
-  @@use_spoonflower_api = false
+  @@use_spoonflower_api = true
 
   # search by hex value, format FFFFFF (case insensitive. Do not include #). Accepts up to 4 colors and a minimum of 1
   # returns an array of hashes of ids and thumbnail links
