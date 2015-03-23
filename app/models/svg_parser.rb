@@ -122,7 +122,15 @@ class SvgParser
   # the calculation is very slightly (0.00153) too large.
   # So, this does not help us at all with the issue that:
   # Most quilters will be using a 0.25" seam allowance, and following this calculation, they will not get enough fabric.
-  # So I am just using 0.875".  I am separating it into another method.  We can change it later.
+  # So I am just using 0.875".  Eventually, it should be separating it into another method.  We can change it later.
+
+  # THE BIG QUESTION HERE IS:
+
+  # THE MATH IS CORRECT...THERE'S NO OTHER WAY TO DO THAT FORMULA
+  # BUT THE WAY QUILTERS INTERACT WITH THE PHYSICAL FABRIC, THEY WILL NEED THAT EXTRA 0.00153 PER PATCH
+  # SO IS THERE A MATHY WAY TO CONSISTENTLY COMPENSATE FOR THIS?
+
+
   # We can do fancy math.  We can do real-life tests of exactly what we need and have a different sort of calculation with every single seam allowance.
   # But the more I read up on quilting, I doubt most people would even want a seam allowance other than 0.25".
   # 90 pixels per inch
@@ -165,7 +173,11 @@ class SvgParser
           area = side1 * side2
         else
           # 0.875 is that magic number...break it up into a method later
-          side = 0.875
+          if seam_allowance == 0
+            side = 2 * seam_allowance
+          else
+            side = 0.875
+          end
           coords[1].each do |c|
             if c != 0
               to_inches = c / 90
