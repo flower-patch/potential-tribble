@@ -30,6 +30,11 @@ a, button, input {
   border: none;
   text-decoration: none;
   display: inline-block;
+  color: inherit;
+}
+
+input[type="submit"] {
+  cursor: pointer;
 }
 
 h1, h2, h3,
@@ -47,6 +52,14 @@ h1 {
   line-height: 1.2em;
 }
 
+h2 {
+  font-size: 2em;
+}
+
+p {
+  font-family: $sans-serif;
+}
+
 main {
   margin-top: 2em;
   margin-bottom: 4em;
@@ -60,6 +73,10 @@ main {
   background: $accent-light;
   height: 4em;
   box-shadow: $default-shadow;
+}
+
+.view-container {
+  margin: 4em 0 2em 0;
 }
 
 svg {
@@ -89,6 +106,23 @@ button {
 
 label {
   font-size: 1.05em;
+}
+
+.stitch-btn {
+  @include pad();
+  border-top: 2px solid $seafoam-white;
+  border: 1.5px dashed $seafoam-white;
+  background-color: $seafoam-light;
+  box-shadow: $default-shadow;
+  color: $white;
+  font-family: $serif;
+  font-weight: $thin;
+  font-size: 1.25em;
+  text-transform: uppercase;
+
+  &:hover {
+    box-shadow: $hover-shadow;
+  }
 }
 
 .icon-button {

@@ -1,7 +1,7 @@
 <%= render :partial => 'shared/progress', :locals => {:page => 3} %>
 
 <!-- Edit Block Section -->
-<div class="edit-view">
+<div class="edit-view view-container">
   <div class="edit-block">
     <%= form_for(@quilt) do |f|  %>
 
@@ -32,7 +32,7 @@
     </div>
 
     <div >
-      <%= f.submit "Preview Quilt", class:"save-project-btn", alt:"Preview quilt" %>
+      <%= f.submit "Preview Quilt", class:"save-project-btn stitch-btn", alt:"Preview quilt" %>
     </div>
 
     <% end %>
@@ -59,9 +59,14 @@
   <!-- Palette Section -->
 
   <div class="choose-palette">
+    <div class="add-fabric-message">
+      <p>You don't have any fabrics in your palette. Click the + button below to gather awesome Spoonflower fabrics for your quilt.</p>
+    </div>
     <ul class="palette">
     </ul>
-  <button alt="Add fabrics" class="open-fabric-modal-btn icon-button"><i class="fa fa-plus-circle inner-button-icon"></i></button>
+  <button alt="Add fabrics" class="open-fabric-modal-btn icon-button">
+    <i class="fa fa-plus-circle inner-button-icon"></i>
+  </button>
   </div>
 </div>
 
