@@ -57,20 +57,24 @@
        style="fill:none;fill-opacity:1;stroke:#c0c0c0;stroke-width:4;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        d="m 0,645 405,0 0,405 -405,0 z"
        id="rect4236"
+       image-id="replaceme1"
        inkscape:connector-curvature="0" />
     <path
        inkscape:connector-curvature="0"
        id="path4239"
        d="m 405,240 405,0 0,405 -405,0 z"
+       image-id="replaceme1"
        style="fill:none;fill-opacity:1;stroke:#c0c0c0;stroke-width:4;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
     <path
        style="fill:none;fill-opacity:1;stroke:#c0c0c0;stroke-width:4;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        d="m 405,645 405,0 0,405 -405,0 z"
        id="path4241"
+       image-id="replaceme1"
        inkscape:connector-curvature="0" />
     <path
        inkscape:connector-curvature="0"
        id="path4243"
+       image-id="replaceme1"
        d="m 0,240 405,0 0,405 -405,0 z"
        style="fill:none;fill-opacity:1;stroke:#c0c0c0;stroke-width:4;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
   </g>

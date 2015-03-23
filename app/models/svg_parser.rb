@@ -149,43 +149,15 @@ class SvgParser
       selected_paths = @paths.xpath('//*[contains(@image-id, ' + id +')]')
       selected_paths.each do |path|
         coords = path_coords(path[:id])
-        #check for rectangle or triangle
         # assumes beautiful neat coordinates
         # and even then, assumes same general order: starting point doesn't matter
         # take the value from the over, then the down paths
         # endpoint doesn't matter
         # what if it went in a different order...is that even possible, and if so, how to handle
         if coords.length == 4
-          side1 = 2 * seam_allowance
-          side2 = 2 * seam_allowance
-          coords[1].each do |c|
-            if c != 0
-              to_inches = c / 90
-              side1 += to_inches.abs
-            end
-          end
-          coords[2].each do |d|
-            if d != 0
-              to_inches = d / 90
-              side2 += to_inches.abs
-            end
-          end
-          area = side1 * side2
+          area = rectangle_area(seam_allowance, coords)
         else
-          # 0.875 is that magic number...break it up into a method later
-          if seam_allowance == 0
-            side = 2 * seam_allowance
-          else
-            side = 0.875
-          end
-          coords[1].each do |c|
-            if c != 0
-              to_inches = c / 90
-              side += to_inches.abs
-            end
-          end
-          square_area = side * side
-          area = square_area / 2
+          area = triangle_area(seam_allowance, coords)
         end
         total_area += area.round(2)
       end
@@ -194,6 +166,40 @@ class SvgParser
     area_hash
   end
 
+  def rectangle_area(seam_allowance, coords)
+    side1 = 2 * seam_allowance
+    side2 = 2 * seam_allowance
+    coords[1].each do |c|
+      if c != 0
+        to_inches = c / 90
+        side1 += to_inches.abs
+      end
+    end
+    coords[2].each do |d|
+      if d != 0
+        to_inches = d / 90
+        side2 += to_inches.abs
+      end
+    end
+    side1 * side2
+  end
+
+  def triangle_area(seam_allowance, coords)
+    # 0.875 is that magic number...break it up into a method later
+    if seam_allowance == 0
+      side = 2 * seam_allowance
+    else
+      side = 0.875
+    end
+    coords[1].each do |c|
+      if c != 0
+        to_inches = c / 90
+        side += to_inches.abs
+      end
+    end
+    square_area = side * side
+    square_area / 2
+  end
 # this would be nicer with a lot of tiny methods instead of one big one.  but.  i started out that way, with something like
 
 # def triangle?
