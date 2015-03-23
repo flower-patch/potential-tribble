@@ -6,7 +6,7 @@
 .progress-bar {
   @include fill-parent();
   background-color: $white;
-  border-bottom: $default-border;
+  // border-bottom: $default-border;
   padding-top: 2px;
   height: 120px;
   max-height: 120px;
@@ -33,7 +33,6 @@
 }
 
 
-
 .circle {
   width: 50px;
   height: 50px;
@@ -47,6 +46,7 @@
   font-size: 1.7em;
   border: 1px solid $light-pure-gray;
   box-shadow: $default-shadow;
+  z-index: 500;
 }
 
 .selected {
@@ -65,8 +65,46 @@
   font-size: 2.25em;
   background-color: $white;
   color: $accent-text;
+  position: relative;
 
   .progress-number {
     margin-top: 10px;
   }
+
+  .progress-line {
+    display: inline;
+  }
+}
+
+.progress-line {
+  border: 0;
+  border-bottom: $default-border;
+  border-color: $accent-text;
+  display: none;
+  position: absolute;
+  z-index: 1;
+}
+
+.line-2 {
+  width: 188px;
+  right: 100%;
+  bottom: 25%;
+}
+
+.line-3 {
+  width: 380px;
+  right: 100%;
+  bottom: 25%;
+}
+
+.line-4 {
+  width: 572px;
+  right: 100%;
+  bottom: 25%;
+}
+
+.line-5 {
+  width: 764px;
+  right: 100%;
+  bottom: 25%;
 }

@@ -1,4 +1,30 @@
 .next-steps-view {
   @include span-columns(8);
-  @include shift(2);
+  @include shift(2.5);
+}
+
+.next-steps {
+  @include span-columns(5 of 8);
+}
+.next-steps-heading {
+  font-size: 2em;
+}
+
+.final-block {
+  @include span-columns(3 of 8);
+}
+
+.next-steps-list {
+  font-size: 1.25em;
+}
+
+.next-step {
+  @include pad();
+  position: relative;
+}
+
+.next-step-icon {
+  position: absolute;
+  right: 105%;
+  font-size: 1.25em;
 }
