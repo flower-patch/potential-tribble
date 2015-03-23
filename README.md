@@ -63,6 +63,7 @@ in the terminal to do the necessary housekeeping (add to table, parse the paths,
   - once all of the patches are in place and sized correctly, give them no fill and a stroke of 1px
   - grouped items will determine the sets available on the edit screen of the app. Nested groups are not supported at this time
     - group names should follow the naming convention "groupn" where n is the number of the group. Example: id="group2"
+    - for now, we are assuming that all patches are rectangles with no rotation, or 45-45-90 triangles. Other shapes are likely to break area calculations and such
 
 **If your blocks have gotten all kattywompus, there is a repository for clean block svg files: **
 https://github.com/cHaden/sanitized_svg
