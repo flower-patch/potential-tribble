@@ -12,48 +12,73 @@
   background: rgba(0, 0, 0, 0.3);
 }
 
-.fabric-modal-preview {
-  border-bottom: $default-border;
-}
-
-.fabric-modal-box {
-  background: $white;
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-
-  width: 920px;
-  height: 80%;
-}
-
-.current-palette {
-  display: inline-block;
-  width: 100%;
-  .fabric-preview {
-
-    display: inline-block;
-  }
-}
-
-
-.current-block {
-  // No mouse / touch events occur in current block
-  pointer-events: none;
-  // set `pointer-events: auto;` to override this
-}
-
 .show {
   visibility: visible;
 }
 
-.current-block {
+.fabric-modal-box {
+  background: $white;
+  box-shadow: 
+  height: 90%;
+  width: $max-width;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.close-fabric-modal-btn {
+  position: absolute;
+  top: -1.3em;
+  right: -1.1em;
+}
+
+.fabric-modal-preview {
+  // @include pad();
+}
+
+.current-block, .fabric-modal-options {
+  @include pad();
+  @include span-columns(3);
+  // No mouse / touch events occur in current block
+  pointer-events: none;
+  // set `pointer-events: auto;` to override this
   display: inline-block;
 
   svg {
-    width: 150px ;
+    width: 175px ;
     height: 100%;
   }
+}
 
-  @include pad();
+.current-palette, .fabric-modal-results {
+  @include span-columns(9);
+  display: inline-block;
+  height: 210px;
+  padding-top: 11px;
+  overflow: scroll;
+
+  .fabric-preview {
+    margin: 10px;
+    width: 80px;
+    display: inline-block;
+  }
+}
+
+.fabric-modal-divider {
+  @include span-columns(12);
+  border: 0;
+  border-bottom: $default-border;
+}
+
+.fabric-modal-options {
+  // @include pad();
+  // @include span-columns(3);
+  border-right: $default-border;
+  height: 50%;
+  pointer-events: auto;
+}
+
+.fabric-modal-results {
+  height: 300px;
 }

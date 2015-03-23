@@ -4,20 +4,31 @@
 \*------------------------------------*/
 
 .edit-view {
-  text-align: center;
-  margin: 4em;
+  position: relative;
+  margin: 4em 0 2em 0;
 
   @include span-columns(10);
   @include shift(1);
 }
 
 .edit-block {
-  @include span-columns(6 of 10);
+  @include span-columns(5 of 10);
 }
 
 svg {
   width: 400px;
   height: 100%;
+  cursor: pointer;
+  box-shadow: $default-shadow;
+
+  path {
+    stroke-width: 3px;
+
+    &:hover {
+      fill-opacity: 0.5;
+      background-color: black;
+    }
+  }
 
 }
 
@@ -28,39 +39,52 @@ svg {
 }
 
 .choose-set {
+  margin-top: 2em;
 }
 
 .sets {
+  width: 400px;
+  height: 8em;
+  text-align: center;
+  overflow-x: scroll;
+  white-space: nowrap;
 }
 
 .set {
+  box-shadow: $default-shadow;
   display: inline-block;
   margin: 1em;
   width: 5em;
   height: 5em;
-  background: blue;
 }
 
 .choose-palette {
+  background: $lightest-gray;
+  box-shadow: inset $default-shadow;
   vertical-align: top;
-  overflow: scroll;
+  position: relative;
+  // border-bottom: $default-border;
 
   @include span-columns(4 of 10);
+  @include shift(1);
 }
 
 .palette {
   text-align: left;
+  height: $block-height;
+  overflow: auto;
 }
 
 
 .fabric-preview {
+  // box-shadow: $default-shadow;
   display: inline-block;
-  width: 50%;
-  max-width: 10em;
-  box-sizing: border-box;
+  padding-right: 10px;
+  width: 40%;
   overflow: hidden;
   position: relative;
-  padding: 2em;
+  margin: 5%;
+  cursor: pointer;
 
   &:after {
     content: "";
@@ -76,8 +100,28 @@ svg {
 }
 
 .save-project-btn {
+  border-top: 2px solid $seafoam-white;
+  border: 1.5px dashed $seafoam-white;
+  background-color: $seafoam-light;
+  box-shadow: $default-shadow;
+  color: $white;
+  font-family: $serif;
+  font-weight: $thin;
+  font-size: 1.25em;
+  text-transform: uppercase;
+  position: absolute;
+  bottom: 0.5em;
+  right: 2.25em;
 
+  @include pad();
+
+  &:hover {
+    box-shadow: $hover-shadow;
+  }
 }
 
 .open-fabric-modal-btn {
+  position: absolute;
+  bottom: -1.3em;
+  right: -1.1em;
 }

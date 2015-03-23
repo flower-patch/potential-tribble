@@ -30,43 +30,69 @@
     <div>
       <%= f.hidden_field :svg, :value => @starting_svg, class:"svg-input" %>
     </div>
+
     <div >
-      <%= f.submit "Save Project", class:"save-project-btn" %>
+      <%= f.submit "Preview Quilt", class:"save-project-btn", alt:"Preview quilt" %>
     </div>
+
     <% end %>
+
+    <div class="choose-set">
+      <ul class="sets">
+        <li class="set">
+        </li>
+        <li class="set">
+        </li>
+        <li class="set">
+        </li>
+        <!-- <li class="set">
+        </li>
+        <li class="set">
+        </li>
+        <li class="set">
+        </li> -->
+      </ul>
+    </div>
 
   </div>
 
   <!-- Palette Section -->
 
-  <div class="choose-set">
-    <ul class="sets">
-    </ul>
-  </div>
-
   <div class="choose-palette">
-    <button class="open-fabric-modal">Add fabrics</button>
     <ul class="palette">
     </ul>
+  <button alt="Add fabrics" class="open-fabric-modal-btn icon-button"><i class="fa fa-plus-circle inner-button-icon"></i></button>
   </div>
 </div>
 
 <!-- Fabric Modal -->
 
 <div class="fabric-modal">
-  <div class="fabric-modal-box">
-    <span class="close-fabric-modal">X</span>
+  <div class="fabric-modal-box paper-border">
+    <button alt="Close window" class="close-fabric-modal-btn icon-button"><i class="fa fa-times-circle inner-button-icon"></i></button>
+
     <div class="fabric-modal-preview">
       <div class="current-block">
       </div>
       <ul class="current-palette">
       </ul>
     </div>
+
+    <hr class="fabric-modal-divider">
+
     <div class="fabric-modal-options">
-      <input class="fabric-modal-search">
-      <span class="search-icon"></span>
+      <form class="search-bar" role="search">
+        <input type="search" placeholder="Enter Search" />
+        <button type="submit">
+          <img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/search-icon.png" alt="Search Icon">
+        </button>
+      </form>
+    </div>
+
+    <div class="fabric-modal-results">
       <ul class="fabric-modal-list">
       </ul>
     </div>
+
   </div>
 </div>
