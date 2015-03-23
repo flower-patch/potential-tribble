@@ -2,37 +2,37 @@
 
 <div class="next-steps-view view-container">
 
+  <div class="next-steps">
 
-  <!-- <h1>Next Steps</h1> -->
+    <ol class="next-steps-list">
+      <li class="next-step">
+        <i class="fa fa-cloud-download next-step-icon"></i>
+        Download your design–
+      </li>
 
-  <h2>Only a few more steps to see your quilt dream come to life:</h2>
-  <ol>
-    <li>
-      <i class="fa fa-cloud-download"></i>
-      Download your design–
-    </li>
+      <li class="next-step">
+        <i class="fa fa-cloud-upload next-step-icon"></i>
+        Upload to the design at <a href="http://www.spoonflower.com/welcome">spoonflower.com</a>
+      </li>
 
-    <li>
-      <i class="fa fa-cloud-upload"></i>
-      Upload to the design at <a href="http://www.spoonflower.com/welcome">spoonflower.com</a>
-    </li>
+      <li class="next-step">
+        <i class="fa fa-shopping-cart next-step-icon"></i>
+        Submit and pay for your order
+      </li>
 
-    <li>
-      <i class="fa fa-shopping-cart"></i>
-      Submit and pay for your order
-    </li>
+      <li class="next-step">
+        <i class="fa fa-truck next-step-icon"></i>
+        When your package arrives, open and whip up your custom quilt masterpiece!
+      </li>
+    </ol>
 
-    <li>
-      <i class="fa fa-truck"></i>
-      When your package arrives, open and whip up your custom quilt masterpiece!
-    </li>
-  </ol>
+  </div>
 
-</div>
+  <div class="final-block">
 
-<div>
+  <%= @quilt.svg.html_safe %>
 
-<%= @quilt.svg.html_safe %>
+  </div>
 
 </div>
 

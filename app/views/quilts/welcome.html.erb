@@ -1,21 +1,43 @@
-<div class="welcome-view">
+<div class="welcome-view width-welcome">
 
-  <h1>Welcome to FlowerPatch</h1>
-  <h2>Where you can create your own quilt with the Spoonflower fabrics you love</h2>
-
-  <%= link_to 'Start New Project', project_templates_choose_project_path %>
-
-  <div class="block-examples">
-
-    <% @quilts.each do |quilt| %>
-      <% if quilt.public %>
-        <div>
-          <a href = "/project_templates/choose_project?quilt_id=<%=quilt.id%>"><%= image_tag "#{quilt.preview_thumb_url}"%></a>
-        </div>
-        <p><%= link_to quilt.name, project_templates_choose_project_path(quilt_id: quilt.id) %></p>
-      <% end %>
-    <% end %>
-
+  <div class="hero">
+  	<div class="hero-inner">
+      <i class="fa fa-certificate fa-4 logo-placeholder"></i>
+  		<div class="hero-copy">
+  			<h1 class="hero-head">Welcome to FlowerPatch</h1>
+  			<p>Where you can create your own quilt with the Spoonflower fabrics you love</p>
+  		</div>
+      <button class="start-project"><%= link_to 'Start New Project', project_templates_choose_project_path %></button>
+  	</div>
   </div>
-  
+
+
+
+  <% @quilts.each do |quilt| %>
+  <% if quilt.public %>
+  <div class="cards">
+    <div class="card paper-border">
+      <div class="card-image">
+        <a href = "/project_templates/choose_project?quilt_id=<%=quilt.id%>"><%= image_tag "#{quilt.preview_thumb_url}"%></a>
+      </div>
+      <div class="card-header">
+        <p><%= link_to quilt.name, project_templates_choose_project_path(quilt_id: quilt.id) %></p>
+      </div>
+      <div class="card-copy">
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fuga, officiis sunt neque facilis culpa molestiae necessitatibus delectus veniam provident.</p>
+      </div>
+    </div>
+  </div>
+  <% end %>
+  <% end %>
+
+  <!-- <% @quilts.each do |quilt| %>
+  <% if quilt.public %>
+  <div class ="example-list">
+    <a class="paper-border" href = "/project_templates/choose_project?quilt_id=<%=quilt.id%>"><%= image_tag "#{quilt.preview_thumb_url}"%></a>
+    <p><%= link_to quilt.name, project_templates_choose_project_path(quilt_id: quilt.id) %></p>
+  </div>
+  <% end %>
+  <% end %> -->
+
 </div>
