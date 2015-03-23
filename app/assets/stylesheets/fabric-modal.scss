@@ -44,7 +44,7 @@
   // @include pad();
 }
 
-.current-block, .fabric-modal-options {
+.current-block, .fabric-modal-options, .final-block {
   @include pad();
   @include span-columns(3);
   // No mouse / touch events occur in current block

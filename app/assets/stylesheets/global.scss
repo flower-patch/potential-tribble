@@ -112,9 +112,10 @@ label {
 .stitch-btn {
   @include pad();
   border-top: 2px solid $seafoam-white;
+  outline: 1px solid $accent-text;
   border: 1.5px dashed $seafoam-white;
-  background-color: $seafoam-light;
-  box-shadow: $default-shadow;
+  background-color: $accent-text;
+  // box-shadow: $default-shadow;
   color: $white;
   font-family: $serif;
   font-weight: $thin;
