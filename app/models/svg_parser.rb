@@ -14,18 +14,20 @@ class SvgParser
   end
 
   def path_coords(path_id)
-    # @paths.first[:id]
-    @paths.xpath('//*[@id="' + path_id +'"]')
-    # @paths.xpath('//*[@id="rect4144"]')
-    # current_path = @paths.xpath('//*[contains(@id, ' + path_id +')]')
-    # lop off the m at the start and the z at the end
-    # array = current_path["d"].split[1..-2]
-    # coords_array = []
-    # array.each do |a|
-    #   coord_pair = a.split(',').map {|x| x.to_f }
-    #   coords_array << coord_pair
-    # end
-    # coords_array
+    current_path = @paths.xpath('//*[@id="' + path_id +'"]')
+    # little hack here: there will only be one path, as the ids are unique, but it thinks
+    # they are a group. time to lop off the m at the start and the z at the end
+    array = current_path.first[:d].split[1..-2]
+    coords_array = []
+    array.each do |a|
+      #sometimes a triangle path will have an L in it. without the
+      # next if line, it just neatly splits into a [0,0]. but then that throws off
+      # the triangle-finding later, bc it's an extra pair
+      next if a.match(/[a-zA-Z]/)
+      coord_pair = a.split(',').map {|x| x.to_f }
+      coords_array << coord_pair
+    end
+    coords_array
   end
   # This looks at all the image-ids (an id we will assign to each fabric design) and returns an array of the unique ones.  Eventually, we'll want a method that loops through each of these unique ids and runs the replace_fabric_url method.
   def all_unique_image_ids
@@ -109,7 +111,13 @@ class SvgParser
       total_area = 0
       selected_paths = @paths.xpath('//*[contains(@image-id, ' + id +')]')
       selected_paths.each do |path|
-        area = 5
+        coords = path_coords(path[:id])
+        #check for rectangle or triangle
+        if coords.length == 4
+          area = 4 + seam_allowance
+        else
+          area = 3
+        end
         total_area += area
       end
       area_hash["#{id}"] = total_area
