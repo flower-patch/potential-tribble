@@ -38,8 +38,6 @@ class QuiltsController < ApplicationController
     end
   end
 
-
-
   def preview_project
     if params[:quilt_id]
       @quilt = Quilt.find(params[:quilt_id])

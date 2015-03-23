@@ -49,7 +49,7 @@
 
 
 <%# FIXME: this if statement is a hack to avoid the pain of ERB commenting %>
-<% if true %>
+<% if false %>
 <% Fabric.get_spoonflower_fabrics_by_color( "FF0000" ).each do |hash| %>
   <p>Image ID:<%= hash[:id] %><p>
   <%= image_tag hash[:thumbnail] %>

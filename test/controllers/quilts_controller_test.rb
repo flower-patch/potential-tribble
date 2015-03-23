@@ -3,6 +3,7 @@ require 'test_helper'
 class QuiltsControllerTest < ActionController::TestCase
   setup do
     @quilt = quilts(:one)
+    @project = project_templates(:one)
   end
 
   test "should get welcome" do
@@ -12,7 +13,7 @@ class QuiltsControllerTest < ActionController::TestCase
   end
 
   test "should get choose_block" do
-    get :choose_block, {project_id: project_templates(:one).id}
+    get :choose_block, {project_id: @project.id}
     assert_response :success
   end
 
@@ -32,12 +33,14 @@ class QuiltsControllerTest < ActionController::TestCase
   end
 
   # test "should create quilt" do
-  #   assert_difference('Developer.count') do
-  #     post :create, developer: { name: "Johnny Justice", email: "johnny@dev.com", password: "password"}
+  #   assert_difference('Quilt.count') do
+  #     post :create, quilt: { name: "Best Quilt Ever", seam_allowance: 0.25, public: true, project_template_id: @project.id }
   #   end
   #   assert_redirected_to developers_path
   # end
   #
+
+
   # test "should update developer" do
   #   patch :update, id: @developer, developer: { name: "John B. Justice", email: "johnny@dev.com", password: "password"}
   #   assert_redirected_to developers_path
