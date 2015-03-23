@@ -132,12 +132,12 @@ from svgparser.rb
 
 
 
--make paths without strokes messing up the width YOU WANT VISUAL BOUNDING BOX
+&&&&&&&&make paths without strokes messing up the width YOU WANT VISUAL BOUNDING BOX
 -give coordinates in the consistent format I want
 
-WHAT FORMAT OF COORDS CAN I ASSUME?? neat and fancy and coddled
+&&&&&&WHAT FORMAT OF COORDS CAN I ASSUME?? neat and fancy and coddled
 
-GET FRONT END TO DO IMAGE-IDs
+***GET FRONT END TO DO IMAGE-IDs
 WHAT ABOUT STROKE OUTLINE IN FINAL PRINT? REMOVE IT
 
 MORE FANCY MASSAGING OF BLOCK NOTES...GET RID OF WEIRD LINE-TO RECTANGLES

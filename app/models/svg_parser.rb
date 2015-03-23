@@ -144,7 +144,7 @@ class SvgParser
         #check for rectangle or triangle
         # assumes beautiful neat coordinates
         # and even then, assumes same general order: starting point doesn't matter
-        # notice the over, then the down
+        # take the value from the over, then the down paths
         # endpoint doesn't matter
         # what if it went in a different order...is that even possible, and if so, how to handle
         if coords.length == 4
@@ -153,20 +153,28 @@ class SvgParser
           coords[1].each do |c|
             if c != 0
               to_inches = c / 90
-              side1 += to_inches
+              side1 += to_inches.abs
             end
           end
           coords[2].each do |d|
             if d != 0
               to_inches = d / 90
-              side2 += to_inches
+              side2 += to_inches.abs
             end
           end
           area = side1 * side2
         else
-          area = 3
+          side = 2 * seam_allowance
+          coords[1].each do |c|
+            if c != 0
+              to_inches = c / 90
+              side += to_inches.abs
+            end
+          end
+          square_area = side * side
+          area = square_area / 2
         end
-        total_area += area.round(2).abs
+        total_area += area.round(2)
       end
       area_hash["#{id}"] = total_area
     end
