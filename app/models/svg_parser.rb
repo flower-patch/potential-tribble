@@ -164,7 +164,8 @@ class SvgParser
           end
           area = side1 * side2
         else
-          side = 2 * seam_allowance
+          # 0.875 is that magic number...break it up into a method later
+          side = 0.875
           coords[1].each do |c|
             if c != 0
               to_inches = c / 90
