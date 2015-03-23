@@ -8,22 +8,33 @@ $max-width: em(960) !global;
 
 $grid-columns: 12 !default;
 
+$block-height: em(400);
+
+
 /*------------------------------------*\
     #Application Page Elements
 \*------------------------------------*/
 
 body {
   background-color: $light-pure-gray;
-  background-image: image-url("fabric_1.png");
+  background-image: $fabric-pattern;
+  background-attachment: fixed;
   font-family: $sans-serif;
   font-size: 12pt;
   font-weight: $light;
   color: $accent-darkest;
 }
 
-a {
+a, button, input {
+  outline: none;
+  border: none;
   text-decoration: none;
   display: inline-block;
+  color: inherit;
+}
+
+input[type="submit"] {
+  cursor: pointer;
 }
 
 h1, h2, h3,
@@ -33,7 +44,6 @@ button {
   line-height: 1.2em;
 
   @include pad();
-
 }
 
 
@@ -42,26 +52,31 @@ h1 {
   line-height: 1.2em;
 }
 
+h2 {
+  font-size: 2em;
+}
+
+p {
+  font-family: $sans-serif;
+}
+
 main {
   margin-top: 2em;
   margin-bottom: 4em;
-  // background-color: $white;
   min-height: 300px;
-  // box-shadow: $default-shadow;
   padding: 0;
-  @include outer-container;
-  // @include span-columns(12);
-  // @include shift(1);
-}
 
-// .view-container {
-//   padding: 0 2.378% 2.378% 2.378%;
-// }
+  @include outer-container;
+}
 
 .site-nav {
   background: $accent-light;
   height: 4em;
   box-shadow: $default-shadow;
+}
+
+.view-container {
+  margin: 4em 0 2em 0;
 }
 
 svg {
@@ -92,6 +107,84 @@ button {
 label {
   font-size: 1.05em;
 }
+
+.stitch-btn {
+  @include pad();
+  border-top: 2px solid $seafoam-white;
+  border: 1.5px dashed $seafoam-white;
+  background-color: $seafoam-light;
+  box-shadow: $default-shadow;
+  color: $white;
+  font-family: $serif;
+  font-weight: $thin;
+  font-size: 1.25em;
+  // text-transform: uppercase;
+
+  &:hover {
+    box-shadow: $hover-shadow;
+  }
+}
+
+.icon-button {
+  background: none;
+  border: none;
+  font-size: 3em;
+  color: $accent-darkest;
+  cursor: pointer;
+}
+
+.inner-button-icon {
+  background: $white;
+  height: 0.85em;
+  border-radius: 0.5em;
+  text-shadow: $default-text-shadow;
+
+  &:hover {
+    text-shadow: $hover-text-shadow;
+  }
+}
+
+form.search-bar {
+  position: relative;
+
+  input[type=search] {
+    @include appearance(none);
+    @include box-sizing(border-box);
+    @include transition(border-color);
+    background-color: $lightest-gray;
+    box-shadow: inset $default-shadow;
+    border: 1px solid $light-pure-gray;
+    display: block;
+    font-size: 1em;
+    font-weight: $thin;
+    // font-style: italic;
+    font-family: $sans-serif;
+    margin: 0;
+    position: relative;
+    width: 100%;
+
+    @include pad();
+
+    &:focus {
+      background-color: $light-pure-gray;
+    }
+  }
+
+  button[type=submit] {
+    @include button(flat, $accent-light);
+    @include position(absolute, 0 0 0 null);
+    border-radius: 0;
+    outline: none;
+    padding: 5px 10px;
+
+    img {
+      height: 12px;
+      opacity: 0.7;
+    }
+  }
+}
+
+
 
 /*------------------------------------*\
     #Switch Checkbox
@@ -169,9 +262,7 @@ label {
 
 
 .paper-border {
-  // border: 1px solid $light-pure-gray;
   padding: 7px;
-  // display: inline-block;
   background-color: white;
   box-shadow: $default-shadow;
 }

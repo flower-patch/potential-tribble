@@ -1,3 +1,28 @@
-.card-body-copy {
-  font-family: $serif;
+.project-view {
+  @include span-columns(8 of 12);
+  @include shift(2);
+}
+
+.project-card {
+  // @include fill-parent();
+  // @include pad();
+  overflow: auto;
+  margin-bottom: 2em;
+}
+
+.project-card-img-container {
+  @include span-columns(4 of 8);
+}
+
+.project-card-img {
+  width: 100%;
+}
+
+.project-card-content {
+  @include span-columns(4 of 8);
+}
+
+.project-card-copy {
+  font-family: $sans-serif;
+  @include pad();
 }

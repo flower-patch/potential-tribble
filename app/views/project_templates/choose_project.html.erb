@@ -1,17 +1,21 @@
 <%= render :partial => 'shared/progress', :locals => {:page => 1} %>
 
-<div class="project-view">
-
-  <!-- <h1>Choose a Project</h1> -->
+<div class="project-view view-container">
 
   <% @projects.each do |project| %>
-  <div class="card">
-    <%= image_tag "#{project.example_thumb_url}"%>
-    <!-- button equivalent -->
-    <h3><%= link_to project.name, quilts_choose_block_path(quilt_id: params[:quilt_id], project_id: project.id) %></h3>
+  <div class="project-card paper-border">
+    <div class="project-card-img-container">
+      <%= image_tag "#{project.example_thumb_url}", class:"project-card-img"%>
+    </div>
+    <div class="project-card-content">
+      <h2><%= link_to project.name, quilts_choose_block_path(quilt_id: params[:quilt_id], project_id: project.id) %></h2>
 
-    <p class="card-body-copy"><%= project.description %></p>
-    <p class="card-body-copy"><%= project.directions_pdf_url %></p>
+      <p class="project-card-copy"><%= project.description %> Retro viral High Life flexitarian, crucifix gastropub quinoa Marfa brunch PBR&B 90's hella church-key. Farm-to-table organic Kickstarter, artisan PBR listicle cred Marfa mumblecore mustache fashion axe. Stumptown slow-carb fixie, Helvetica freegan tattooed bespoke tousled PBR&B semiotics DIY.</p>
+      <p class="project-card-copy"><%= project.directions_pdf_url %></p>
+
+      <!-- <button alt="Get started with a <%= project.name %>" class="stitch-btn get-started-btn"><%= link_to "Get started", quilts_choose_block_path(quilt_id: params[:quilt_id], project_id: project.id) %></button> -->
+      <%= link_to "Get started", quilts_choose_block_path(quilt_id: params[:quilt_id], project_id: project.id), alt:"Get started with a project.name", class:"stitch-btn" %>
+    </div>
   </div>
   <% end %>
 

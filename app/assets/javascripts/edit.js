@@ -1,6 +1,7 @@
 $(function () {
   var svg = Snap('#svg2');
 
+  var palette = [];
   var palette = [{
     id: 'patterns-by-danny-ivan.jpg',
     url: 'http://www.crafthubs.com/thumbs/patterns-by-danny-ivan.jpg',
@@ -36,7 +37,119 @@ $(function () {
       width: 50,
       height: 50
     }
+  }, {
+    id: '44250.jpg',
+    url: 'http://www.housefabric.com/assets/ProductDetail/44250.jpg',
+    size: {
+      width: 50,
+      height: 50
+    }
+  }, {
+    id: 'fun-with-shapes-and-patterns.jpg',
+    url: 'http://www.crafthubs.com/thumbs/fun-with-shapes-and-patterns.jpg',
+    size: {
+      width: 50,
+      height: 50
+    }
+  }, {
+    id: '44250.jpg',
+    url: 'http://www.housefabric.com/assets/ProductDetail/44250.jpg',
+    size: {
+      width: 50,
+      height: 50
+    }
+  }, {
+    id: '44250.jpg',
+    url: 'http://www.housefabric.com/assets/ProductDetail/44250.jpg',
+    size: {
+      width: 50,
+      height: 50
+    }
+  }, {
+    id: 'fun-with-shapes-and-patterns.jpg',
+    url: 'http://www.crafthubs.com/thumbs/fun-with-shapes-and-patterns.jpg',
+    size: {
+      width: 50,
+      height: 50
+    }
+  }, {
+    id: '44250.jpg',
+    url: 'http://www.housefabric.com/assets/ProductDetail/44250.jpg',
+    size: {
+      width: 50,
+      height: 50
+    }
+  }, {
+    id: '44250.jpg',
+    url: 'http://www.housefabric.com/assets/ProductDetail/44250.jpg',
+    size: {
+      width: 50,
+      height: 50
+    }
+  }, {
+    id: 'fun-with-shapes-and-patterns.jpg',
+    url: 'http://www.crafthubs.com/thumbs/fun-with-shapes-and-patterns.jpg',
+    size: {
+      width: 50,
+      height: 50
+    }
+  }, {
+    id: '44250.jpg',
+    url: 'http://www.housefabric.com/assets/ProductDetail/44250.jpg',
+    size: {
+      width: 50,
+      height: 50
+    }
+  }, {
+    id: '44250.jpg',
+    url: 'http://www.housefabric.com/assets/ProductDetail/44250.jpg',
+    size: {
+      width: 50,
+      height: 50
+    }
+  }, {
+    id: 'fun-with-shapes-and-patterns.jpg',
+    url: 'http://www.crafthubs.com/thumbs/fun-with-shapes-and-patterns.jpg',
+    size: {
+      width: 50,
+      height: 50
+    }
+  }, {
+    id: '44250.jpg',
+    url: 'http://www.housefabric.com/assets/ProductDetail/44250.jpg',
+    size: {
+      width: 50,
+      height: 50
+    }
+  }, {
+    id: '44250.jpg',
+    url: 'http://www.housefabric.com/assets/ProductDetail/44250.jpg',
+    size: {
+      width: 50,
+      height: 50
+    }
+  }, {
+    id: 'fun-with-shapes-and-patterns.jpg',
+    url: 'http://www.crafthubs.com/thumbs/fun-with-shapes-and-patterns.jpg',
+    size: {
+      width: 50,
+      height: 50
+    }
+  }, {
+    id: '44250.jpg',
+    url: 'http://www.housefabric.com/assets/ProductDetail/44250.jpg',
+    size: {
+      width: 50,
+      height: 50
+    }
   }];
+
+  // svg.selectAll('path').forEach(function(path) {
+  //   var outline = path;
+  //   outline.style.stroke = "blue";
+  //   outline.style.stroke-width = "10px";
+  //
+  // });
 
   function drawSets() {
     var groups = $('.svg-editor').find('g g').clone();
@@ -54,7 +167,7 @@ $(function () {
       $('.sets').append('<li>' + set + '</li>');
     }
 
-    // why was did this keep reading as undefined?
+    // why did this keep reading as undefined?
     // groups.forEach(function(group) {
     //   console.log(group);
     //   var set = $(group).html();
@@ -65,9 +178,22 @@ $(function () {
 
   // drawSets();
 
-  function drawPalette(palette) {
-    $('.palette, .current-palette').html(palette.map(function (fabric) {
-      var li = $('<li class="fabric-preview"><img src="' + fabric.url +'"></li>');
+  function addFabricMessage() {
+    if (palette === undefined || palette.length === 0) {
+    //  alt example from appointments app
+    //   if (appts === undefined || appts.length === 0) {
+    //      $('.no-frames').html(noFrames);
+    //      $('.no-frames').fadeIn('slow');
+    //  };
+      $('.add-fabric-message').fadeIn('slow');
+    }
+  }
+
+  addFabricMessage();
+
+  function drawPalette(location, palette) {
+    $(location).html(palette.map(function (fabric) {
+      var li = $('<li class="fabric-preview paper-border"><img src="' + fabric.url +'"></li>');
       //.data(key, value) key= string 'fabric', value is fabric object
       // .data makes the thing a part of the DOM
       li.data('fabric', fabric);
@@ -75,7 +201,7 @@ $(function () {
     }));
   }
 
-  drawPalette(palette);
+  drawPalette('.palette', palette);
 
   var currFabric = palette[0];
 
@@ -187,9 +313,13 @@ $(function () {
   $('.open-fabric-modal-btn').on('click', function () {
     $('.fabric-modal').toggleClass('show');
     previewQuilt();
+    drawPalette('.current-palette', palette);
   });
 
-  $('.close-fabric-modal').on('click', function () {
+  $('.close-fabric-modal-btn, .fabric-modal').on('click', function () {
+    $('.fabric-modal-box').on('click', function(e) {
+      e.stopPropagation();
+    });
     $('.fabric-modal').toggleClass('show');
     // Once the modal closes, move the svg-editor element back into its original
     // area (.svg-editor-parent), in the main content.
