@@ -129,3 +129,9 @@ from svgparser.rb
   # irb(main):003:0> "fill:none".scan(/:(\S*$)/)[0][0]
   # => "none"
   # irb(main):004:0>
+
+IT SEEMS YOU CAN'T GET RID OF A STROKE ONCE SOMETHING HAS HAD ONE...ANY FIXES?
+AAAAARGGHHH INKSCAPE IS SO INCONSISTENT...CAN'T GET IT TO
+
+-make paths without strokes messing up the width
+-give coordinates in the consistent format I want

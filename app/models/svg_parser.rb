@@ -5,7 +5,11 @@ class SvgParser
   # The svg is in fact, the svg.  Right now, in the controller, we are feeding it the test4 svg right from the file.  It also works to pass in Quilt.first.svg.  Eventually, we'll be calling it from somewhere and passing the svg that we want.
   def initialize(svg)
     @svg = Nokogiri::XML(svg)
-    @paths = @svg.xpath('//*[contains(@style,"fill")]')
+    # previously had this, very tricky to nail down xml without content, but then
+    # discovered that groups can have styles
+    # @paths = @svg.xpath('//*[contains(@style,"fill")]')
+    # so now it seems all paths start with m
+    @paths = @svg.xpath('//*[contains(@d, "m")]')
   end
 
   # In case we needed to know all the unique path ids in the block, this dumps them out
@@ -114,11 +118,25 @@ class SvgParser
         coords = path_coords(path[:id])
         #check for rectangle or triangle
         if coords.length == 4
-          area = 4 + seam_allowance
+          side1 = 2 * seam_allowance
+          side2 = 2 * seam_allowance
+          coords[1].each do |c|
+            if c != 0
+              to_inches = c / 90
+              side1 += to_inches
+            end
+          end
+          coords[2].each do |d|
+            if d != 0
+              to_inches = d / 90
+              side2 += to_inches
+            end
+          end
+          area = side1 * side2
         else
           area = 3
         end
-        total_area += area
+        total_area += area.round(2)
       end
       area_hash["#{id}"] = total_area
     end
