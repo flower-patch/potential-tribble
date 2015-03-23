@@ -7,8 +7,17 @@
 #   Mayor.create(name: 'Arthur Aardvark', city: cities.first)
 
 BlockTemplate.create(name: "Log Cabin", block_svg_url: "test1.svg")
-BlockTemplate.create(name: "Nine Patch 2", block_svg_url: "test2.svg")
-BlockTemplate.create(name: "Star", block_svg_url: "test3.svg")
+BlockTemplate.create(name: "Nine Patch", block_svg_url: "test2.svg")
+BlockTemplate.create(name: "Ohio Star", block_svg_url: "test3.svg")
+BlockTemplate.create(name: "Four Patch", block_svg_url: "test4.svg")
+BlockTemplate.create(name: "Ribbons", block_svg_url: "test5.svg")
+BlockTemplate.create(name: "Rings", block_svg_url: "test6.svg")
+BlockTemplate.create(name: "Double Four Patch", block_svg_url: "test7.svg")
+BlockTemplate.create(name: "Squares", block_svg_url: "test8.svg")
+BlockTemplate.create(name: "Cubes", block_svg_url: "test9.svg")
+BlockTemplate.create(name: "Stripes", block_svg_url: "test10.svg")
+BlockTemplate.create(name: "Pinwheel", block_svg_url: "test11.svg")
+BlockTemplate.create(name: "Hole in the Barn Door", block_svg_url: "test12.svg")
 
 
 ProjectTemplate.create( name: "Single Patch", example_thumb_url: "dummythumb.png", description: "Make a single patch and use it in a project of your choosing")
