@@ -56,20 +56,24 @@
     <path
        style="fill:none;fill-opacity:1;stroke:#c0c0c0;stroke-width:4;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        d="m 0,645 405,0 0,405 -405,0 z"
+       image-id="replaceme1"
        id="rect4236"
        inkscape:connector-curvature="0" />
     <path
        inkscape:connector-curvature="0"
+       image-id="replaceme2"
        id="path4239"
        d="m 405,240 405,0 0,405 -405,0 z"
        style="fill:none;fill-opacity:1;stroke:#c0c0c0;stroke-width:4;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
     <path
        style="fill:none;fill-opacity:1;stroke:#c0c0c0;stroke-width:4;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        d="m 405,645 405,0 0,405 -405,0 z"
+       image-id="replaceme3"
        id="path4241"
        inkscape:connector-curvature="0" />
     <path
        inkscape:connector-curvature="0"
+       image-id="replaceme4"
        id="path4243"
        d="m 0,240 405,0 0,405 -405,0 z"
        style="fill:none;fill-opacity:1;stroke:#c0c0c0;stroke-width:4;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
