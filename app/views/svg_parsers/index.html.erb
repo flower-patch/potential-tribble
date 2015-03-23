@@ -1,6 +1,8 @@
 <p><%= @svg_parser.all_path_ids %></p><br>
 <p><%= @svg_parser.all_unique_image_ids %></p><br>
-<p>RECTANGLE COORDS<%= @svg_parser.path_coords("path4239") %></p><br>
+<p><%= @svg_parser.all_paths_coords_split %></p><br>
+<p><%= @svg_parser.all_paths_coord_pairs %></p><br>
+<p>RECTANGLE COORDS<%= @svg_parser.path_coords("rect4564") %></p><br>
 
 <p>NSA <%= @svg_parser.surface_area_by_design_id_with_seam_allowance(0) %></p><br>
 <p>QUARTER INCH <%= @svg_parser.surface_area_by_design_id_with_seam_allowance(0.25) %></p><br>

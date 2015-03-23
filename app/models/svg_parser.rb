@@ -8,8 +8,8 @@ class SvgParser
     # previously had this, very tricky to nail down xml without content, but then
     # discovered that groups can have styles
     # @paths = @svg.xpath('//*[contains(@style,"fill")]')
-    # so now it seems all paths start with m
-    @paths = @svg.xpath('//*[contains(@d, "m")]')
+    # so now it seems all paths start with m...uglier ones have capital Ms
+    @paths = @svg.xpath('//*[contains(@d, "m")]') || @svg.xpath('//*[contains(@d, "M")]')
   end
 
   # In case we needed to know all the unique path ids in the block, this dumps them out
@@ -17,16 +17,39 @@ class SvgParser
     @paths.map {|p| p[:id]}
   end
 
+  # TESTING 123
+  def all_paths_coords_split
+    @paths.map {|p| p["d"].split}
+  end
+
+  # TESTING 123
+  def all_paths_coord_pairs
+    array = all_paths_coords_split
+    all_coord_pairs = []
+    array.each do |a|
+      inner_array = a
+      coords_array = []
+      inner_array.each do |i|
+        next if i.match(/[a-zA-Z]/)
+        coord_pair = i.split(',').map {|x| x.to_f }
+        coords_array << coord_pair
+      end
+      all_coord_pairs << coords_array
+    end
+    all_coord_pairs
+  end
+
   def path_coords(path_id)
     current_path = @paths.xpath('//*[@id="' + path_id +'"]')
     # little hack here: there will only be one path, as the ids are unique, but it thinks
-    # they are a group. time to lop off the m at the start and the z at the end
-    array = current_path.first[:d].split[1..-2]
+    # they are a group, thus the .first
+    array = current_path.first[:d].split
     coords_array = []
     array.each do |a|
       #sometimes a triangle path will have an L in it. without the
       # next if line, it just neatly splits into a [0,0]. but then that throws off
-      # the triangle-finding later, bc it's an extra pair
+      # the triangle-finding later, bc it's an extra pair ACTUALLY WITH MESSY COORDINATES
+      # THERE ARE ALL MANNERS OF LETTERS AND JUNK IN HERE...HOW TO HANDLE?
       next if a.match(/[a-zA-Z]/)
       coord_pair = a.split(',').map {|x| x.to_f }
       coords_array << coord_pair
@@ -109,6 +132,8 @@ class SvgParser
   # Cut and sew blocks have a seam allowance, cheaters have a seam allowance of 0.
   # Later, we will have to deal with bleeding out seam allowance on the edges of each block
   # so there can be another method that goes along with this.
+
+  # Very very smelly code.  Smells like this decomposing salad I've got here.
   def surface_area_by_design_id_with_seam_allowance(seam_allowance)
     area_hash = {}
     all_unique_image_ids.each do |id|
@@ -117,6 +142,11 @@ class SvgParser
       selected_paths.each do |path|
         coords = path_coords(path[:id])
         #check for rectangle or triangle
+        # assumes beautiful neat coordinates
+        # and even then, assumes same general order: starting point doesn't matter
+        # notice the over, then the down
+        # endpoint doesn't matter
+        # what if it went in a different order...is that even possible, and if so, how to handle
         if coords.length == 4
           side1 = 2 * seam_allowance
           side2 = 2 * seam_allowance
@@ -136,7 +166,7 @@ class SvgParser
         else
           area = 3
         end
-        total_area += area.round(2)
+        total_area += area.round(2).abs
       end
       area_hash["#{id}"] = total_area
     end

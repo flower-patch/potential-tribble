@@ -1,44 +1,36 @@
 <%= render :partial => 'shared/progress', :locals => {:page => 5} %>
 
-<<<<<<< HEAD
-<div class="next-steps-view view-container">
+<div class="next-steps-view">
 
-  <h1>Next Steps</h1>
-  <h2>Nice work! Now follow these steps to receive your design on fabric</h2>
+  <!-- <h1>Next Steps</h1> -->
+
+  <h2>Only a few more steps to see your quilt dream come to life:</h2>
   <ol>
-    <li>Download your design– </li>
-    <li>Upload to the design at <a>spoonflower.com</a></li>
-    <li>Submit and pay for your order</li>
-    <li>When your package arrives, open and whip up your custom quilt masterpiece!</li>
-  </ol>
+    <li>
+      <i class="fa fa-cloud-download"></i>
+      Download your design–
+    </li>
 
-  <h3>Happy quilting!</h3>
+    <li>
+      <i class="fa fa-cloud-upload"></i>
+      Upload to the design at <a href="http://www.spoonflower.com/welcome">spoonflower.com</a>
+    </li>
+
+    <li>
+      <i class="fa fa-shopping-cart"></i>
+      Submit and pay for your order
+    </li>
+
+    <li>
+      <i class="fa fa-truck"></i>
+      When your package arrives, open and whip up your custom quilt masterpiece!
+    </li>
+  </ol>
 
 </div>
 
+<div>
+
 <%= @quilt.svg.html_safe %>
-=======
 
-<p>Full SVG</p>
-<%#= @quilt.svg.html_safe %>
-<%= @quilt.get_paths_from_svg %>
-
-<%# FIXME: this if statement is a hack to avoid the pain of ERB commenting %>
-<% if true %>
-<% Fabric.get_spoonflower_images( "goat" ).each do |hash| %>
-  <p>Image ID:<%= hash[:id] %><p>
-  <%= image_tag hash[:thumbnail] %>
-  <br>
-<% end %>
-<% end %>
-
-
-<%# FIXME: this if statement is a hack to avoid the pain of ERB commenting %>
-<% if false %>
-<% Fabric.get_spoonflower_fabrics_by_color( "FF0000" ).each do |hash| %>
-  <p>Image ID:<%= hash[:id] %><p>
-  <%= image_tag hash[:thumbnail] %>
-  <br>
-<% end %>
-<% end %>
->>>>>>> ac6c97f31fcca7a7cc4c549d4594677699f3c6c4
+</div>
