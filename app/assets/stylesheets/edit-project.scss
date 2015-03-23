@@ -4,58 +4,97 @@
 \*------------------------------------*/
 
 .edit-view {
-  @include outer-container;
-}
+  position: relative;
 
-.edit-block {
-  @include span-columns(7);
-}
-
-.save-project-btn {
-  @include span-columns(3 of 7);
-  @include shift(2);
-}
-
-
-.choose-set {
-  // @include span-columns(6 of 8);
-  // @include shift(2);
-  margin: 0 auto;
-  @include span-columns(5 of 7);
+  @include span-columns(10);
   @include shift(1);
 }
 
+.edit-block {
+  @include span-columns(5 of 10);
+}
+
+svg {
+  width: 400px;
+  height: 100%;
+  cursor: pointer;
+  box-shadow: $default-shadow;
+
+  path {
+    stroke-width: 3px;
+    stroke: blue;
+
+    &:hover {
+      // transition: all 0.5s ease;
+      fill-opacity: 0.5;
+      outline: 10px auto $accent-mid;
+    }
+  }
+}
+
+
+.svg-editor-parent {
+}
+
+.save-project-btn {
+}
+
+.choose-set {
+  margin-top: 2em;
+}
+
 .sets {
+  width: 400px;
+  height: 8em;
+  text-align: center;
+  overflow-x: scroll;
+  white-space: nowrap;
 }
 
 .set {
+  box-shadow: $default-shadow;
   display: inline-block;
   margin: 1em;
   width: 5em;
   height: 5em;
-  background: blue;
+  cursor: pointer;
 }
-.choose-palette {
-  vertical-align: top;
-  overflow: hidden;
 
-  @include span-columns(5);
+.choose-palette {
+  @include span-columns(4 of 10);
+  @include shift(1);
+  text-align: center;
+  background: $light-pure-gray;
+  box-shadow: inset $default-shadow;
+  vertical-align: top;
+  position: relative;
+}
+
+.add-fabric-message {
+  @include position(absolute, 80% 0 0 50%);
+  transform: translate(-50%, -50%);
+  width: 80%;
+  visibility: hidden;
+  vertical-align: baseline;
+  color: $mid-gray;
+
 }
 
 .palette {
-  @include span-columns(3 of 5);
-  @include shift(1);
+  text-align: left;
+  height: $block-height;
+  overflow: auto;
 }
 
 
 .fabric-preview {
   display: inline-block;
+  padding-right: 10px;
   width: 40%;
-  max-width: 10em;
-  box-sizing: border-box;
   overflow: hidden;
   position: relative;
-  padding: 2em;
+  margin: 5%;
+  cursor: pointer;
 
   &:after {
     content: "";
@@ -70,44 +109,14 @@
   }
 }
 
-.open-fabric-modal {
-  // margin: 2em;
-  @include span-columns(2 of 4);
-  margin: 2em auto;
+.save-project-btn {
+  position: absolute;
+  bottom: 0.5em;
+  right: 3em;
 }
 
-.fabric-modal {
-  visibility: hidden;
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: rgba(0, 0, 0, 0.3);
-}
-
-.fabric-modal-preview {
-  border-bottom: $default-border;
-}
-
-.fabric-modal-box {
-  background: $white;
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-
-  width: $max-width;
-  height: 80%;
-}
-
-.current-palette {
-
-  .fabric-preview {
-    
-  }
-}
-
-.show {
-  visibility: visible;
+.open-fabric-modal-btn {
+  position: absolute;
+  bottom: -1.3em;
+  right: -1.1em;
 }

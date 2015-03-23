@@ -4,19 +4,107 @@
 
 
 .progress-bar {
-  background-color: $white;
-  border-bottom: $default-border;
-  // @include outer-container;
   @include fill-parent();
-  @include row(table);
-  @include pad();
+  background-color: $white;
+  // border-bottom: $default-border;
+  padding-top: 2px;
+  height: 120px;
+  max-height: 120px;
+}
+
+.progress-element {
+  text-align: center;
+  @include span-columns(2.4);
+  padding-top: 1%;
+  padding-bottom: 1%;
+  line-height: 1px;
 }
 
 .progress-stage {
-  font-size: 1em;
-  font-weight: $normal;
-  text-align: center;
-  @include span-columns(2);
+  @include span-columns(2.4);
   @include fill-parent();
+  font-family: $sans-serif;
+  font-size: 1.15em;
+  font-weight: $light;
+  text-align: center;
+  padding-top: .75em;
+  line-height: 7px;
+  color: $accent-text;
+}
 
+
+.circle {
+  width: 50px;
+  height: 50px;
+  border-radius: 3em;
+  display: inline-block;
+  background-color: $accent-text;
+  padding-top: 25px;
+  color: $white;
+  font-weight: $bold;
+  font-family: $serif;
+  font-size: 1.7em;
+  border: 1px solid $light-pure-gray;
+  box-shadow: $default-shadow;
+  z-index: 500;
+}
+
+.selected {
+  font-size: 1.5em;
+  font-weight: $bold;
+}
+
+.selected-text.circle {
+  width: 60px;
+  height: 60px;
+  border-radius: 30px;
+}
+
+.selected-text {
+  padding-top: 30px;
+  font-size: 2.25em;
+  background-color: $white;
+  color: $accent-text;
+  position: relative;
+
+  .progress-number {
+    margin-top: 10px;
+  }
+
+  .progress-line {
+    display: inline;
+  }
+}
+
+.progress-line {
+  border: 0;
+  border-bottom: $default-border;
+  border-color: $accent-text;
+  display: none;
+  position: absolute;
+  z-index: -100;
+}
+
+.line-2 {
+  width: 188px;
+  right: 100%;
+  bottom: 25%;
+}
+
+.line-3 {
+  width: 380px;
+  right: 100%;
+  bottom: 25%;
+}
+
+.line-4 {
+  width: 572px;
+  right: 100%;
+  bottom: 25%;
+}
+
+.line-5 {
+  width: 764px;
+  right: 100%;
+  bottom: 25%;
 }

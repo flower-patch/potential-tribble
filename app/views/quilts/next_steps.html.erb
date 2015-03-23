@@ -2,20 +2,40 @@
 
 <div class="next-steps-view view-container">
 
-  <h1>Next Steps</h1>
-  <h2>Nice work! Now follow these steps to receive your design on fabric</h2>
-  <ol>
-    <li>Download your design– </li>
-    <li>Upload to the design at <a>spoonflower.com</a></li>
-    <li>Submit and pay for your order</li>
-    <li>When your package arrives, open and whip up your custom quilt masterpiece!</li>
-  </ol>
+  <div class="next-steps">
 
-  <h3>Happy quilting!</h3>
+    <ol class="next-steps-list">
+      <li class="next-step">
+        <i class="fa fa-cloud-download next-step-icon"></i>
+        Download your design–
+      </li>
+
+      <li class="next-step">
+        <i class="fa fa-cloud-upload next-step-icon"></i>
+        Upload to the design at <a href="http://www.spoonflower.com/welcome">spoonflower.com</a>
+      </li>
+
+      <li class="next-step">
+        <i class="fa fa-shopping-cart next-step-icon"></i>
+        Submit and pay for your order
+      </li>
+
+      <li class="next-step">
+        <i class="fa fa-truck next-step-icon"></i>
+        When your package arrives, open and whip up your custom quilt masterpiece!
+      </li>
+    </ol>
+
+  </div>
+
+  <div class="final-block">
+
+  <%= @quilt.svg.html_safe %>
+
+  </div>
 
 </div>
 
-<%= @quilt.svg.html_safe %>
 
 <!-- ---- THIS IS CHRISTEN'S API DEBUG NONSENSE ---- -->
 <%# FIXME: this if statement is a hack to avoid the pain of ERB commenting %>

@@ -1,12 +1,14 @@
 // Global elements such as divs, containers, inputs, buttons etc
 
-
 /*------------------------------------*\
     #NEAT Variables
 \*------------------------------------*/
 
-$max-width: em(960);
+$max-width: em(960) !global;
 
+$grid-columns: 12 !default;
+
+$block-height: em(400);
 
 
 /*------------------------------------*\
@@ -15,16 +17,24 @@ $max-width: em(960);
 
 body {
   background-color: $light-pure-gray;
-  background-image: image-url("fabric_1.png");
+  background-image: $fabric-pattern;
+  background-attachment: fixed;
   font-family: $sans-serif;
   font-size: 12pt;
   font-weight: $light;
   color: $accent-darkest;
 }
 
-a {
+a, button, input {
+  outline: none;
+  border: none;
   text-decoration: none;
   display: inline-block;
+  color: inherit;
+}
+
+input[type="submit"] {
+  cursor: pointer;
 }
 
 h1, h2, h3,
@@ -34,7 +44,6 @@ button {
   line-height: 1.2em;
 
   @include pad();
-
 }
 
 
@@ -43,30 +52,51 @@ h1 {
   line-height: 1.2em;
 }
 
+h2 {
+  font-size: 2em;
+}
+
+p {
+  font-family: $sans-serif;
+}
+
 main {
   margin-top: 2em;
   margin-bottom: 4em;
-  background-color: $white;
   min-height: 300px;
-  box-shadow: $default-shadow;
+  padding: 0;
 
   @include outer-container;
-  // @include span-columns(12);
-  // @include shift(1);
-}
-
-.view-container {
-  padding: 0 2.378% 2.378% 2.378%;
 }
 
 .site-nav {
   background: $accent-light;
   height: 4em;
   box-shadow: $default-shadow;
+  // opacity: 0.5;
 }
 
+.view-container {
+  margin: 4em 0 2em 0;
+}
 
-.app-content {
+.spoonflower-section {
+  display: inline-block;
+  float: right;
+  font-family: $serif;
+  margin: 0 2em;
+}
+
+.spoonflower-logo {
+  display: inline-block;
+  margin: 5em;
+}
+
+.spoonflower-tag {
+  padding: 0 1em 2.75em 0;
+  margin: auto 0;
+  display: inline-block;
+  vertical-align: middle;
 }
 
 svg {
@@ -80,13 +110,15 @@ svg path {
   stroke-opacity: 0.5;
 }
 
+
 /*------------------------------------*\
     #INPUTS / BUTTONS
 \*------------------------------------*/
 
 input {
-  margin:L 1em;
+  margin: 1em;
 }
+
 
 button {
   margin: 0.2em;
@@ -97,5 +129,162 @@ label {
   font-size: 1.05em;
 }
 
-input[type=checkbox] {
+.stitch-btn {
+  @include pad();
+  border-top: 2px solid $seafoam-white;
+  outline: 1px solid $accent-text;
+  border: 1.5px dashed $seafoam-white;
+  background-color: $accent-text;
+  // box-shadow: $default-shadow;
+  color: $white;
+  font-family: $serif;
+  font-weight: $thin;
+  font-size: 1.25em;
+  // text-transform: uppercase;
+
+  &:hover {
+    box-shadow: $hover-shadow;
+  }
+}
+
+.icon-button {
+  background: none;
+  border: none;
+  font-size: 3em;
+  color: $accent-darkest;
+  cursor: pointer;
+}
+
+.inner-button-icon {
+  background: $white;
+  height: 0.85em;
+  border-radius: 0.5em;
+  text-shadow: $default-text-shadow;
+
+  &:hover {
+    text-shadow: $hover-text-shadow;
+  }
+}
+
+form.search-bar {
+  position: relative;
+
+  input[type=search] {
+    @include appearance(none);
+    @include box-sizing(border-box);
+    @include transition(border-color);
+    background-color: $lightest-gray;
+    box-shadow: inset $default-shadow;
+    border: 1px solid $light-pure-gray;
+    display: block;
+    font-size: 1em;
+    font-weight: $thin;
+    // font-style: italic;
+    font-family: $sans-serif;
+    margin: 0;
+    position: relative;
+    width: 100%;
+
+    @include pad();
+
+    &:focus {
+      background-color: $light-pure-gray;
+    }
+  }
+
+  button[type=submit] {
+    @include button(flat, $accent-light);
+    @include position(absolute, 0 0 0 null);
+    border-radius: 0;
+    outline: none;
+    padding: 5px 10px;
+
+    img {
+      height: 12px;
+      opacity: 0.7;
+    }
+  }
+}
+
+
+
+/*------------------------------------*\
+    #Switch Checkbox
+    variables found in variables.scss
+\*------------------------------------*/
+
+.label-switch {
+  border-radius: $switch-radius;
+  cursor: pointer;
+  display: inline-block;
+  height: $switch-height;
+  position: relative;
+  width: $switch-width;
+
+  input[type="checkbox"] {
+    display: none;
+
+    + .checkbox {
+      @include transition(all 0.3s ease);
+      // background: $switch-border-background;
+      border-radius: $switch-radius;
+      border: none;
+      cursor: pointer;
+      height: $switch-height;
+      margin: 0;
+      padding: 0;
+      position: relative;
+      width: $switch-width;
+      z-index: 0;
+
+      &:before {
+        @include position(absolute, 2px 0 0 2px);
+        @include transform(scale(1));
+        @include transition(all 0.3s ease);
+        background: $switch-background;
+        border-radius: $switch-radius;
+        content: "";
+        height: $knob-radius;
+        width: $switch-width - ($switch-padding * 2);
+        z-index: 1;
+      }
+
+      &:after {
+        @include position(absolute, 2px 0 0 2px);
+        @include transition(all 0.3s ease);
+        @include size($knob-size);
+        background: $switch-background;
+        border-radius: $knob-radius;
+        box-shadow: $switch-shadow;
+        content: "";
+        z-index: 2;
+      }
+    }
+
+    &:checked {
+      + .checkbox {
+        background: $base-accent-color;
+
+        &:before {
+          @include transform(scale(0));
+        }
+
+        &:after {
+          left: $switch-width - $knob-width - ($switch-padding);
+        }
+      }
+    }
+  }
+}
+
+
+/*------------------------------------*\
+    #CONTAINERS
+\*------------------------------------*/
+
+
+.paper-border {
+  padding: 7px;
+  background-color: white;
+  box-shadow: $default-shadow;
 }
