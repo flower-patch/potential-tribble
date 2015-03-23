@@ -1,4 +1,7 @@
-<p><%= @svg_parser.all_path_ids %></p>
-<p><%= @svg_parser.all_unique_image_ids %></p>
-<p>FIRST PATHS<%= @svg_parser.paths %>FIRST PATHS</p>
+<p><%= @svg_parser.all_path_ids %></p><br>
+<p><%= @svg_parser.all_unique_image_ids %></p><br>
+<p>PATH COORDS<%= @svg_parser.path_coords("rect4144") %></p><br>
+<p>NSA <%= @svg_parser.surface_area_by_design_id_with_seam_allowance(0) %></p><br>
+<p>QUARTER INCH <%= @svg_parser.surface_area_by_design_id_with_seam_allowance(0.25) %></p><br>
+<p>FIRST PATHS<%= @svg_parser.paths %>FIRST PATHS</p><br>
 <p>NEW SVG<%= @svg_parser.replace_fabric_urls("4321", "http://s3.amazonaws.com/spoonflower/public/design_thumbnails/0392/8730/again_preview.png") %>NEW SVG</p>
