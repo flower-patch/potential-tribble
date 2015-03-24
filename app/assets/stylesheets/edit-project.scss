@@ -95,6 +95,8 @@ svg {
   position: relative;
   margin: 5%;
   cursor: pointer;
+  border: $paper-margin solid $white;
+  box-shadow: $default-shadow;
 
   &:after {
     content: "";

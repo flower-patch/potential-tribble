@@ -8,6 +8,8 @@ $max-width: em(960) !global;
 
 $grid-columns: 12 !default;
 
+$responsive: new-breakpoint(max-width 960px 12);
+
 $block-height: em(400);
 
 
@@ -70,6 +72,46 @@ main {
   @include outer-container;
 }
 
+<<<<<<< HEAD
+=======
+.site-nav {
+  background: $accent-light;
+  height: 4em;
+  box-shadow: $default-shadow;
+}
+
+.flowerpatch-logo-section {
+  margin: 0 1em;
+  padding-top: 0.4em;
+  font-size: 2em;
+}
+
+.flowerpatch-logo {
+  width: 2em;
+  box-shadow: $default-shadow;
+
+  &:hover {
+    box-shadow: $hover-shadow;
+  }
+}
+
+.flowerpatch-logo-text {
+  vertical-align: top;
+  display: inline-block;
+  margin-top: 0.5em;
+  letter-spacing: -1px;
+}
+
+.flower-text {
+  font-weight: $light;
+}
+
+.patch-text {
+  font-weight: $bold;
+}
+
+
+>>>>>>> ac2de765e3d79405c388ddd8254a4ebfbcf5b6b5
 .view-container {
   margin: 4em 0 2em 0;
 }
@@ -79,11 +121,6 @@ main {
   float: right;
   font-family: $serif;
   margin: 0 2em;
-}
-
-.spoonflower-logo {
-  display: inline-block;
-  margin: 5em;
 }
 
 .spoonflower-tag {
@@ -129,9 +166,9 @@ label {
 
 .stitch-btn {
   @include pad();
-  border-top: 2px solid $seafoam-white;
+  border-top: 2px solid $seafoam-light;
   outline: 1px solid $accent-text;
-  border: 1.5px dashed $seafoam-white;
+  border: 1.5px dashed $seafoam-light;
   background-color: $accent-text;
   // box-shadow: $default-shadow;
   color: $white;
