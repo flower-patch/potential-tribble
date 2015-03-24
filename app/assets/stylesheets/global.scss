@@ -15,6 +15,28 @@ $block-height: em(400);
     #Application Page Elements
 \*------------------------------------*/
 
+.logo-icon {
+  font-size: 2em;
+  float: left;
+  color: $alt-accent-text;
+}
+
+.logo-text {
+  color: $alt-accent-text;
+  font-size: 1.5em;
+  font-weight: $light;
+  padding-top: 3px;
+  margin-left: 8px;
+}
+
+.site-nav {
+  background: $accent-lightest;
+  height: 4em;
+  box-shadow: $default-shadow;
+  padding: 1.35765%;
+}
+
+
 body {
   background-color: $light-pure-gray;
   background-image: $fabric-pattern;
@@ -69,6 +91,7 @@ main {
   @include outer-container;
 }
 
+<<<<<<< HEAD
 .site-nav {
   background: $accent-light;
   height: 4em;
@@ -76,6 +99,8 @@ main {
   // opacity: 0.5;
 }
 
+=======
+>>>>>>> lydiastyles
 .view-container {
   margin: 4em 0 2em 0;
 }

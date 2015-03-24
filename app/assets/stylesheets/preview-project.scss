@@ -11,6 +11,8 @@
   margin-left: .5em;
   padding:.25em 0;
   font-size: 1em;
+  background-color: $white;
+  box-shadow: $default-shadow;
 }
 
 
@@ -27,9 +29,10 @@
 }
 
 .preview-svg {
-  width: 58%;
+  width: 403px;
   margin-top: 2.358%;
-  border: 3px solid $mercury;
+  border: 3px solid $light-pure-gray;
+  background-color: $light-pure-gray;
 }
 
 .share-quilt-container {
