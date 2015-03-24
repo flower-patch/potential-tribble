@@ -30,6 +30,7 @@
   padding-top: .75em;
   line-height: 7px;
   color: $accent-text;
+  line-height: 1.2em;
 }
 
 
@@ -46,6 +47,7 @@
   font-size: 1.7em;
   border: 1px solid $light-pure-gray;
   box-shadow: $default-shadow;
+  position: relative;
   z-index: 500;
 }
 
@@ -82,7 +84,11 @@
   border-color: $accent-text;
   display: none;
   position: absolute;
-  z-index: -100;
+  z-index: -1;
+
+  @include media($responsive) {
+    display: none;
+  }
 }
 
 .line-2 {
