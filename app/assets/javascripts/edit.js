@@ -26,13 +26,34 @@ $(function () {
   }];
 
   function clearFill(item) {
-    item.selectAll('path').forEach(function (path) {
+    item.selectAll('path').forEach(function(path) {
     //this only works with fill:none; svg's
       if (!path.attr('fill') || path.attr('fill') === 'none') {
         path.attr('fill', 'white');
       }
     });
   }
+
+  //POSSIBLY ADD A CLASS AND REMOVE TO DO STYLING
+  svg.selectAll('path').forEach(function(path) {
+    // var currFill = path.attr('fill');
+    path.hover(function() {
+      path.attr({
+        "fill": "#000000",
+        // "stroke": "#233B89",
+        // "stroke-width": "10px",
+        "fill-opacity": "0.5"
+      });
+      // passing the off hover event as parameter
+    }, function() {
+        path.attr({
+          "fill": currFill
+          // "stroke": "#C0C0C0",
+          // "stroke-width": "4px",
+          // "fill-opacity": "1"
+        });
+    });
+  });
 
   clearFill(svg);
 
@@ -57,6 +78,8 @@ $(function () {
   }
 
   generateSets($svg, '.sets');
+
+
 
 
   // function drawSets() {
