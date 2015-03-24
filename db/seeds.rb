@@ -18,7 +18,8 @@ BlockTemplate.create(name: "Cubes", block_svg_url: "test9.svg")
 BlockTemplate.create(name: "Stripes", block_svg_url: "test10.svg")
 BlockTemplate.create(name: "Pinwheel", block_svg_url: "test11.svg")
 BlockTemplate.create(name: "Hole in the Barn Door", block_svg_url: "test12.svg")
-
+BlockTemplate.create(name: "Friendship Star", block_svg_url: "test13.svg")
+BlockTemplate.create(name: "Sawtooth Star", block_svg_url: "test14.svg")
 
 ProjectTemplate.create( name: "Single Patch", example_thumb_url: "dummythumb.png", description: "Make a single patch and use it in a project of your choosing")
 ProjectTemplate.create( name: "Doll", example_thumb_url: "dummythumb.png", description: "Make a doll sized quilt")
