@@ -2,10 +2,6 @@
 
 <div class="preview-view">
 
-  <!-- <h1>Quilts#preview_project</h1> -->
-  <!-- page 4 wireframe -->
-  <p>Find me in app/views/quilts/preview_project.html.erb</p>
-
     <%= form_for @quilt, :url => { :action => "next_steps"} do |f| %>
 
     <% if @quilt.errors.any? %>
@@ -30,23 +26,25 @@
   <%= f.hidden_field :seam_allowance, :value => 0.25 %>
 
   <div class= "quilt-name-container">
+    <i class="preview-icon fa fa-pencil"></i>
     <%= f.label :name %>:
     <%= f.text_field :name, class: "quilt-name" %>
   </div>
 
 <div class="share-quilt-container">
-
+    <i class="preview-icon fa fa-share"></i>
     <%= f.label "Check here to make your quilt public:."
     %><label class="label-switch">
-      <%= f.check_box :public, class: "public-checkbox."%>
+      <%= f.check_box :public, class: "public-checkbox"%>
     <div class ="checkbox"></div>
     </label>
   </div>
 
 
     <div class= "awesome-submit-container">
-    <%= f.submit 'This Quilt Is Awesome.  I Approve.', class:"awesome-submit" %>
-  </div>
+      <i class="preview-icon fa fa-thumbs-o-up"></i>
+      <%= f.submit 'Awesome! I Approve.', class:"awesome-submit stitch-button" %>
+    </div>
   <% end %>
 
 </div>

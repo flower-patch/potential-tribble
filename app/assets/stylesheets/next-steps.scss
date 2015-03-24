@@ -12,6 +12,7 @@
 
 .final-block {
   @include span-columns(3 of 8);
+  padding: 0em;
 }
 
 .next-steps-list {
