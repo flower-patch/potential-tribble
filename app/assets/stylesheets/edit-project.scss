@@ -1,4 +1,3 @@
-
 /*------------------------------------*\
     #EDIT-VIEW
 \*------------------------------------*/
@@ -47,7 +46,7 @@ svg {
   width: 400px;
   height: 8em;
   text-align: center;
-  overflow-x: scroll;
+  overflow-x: auto;
   white-space: nowrap;
 }
 
