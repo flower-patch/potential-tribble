@@ -101,7 +101,9 @@ svg {
   &:after {
     content: "";
     padding-top: 100%;
+    visibility: hidden;
     display: block;
+    border-top: 14px;
   }
 
   img {
