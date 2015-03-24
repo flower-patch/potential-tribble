@@ -1,7 +1,7 @@
 $(function () {
-  var svg = Snap('#svg2');
+  var svg = Snap('.svg-editor svg');
+  var $svg = $('.svg-editor svg');
 
-  var palette = [];
   var palette = [{
     id: 'patterns-by-danny-ivan.jpg',
     url: 'http://www.crafthubs.com/thumbs/patterns-by-danny-ivan.jpg',
@@ -23,149 +23,57 @@ $(function () {
       width: 50,
       height: 50
     }
-  }, {
-    id: 'fun-with-shapes-and-patterns.jpg',
-    url: 'http://www.crafthubs.com/thumbs/fun-with-shapes-and-patterns.jpg',
-    size: {
-      width: 50,
-      height: 50
-    }
-  }, {
-    id: '44250.jpg',
-    url: 'http://www.housefabric.com/assets/ProductDetail/44250.jpg',
-    size: {
-      width: 50,
-      height: 50
-    }
-  }, {
-    id: '44250.jpg',
-    url: 'http://www.housefabric.com/assets/ProductDetail/44250.jpg',
-    size: {
-      width: 50,
-      height: 50
-    }
-  }, {
-    id: 'fun-with-shapes-and-patterns.jpg',
-    url: 'http://www.crafthubs.com/thumbs/fun-with-shapes-and-patterns.jpg',
-    size: {
-      width: 50,
-      height: 50
-    }
-  }, {
-    id: '44250.jpg',
-    url: 'http://www.housefabric.com/assets/ProductDetail/44250.jpg',
-    size: {
-      width: 50,
-      height: 50
-    }
-  }, {
-    id: '44250.jpg',
-    url: 'http://www.housefabric.com/assets/ProductDetail/44250.jpg',
-    size: {
-      width: 50,
-      height: 50
-    }
-  }, {
-    id: 'fun-with-shapes-and-patterns.jpg',
-    url: 'http://www.crafthubs.com/thumbs/fun-with-shapes-and-patterns.jpg',
-    size: {
-      width: 50,
-      height: 50
-    }
-  }, {
-    id: '44250.jpg',
-    url: 'http://www.housefabric.com/assets/ProductDetail/44250.jpg',
-    size: {
-      width: 50,
-      height: 50
-    }
-  }, {
-    id: '44250.jpg',
-    url: 'http://www.housefabric.com/assets/ProductDetail/44250.jpg',
-    size: {
-      width: 50,
-      height: 50
-    }
-  }, {
-    id: 'fun-with-shapes-and-patterns.jpg',
-    url: 'http://www.crafthubs.com/thumbs/fun-with-shapes-and-patterns.jpg',
-    size: {
-      width: 50,
-      height: 50
-    }
-  }, {
-    id: '44250.jpg',
-    url: 'http://www.housefabric.com/assets/ProductDetail/44250.jpg',
-    size: {
-      width: 50,
-      height: 50
-    }
-  }, {
-    id: '44250.jpg',
-    url: 'http://www.housefabric.com/assets/ProductDetail/44250.jpg',
-    size: {
-      width: 50,
-      height: 50
-    }
-  }, {
-    id: 'fun-with-shapes-and-patterns.jpg',
-    url: 'http://www.crafthubs.com/thumbs/fun-with-shapes-and-patterns.jpg',
-    size: {
-      width: 50,
-      height: 50
-    }
-  }, {
-    id: '44250.jpg',
-    url: 'http://www.housefabric.com/assets/ProductDetail/44250.jpg',
-    size: {
-      width: 50,
-      height: 50
-    }
-  }, {
-    id: '44250.jpg',
-    url: 'http://www.housefabric.com/assets/ProductDetail/44250.jpg',
-    size: {
-      width: 50,
-      height: 50
-    }
-  }, {
-    id: 'fun-with-shapes-and-patterns.jpg',
-    url: 'http://www.crafthubs.com/thumbs/fun-with-shapes-and-patterns.jpg',
-    size: {
-      width: 50,
-      height: 50
-    }
-  }, {
-    id: '44250.jpg',
-    url: 'http://www.housefabric.com/assets/ProductDetail/44250.jpg',
-    size: {
-      width: 50,
-      height: 50
-    }
   }];
 
-  // svg.selectAll('path').forEach(function(path) {
-  //   var outline = path;
-  //   outline.style.stroke = "blue";
-  //   outline.style.stroke-width = "10px";
+  function clearFill(item) {
+    item.selectAll('path').forEach(function (path) {
+    //this only works with fill:none; svg's
+      if (!path.attr('fill') || path.attr('fill') === 'none') {
+        path.attr('fill', 'white');
+      }
+    });
+  }
+
+  clearFill(svg);
+
+  //generating a thumbnail for each group as a set
+  function generateSets(svgSelector, setList) {
+    svg.selectAll('g g').forEach(function(group) {
+      // clone the svg for each group without event handlers
+      var groupId = group.attr('id');
+      var clone = svgSelector.clone().off();
+      var cloneSvg = Snap(clone[0]);
+
+      cloneSvg.selectAll('#'+ groupId + ' path').forEach(function(path) {
+        path.attr('fill', '$mid-gray');
+      });
+
+      // add each group's thumbnail as an li in .sets
+      $(setList).append(clone
+        .wrap('<li class="set"></li>')
+        .parent()
+        .data('groupId', groupId));
+    });
+  }
+
+  generateSets($svg, '.sets');
+
+
+  // function drawSets() {
+  //   var groups = $('.svg-editor').find('g g').clone();
+  //   // var groups = (svg.selectAll('g')).items;
+  //   console.log(groups);
+  //   for (var i = 0; i < groups.length; ++i) {
+  //     var baseSvg = $('.svg-editor').clone().remove('g').html();
+  //     console.log(baseSvg);
   //
-  // });
-
-  function drawSets() {
-    var groups = $('.svg-editor').find('g g').clone();
-    // var groups = (svg.selectAll('g')).items;
-    console.log(groups);
-    for (var i = 0; i < groups.length; ++i) {
-      var baseSvg = $('.svg-editor').clone().remove('g').html();
-      console.log(baseSvg);
-
-      // why is this sometimes returning html, sometimes svg objects?
-      var set = $(groups[i]).html();
-      console.log(set);
-      // var set = $(i).html();
-      // console.log(set);
-      $('.sets').append('<li>' + set + '</li>');
-    }
+  //     // why is this sometimes returning html, sometimes svg objects?
+  //     var set = $(groups[i]).html();
+  //     console.log(set);
+  //     // var set = $(i).html();
+  //     // console.log(set);
+  //     $('.sets').append('<li>' + set + '</li>');
+  //   }
 
     // why did this keep reading as undefined?
     // groups.forEach(function(group) {
@@ -174,22 +82,22 @@ $(function () {
     //   console.log(set);
     //   $('.sets').append(set);
     // });
-  }
+  // }
 
   // drawSets();
 
-  function addFabricMessage() {
-    if (palette === undefined || palette.length === 0) {
-    //  alt example from appointments app
-    //   if (appts === undefined || appts.length === 0) {
-    //      $('.no-frames').html(noFrames);
-    //      $('.no-frames').fadeIn('slow');
-    //  };
-      $('.add-fabric-message').fadeIn('slow');
-    }
-  }
+  // function addFabricMessage() {
+  //   if (palette === undefined || palette.length === 0) {
+  //   //  alt example from appointments app
+  //   //   if (appts === undefined || appts.length === 0) {
+  //   //      $('.no-frames').html(noFrames);
+  //   //      $('.no-frames').fadeIn('slow');
+  //   //  };
+  //     $('.add-fabric-message').fadeIn('slow');
+  //   }
+  // }
 
-  addFabricMessage();
+  // addFabricMessage();
 
   function drawPalette(location, palette) {
     $(location).html(palette.map(function (fabric) {
@@ -207,14 +115,6 @@ $(function () {
 
   $('.palette').on('click', '.fabric-preview', function () {
     currFabric = $(this).data('fabric');
-  });
-
-
-  svg.selectAll('path').forEach(function (path) {
-    //this only works with fill:none; svg's
-    if (!path.attr('fill') || path.attr('fill') === 'none') {
-      path.attr('fill', 'white');
-    }
   });
 
 
@@ -244,7 +144,7 @@ $(function () {
       });
     });
   }
-
+// });
 
   function applyFabricPatch(path) {
     //empty palette, nothing happens!
