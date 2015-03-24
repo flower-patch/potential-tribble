@@ -4,7 +4,6 @@
 
   <div class="next-steps">
 
-    <!-- <h1 class="next-steps-heading">Only a few more steps to see your quilt dream come to life:</h1> -->
     <ol class="next-steps-list">
       <li class="next-step">
         <i class="fa fa-cloud-download next-step-icon"></i>
@@ -36,3 +35,25 @@
   </div>
 
 </div>
+
+
+<!-- ---- THIS IS CHRISTEN'S API DEBUG NONSENSE ---- -->
+<%# FIXME: this if statement is a hack to avoid the pain of ERB commenting %>
+<% if false %>
+<% Fabric.get_spoonflower_images( "goat" ).each do |hash| %>
+  <p>Image ID:<%= hash[:id] %><p>
+  <%= image_tag hash[:thumbnail] %>
+  <br>
+<% end %>
+<% end %>
+
+
+<%# FIXME: this if statement is a hack to avoid the pain of ERB commenting %>
+<% if false %>
+<% Fabric.get_spoonflower_fabrics_by_color( "FF0000" ).each do |hash| %>
+  <p>Image ID:<%= hash[:id] %><p>
+  <%= image_tag hash[:thumbnail] %>
+  <br>
+<% end %>
+<% end %>
+<!-- ---- END OF CHRISTEN'S API DEBUG NONSENSE ---- -->

@@ -8,33 +8,14 @@ $max-width: em(960) !global;
 
 $grid-columns: 12 !default;
 
+$responsive: new-breakpoint(max-width 960px 12);
+
 $block-height: em(400);
 
 
 /*------------------------------------*\
     #Application Page Elements
 \*------------------------------------*/
-
-.logo-icon {
-  font-size: 2em;
-  float: left;
-  color: $alt-accent-text;
-}
-
-.logo-text {
-  color: $alt-accent-text;
-  font-size: 1.5em;
-  font-weight: $light;
-  padding-top: 3px;
-  margin-left: 8px;
-}
-
-.site-nav {
-  background: $accent-lightest;
-  height: 4em;
-  box-shadow: $default-shadow;
-  padding: 1.35765%;
-}
 
 
 body {
@@ -87,8 +68,43 @@ main {
   margin-bottom: 4em;
   min-height: 300px;
   padding: 0;
-
   @include outer-container;
+}
+
+.site-nav {
+  background: $accent-light;
+  height: 4em;
+  box-shadow: $default-shadow;
+}
+
+.flowerpatch-logo-section {
+  margin: 0 1em;
+  padding-top: 0.4em;
+  font-size: 2em;
+}
+
+.flowerpatch-logo {
+  width: 2em;
+  box-shadow: $default-shadow;
+
+  &:hover {
+    box-shadow: $hover-shadow;
+  }
+}
+
+.flowerpatch-logo-text {
+  vertical-align: top;
+  display: inline-block;
+  margin-top: 0.5em;
+  letter-spacing: -1px;
+}
+
+.flower-text {
+  font-weight: $light;
+}
+
+.patch-text {
+  font-weight: $bold;
 }
 
 .view-container {
@@ -100,11 +116,6 @@ main {
   float: right;
   font-family: $serif;
   margin: 0 2em;
-}
-
-.spoonflower-logo {
-  display: inline-block;
-  margin: 5em;
 }
 
 .spoonflower-tag {
@@ -123,6 +134,10 @@ svg {
 svg path {
   stroke: rgb(150, 30, 200);
   stroke-opacity: 0.5;
+}
+
+.no-click {
+  pointer-events: none;
 }
 
 
@@ -146,16 +161,14 @@ label {
 
 .stitch-btn {
   @include pad();
-  border-top: 2px solid $seafoam-white;
+  border-top: 2px solid $seafoam-light;
   outline: 1px solid $accent-text;
-  border: 1.5px dashed $seafoam-white;
+  border: 1.5px dashed $seafoam-light;
   background-color: $accent-text;
-  // box-shadow: $default-shadow;
   color: $white;
   font-family: $serif;
   font-weight: $thin;
   font-size: 1.25em;
-  // text-transform: uppercase;
 
   &:hover {
     box-shadow: $hover-shadow;
@@ -184,7 +197,7 @@ label {
 form.search-bar {
   position: relative;
 
-  input[type=search] {
+  input[type=search], input[type =text] {
     @include appearance(none);
     @include box-sizing(border-box);
     @include transition(border-color);
@@ -208,11 +221,11 @@ form.search-bar {
   }
 
   button[type=submit] {
-    @include button(flat, $accent-light);
+    @include button(flat, $accent-text);
     @include position(absolute, 0 0 0 null);
     border-radius: 0;
     outline: none;
-    padding: 5px 10px;
+    padding: 2px 10px;
 
     img {
       height: 12px;
@@ -235,6 +248,8 @@ form.search-bar {
   height: $switch-height;
   position: relative;
   width: $switch-width;
+  // padding-top: 1.3% !important;
+  // padding-left: 1.36% !important;
 
   input[type="checkbox"] {
     display: none;
@@ -292,6 +307,13 @@ form.search-bar {
   }
 }
 
+/*------------------------------------*\
+    #CLICKS
+\*------------------------------------*/
+
+.no-click {
+  pointer-events: none;
+}
 
 /*------------------------------------*\
     #CONTAINERS

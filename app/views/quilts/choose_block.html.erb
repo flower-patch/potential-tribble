@@ -1,6 +1,7 @@
+
 <%= render :partial => 'shared/progress', :locals => {:page => 2} %>
 
-<div class="block-view">
+<div class="block-view view-container">
 
 
 <!-- </div>
@@ -23,9 +24,8 @@
       <div class="card-header">
         <p><%= link_to block.name, quilts_edit_project_path(block_id: block.id, project_id: params[:project_id]) %></p>
       </div>
-      <div class="card-copy">
-        <p>Lorem ipsum dolor sit amet, quiltum cut and sew a goat!</p>
-      </div>
+      <!-- <div class="card-copy">
+      </div> -->
     </div>
     <% end %>
   </div>

@@ -6,14 +6,19 @@ one:
   public: false
   preview_thumb_url: MyString
   svg: MyString
-  project_template_id: MyString
+  project_template_id: 1
   yardage: MyString
+  in_progress: false
+  featured_priority: 1
+
 
 two:
   name: MyString
-  seam_allowance: 9.99
+  seam_allowance: 0.25
   public: false
   preview_thumb_url: MyString
-  project_template_id: MyString
   svg: MyString
+  project_template_id: 1
   yardage: MyString
+  in_progress: false
+  featured_priority: 1
