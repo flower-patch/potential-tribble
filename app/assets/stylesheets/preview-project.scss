@@ -2,12 +2,34 @@
     # PREVIEW PAGE INPUTS / BUTTONS
 \*------------------------------------*/
 
+.preview-view {
+  @include outer-container;
+  padding-bottom: 1em;
+}
+
+.my-new-quilt {
+  color: $alt-accent-text;
+  text-align: center;
+  @include pad();
+}
+
+.preview-info {
+  margin-top: 4em;
+  margin-left: 1em;
+  padding-left: 2.358%;
+  padding-right: 2.358%;
+  padding-bottom: 2.358%;
+  // border: 1px solid $light-pure-gray;
+  // box-shadow: $default-shadow;
+  border-radius: 3px;
+  @include span-columns(6);
+}
+
 .quilt-name-container {
   font-size: 1.25em;
   font-family: $serif;
   color: $alt-accent-text;
-  @include span-columns(4.5);
-  @include shift(.5);
+  @include pad();
 }
 
 
@@ -45,14 +67,14 @@
   font-family: $serif;
   color: $alt-accent-text;
   padding-top: 9px;
-  @include span-columns(5.5);
-  @include shift(.5);
+  @include pad();
 }
 
 
 .awesome-submit-container {
   width: 300px;
-  // @include shift(2.5);
+  @include pad();
+  @include shift(2.5);
 }
 
 .preview-svg {
@@ -60,7 +82,9 @@
   margin-top: 2.358%;
   border: 3px solid $light-pure-gray;
   background-color: $light-pure-gray;
-  @include shift(3);
+  float: left;
+  display: block;
+
 }
 
 .label-switch {
