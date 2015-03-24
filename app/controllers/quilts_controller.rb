@@ -4,7 +4,11 @@ class QuiltsController < ApplicationController
   end
 
   def choose_block
-    @blocks = BlockTemplate.all
+    if params[:project_id]
+      @blocks = BlockTemplate.all
+    else
+      redirect_to project_templates_choose_project_path
+    end
 
     if params[:quilt_id]
       redirect_to quilts_edit_project_path(quilt_id: params[:quilt_id], project_id: params[:project_id])
@@ -19,6 +23,8 @@ class QuiltsController < ApplicationController
       @starting_svg = Block.new( params[:block_id] ).getXML
     elsif params[:quilt_id]
       @starting_svg = Quilt.find(params[:quilt_id]).svg
+    else
+      redirect_to root_path
     end
   end
 
@@ -32,19 +38,25 @@ class QuiltsController < ApplicationController
     end
   end
 
-
-
   def preview_project
-    @quilt = Quilt.find(params[:quilt_id])
+    if params[:quilt_id]
+      @quilt = Quilt.find(params[:quilt_id])
+    else
+      redirect_to root_path
+    end
   end
 
   def next_steps
-    @quilt = Quilt.find(params[:quilt_id])
-    @quilt.in_progress = false
-    if @quilt.update(quilt_params)
-      flash.now[:notice] = 'Quilt was successfully created.'
+    if params[:quilt_id]
+      @quilt = Quilt.find(params[:quilt_id])
+      @quilt.in_progress = false
+      if @quilt.update(quilt_params)
+        flash.now[:notice] = 'Quilt was successfully created.'
+      else
+        render :preview_project
+      end
     else
-      render :preview_project
+      redirect_to root_path
     end
   end
 

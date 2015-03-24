@@ -62,6 +62,11 @@ in the terminal to do the necessary housekeeping (add to table, parse the paths,
     - it seems to be helpful to use a visual bounding box rather than a geometric bounding box. If you are unsure which you have enabled, go to Edit->Preferences
   - once all of the patches are in place and sized correctly, give them no fill and a stroke of 1px
   - grouped items will determine the sets available on the edit screen of the app. Nested groups are not supported at this time
+    - group names should follow the naming convention "groupn" where n is the number of the group. Example: id="group2"
+    - for now, we are assuming that all patches are rectangles with no rotation, or 45-45-90 triangles. Other shapes are likely to break area calculations and such
+
+**If your blocks have gotten all kattywompus, there is a repository for clean block svg files: **
+https://github.com/cHaden/sanitized_svg
 ----
 
 <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150319174932) do
+ActiveRecord::Schema.define(version: 20150323212518) do
 
   create_table "block_templates", force: :cascade do |t|
     t.string   "name"
@@ -34,12 +34,13 @@ ActiveRecord::Schema.define(version: 20150319174932) do
     t.decimal  "seam_allowance",      precision: 3, scale: 2
     t.boolean  "public"
     t.string   "preview_thumb_url"
-    t.string   "project_template_id"
     t.string   "yardage"
     t.datetime "created_at",                                  null: false
     t.datetime "updated_at",                                  null: false
     t.text     "svg"
     t.boolean  "in_progress"
+    t.integer  "featured_priority"
+    t.integer  "project_template_id"
   end
 
 end
