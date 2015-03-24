@@ -35,7 +35,7 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.61765806"
-     inkscape:cx="302.42568"
+     inkscape:cx="22.335431"
      inkscape:cy="391.72012"
      inkscape:document-units="in"
      inkscape:current-layer="layer1"
@@ -182,15 +182,15 @@
          inkscape:connector-curvature="0"
          id="path3359"
          image-id="replaceme2"
-         d="M 810,424.5 810,222 607.5,222 Z"
-         style="opacity:0.65;fill:none;fill-opacity:1;stroke:#c0c0c0;stroke-width:3.96;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+         d="m 809.99277,424.50656 0,-202.5 -202.5,0 z"
+         style="opacity:0.65;fill:none;fill-opacity:1;stroke:#c0c0c0;stroke-width:3.95978403;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
       <path
          sodipodi:nodetypes="cccc"
          inkscape:connector-curvature="0"
          id="path3361"
          image-id="replaceme2"
-         d="M 405,829.5 405,627 202.5,627 Z"
-         style="opacity:0.65;fill:none;fill-opacity:1;stroke:#c0c0c0;stroke-width:3.96;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+         d="m 404.98927,829.49703 0,-202.5 -202.5,0 z"
+         style="opacity:0.65;fill:none;fill-opacity:1;stroke:#c0c0c0;stroke-width:3.95989966;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
     </g>
     <g
        id="group3"

@@ -27,7 +27,7 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.61765806"
-     inkscape:cx="352.3083"
+     inkscape:cx="72.218051"
      inkscape:cy="389.39187"
      inkscape:document-units="in"
      inkscape:current-layer="layer1"
@@ -93,15 +93,15 @@
          inkscape:connector-curvature="0"
          image-id="replaceme2"
          id="rect4148"
-         d="M 810,645 405,645 607.5,442.5 Z"
-         style="opacity:0.65;fill:none;fill-opacity:1;stroke:#c0c0c0;stroke-width:3.96;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+         d="m 810.01014,645 -405,0 202.5,-202.5 z"
+         style="opacity:0.65;fill:none;fill-opacity:1;stroke:#c0c0c0;stroke-width:3.96000004;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
       <path
          sodipodi:nodetypes="cccc"
          inkscape:connector-curvature="0"
          image-id="replaceme2"
          id="path4153"
-         d="M 405,645 0,645 202.5,847.5 Z"
-         style="opacity:0.65;fill:none;fill-opacity:1;stroke:#c0c0c0;stroke-width:3.96;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+         d="m 405.01014,645 -405,0 202.5,202.5 z"
+         style="opacity:0.65;fill:none;fill-opacity:1;stroke:#c0c0c0;stroke-width:3.96000004;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
       <path
          sodipodi:nodetypes="cccc"
          inkscape:connector-curvature="0"
@@ -121,8 +121,8 @@
        id="group3"
        style="fill:none;stroke:#c0c0c0;stroke-opacity:1;stroke-width:3.96;stroke-miterlimit:4;stroke-dasharray:none">
       <path
-         style="opacity:0.65;fill:none;fill-opacity:1;stroke:#c0c0c0;stroke-width:3.96;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-         d="M 405,645 0,645 202.5,442.5 Z"
+         style="opacity:0.65;fill:none;fill-opacity:1;stroke:#c0c0c0;stroke-width:3.96000004;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         d="m 405.01014,645 -405,0 202.5,-202.5 z"
          id="path4151"
          image-id="replaceme3"
          inkscape:connector-curvature="0"
