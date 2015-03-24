@@ -145,18 +145,6 @@ svg {
   background-color: $mid-gray;
 }
 
-svg path {
-  &:hover {
-    stroke: 7px;
-    opacity: 0.5;
-    -webkit-transition-duration: 30ms;
-    transition-duration: 30ms;
-  }
-}
-
-
-
-
 .no-click {
   pointer-events: none;
 }
