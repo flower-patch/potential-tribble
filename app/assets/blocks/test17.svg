@@ -54,22 +54,25 @@
      inkscape:groupmode="layer"
      id="layer1">
     <g
-       id="g4157"
+       id="group1"
        style="fill:none;stroke:#c0c0c0;stroke-opacity:1;stroke-width:3.96;stroke-miterlimit:4;stroke-dasharray:none">
       <path
          sodipodi:nodetypes="cccc"
          inkscape:connector-curvature="0"
          id="rect4137"
+         image-id="replaceme1"
          d="m 0,645 0,-405 405,0 z"
          style="opacity:0.65;fill:none;fill-opacity:1;stroke:#c0c0c0;stroke-width:3.96;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
       <path
          style="opacity:0.65;fill:none;fill-opacity:1;stroke:#c0c0c0;stroke-width:3.96;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
          d="m 810,645 0,-405 -405,0 z"
          id="path4140"
+         image-id="replaceme1"
          inkscape:connector-curvature="0"
          sodipodi:nodetypes="cccc" />
       <path
          sodipodi:nodetypes="cccc"
+         image-id="replaceme1"
          inkscape:connector-curvature="0"
          id="path4142"
          d="m 810,645 0,405 -405,0 z"
@@ -77,28 +80,32 @@
       <path
          style="opacity:0.65;fill:none;fill-opacity:1;stroke:#c0c0c0;stroke-width:3.96;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
          d="m 0,645 0,405 405,0 z"
+         image-id="replaceme1"
          id="path4144"
          inkscape:connector-curvature="0"
          sodipodi:nodetypes="cccc" />
     </g>
     <g
-       id="g4145"
+       id="group2"
        style="fill:none;stroke:#c0c0c0;stroke-opacity:1;stroke-width:3.96;stroke-miterlimit:4;stroke-dasharray:none">
       <path
          sodipodi:nodetypes="cccc"
          inkscape:connector-curvature="0"
+         image-id="replaceme2"
          id="rect4148"
          d="M 810,645 405,645 607.5,442.5 Z"
          style="opacity:0.65;fill:none;fill-opacity:1;stroke:#c0c0c0;stroke-width:3.96;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
       <path
          sodipodi:nodetypes="cccc"
          inkscape:connector-curvature="0"
+         image-id="replaceme2"
          id="path4153"
          d="M 405,645 0,645 202.5,847.5 Z"
          style="opacity:0.65;fill:none;fill-opacity:1;stroke:#c0c0c0;stroke-width:3.96;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
       <path
          sodipodi:nodetypes="cccc"
          inkscape:connector-curvature="0"
+         image-id="replaceme2"
          id="path4157"
          d="m 405,645 0,-405 -202.5,202.5 z"
          style="opacity:0.65;fill:none;fill-opacity:1;stroke:#c0c0c0;stroke-width:3.96;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
@@ -107,32 +114,37 @@
          d="m 405,1050 0,-405 202.5,202.5 z"
          id="path4159"
          inkscape:connector-curvature="0"
+         image-id="replaceme2"
          sodipodi:nodetypes="cccc" />
     </g>
     <g
-       id="g4151"
+       id="group3"
        style="fill:none;stroke:#c0c0c0;stroke-opacity:1;stroke-width:3.96;stroke-miterlimit:4;stroke-dasharray:none">
       <path
          style="opacity:0.65;fill:none;fill-opacity:1;stroke:#c0c0c0;stroke-width:3.96;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
          d="M 405,645 0,645 202.5,442.5 Z"
          id="path4151"
+         image-id="replaceme3"
          inkscape:connector-curvature="0"
          sodipodi:nodetypes="cccc" />
       <path
          style="opacity:0.65;fill:none;fill-opacity:1;stroke:#c0c0c0;stroke-width:3.96;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
          d="m 810,645 -405,0 202.5,202.5 z"
          id="path4155"
+         image-id="replaceme3"
          inkscape:connector-curvature="0"
          sodipodi:nodetypes="cccc" />
       <path
          sodipodi:nodetypes="cccc"
          inkscape:connector-curvature="0"
+         image-id="replaceme3"
          id="path4163"
          d="m 405,1050 0,-405 -202.5,202.5 z"
          style="opacity:0.65;fill:none;fill-opacity:1;stroke:#c0c0c0;stroke-width:3.96;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
       <path
          sodipodi:nodetypes="cccc"
          inkscape:connector-curvature="0"
+         image-id="replaceme3"
          id="path4165"
          d="m 405,645 0,-405 202.5,202.5 z"
          style="opacity:0.65;fill:none;fill-opacity:1;stroke:#c0c0c0;stroke-width:3.96;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />

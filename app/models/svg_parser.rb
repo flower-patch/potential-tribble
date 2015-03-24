@@ -54,7 +54,7 @@ class SvgParser
 
 
   def replace_fabric_urls(image_id, new_url)
-    selected_paths = @paths.xpath('//*[contains(@image-id, ' + image_id +')]')
+    selected_paths = @paths.xpath('//*[@image-id="' + image_id +'"]')
     selected_paths.each do |path|
       style_array = path["style"].split(';')
       fill_index = 0
@@ -127,5 +127,10 @@ class SvgParser
     square_area = side * side
     square_area / 2
   end
+
+  def total_area(area_hash)
+    area_hash.values.reduce(:+)
+  end
+
 
 end
