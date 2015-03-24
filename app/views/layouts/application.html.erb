@@ -10,16 +10,27 @@
 </head>
 <body>
 
-
   <header class="site-nav">
+    <i class="fa fa-certificate logo-icon"></i>
+    <h1 class="logo-text"> FlowerPatch</h1>
   </header>
   
-  <main class="app-content paper-border">
+    <main class="app-content paper-border">
 
-    <!-- yield is the root-content equivalent, all views populate here -->
-    <%= yield %>
+      <!-- yield is the root-content equivalent, all views populate here -->
+      <%= yield %>
 
-  </main>
+    </main>
+
+    <footer>
+      <div class="spoonflower-section">
+        <span class="spoonflower-tag">
+        in partnership with</span>
+        <a href="www.spoonflower.com/welcome">
+          <%= image_tag "spoonflower_logo.png" %>
+        </a>
+      </div>
+    </footer>
 
 </body>
 </html>

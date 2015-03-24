@@ -6,6 +6,7 @@ $seafoam-white: #c4ebd1;
 $seafoam-light: #aee3c0;
 $seafoam: #8cf2ae;
 $seafoam-dark: #8cf2ae;
+$seafoam-gray: #6ab784;
 
 $cream: #feffe2;
 $yellow-eggshell: #eae3be;
@@ -17,13 +18,14 @@ $silver: #c0c0c0;
 $mercury: #E6E6E6;
 $pale-gray: #F7F7F7;
 $midnight: #1e2d61;
-
-
+$midnight-light: #2c4189;
 
 $accent-lightest: $seafoam-white;
 $accent-light: $seafoam-light;
 $accent-mid: $seafoam;
 $accent-dark: $seafoam-dark;
+$accent-text: $seafoam-gray;
+$alt-accent-text: $midnight-light;
 $accent-darkest: $midnight;
 $neutral-lightest: $cream;
 $neutral-light: $yellow-eggshell;

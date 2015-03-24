@@ -1,41 +1,45 @@
 <%= render :partial => 'shared/progress', :locals => {:page => 5} %>
 
-<div class="next-steps-view">
+<div class="next-steps-view view-container">
 
-  <h2>Only a few more steps to see your quilt dream come to life:</h2>
-  <ol>
-    <li>
-      <i class="fa fa-cloud-download"></i>
-      Download your design–
-    </li>
+  <div class="next-steps">
 
-    <li>
-      <i class="fa fa-cloud-upload"></i>
-      Upload to the design at <a href="http://www.spoonflower.com/welcome">spoonflower.com</a>
-    </li>
+    <ol class="next-steps-list">
+      <li class="next-step">
+        <i class="fa fa-cloud-download next-step-icon"></i>
+        Download your design–
+      </li>
 
-    <li>
-      <i class="fa fa-shopping-cart"></i>
-      Submit and pay for your order
-    </li>
+      <li class="next-step">
+        <i class="fa fa-cloud-upload next-step-icon"></i>
+        Upload to the design at <a href="http://www.spoonflower.com/welcome">spoonflower.com</a>
+      </li>
 
-    <li>
-      <i class="fa fa-truck"></i>
-      When your package arrives, open and whip up your custom quilt masterpiece!
-    </li>
-  </ol>
+      <li class="next-step">
+        <i class="fa fa-shopping-cart next-step-icon"></i>
+        Submit and pay for your order
+      </li>
+
+      <li class="next-step">
+        <i class="fa fa-truck next-step-icon"></i>
+        When your package arrives, open and whip up your custom quilt masterpiece!
+      </li>
+    </ol>
+
+  </div>
+
+  <div class="final-block">
+
+  <%= @quilt.svg.html_safe %>
+
+  </div>
 
 </div>
 
-<div>
-<%= @quilt.svg.html_safe %>
 
-<p>Full SVG</p>
-<%#= @quilt.svg.html_safe %>
-<%= @quilt.get_paths_from_svg %>
-
+<!-- ---- THIS IS CHRISTEN'S API DEBUG NONSENSE ---- -->
 <%# FIXME: this if statement is a hack to avoid the pain of ERB commenting %>
-<% if true %>
+<% if false %>
 <% Fabric.get_spoonflower_images( "goat" ).each do |hash| %>
   <p>Image ID:<%= hash[:id] %><p>
   <%= image_tag hash[:thumbnail] %>
@@ -52,5 +56,4 @@
   <br>
 <% end %>
 <% end %>
-
-</div>
+<!-- ---- END OF CHRISTEN'S API DEBUG NONSENSE ---- -->

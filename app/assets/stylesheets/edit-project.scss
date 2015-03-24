@@ -22,14 +22,16 @@ svg {
 
   path {
     stroke-width: 3px;
+    stroke: blue;
 
     &:hover {
+      // transition: all 0.5s ease;
       fill-opacity: 0.5;
-      background-color: black;
+      outline: 10px auto $accent-mid;
     }
   }
-
 }
+
 
 .svg-editor-parent {
 }
@@ -62,7 +64,7 @@ svg {
   @include span-columns(4 of 10);
   @include shift(1);
   text-align: center;
-  background: $lightest-gray;
+  background: $light-pure-gray;
   box-shadow: inset $default-shadow;
   vertical-align: top;
   position: relative;
@@ -110,7 +112,7 @@ svg {
 .save-project-btn {
   position: absolute;
   bottom: 0.5em;
-  right: 2.25em;
+  right: 3em;
 }
 
 .open-fabric-modal-btn {

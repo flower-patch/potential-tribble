@@ -15,6 +15,7 @@ $block-height: em(400);
     #Application Page Elements
 \*------------------------------------*/
 
+
 body {
   background-color: $light-pure-gray;
   background-image: $fabric-pattern;
@@ -69,14 +70,27 @@ main {
   @include outer-container;
 }
 
-.site-nav {
-  background: $accent-light;
-  height: 4em;
-  box-shadow: $default-shadow;
-}
-
 .view-container {
   margin: 4em 0 2em 0;
+}
+
+.spoonflower-section {
+  display: inline-block;
+  float: right;
+  font-family: $serif;
+  margin: 0 2em;
+}
+
+.spoonflower-logo {
+  display: inline-block;
+  margin: 5em;
+}
+
+.spoonflower-tag {
+  padding: 0 1em 2.75em 0;
+  margin: auto 0;
+  display: inline-block;
+  vertical-align: middle;
 }
 
 svg {
@@ -89,6 +103,11 @@ svg path {
   stroke: rgb(150, 30, 200);
   stroke-opacity: 0.5;
 }
+
+.no-click {
+  pointer-events: none;
+}
+
 
 /*------------------------------------*\
     #INPUTS / BUTTONS
@@ -111,14 +130,15 @@ label {
 .stitch-btn {
   @include pad();
   border-top: 2px solid $seafoam-white;
+  outline: 1px solid $accent-text;
   border: 1.5px dashed $seafoam-white;
-  background-color: $seafoam-light;
-  box-shadow: $default-shadow;
+  background-color: $accent-text;
+  // box-shadow: $default-shadow;
   color: $white;
   font-family: $serif;
   font-weight: $thin;
   font-size: 1.25em;
-  text-transform: uppercase;
+  // text-transform: uppercase;
 
   &:hover {
     box-shadow: $hover-shadow;
@@ -198,6 +218,8 @@ form.search-bar {
   height: $switch-height;
   position: relative;
   width: $switch-width;
+  // padding-top: 1.3% !important;
+  // padding-left: 1.36% !important;
 
   input[type="checkbox"] {
     display: none;
@@ -255,6 +277,13 @@ form.search-bar {
   }
 }
 
+/*------------------------------------*\
+    #CLICKS
+\*------------------------------------*/
+
+.no-click {
+  pointer-events: none;
+}
 
 /*------------------------------------*\
     #CONTAINERS

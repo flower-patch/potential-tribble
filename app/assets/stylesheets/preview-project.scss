@@ -2,43 +2,94 @@
     # PREVIEW PAGE INPUTS / BUTTONS
 \*------------------------------------*/
 
-.quilt-name-container {
+.preview-view {
+  @include outer-container;
+  padding-bottom: 1em;
+}
+
+.my-new-quilt {
+  color: $alt-accent-text;
+  text-align: center;
   @include pad();
 }
 
+.preview-info {
+  margin-top: 4em;
+  margin-left: 1em;
+  padding-left: 2.358%;
+  padding-right: 2.358%;
+  padding-bottom: 2.358%;
+  // border: 1px solid $light-pure-gray;
+  // box-shadow: $default-shadow;
+  border-radius: 3px;
+  @include span-columns(6);
+}
+
+.quilt-name-container {
+  font-size: 1.25em;
+  font-family: $serif;
+  color: $alt-accent-text;
+  @include pad();
+}
+
+
+.preview-icon {
+  font-size: 1.05em;
+  padding: 5px;
+}
 .quilt-name {
   margin-top: 1em;
   margin-left: .5em;
   padding:.25em 0;
   font-size: 1em;
+  background-color: $white;
+  box-shadow: $default-shadow;
 }
 
 
 .awesome-submit {
-  font-family: $serif;
-  font-weight: $thin;
   line-height: 1.2em;
   margin: 0.2em;
+  border-top: 2px solid #c4ebd1;
+  outline: 1px solid #6ab784;
+  border: 1.5px dashed #c4ebd1;
+  background-color: #6ab784;
+  color: #ffffff;
+  font-family: "Kreon", serif;
+  font-weight: 100;
+  font-size: 1.25em;
   @include pad();
-}
 
-.awesome-submit-container {
-  @include pad();
-}
-
-.preview-svg {
-  width: 58%;
-  margin-top: 2.358%;
-  border: 3px solid $mercury;
 }
 
 .share-quilt-container {
-  padding: 2.35765%;
+  font-size: 1.25em;
+  font-family: $serif;
+  color: $alt-accent-text;
+  padding-top: 9px;
+  @include pad();
+}
+
+
+.awesome-submit-container {
+  width: 300px;
+  @include pad();
+  @include shift(2.5);
+}
+
+.preview-svg {
+  width: 403px;
+  margin-top: 2.358%;
+  border: 3px solid $light-pure-gray;
+  background-color: $light-pure-gray;
+  float: left;
+  display: block;
+
 }
 
 .label-switch {
   ///////////////////////////////////////////////////////////////////////////////////
-  $base-accent-color: #477DCA !default;
+  $base-accent-color: $accent-light;
   $base-background-color: $white;
   //////////////////////////////////////////////////////////////////////////////////
 

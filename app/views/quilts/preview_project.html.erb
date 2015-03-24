@@ -2,51 +2,61 @@
 
 <div class="preview-view">
 
-  <h1>Quilts#preview_project</h1>
-  <!-- page 4 wireframe -->
-  <p>Find me in app/views/quilts/preview_project.html.erb</p>
+  <%= form_for @quilt, :url => { :action => "next_steps"} do |f| %>
 
-    <%= form_for @quilt, :url => { :action => "next_steps"} do |f| %>
+  <% if @quilt.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@quilt.errors.count, "error") %> prohibited this quilt from being saved:</h2>
 
-    <% if @quilt.errors.any? %>
+      <ul>
+        <% @quilt.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+    <% end %>
 
-  <div id="error_explanation">
-    <h2><%= pluralize(@quilt.errors.count, "error") %> prohibited this quilt from being saved:</h2>
 
-    <ul>
-      <% @quilt.errors.full_messages.each do |message| %>
-      <li><%= message %></li>
-      <% end %>
-    </ul>
-  </div>
-  <% end %>
 
-  <div class="preview-svg">
-    <%= @quilt.svg.html_safe %>
-  </div>
+  <div class="preview-info">
 
-  <%= hidden_field_tag :quilt_id, params[:quilt_id] %>
-  <%# TODO: Make seam_allowance editable by user %>
-  <%= f.hidden_field :seam_allowance, :value => 0.25 %>
+    <h2 class="my-new-quilt"><i class="preview-icon fa fa-magic"></i>Your Masterpiece</h2>
+    <div class= "quilt-name-container">
+      <i class="preview-icon fa fa-pencil"></i>
+      <%= f.label :name %>:
+      <%= f.text_field :name, class: "quilt-name" %>
+    </div>
 
-  <div class= "quilt-name-container">
-    <%= f.label :name %>:
-    <%= f.text_field :name, class: "quilt-name" %>
-  </div>
-
-<div class="share-quilt-container">
-
-    <%= f.label "Check here to make your quilt public:."
-    %><label class="label-switch">
-      <%= f.check_box :public, class: "public-checkbox."%>
-    <div class ="checkbox"></div>
-    </label>
-  </div>
+    <%= hidden_field_tag :quilt_id, params[:quilt_id] %>
+    <%# TODO: Make seam_allowance editable by user %>
+    <%= f.hidden_field :seam_allowance, :value => 0.25 %>
+    <div class="share-quilt-container">
+      <i class="preview-icon fa fa-share"></i>
+      <%= f.label "Check here to make your quilt public:."
+      %><label class="label-switch">
+        <%= f.check_box :public, class: "public-checkbox"%>
+        <div class ="checkbox"></div>
+      </label>
+    </div>
 
 
     <div class= "awesome-submit-container">
-    <%= f.submit 'This Quilt Is Awesome.  I Approve.', class:"awesome-submit" %>
+      <i class="preview-icon fa fa-thumbs-o-up"></i>
+      <%= f.submit 'Awesome! I Approve.', class:"awesome-submit stitch-button" %>
+    </div>
+
+  </div>
+
+
+
+  <div class="preview-svg no-click">
+    <%= @quilt.svg.html_safe %>
   </div>
   <% end %>
+
+
+
+
+
 
 </div>
