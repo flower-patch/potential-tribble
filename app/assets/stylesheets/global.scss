@@ -16,23 +16,20 @@ $block-height: em(400);
 /*------------------------------------*\
     #Application Page Elements
 \*------------------------------------*/
+//
+// .logo-icon {
+//   font-size: 2em;
+//   float: left;
+//   color: $alt-accent-text;
+// }
 
-<<<<<<< HEAD
-.logo-icon {
-  font-size: 2em;
-  float: left;
-  color: $alt-accent-text;
-}
-
-.logo-text {
-  color: $alt-accent-text;
-  font-size: 1.5em;
-  font-weight: $light;
-  padding-top: 3px;
-  margin-left: 8px;
-}
-=======
->>>>>>> 194d533c7da45583311446a3dba50c1473515a09
+// .logo-text {
+//   color: $alt-accent-text;
+//   font-size: 1.5em;
+//   font-weight: $light;
+//   padding-top: 3px;
+//   margin-left: 8px;
+// }
 
 body {
   background-color: $light-pure-gray;
@@ -88,44 +85,41 @@ main {
 }
 
 .site-nav {
-  background: $accent-lightest;
-  height: 4em;
-  box-shadow: $default-shadow;
-<<<<<<< HEAD
-  padding: 1.35765%;
-=======
+ background: $accent-light;
+ height: 4em;
+ box-shadow: $default-shadow;
 }
 
 .flowerpatch-logo-section {
-  margin: 0 1em;
-  padding-top: 0.4em;
-  font-size: 2em;
+ margin: 0 1em;
+ padding-top: 0.4em;
+ font-size: 2em;
 }
 
 .flowerpatch-logo {
-  width: 2em;
-  box-shadow: $default-shadow;
+ width: 2em;
+ box-shadow: $default-shadow;
 
-  &:hover {
-    box-shadow: $hover-shadow;
-  }
+ &:hover {
+   box-shadow: $hover-shadow;
+ }
 }
 
 .flowerpatch-logo-text {
-  vertical-align: top;
-  display: inline-block;
-  margin-top: 0.5em;
-  letter-spacing: -1px;
+ vertical-align: top;
+ display: inline-block;
+ margin-top: 0.5em;
+ letter-spacing: -1px;
 }
 
 .flower-text {
-  font-weight: $light;
+ font-weight: $light;
 }
 
 .patch-text {
-  font-weight: $bold;
->>>>>>> 194d533c7da45583311446a3dba50c1473515a09
+ font-weight: $bold;
 }
+
 
 .view-container {
   margin: 4em 0 2em 0;
@@ -262,6 +256,34 @@ form.search-bar {
 \*------------------------------------*/
 
 .label-switch {
+
+  ///////////////////////////////////////////////////////////////////////////////////
+  $base-accent-color: $lightest-gray;
+  $base-accent-color: $lightest-gray;
+  //////////////////////////////////////////////////////////////////////////////////
+
+    $switch-width: 52px;
+    $switch-padding: 2px;
+    $switch-height: 32px;
+    $switch-radius: $switch-height;
+    $switch-background: $base-accent-color;
+    $base-background-color: $base-accent-color;
+    $switch-shadow: $default-shadow inset;
+    $knob-size: $switch-height - ($switch-padding * 2);
+    $knob-radius: $switch-height - ($switch-padding * 2);
+    $knob-width: $knob-size;
+    $background: $base-background-color;
+    $border-background: darken($base-background-color, 9%);
+    $shadow: inset $default-shadow;
+    padding-top: 2.3%;
+    padding-left: 2.36%;
+    border-radius: $switch-radius;
+    cursor: pointer;
+    display: inline-block;
+    height: $switch-height;
+    position: relative;
+    width: $switch-width;
+
   border-radius: $switch-radius;
   cursor: pointer;
   display: inline-block;
@@ -271,12 +293,15 @@ form.search-bar {
   // padding-top: 1.3% !important;
   // padding-left: 1.36% !important;
 
+
+
+
   input[type="checkbox"] {
     display: none;
 
     + .checkbox {
       @include transition(all 0.3s ease);
-      // background: $switch-border-background;
+      background: $accent-lightest;
       border-radius: $switch-radius;
       border: none;
       cursor: pointer;

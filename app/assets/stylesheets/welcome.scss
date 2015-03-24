@@ -140,12 +140,9 @@
   .card-image {
     overflow: hidden;
     max-height: 150px;
-    padding-bottom: 7px;
-    @include fill-parent();
-    @include outer-container();
+
     img {
-      @include fill-parent;
-      // @include transition (all 0.2s ease-in-out);
+      @include transition (all 0.2s ease-in-out);
       background: $card-image-background;
       border-top-left-radius: $base-border-radius;
       border-top-right-radius: $base-border-radius;
@@ -156,7 +153,7 @@
   .card-header {
     @include transition (all 0.2s ease-in-out);
     background-color: $card-header-background;
-    border-top: 1.5px dashed $light-pure-gray;
+    border-bottom: 1.5px dashed $light-pure-gray;
     border-radius: $base-border-radius $base-border-radius 0 0;
     font-weight: bold;
     line-height: 1.5em;
