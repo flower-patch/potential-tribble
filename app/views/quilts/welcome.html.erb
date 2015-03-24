@@ -2,11 +2,16 @@
 
   <div class="hero">
   	<div class="hero-inner">
-      <i class="fa fa-certificate fa-4 logo-placeholder"></i>
-  		<div class="hero-copy">
-  			<h1 class="hero-head">Welcome to FlowerPatch</h1>
-  			<p>Where you can create your own quilt with the Spoonflower fabrics you love</p>
-  		</div>
+      <%= image_tag "flowerpatch_logo.svg", class:"flowerpatch-logo" %>
+  			<div class ="title">
+          <span class="flowerpatch-logo-text">
+            <span class="flower-text">flower</span><span class="patch-text">patch</span>
+          </span>
+        </div>
+
+        <div class="hero-copy">
+  			  <p>Where you can create your own quilt with the Spoonflower fabrics you love</p>
+  	    </div>
       <button class="start-project"><%= link_to 'Start New Project', project_templates_choose_project_path %></button>
   	</div>
   </div>
