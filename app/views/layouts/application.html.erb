@@ -2,19 +2,27 @@
 <!-- app wide stuff nav-bar, etc, functional links -->
 <html>
 <head>
-  <title>PotentialTribble</title>
-  <link href='http://fonts.googleapis.com/css?family=Lato:100,300,400,300italic|Kreon:300,400' rel='stylesheet' type='text/css'>
+  <title>Flowerpatch</title>
+  <link href='http://fonts.googleapis.com/css?family=Lato:100,300,400|Kreon:300' rel='stylesheet' type='text/css'>
+  <%= favicon_link_tag '/flowerpatch_favicon.ico' %>
   <%= stylesheet_link_tag    'application', media: 'all' %>
   <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tags %>
 </head>
 <body>
 
-  <header class="site-nav">
-    <i class="fa fa-certificate logo-icon"></i>
-    <h1 class="logo-text"> FlowerPatch</h1>
-  </header>
-  
+    <header class="site-nav">
+      <div class="flowerpatch-logo-section">
+        <a href="/">
+          <%= image_tag "flowerpatch_logo.svg", class:"flowerpatch-logo" %>
+        <span class="flowerpatch-logo-text">
+          <span class="flower-text">flower</span
+          ><span class="patch-text">patch</span>
+        </span>
+        </a>
+      </div>
+    </header>
+
     <main class="app-content paper-border">
 
       <!-- yield is the root-content equivalent, all views populate here -->

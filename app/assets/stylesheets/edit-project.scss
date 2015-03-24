@@ -1,4 +1,3 @@
-
 /*------------------------------------*\
     #EDIT-VIEW
 \*------------------------------------*/
@@ -47,7 +46,7 @@ svg {
   width: 400px;
   height: 8em;
   text-align: center;
-  overflow-x: scroll;
+  overflow-x: auto;
   white-space: nowrap;
 }
 
@@ -95,11 +94,15 @@ svg {
   position: relative;
   margin: 5%;
   cursor: pointer;
+  border: $paper-margin solid $white;
+  box-shadow: $default-shadow;
 
   &:after {
     content: "";
     padding-top: 100%;
+    visibility: hidden;
     display: block;
+    border-top: 14px;
   }
 
   img {

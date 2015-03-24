@@ -1,17 +1,41 @@
 .project-view {
-  @include span-columns(8 of 12);
-  @include shift(2);
+  @include span-columns(10);
+  @include shift(1);
+}
+
+.project-list-container {
+  @include span-columns(3 of 10);
+}
+
+.project-list-item {
+  @include pad();
+  font-size: 1.25em;
+  margin-bottom: 0.75em;
+  border-bottom: $default-border;
+  cursor: pointer;
+
+  &:last-of-type {
+    border-bottom: none;
+  }
+}
+
+.project-cards {
+  // @include fill-parent();
+  // @include pad();
+  @include span-columns(7 of 10);
 }
 
 .project-card {
   // @include fill-parent();
   // @include pad();
+  // @include span-columns(8 of 10);
   overflow: auto;
   margin-bottom: 2em;
 }
 
 .project-card-img-container {
-  @include span-columns(4 of 8);
+  @include span-columns(3 of 7);
+  background: $mid-gray;
 }
 
 .project-card-img {
@@ -19,10 +43,11 @@
 }
 
 .project-card-content {
-  @include span-columns(4 of 8);
+  @include span-columns(4 of 7);
 }
 
 .project-card-copy {
   font-family: $sans-serif;
   @include pad();
+  line-height: 1.4em;
 }
