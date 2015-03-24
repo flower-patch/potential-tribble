@@ -23,8 +23,9 @@
     <h2 class="my-new-quilt">Your Masterpiece</h2>
     <div class= "quilt-name-container preview-label">
       <i class="preview-icon fa fa-pencil"></i>
-      <%= f.label :name  %>:
-      <%= f.text_field :name, class: "quilt-name search-box" %>
+    <form>
+      <%= f.label :name  %>:<%= f.text_field :name, class: "quilt-name" %>
+    </form>
     </div>
 
     <%= hidden_field_tag :quilt_id, params[:quilt_id] %>
@@ -34,7 +35,7 @@
       <i class="preview-icon fa fa-share"></i>
       <%= f.label "Check here to make your quilt public"
        %> <label class="label-switch">
-        <%= f.check_box :public, class: "public-checkbox search-box"%>
+        <%= f.check_box :public, class: "public-checkbox"%>
         <div class ="checkbox"></div>
       </label>
     </div>

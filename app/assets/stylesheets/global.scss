@@ -197,7 +197,7 @@ label {
 form.search-bar {
   position: relative;
 
-  input[type=search] {
+  input[type=search], input[type =text] {
     @include appearance(none);
     @include box-sizing(border-box);
     @include transition(border-color);

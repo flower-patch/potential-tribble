@@ -45,8 +45,22 @@
   margin-left: .5em;
   padding:.25em 0;
   font-size: 1em;
-  background-color: $white;
-  box-shadow: $default-shadow;
+  @include appearance(none);
+  @include box-sizing(border-box);
+  @include transition(border-color);
+  background-color: $lightest-gray;
+  box-shadow: inset $default-shadow;
+  border: 1px solid $light-pure-gray;
+  font-size: 1em;
+  font-weight: $thin;
+  // font-style: italic;
+  font-family: $sans-serif;
+  margin: 2.358%;
+  position: relative;
+
+  &:focus {
+    background-color: $light-pure-gray;
+  }
 }
 
 
@@ -90,9 +104,12 @@
 }
 
 .label-switch {
+
+
+
   ///////////////////////////////////////////////////////////////////////////////////
-  $base-accent-color: $accent-light;
-  $base-background-color: $white;
+  $base-accent-color: $lightest-gray;
+  $base-background-color: $lightest-gray;
   //////////////////////////////////////////////////////////////////////////////////
 
   $switch-width: 52px;
@@ -104,7 +121,7 @@
   $knob-width: $knob-size;
   $background: $base-background-color;
   $border-background: darken($base-background-color, 9%);
-  $shadow: 0 2px 5px transparentize(black, 0.6);
+  $shadow: inset $default-shadow;
   padding-top: 2.3%;
   padding-left: 2.36%;
   border-radius: $switch-radius;
@@ -156,7 +173,7 @@
 
     &:checked {
       + .checkbox {
-        background: $base-accent-color;
+        background: $accent-text;
 
         &:before {
           @include transform(scale(0));
