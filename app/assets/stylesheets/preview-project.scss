@@ -13,6 +13,10 @@
   @include pad();
 }
 
+.preview-label {
+  font-family: $sans-serif;
+}
+
 .preview-info {
   margin-top: 4em;
   margin-left: 1em;
@@ -27,7 +31,6 @@
 
 .quilt-name-container {
   font-size: 1.25em;
-  font-family: $serif;
   color: $alt-accent-text;
   @include pad();
 }
@@ -64,10 +67,9 @@
 
 .share-quilt-container {
   font-size: 1.25em;
-  font-family: $serif;
   color: $alt-accent-text;
   padding-top: 9px;
-  @include pad();
+  padding-bottom: 2.358%;
 }
 
 

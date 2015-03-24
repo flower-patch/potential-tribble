@@ -1,6 +1,6 @@
 <%= render :partial => 'shared/progress', :locals => {:page => 4} %>
 
-<div class="preview-view">
+<div class="preview-view view-container">
 
   <%= form_for @quilt, :url => { :action => "next_steps"} do |f| %>
 
@@ -20,20 +20,20 @@
 
   <div class="preview-info">
 
-    <h2 class="my-new-quilt"><i class="preview-icon fa fa-magic"></i>Your Masterpiece</h2>
-    <div class= "quilt-name-container">
+    <h2 class="my-new-quilt">Your Masterpiece</h2>
+    <div class= "quilt-name-container preview-label">
       <i class="preview-icon fa fa-pencil"></i>
-      <%= f.label :name %>:
+      <%= f.label :name  %>:
       <%= f.text_field :name, class: "quilt-name" %>
     </div>
 
     <%= hidden_field_tag :quilt_id, params[:quilt_id] %>
     <%# TODO: Make seam_allowance editable by user %>
     <%= f.hidden_field :seam_allowance, :value => 0.25 %>
-    <div class="share-quilt-container">
+    <div class="share-quilt-container preview-label">
       <i class="preview-icon fa fa-share"></i>
-      <%= f.label "Check here to make your quilt public:."
-      %><label class="label-switch">
+      <%= f.label "Check here to make your quilt public"
+       %> <label class="label-switch">
         <%= f.check_box :public, class: "public-checkbox"%>
         <div class ="checkbox"></div>
       </label>
@@ -41,7 +41,6 @@
 
 
     <div class= "awesome-submit-container">
-      <i class="preview-icon fa fa-thumbs-o-up"></i>
       <%= f.submit 'Awesome! I Approve.', class:"awesome-submit stitch-button" %>
     </div>
 
