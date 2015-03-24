@@ -95,9 +95,8 @@
 
 .cards {
   @include display(flex);
-  @include flex-wrap(wrap);
-  @include justify-content(space-between);
-  padding-top: 1.15%;
+   @include flex-wrap(wrap);
+   @include justify-content(space-between);
 }
 
 .card {
@@ -120,7 +119,8 @@
   $card-image-background: #DBD199;
   $card-image-hover-background: lighten($card-image-background, 5%);
   $card-margin: 1em;
-
+  @include fill-parent;
+  @include span-columns(2);
   @include flex-basis(15em);
   @include flex-grow(1);
   @include transition (all 0.2s ease-in-out);
@@ -130,7 +130,6 @@
   box-shadow: 0 2px 4px darken($base-background-color, 10%);
   cursor: pointer;
   margin: 0 $card-margin $base-spacing $card-margin;
-  position: relative;
   position: relative;
 
   .card-image {

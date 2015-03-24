@@ -13,12 +13,13 @@
 
 
 
-  <% @quilts.each do |quilt| %>
-  <% if quilt.public %>
+
   <div class="cards">
+    <% @quilts.each do |quilt| %>
+    <% if quilt.public %>
     <div class="card paper-border">
       <div class="card-image">
-        <a href = "/project_templates/choose_project?quilt_id=<%=quilt.id%>"><%= image_tag "#{quilt.preview_thumb_url}"%></a>
+        <a href = "/project_templates/choose_project?quilt_id=<%=quilt.id%>"><%= image_tag "#{quilt.preview_thumb_url}"%></img></a>
       </div>
       <div class="card-header">
         <p><%= link_to quilt.name, project_templates_choose_project_path(quilt_id: quilt.id) %></p>
@@ -27,17 +28,10 @@
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fuga, officiis sunt neque facilis culpa molestiae necessitatibus delectus veniam provident.</p>
       </div>
     </div>
+    <% end %>
+    <% end %>
   </div>
-  <% end %>
-  <% end %>
 
-  <!-- <% @quilts.each do |quilt| %>
-  <% if quilt.public %>
-  <div class ="example-list">
-    <a class="paper-border" href = "/project_templates/choose_project?quilt_id=<%=quilt.id%>"><%= image_tag "#{quilt.preview_thumb_url}"%></a>
-    <p><%= link_to quilt.name, project_templates_choose_project_path(quilt_id: quilt.id) %></p>
-  </div>
-  <% end %>
-  <% end %> -->
+
 
 </div>
