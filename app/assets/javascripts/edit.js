@@ -34,26 +34,26 @@ $(function () {
     });
   }
 
-  //POSSIBLY ADD A CLASS AND REMOVE TO DO STYLING
-  svg.selectAll('path').forEach(function(path) {
-    // var currFill = path.attr('fill');
-    path.hover(function() {
-      path.attr({
-        "fill": "#000000",
-        // "stroke": "#233B89",
-        // "stroke-width": "10px",
-        "fill-opacity": "0.5"
-      });
-      // passing the off hover event as parameter
-    }, function() {
-        path.attr({
-          "fill": currFill
-          // "stroke": "#C0C0C0",
-          // "stroke-width": "4px",
-          // "fill-opacity": "1"
-        });
-    });
-  });
+  // //POSSIBLY ADD A CLASS AND REMOVE TO DO STYLING
+  // svg.selectAll('path').forEach(function(path) {
+  //    var currFill = path.attr('fill');
+  //   path.hover(function() {
+  //     path.attr({
+  //       "fill": "#000000"
+  //       "stroke": "#233B89",
+  //       "stroke-width": "10px",
+  //        "fill-opacity": "0.5"
+  //     });
+  //    //passing the off-hover event as parameter
+  //   }, function() {
+  //       path.attr({
+  //         "fill": currFill
+  //        "stroke": "#C0C0C0",
+  //        "stroke-width": "4px",
+  //        "fill-opacity": "1"
+  //       });
+  //   });
+  // });
 
   clearFill(svg);
 
@@ -78,9 +78,6 @@ $(function () {
   }
 
   generateSets($svg, '.sets');
-
-
-
 
   // function drawSets() {
   //   var groups = $('.svg-editor').find('g g').clone();
@@ -111,11 +108,11 @@ $(function () {
 
   // function addFabricMessage() {
   //   if (palette === undefined || palette.length === 0) {
-  //   //  alt example from appointments app
-  //   //   if (appts === undefined || appts.length === 0) {
-  //   //      $('.no-frames').html(noFrames);
-  //   //      $('.no-frames').fadeIn('slow');
-  //   //  };
+  //   alt example from appointments app
+  //    if (appts === undefined || appts.length === 0) {
+  //       $('.no-frames').html(noFrames);
+  //       $('.no-frames').fadeIn('slow');
+  //    };
   //     $('.add-fabric-message').fadeIn('slow');
   //   }
   // }
@@ -167,7 +164,7 @@ $(function () {
       });
     });
   }
-// });
+
 
   function applyFabricPatch(path) {
     //empty palette, nothing happens!

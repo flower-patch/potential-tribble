@@ -142,13 +142,20 @@ main {
 svg {
   width: 500px;
   height: 500px;
-
+  background-color: $mid-gray;
 }
 
-// svg path {
-//   stroke: rgb(150, 30, 200);
-//   stroke-opacity: 0.5;
-// }
+svg path {
+  &:hover {
+    stroke: 7px;
+    opacity: 0.5;
+    -webkit-transition-duration: 30ms;
+    transition-duration: 30ms;
+  }
+}
+
+
+
 
 .no-click {
   pointer-events: none;

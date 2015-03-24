@@ -24,6 +24,17 @@ svg {
 .svg-editor-parent {
 }
 
+svg path {
+  &:hover {
+    stroke: 7px;
+    opacity: 0.5;
+    -webkit-transition-duration: 30ms;
+    transition-duration: 30ms;
+  }
+}
+
+
+
 .save-project-btn {
 }
 
@@ -50,9 +61,13 @@ svg {
   width: 5em;
   height: 5em;
 
+  &:hover {
+    box-shadow: $hover-shadow;
+  }
+  
   path {
     &:hover {
-
+      opacity: 1;
     }
   }
 }
