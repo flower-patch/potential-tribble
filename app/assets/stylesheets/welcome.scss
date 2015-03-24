@@ -123,6 +123,7 @@
   $card-image-background: #DBD199;
   $card-image-hover-background: lighten($card-image-background, 5%);
   $card-margin: 1em;
+  margin-top: 7px; 
   @include fill-parent;
   @include span-columns(2);
   @include flex-basis(15em);
