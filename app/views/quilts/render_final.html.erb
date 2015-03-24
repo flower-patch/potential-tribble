@@ -30,11 +30,15 @@
           fabric.loadSVGFromURL(src, function (objects, options) {
     var obj = fabric.util.groupSVGElements(objects, options);
     obj.scaleToHeight(canvas.height-10)
-      .set({ left: canvas.width/2, top: canvas.height/2 })
+      .set({ left: 0, top: 0 })
       .setCoords();
 
     canvas.add(obj).renderAll();
   });
+
+
+
+
 
 })();
 </script>
