@@ -94,6 +94,13 @@ class SvgParser
     area_hash
   end
 
+  def clean_up(coord_value)
+    # sometimes path coordinates are negative
+    # conversion of 90 pixels per inch
+    c = coord_value.abs
+    c / 90
+  end
+
   def rectangle_area(seam_allowance, coords)
     side1 = 2 * seam_allowance
     side2 = 2 * seam_allowance
@@ -112,17 +119,34 @@ class SvgParser
     side1 * side2
   end
 
+  # triangle coordinates have 2 basic configurations:
+  # triangle made from a square slashed diagonally: d="m 810,645 0,-405 -405,0 z"
+  # in this case, the height of the triangle is 405
+  # triangle made by lopping top 2 corners off a rectangle: "m 405,645 0,-405 -202.5,202.5 z"
+  # in this case, the height of the triangle is 202.5
+  # for both types, the absolute value of the first pair == the abs. value of the second pair
+
   def triangle_area(seam_allowance, coords)
-    if seam_allowance == 0
-      side = 2 * seam_allowance
-    else
+    if seam_allowance == 0.25
       side = 0.875
+    else
+      side = 2 * seam_allowance
     end
+    first_height_value = 0
+    second_height_value = 0
+    zero_checker = []
     coords[1].each do |c|
-      if c != 0
-        to_inches = c / 90
-        side += to_inches.abs
-      end
+      zero_checker << c if c == 0
+      first_height_value += clean_up(c)
+    end
+    coords[2].each do |d|
+      zero_checker << d if d == 0
+      second_height_value += clean_up(d)
+    end
+    if zero_checker.length == 2
+      side += first_height_value
+    else
+      side += first_height_value / 2
     end
     square_area = side * side
     square_area / 2
