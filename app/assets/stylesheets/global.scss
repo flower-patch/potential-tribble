@@ -15,6 +15,20 @@ $block-height: em(400);
     #Application Page Elements
 \*------------------------------------*/
 
+.logo-icon {
+  font-size: 2em;
+  float: left;
+  color: $alt-accent-text;
+}
+
+.logo-text {
+  color: $alt-accent-text;
+  font-size: 1.5em;
+  font-weight: $light;
+  padding-top: 3px;
+  margin-left: 8px;
+}
+
 body {
   background-color: $light-pure-gray;
   background-image: $fabric-pattern;
@@ -70,10 +84,10 @@ main {
 }
 
 .site-nav {
-  background: $accent-light;
+  background: $accent-lightest;
   height: 4em;
   box-shadow: $default-shadow;
-  // opacity: 0.5;
+  padding: 1.35765%;
 }
 
 .view-container {
