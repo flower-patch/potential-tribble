@@ -15,10 +15,13 @@
 
 
   <div class="cards">
+    <!-- insert 'past popular heading something' -->
+
     <% @quilts.each do |quilt| %>
     <% if quilt.public %>
     <div class="card paper-border">
       <div class="card-image">
+        <!--CHRISTEN: insert svgs in image_tag -->
         <a href = "/project_templates/choose_project?quilt_id=<%=quilt.id%>"><%= image_tag "#{quilt.preview_thumb_url}"%></img></a>
       </div>
       <div class="card-header">
