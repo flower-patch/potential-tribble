@@ -66,8 +66,10 @@ class QuiltsController < ApplicationController
     @this_png = Fabric.new.svg_to_png(@svg, 300, 300)
     @is_this_even_doing_anything = "ARE YOU GETTING ANYTHING FROM THE CONTROLLER?"
 
+    @link = "http://api.v1.spoonflower.com/design/previewImage/3127064?print_width=4.5&print_height=4.5&preview_width_pixels=675&preview_height_pixels=675"
+    #USE THIS IF YOU JUST WANT TO DOWNLOAD THE FILE
     # send_data(@this_png , :filename => 'test.png', :type=>'image/png')
-    send_data(@svg, :filename => 'test.svg', :type=>'image/svg+xml')
+    # send_data(@svg, :filename => 'test.svg', :type=>'image/svg+xml')
 
   end
 
