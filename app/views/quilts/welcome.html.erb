@@ -22,11 +22,13 @@
   <div class="cards">
     <!-- add header here describing list -->
     <!-- CHRISTEN: limit to three -->
+    <!-- insert 'past popular heading something' -->
+
     <% @quilts.each do |quilt| %>
     <% if quilt.public %>
     <div class="card paper-border">
       <div class="card-image">
-        <!-- CHRISTEN:  insert svgs here in image_tag,  -->
+        <!--CHRISTEN: insert svgs in image_tag -->
         <a href = "/project_templates/choose_project?quilt_id=<%=quilt.id%>"><%= image_tag "#{quilt.preview_thumb_url}"%></img></a>
       </div>
       <div class="card-header">
