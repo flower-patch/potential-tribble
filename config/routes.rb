@@ -18,6 +18,8 @@ Rails.application.routes.draw do
   post 'quilts/next_steps'
   patch 'quilts/next_steps'
 
+  get 'quilts/render_final'
+
   resources 'quilts', :only => [:new, :create]
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

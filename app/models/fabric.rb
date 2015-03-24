@@ -56,4 +56,25 @@ class Fabric
 
     return images
   end
+
+
+  # if you just want to download a png, use this
+  # def self.svg_to_png(svg, width, height)
+  def svg_to_png(svg, width, height)
+    svg = RSVG::Handle.new_from_data(svg)
+    width   = width  ||=500
+    height  = height ||=500
+    surface = Cairo::ImageSurface.new(Cairo::FORMAT_ARGB32, width, height)
+    context = Cairo::Context.new(surface)
+    context.render_rsvg_handle(svg)
+    b = StringIO.new
+    surface.write_to_png(b)
+    return b.string
+  end
+
+  # if that png needs to be a data uri, use this
+  # def self.encode64( png )
+  def encode64( png )
+    return Base64.encode64(png)
+  end
 end

@@ -1,5 +1,8 @@
 source 'https://rubygems.org'
 
+#this does my SVG converting, but with some artifacts. Find a replacement, time-permitting
+gem 'rsvg2'
+
 gem 'httparty'
 gem 'nokogiri'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'

@@ -60,6 +60,17 @@ class QuiltsController < ApplicationController
     end
   end
 
+  def render_final
+    # Block.new("_full_resolution").getXML.html_safe
+    @svg = Block.new("_full_resolution").getXML
+    @this_png = Fabric.new.svg_to_png(@svg, 300, 300)
+    @is_this_even_doing_anything = "ARE YOU GETTING ANYTHING FROM THE CONTROLLER?"
+
+    # send_data(@this_png , :filename => 'test.png', :type=>'image/png')
+    send_data(@svg, :filename => 'test.svg', :type=>'image/svg+xml')
+
+  end
+
   private
 
   def quilt_params

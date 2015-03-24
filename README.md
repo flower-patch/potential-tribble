@@ -64,7 +64,10 @@ in the terminal to do the necessary housekeeping (add to table, parse the paths,
   - grouped items will determine the sets available on the edit screen of the app. Nested groups are not supported at this time
     - group names should follow the naming convention "groupn" where n is the number of the group. Example: id="group2"
     - for now, we are assuming that all patches are rectangles with no rotation, or 45-45-90 triangles. Other shapes are likely to break area calculations and such
-
+3. Adding the block to the app
+  - add the svg file to the /app/assets/blocks folder
+  - either add an entry to the seed file, or make sure that an entry exists in the BlockTemplate database
+  
 **If your blocks have gotten all kattywompus, there is a repository for clean block svg files: **
 https://github.com/cHaden/sanitized_svg
 ----
