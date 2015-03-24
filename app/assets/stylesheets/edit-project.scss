@@ -51,12 +51,21 @@ svg {
 }
 
 .set {
-  box-shadow: $default-shadow;
   display: inline-block;
+  text-align: center;
   margin: 1em;
+  cursor: pointer;
+}
+
+.set svg {
   width: 5em;
   height: 5em;
-  cursor: pointer;
+
+  path {
+    &:hover {
+      
+    }
+  }
 }
 
 .choose-palette {

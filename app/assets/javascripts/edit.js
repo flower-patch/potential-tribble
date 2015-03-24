@@ -44,8 +44,8 @@ $(function () {
       var clone = svgSelector.clone().off();
       var cloneSvg = Snap(clone[0]);
 
-      cloneSvg.selectAll('#'+ groupId + ' path').forEach(function(path) {
-        path.attr('fill', '$mid-gray');
+      cloneSvg.selectAll('#' + groupId + ' path').forEach(function(path) {
+        path.attr('fill', '#c0c0c0');
       });
 
       // add each group's thumbnail as an li in .sets
