@@ -101,6 +101,11 @@ class SvgParser
     c / 90
   end
 
+  def find_height(hypotenuse)
+    # magic number! 45 degrees expressed in radians
+    height = hypotenuse * (Math.sin(0.785398163))
+  end
+
   def rectangle_area(seam_allowance, coords)
     side1 = 2 * seam_allowance
     side2 = 2 * seam_allowance
@@ -123,7 +128,7 @@ class SvgParser
   # triangle made from a square slashed diagonally: d="m 810,645 0,-405 -405,0 z"
   # in this case, the height of the triangle is 405
   # triangle made by lopping top 2 corners off a rectangle: "m 405,645 0,-405 -202.5,202.5 z"
-  # in this case, the height of the triangle is 202.5
+  # in this case, the hypotenuse of the triangle is 405
   # for both types, the absolute value of the first pair == the abs. value of the second pair
 
   def triangle_area(seam_allowance, coords)
@@ -132,21 +137,21 @@ class SvgParser
     else
       side = 2 * seam_allowance
     end
-    first_height_value = 0
-    second_height_value = 0
+    height_or_hypotenuse1 = 0
+    height_or_hypotenuse2 = 0
     zero_checker = []
     coords[1].each do |c|
       zero_checker << c if c == 0
-      first_height_value += clean_up(c)
+      height_or_hypotenuse1 += clean_up(c)
     end
     coords[2].each do |d|
       zero_checker << d if d == 0
-      second_height_value += clean_up(d)
+      height_or_hypotenuse2 += clean_up(d)
     end
     if zero_checker.length == 2
-      side += first_height_value
+      side += height_or_hypotenuse1
     else
-      side += first_height_value / 2
+      side += find_height(height_or_hypotenuse1)
     end
     square_area = side * side
     square_area / 2
