@@ -76,7 +76,8 @@ class SvgParser
     area_hash = {}
     all_unique_image_ids.each do |id|
       total_area = 0
-      selected_paths = @paths.xpath('//*[contains(@image-id, ' + id +')]')
+      # selected_paths = @paths.xpath('//*[contains(@image-id, ' + id +')]')
+      selected_paths = @paths.xpath('//*[@image-id="' + id +'"]')
       selected_paths.each do |path|
         if path[:d]
           coords = path_coords(path[:id])
