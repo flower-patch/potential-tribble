@@ -60,6 +60,11 @@ class QuiltsController < ApplicationController
     end
   end
 
+  def download_quilt
+    @quilt = Quilt.find(params[:quilt_id])
+    send_data(@quilt.svg , :filename => 'test.svg', :type=>'image/svg+xml')
+  end
+
   private
 
   def quilt_params

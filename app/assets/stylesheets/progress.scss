@@ -53,14 +53,20 @@
 }
 
 .selected {
-  font-size: 1.25em;
+  font-size: 1.2em;
   font-weight: $bold;
+  padding-top: 3px;
+
+  .progress-stage {
+    padding-top: 6px;
+  }
 }
 
 .selected-text.circle {
   width: 60px;
   height: 60px;
   border-radius: 30px;
+  padding-top: 30px;
 }
 
 .selected-text {
@@ -81,7 +87,7 @@
   border-color: $accent-text;
   position: absolute;
   left: 5.5em;
-  bottom: 4.5em;
+  bottom: 4.6em;
   z-index: 0;
 
   @include media($responsive) {
