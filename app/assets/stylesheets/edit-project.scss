@@ -153,8 +153,10 @@ svg path,
 
 .save-project-btn {
   position: absolute;
-  bottom: 0.5em;
-  right: 3em;
+  bottom: 25px;
+  right: 55px;
+  width: 150px;
+  padding: 0.5em;
 }
 
 .open-fabric-modal-btn,
@@ -170,10 +172,9 @@ svg path,
 
 .clear-patches-modal {
   @include pad();
+  padding: 1em;
   width: 150px;
-  height: 100px;
   font-size: 1em;
-  // color: $white;
   text-align: center;
   overflow: auto;
   background: $light-pure-gray;
@@ -186,8 +187,18 @@ svg path,
 }
 
 .modal-options {
-  display: flex;
+  display: block;
+  text-align: center;
   width: 100%;
+  font-family: $serif;
   font-weight: $bold;
+  font-size: 1.25em;
   margin-top: 1em;
+}
+
+.clear-patches-modal-close,
+.clear-patches-modal-confirm {
+  text-align: center;
+  margin: 0.5em;
+  cursor: pointer;
 }
