@@ -235,9 +235,8 @@ $(function () {
   // This can be fixed by:
   // A) Put the api on our localhost
   // B) enable cross origin resource sharing (CORS) on the api on heroku
-
   // Additionally, no more newlines.
-  // kthxbai.
+
 
 
   $('.open-fabric-modal-btn').on('click', function () {
