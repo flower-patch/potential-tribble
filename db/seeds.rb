@@ -20,9 +20,11 @@ BlockTemplate.create(name: "Pinwheel", block_svg_url: "test11.svg")
 BlockTemplate.create(name: "Hole in the Barn Door", block_svg_url: "test12.svg")
 
 
-ProjectTemplate.create( name: "Single Patch", example_thumb_url: "dummythumb.png", description: "Make a single patch and use it in a project of your choosing")
-ProjectTemplate.create( name: "Doll", example_thumb_url: "dummythumb.png", description: "Make a doll sized quilt")
-ProjectTemplate.create( name: "Queen Sized Quilt", example_thumb_url: "dummythumb.png", description: "Make a queen sized quilt")
+ProjectTemplate.create( name: "Queen Sized Quilt", example_thumb_url: "queen_quilt.png", description: "Make a queen sized quilt")
+ProjectTemplate.create( name: "Twin Sized Quilt", example_thumb_url: "dummythumb.png", description: "Make a twin sized quilt")
+ProjectTemplate.create( name: "Lap Quilt", example_thumb_url: "dummythumb.png", description: "Make a lap quilt")
+ProjectTemplate.create( name: "Single Patch", example_thumb_url: "pillow_quilt.png", description: "Make a single patch and use it in a project of your choosing")
+ProjectTemplate.create( name: "Doll", example_thumb_url: "doll_quilt.png", description: "Make a doll sized quilt")
 
 Quilt.create( in_progress: false, name: "Default", seam_allowance: 0.25, public: true, preview_thumb_url: "dummythumb.png", project_template_id: 1, yardage: "fat quarter", svg:'<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
