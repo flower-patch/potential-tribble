@@ -297,6 +297,59 @@ $(function () {
     console.log(newSvg);
   });
 
+
+  // click events for the clear patches modal
+  $('.clear-patches-modal').on('click', function(e) {
+    e.stopPropagation();
+  });
+
+  $('.clear-patches-btn, .clear-patches-modal-close, .clear-patches-modal-confirm')
+    .on('click', function(e) {
+    e.preventDefault();
+    // e.stopPropagation();
+    $('.clear-patches-modal').toggleClass('show');
+  });
+
+  $('.clear-patches-modal-confirm').on('click', function() {
+    var currPaths = svg.selectAll('path');
+    currPaths.forEach(function(path) {
+      clearFabricPatch(path);
+    });
+  });
+
+  // $('.clear-patches-modal-close()').on('click', function)
+
+  // $('body').on('click', function(e) {
+  //   e.stopPropagation();
+  //   e.preventDefault();
+  //   $('.clear-patches-modal').removeClass('show');
+  // });
+
+  // function closePatchesModal() {
+  //   var modalClass = $('body').find('.show');
+  //   console.log(modalClass);
+  //   if (modalClass.length !== 0) {
+  //     $('body').on('click', function(e) {
+  //       // e.preventDefault();
+  //       e.stopPropagation();
+  //       $('.clear-patches-modal').toggleClass('show');
+  //     });
+  //   }
+  // }
+  //
+  // closePatchesModal();
+  //
+  // $('.clear-patches-modal').on('click', function(e) {
+  //   e.stopPropagation();
+  // });
+  //
+  // $('.clear-patches-btn body').on('click', function(e) {
+  //   e.preventDefault();
+  //   e.stopPropagation();
+  //   $('.clear-patches-modal').toggleClass('show');
+  // });
+
+
   // The API is on heroku currently, and does not enable cross origin resource sharing (CORS).
   // This means that a different origin (aka our localhost) cannot access your API.
 
@@ -304,12 +357,6 @@ $(function () {
   // A) Put the api on our localhost
   // B) enable cross origin resource sharing (CORS) on the api on heroku
   // Additionally, no more newlines.
-  $('.clear-patches-btn').on('click', function(e) {
-    e.preventDefault();
-    $('.clear-patches-modal').toggleClass('show');
-  });
-
-
 
 
   $('.open-fabric-modal-btn').on('click', function() {

@@ -162,16 +162,18 @@ svg path,
 .open-fabric-modal-btn,
 .clear-patches-btn {
   position: absolute;
-  bottom: -1.3em;
+  bottom: -1.5em;
   right: -1.1em;
 }
 
 .clear-patches-btn {
   right: -1.5em;
+  bottom: -1.4em;
 }
 
 .clear-patches-modal {
   @include pad();
+  @include transition(all 0.4s ease);
   padding: 1em;
   width: 150px;
   font-size: 1em;
@@ -184,6 +186,7 @@ svg path,
   bottom: 0.9em;
   visibility: hidden;
   opacity: 0;
+  z-index: 1000;
 }
 
 .modal-options {
