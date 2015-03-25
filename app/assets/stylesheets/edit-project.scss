@@ -2,6 +2,11 @@
     #EDIT-VIEW
 \*------------------------------------*/
 
+
+/*------------------------------------*\
+    #SVG-EDIT
+\*------------------------------------*/
+
 .edit-view {
   position: relative;
 
@@ -18,25 +23,33 @@ svg {
   height: 100%;
   cursor: pointer;
   box-shadow: $default-shadow;
-
-  path {
-    stroke-width: 3px;
-    stroke: blue;
-
-    &:hover {
-      // transition: all 0.5s ease;
-      fill-opacity: 0.5;
-      outline: 10px auto $accent-mid;
-    }
-  }
 }
 
 
 .svg-editor-parent {
+  position: relative;
 }
+
+svg path,
+.set-hover {
+  &:hover {
+    stroke: 7px;
+    opacity: 0.5;
+    transition: all 300ms ease;
+    -webkit-transition-duration: 30ms;
+    transition-duration: 30ms;
+  }
+}
+
+
 
 .save-project-btn {
 }
+
+
+/*------------------------------------*\
+    #SET-SECTION
+\*------------------------------------*/
 
 .choose-set {
   margin-top: 2em;
@@ -51,13 +64,31 @@ svg {
 }
 
 .set {
-  box-shadow: $default-shadow;
   display: inline-block;
+  text-align: center;
   margin: 1em;
-  width: 5em;
-  height: 5em;
   cursor: pointer;
 }
+
+.set svg {
+  width: 5em;
+  height: 5em;
+
+  &:hover {
+    box-shadow: $hover-shadow;
+  }
+
+  path {
+    &:hover {
+      opacity: 1;
+    }
+  }
+}
+
+
+/*------------------------------------*\
+    #PALETTE-SECTION
+\*------------------------------------*/
 
 .choose-palette {
   @include span-columns(4 of 10);
@@ -85,6 +116,9 @@ svg {
   overflow: auto;
 }
 
+.current-fabric {
+  outline: 5px solid blue;
+}
 
 .fabric-preview {
   display: inline-block;
@@ -112,14 +146,62 @@ svg {
   }
 }
 
+
+/*------------------------------------*\
+    #BUTTONS
+\*------------------------------------*/
+
 .save-project-btn {
   position: absolute;
-  bottom: 0.5em;
-  right: 3em;
+  bottom: 25px;
+  right: 55px;
+  width: 150px;
+  padding: 0.5em;
 }
 
-.open-fabric-modal-btn {
+.open-fabric-modal-btn,
+.clear-patches-btn {
   position: absolute;
-  bottom: -1.3em;
+  bottom: -1.5em;
   right: -1.1em;
+}
+
+.clear-patches-btn {
+  right: -1.5em;
+  bottom: -1.4em;
+}
+
+.clear-patches-modal {
+  @include pad();
+  @include transition(all 0.4s ease);
+  padding: 1em;
+  width: 150px;
+  font-size: 1em;
+  text-align: center;
+  overflow: auto;
+  background: $light-pure-gray;
+  box-shadow: $default-shadow;
+  position: absolute;
+  right: -0.5em;
+  bottom: 0.9em;
+  visibility: hidden;
+  opacity: 0;
+  z-index: 1000;
+}
+
+.modal-options {
+  display: block;
+  text-align: center;
+  width: 100%;
+  font-family: $serif;
+  font-weight: $bold;
+  font-size: 1.25em;
+  margin-top: 1em;
+}
+
+.clear-patches-modal-close,
+.clear-patches-modal-confirm {
+  text-align: center;
+  margin: 0.5em;
+  cursor: pointer;
 }

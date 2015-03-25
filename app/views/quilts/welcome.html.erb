@@ -2,23 +2,21 @@
 
   <div class="hero">
   	<div class="hero-inner">
-      <%= image_tag "flowerpatch_logo.svg", class:"flowerpatch-logo" %>
+      <%= image_tag "flowerpatch_logo.svg", class:"hero-logo" %>
   			<div class ="title">
           <span class="flowerpatch-logo-text">
-            <span class="flower-text">flower</span><span class="patch-text">patch</span>
+            Welcome to  <span class="flower-text">flower</span><span class="patch-text">patch</span>
           </span>
         </div>
 
         <div class="hero-copy">
   			  <p>Where you can create your own quilt with the Spoonflower fabrics you love</p>
   	    </div>
-      <button class="start-project"><%= link_to 'Start New Project', project_templates_choose_project_path %></button>
+      <div class="stitch-btn"><%= link_to 'Start New Project', project_templates_choose_project_path %></div>
   	</div>
   </div>
 
-
-
-
+  <h2 class="featured-designs">Featured Designs</h2>
   <div class="cards">
     <!-- add header here describing list -->
     <% max_preview_quilts = 3 %>

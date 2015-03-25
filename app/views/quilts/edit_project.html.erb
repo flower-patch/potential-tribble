@@ -21,6 +21,16 @@
       <div class="svg-editor">
         <%= @starting_svg.html_safe %>
       </div>
+      <button alt="Clear all patches" class="clear-patches-btn icon-button">
+        <i class="fa fa-minus-circle inner-button-icon"></i>
+      </button>
+      <div class="clear-patches-modal">
+        <span class="modal-confirm">Clear all patches?</span>
+        <div class="modal-options">
+          <span class="clear-patches-modal-close">No</span>
+          <span class="clear-patches-modal-confirm">Yes</span>
+        </div>
+      </div>
     </div>
 
     <div>
@@ -39,18 +49,6 @@
 
     <div class="choose-set">
       <ul class="sets">
-        <li class="set">
-        </li>
-        <li class="set">
-        </li>
-        <li class="set">
-        </li>
-        <!-- <li class="set">
-        </li>
-        <li class="set">
-        </li>
-        <li class="set">
-        </li> -->
       </ul>
     </div>
 
@@ -88,7 +86,7 @@
     <div class="fabric-modal-options">
       <form class="search-bar" role="search">
         <input type="search" placeholder="Enter Search" />
-        <button type="submit">
+        <button type="submit" class="fabric-modal-search-button">
           <img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/search-icon.png" alt="Search Icon">
         </button>
       </form>
