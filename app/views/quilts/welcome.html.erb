@@ -12,7 +12,9 @@
         <div class="hero-copy">
   			  <p>Where you can create your own quilt with the Spoonflower fabrics you love</p>
   	    </div>
-      <div class="stitch-btn"><%= link_to 'Start New Project', project_templates_choose_project_path %></div>
+        <%= link_to project_templates_choose_project_path do %>
+      <div class="stitch-btn">Start New Project</div>
+      <% end %>
   	</div>
   </div>
 
