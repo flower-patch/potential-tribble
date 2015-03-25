@@ -10,31 +10,29 @@ Pattern: Raster image applied to each patch.
 
 #API Usage
 
-To get a link to a pattern:
+Using the fake API:
 
-http://localhost:3000/api/v1/designs/get?design_id=1
+To search via color:
+https://fakepi.herokuapp.com/api/v1/design/search?color1=444444
+(Replace "444444" with the hex value you are looking for. Returns 10 results.)
 
-where design_id is the pattern desired. (JSON formatted)
+To search via "search term"
+https://fakepi.herokuapp.com/api/v1/design/search?q=goat
+(Replace "goat" with your search term. Returns 10 results.)
 
-----
+Using the real API*:
+http://api.v1.spoonflower.com/design/search?color1=444444
+http://api.v1.spoonflower.com/design/search?q=goats
 
-To get a JSON list of all available links to pattern files:
+To get a set number of "popular" results: (where "limit" is number desired)
+http://api.v1.spoonflower.com/design/search?limit=10&sort=freshtastic
 
-http://localhost:3000/api/v1/designs/list
+To get a preview for a specific design, given its id:
+http://api.v1.spoonflower.com/design/previewImage/1454355?print_width=4.5&print_height=4.5&preview_width_pixels=150&preview_height_pixels=150
+for id = 1454355, print_width=4.5 inches, print_height = 4.5 inches
 
-----
+*requires username and password. Get more documentation at http://api.v1.spoonflower.com/
 
-To get SVG for a block:
-
-http://localhost:3000/api/v1/blocks/get?block_id=1
-
-where block_id is the block's SVG desired
-
-----
-
-To get a JSON list of all available links to block SVG files:
-
-http://localhost:3000/api/v1/blocks/list
 
 #Scripts
 

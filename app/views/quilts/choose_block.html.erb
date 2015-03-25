@@ -20,7 +20,7 @@
     <% @blocks.each do |block| %>
     <div class="card">
       <div class="card-image">
-        <!--CHRISTEN: insert svgs here -->
+        <%= Block.getXML_for_filename( block.block_svg_url ).html_safe %>
       </div>
       <div class="card-header">
         <p><%= link_to block.name, quilts_edit_project_path(block_id: block.id, project_id: params[:project_id]) %></p>
