@@ -1,6 +1,7 @@
 $(function () {
   var svg = Snap('.svg-editor svg');
   var $svg = $('.svg-editor svg');
+  var cardSvg = Snap('a svg');
 
   var palette = [{
     id: 'patterns-by-danny-ivan.jpg',
@@ -25,7 +26,10 @@ $(function () {
     }
   }];
 
+  //////////////////////////////////////////////////////////////////////////////
+
   function clearFill(item) {
+    console.log('testing');
     item.selectAll('path').forEach(function(path) {
     //this only works with fill:none; svg's
       if (!path.attr('fill') || path.attr('fill') === 'none') {
@@ -34,28 +38,11 @@ $(function () {
     });
   }
 
-  // //POSSIBLY ADD A CLASS AND REMOVE TO DO STYLING
-  // svg.selectAll('path').forEach(function(path) {
-  //    var currFill = path.attr('fill');
-  //   path.hover(function() {
-  //     path.attr({
-  //       "fill": "#000000"
-  //       "stroke": "#233B89",
-  //       "stroke-width": "10px",
-  //        "fill-opacity": "0.5"
-  //     });
-  //    //passing the off-hover event as parameter
-  //   }, function() {
-  //       path.attr({
-  //         "fill": currFill
-  //        "stroke": "#C0C0C0",
-  //        "stroke-width": "4px",
-  //        "fill-opacity": "1"
-  //       });
-  //   });
-  // });
-
   clearFill(svg);
+
+  clearFill(cardSvg);
+
+  //////////////////////////////////////////////////////////////////////////////
 
   //generating a thumbnail for each group as a set
   function generateSets(svgSelector, setList) {
@@ -79,83 +66,37 @@ $(function () {
 
   generateSets($svg, '.sets');
 
-  // too repitive but I couldn't figure how to refactor (see below) to an
-  // editSet() function with the $this object
+  //////////////////////////////////////////////////////////////////////////////
+
+  function setClass(group, cssClass) {
+    getAllPaths(group).forEach(function(path) {
+      path.attr('class', cssClass);
+    });
+  }
+
+  function getAllPaths(group) {
+    var groupId = $(group).data('groupId');
+    return svg.selectAll('#' + groupId + ' path');
+  }
+
   $('.set')
     // reduce opacity of all path in the set on thumbnail hover
     .hover(function() {
-      var groupId = $(this).data('groupId');
-      svg.selectAll('#' + groupId + ' path').forEach(function(path) {
-        path.toggleClass('set-hover', true);
-    //   $('#' + groupId).children().forEach(function(path) {
-    //     path.toggleClass('set-hover');
-    //   // });
-      });
+      setClass($(this), 'set-hover');
+    },function() {
+      setClass($(this), '');
     })
     // apply pattern to all paths in set on click
     .click(function() {
-      var groupId = $(this).data('groupId');
-      svg.selectAll('#' + groupId + ' path').forEach(applyFabricPatch);
+      getAllPaths(this).forEach(applyFabricPatch);
     })
     // remove on dblclick
     .dblclick(function() {
-      var groupId = $(this).data('groupId');
-      svg.selectAll('#' + groupId + ' path').forEach(clearFabricPatch);
+      getAllPaths(this).forEach(clearFabricPatch);
     });
 
-    // function editSet() {
-    //   var groupId = $(this).data('groupId');
-    //   var setPaths = svg.selectAll('#' + groupId + ' path');
-    //   $('.set')
-    //     // reduce opacity of all path in the set on thumbnail hover
-    //     // .hover(function() {
-    //     //   setPaths.forEach(applyFabricPatch);
-    //     // })
-    //     // apply pattern to all paths in set on click
-    //     .click(function() {
-    //       setPaths.forEach(applyFabricPatch);
-    //     })
-    //     // remove on dblclick
-    //     .dblclick(function() {
-    //       setPaths.forEach(clearFabricPatch);
-    //     });
-    // }
-    //
-    // editSet();
-    //
+    //////////////////////////////////////////////////////////////////////////////
 
-
-  // function editSet(action) {
-  //   var groupId = $(this).data('groupId');
-  //   svg.selectAll('#' + groupId + ' path').forEach(action);
-  // }
-
-  // function drawSets() {
-  //   var groups = $('.svg-editor').find('g g').clone();
-  //   // var groups = (svg.selectAll('g')).items;
-  //   console.log(groups);
-  //   for (var i = 0; i < groups.length; ++i) {
-  //     var baseSvg = $('.svg-editor').clone().remove('g').html();
-  //     console.log(baseSvg);
-  //
-  //     // why is this sometimes returning html, sometimes svg objects?
-  //     var set = $(groups[i]).html();
-  //     console.log(set);
-  //     // var set = $(i).html();
-  //     // console.log(set);
-  //     $('.sets').append('<li>' + set + '</li>');
-  //   }
-
-    // why did this keep reading as undefined?
-    // groups.forEach(function(group) {
-    //   console.log(group);
-    //   var set = $(group).html();
-    //   console.log(set);
-    //   $('.sets').append(set);
-    // });
-  // }
-
-  // drawSets();
 
   // function addFabricMessage() {
   //   if (palette === undefined || palette.length === 0) {
@@ -170,6 +111,8 @@ $(function () {
 
   // addFabricMessage();
 
+  //////////////////////////////////////////////////////////////////////////////
+
   function drawPalette(location, palette) {
     $(location).html(palette.map(function (fabric) {
       var li = $('<li class="fabric-preview"><img src="' + fabric.url +'"></li>');
@@ -182,12 +125,16 @@ $(function () {
 
   drawPalette('.palette', palette);
 
+
+  //////////////////////////////////////////////////////////////////////////////
+
   var currFabric = palette[0];
 
-
+  // showCurrFabric();
 
   $('.palette').on('click', '.fabric-preview', function () {
     currFabric = $(this).data('fabric');
+    showCurrFabric();
   });
 
 
@@ -205,6 +152,26 @@ $(function () {
   //     listItem.removeClass('current-fabric')
   //   }
   // });
+
+  // add a class to li of currFabric
+  // this isn't working,
+
+  // function showCurrFabric() {
+  //   $('.palette').children().forEach(function(item) {
+  //     // it's returning undefined
+  //     console.log(item);
+  //     console.log(listItem.fabric);
+  //     if (listItem.data.id === currFabric.id) {
+  //       listItem.addClass('current-fabric');
+  //       return;
+  //     } else {
+  //       listItem.removeClass('current-fabric')
+  //     };
+  //   });
+  // }
+
+
+  //////////////////////////////////////////////////////////////////////////////
 
   editPatch(svg);
 
@@ -234,6 +201,7 @@ $(function () {
   }
 
 
+
   function applyFabricPatch(path) {
     //empty palette, nothing happens!
     if (!currFabric) return;
@@ -254,6 +222,10 @@ $(function () {
   function clearFabricPatch(path) {
     path.attr('fill', '#ffffff');
   }
+
+
+  //////////////////////////////////////////////////////////////////////////////
+
 
   function getGroup(path) {
     //empty palette, nothing happens!
@@ -297,6 +269,9 @@ $(function () {
     console.log(newSvg);
   });
 
+  //////////////////////////////////////////////////////////////////////////////
+
+
   // The API is on heroku currently, and does not enable cross origin resource sharing (CORS).
   // This means that a different origin (aka our localhost) cannot access your API.
 
@@ -314,7 +289,7 @@ $(function () {
   $('.clear-patches-btn, .clear-patches-modal-close, .clear-patches-modal-confirm')
     .on('click', function(e) {
     e.preventDefault();
-    // e.stopPropagation();
+    e.stopPropagation();
     $('.clear-patches-modal').toggleClass('show');
   });
 
@@ -325,37 +300,8 @@ $(function () {
     });
   });
 
-  // $('.clear-patches-modal-close()').on('click', function)
 
-  // $('body').on('click', function(e) {
-  //   e.stopPropagation();
-  //   e.preventDefault();
-  //   $('.clear-patches-modal').removeClass('show');
-  // });
-
-  // function closePatchesModal() {
-  //   var modalClass = $('body').find('.show');
-  //   console.log(modalClass);
-  //   if (modalClass.length !== 0) {
-  //     $('body').on('click', function(e) {
-  //       // e.preventDefault();
-  //       e.stopPropagation();
-  //       $('.clear-patches-modal').toggleClass('show');
-  //     });
-  //   }
-  // }
-  //
-  // closePatchesModal();
-  //
-  // $('.clear-patches-modal').on('click', function(e) {
-  //   e.stopPropagation();
-  // });
-  //
-  // $('.clear-patches-btn body').on('click', function(e) {
-  //   e.preventDefault();
-  //   e.stopPropagation();
-  //   $('.clear-patches-modal').toggleClass('show');
-  // });
+  //////////////////////////////////////////////////////////////////////////////
 
 
   // The API is on heroku currently, and does not enable cross origin resource sharing (CORS).
