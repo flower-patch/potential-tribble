@@ -297,6 +297,14 @@ $(function () {
     console.log(newSvg);
   });
 
+  // The API is on heroku currently, and does not enable cross origin resource sharing (CORS).
+  // This means that a different origin (aka our localhost) cannot access your API.
+
+  // This can be fixed by:
+  // A) Put the api on our localhost
+  // B) enable cross origin resource sharing (CORS) on the api on heroku
+  // Additionally, no more newlines.
+
 
   // click events for the clear patches modal
   $('.clear-patches-modal').on('click', function(e) {
@@ -359,7 +367,8 @@ $(function () {
   // Additionally, no more newlines.
 
 
-  $('.open-fabric-modal-btn').on('click', function() {
+
+  $('.open-fabric-modal-btn').on('click', function () {
     // Api.getDesignList().done(function(response) {
       // var results = response.results[0].results;
       // var designItem = JSON.parse(DESIGN_ITEM);

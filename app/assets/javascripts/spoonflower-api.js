@@ -1,5 +1,9 @@
- var apiCall = function spoonflowerApi() {
-  var baseUrl = 'http://localhost:3000/api/v1/';
+//Api is an instance of the `self` object below
+var Api = setupSpoonflowerApi();
+
+ //setupSpoonflowerApi is just setting up the `self` object below and returning it.\
+function setupSpoonflowerApi() {
+  var baseUrl = 'https://fakepi.herokuapp.com/api/v1/';
 
   function fetchUrl(url) {
     var promise = $.Deferred();
@@ -15,13 +19,16 @@
   }
 
   var self = {
+    getDesignList: function () {
+      return self.getDesignSearch('');
+    },
 
-    designList: function () {
-      var url = baseUrl + 'designs/list';
+    getDesignSearch: function(query) {
+      var url = baseUrl + 'design/search?q=' + query;
       return fetchUrl(url);
     },
 
-    designById: function (designId) {
+    getDesignById: function (designId) {
     var url = baseUrl + 'designs/get?design_id=' + designId;
     return fetchUrl(url);
     }
