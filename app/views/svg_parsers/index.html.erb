@@ -9,12 +9,6 @@
 <p>ARRAY FOR SEAM ALLOWANCE <%= @svg_parser.surface_area_by_design_id_with_seam_allowance(0.25).values %></p><br>
 
 
-<p>NSA <%= @svg_parser.surface_area_by_design_id_with_seam_allowance(0) %></p><br>
 
-<p>QUARTER INCH <%= @svg_parser.surface_area_by_design_id_with_seam_allowance(0.25) %></p><br>
-
-<p>FIRST PATHS<% @svg_parser.paths.each do |p| %></p><br>
-  <p><%= p %></p></br>
-<% end %>
 
 <p><%= @svg_parser.replace_fabric_urls("replaceme1", "www.sweetfabric.com") %></p><br>
