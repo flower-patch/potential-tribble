@@ -369,25 +369,30 @@ $(function () {
 
 
   $('.open-fabric-modal-btn').on('click', function () {
-    // Api.getDesignList().done(function(response) {
-      // var results = response.results[0].results;
-      // var designItem = JSON.parse(DESIGN_ITEM);
-      var results = [DESIGN_ITEM];
+    /*
+    Api.getDesignList().done(function(response) {
+      var results = response.results[0].results;
+      var designItem = JSON.parse(DESIGN_ITEM);
+      */
 
-      var resultElements = results.map(function(designItem) {
-        var img = $("<img>");
-        img.attr('data-id', designItem.id);
-        img.attr('src', designItem.thumbnail_url);
+      Api.getPopularList().done(function(response) {
+        var results = response.results[0].results;
+      // var results = [DESIGN_ITEM];
+        var resultElements = results.map(function(designItem) {
+          var img = $("<img>");
+          img.attr('data-id', designItem.id);
+          img.attr('src', designItem.thumbnail_url);
 
-        var li = $('<li>');
-        li.addClass('fabric-preview');
-        li.append(img);
+          var li = $('<li>');
+          li.addClass('fabric-preview');
+          li.append(img);
 
-        return li;
-      });
+          return li;
+        });
 
       $('.fabric-modal-list').empty().append(resultElements);
-    // })
+    })
+
     $('.fabric-modal').toggleClass('show');
     previewQuilt();
     drawPalette('.current-palette', palette);
