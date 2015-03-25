@@ -1,38 +1,47 @@
-
-
-</nav><!DOCTYPE html>
+<!DOCTYPE html>
 <!-- app wide stuff nav-bar, etc, functional links -->
 <html>
 <head>
-  <title>PotentialTribble</title>
-  <link href='http://fonts.googleapis.com/css?family=Lato:100,300,400,300italic|Kreon:300,400' rel='stylesheet' type='text/css'>
+  <title>Flowerpatch</title>
+  <link href='http://fonts.googleapis.com/css?family=Lato:100,300,400,700|Kreon:300' rel='stylesheet' type='text/css'>
+  <%= favicon_link_tag '/flowerpatch_favicon.ico' %>
   <%= stylesheet_link_tag    'application', media: 'all' %>
   <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tags %>
 </head>
 <body>
 
-  <nav class="site-nav">
-  </nav>
+    <header class="site-nav">
+      <div class="overlay">
+      </div>
+      <div class="flowerpatch-logo-section">
+        <a href="/">
+          <%= image_tag "flowerpatch_logo.svg", class:"flowerpatch-logo" %>
+        <span class="flowerpatch-logo-text">
+          <span class="flower-text">flower</span
+          ><span class="patch-text">patch</span>
+        </span>
+        </a>
+      </div>
 
-  <main>
-    <!-- <nav class="progress-bar">
+    </header>
 
-      <%= link_to 'Choose a Project', project_templates_choose_project_path, class:"nav-link" %>
-      <%= link_to 'Choose a Block', quilts_choose_block_path, class:"nav-link" %>
-      <%= link_to 'Design Your Project', quilts_edit_project_path, class:"nav-link" %>
-      <%= link_to 'Project Preview', quilts_preview_project_path, class:"nav-link" %>
-      <%= link_to 'Next Steps', quilts_next_steps_path, class:"nav-link" %>
-    </nav> -->
+    <main class="app-content paper-border">
 
-    <div class="app-content paper-border">
       <!-- yield is the root-content equivalent, all views populate here -->
       <%= yield %>
 
+    </main>
 
-    </div>
-
-  </main>
+    <footer>
+      <div class="spoonflower-section">
+        <span class="spoonflower-tag">
+        in partnership with</span>
+        <a href="www.spoonflower.com/welcome">
+          <%= image_tag "spoonflower_logo.png" %>
+        </a>
+      </div>
+    </footer>
 
 </body>
 </html>

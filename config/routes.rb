@@ -18,10 +18,12 @@ Rails.application.routes.draw do
   post 'quilts/next_steps'
   patch 'quilts/next_steps'
 
+  get 'quilts/download_quilt'
+
   resources 'quilts', :only => [:new, :create]
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
-  resources :unicorns
+  get 'svg_parsers/index'
 
   namespace :api do
     namespace :v1 do

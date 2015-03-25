@@ -1,25 +1,44 @@
 <div class="welcome-view width-welcome">
 
-    <div class="welcome-img">
-      <h1 class="welcome-head">Welcome to FlowerPatch</h1>
-      <h2 class="welcome-subhead">Where you can create your own quilt with the Spoonflower fabrics you love</h2>
-      <%= link_to 'Start New Project', project_templates_choose_project_path %>
+  <div class="hero">
+  	<div class="hero-inner">
+      <%= image_tag "flowerpatch_logo.svg", class:"hero-logo" %>
+  			<div class ="title">
+          <span class="flowerpatch-logo-text">
+            Welcome to  <span class="flower-text">flower</span><span class="patch-text">patch</span>
+          </span>
+        </div>
 
-    </div>
-
-</div>
-
-  <div class="block-examples">
-
-    <% @quilts.each do |quilt| %>
-    <% if quilt.public %>
-    <div>
-      <a href = "/project_templates/choose_project?quilt_id=<%=quilt.id%>"><%= image_tag "#{quilt.preview_thumb_url}"%></a>
-    </div>
-    <p><%= link_to quilt.name, project_templates_choose_project_path(quilt_id: quilt.id) %></p>
-    <% end %>
-    <% end %>
-
+        <div class="hero-copy">
+  			  <p>Where you can create your own quilt with the Spoonflower fabrics you love</p>
+  	    </div>
+        <%= link_to project_templates_choose_project_path do %>
+      <div class="stitch-btn">Start New Project</div>
+      <% end %>
+  	</div>
   </div>
+
+  <h2 class="featured-designs">Featured Designs</h2>
+  <div class="cards">
+    <% max_preview_quilts = 3 %>
+    <% @quilts.each do |quilt| %>
+      <% if max_preview_quilts > 0 %>
+        <% max_preview_quilts -= 1 %>
+        <% if quilt.public %>
+        <div class="card paper-border">
+          <div class="card-image">
+            <!-- TODO:  style svgs here in image_tag,  -->
+            <a href = "/project_templates/choose_project?quilt_id=<%=quilt.id%>"><%= quilt.svg.html_safe%></img></a>
+          </div>
+          <div class="card-header">
+            <p class="card-title"><%= link_to quilt.name, project_templates_choose_project_path(quilt_id: quilt.id) %></p>
+          </div>
+          <!-- <div class="card-copy"></div> -->
+        </div>
+        <% end %>
+      <% end %>
+    <% end %>
+  </div>
+
 
 </div>

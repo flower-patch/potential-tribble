@@ -1,0 +1,165 @@
+Doll-sized quilt
+Queen-sized quilt
+Single patch              1 block         prints on Fat Quarter
+Twin sized quilt
+Wallhanging sized quilt
+
+54 printable width inches
+
+
+
+
+
+
+
+
+
+
+all of this is svg_parser related
+
+from index.html.erb:
+
+<h3>FUN WITH PATHS</h3>
+<!-- we can list all the path ids -->
+<p><%= @svg_parser.all_path_ids %></p>
+<p><%= @svg_parser.all_unique_image_ids %></p>
+<p><%= @svg_parser.all_paths_styles_split %></p>
+<p><%= @svg_parser.all_paths_coords_split %></p>
+<p><%= @svg_parser.all_paths_fill_values %></p>
+<p><%= @svg_parser.all_paths_coord_pairs %></p>
+<p>GUMDROP<%= @svg_parser.paths %>GUMDROP</p>
+<p>SHOULD BE 4321<%= @svg_parser.replace_fabric_urls("4321", "http://www.mycooldesign.amazonserver.com") %>AND DONE</p>
+
+<!-- lucky first path is the lab rat here -->
+<% path = @svg_parser.paths.first %>
+
+<p><%= path %></p>
+<p><%= path.keys %></p>
+<p><%= path['id'] %></p>
+<p><%= path['style']%></p>
+<p><%= path['d']%></p>
+
+<p><%= @svg_parser.first_path_style_split_up %></p>
+<p><%= @svg_parser.first_path_coords_split_up %></p>
+<p><%= @svg_parser.first_path_fill_as_string %></p>
+<p><%= @svg_parser.first_path_coords %></p>
+
+
+from svgparser.rb
+
+
+  def all_paths_styles_split
+    @paths.map {|p| p["style"].split(";")}
+  end
+
+  def all_paths_coords_split
+    @paths.map {|p| p["d"].split}
+  end
+
+  def all_paths_fill_values
+    array = all_paths_styles_split
+    all_fill_values = []
+    array.each do |a|
+      all_fills = a.map{|s| s if s.start_with?("fill:")}
+      fill_string = all_fills.compact![0]
+      fill_value = fill_string.scan(/:(\S*$)/)[0][0]
+      all_fill_values << fill_value
+    end
+    all_fill_values
+  end
+
+  def all_paths_coord_pairs
+    array = all_paths_coords_split
+    all_coord_pairs = []
+    array.each do |a|
+      inner_array = a[1..-2]
+      coords_array = []
+      inner_array.each do |i|
+        coord_pair = i.split(',').map {|x| x.to_f }
+        coords_array << coord_pair
+      end
+      all_coord_pairs << coords_array
+    end
+    all_coord_pairs
+  end
+
+  # WILL NOT BE THE FIRST PATHS IN THE REAL WORLD...JUST TESTING
+  def first_path_style_split_up
+    @paths.first["style"].split(";")
+  end
+
+  def first_path_coords_split_up
+    @paths.first["d"].split
+  end
+
+  def first_path_fill_as_string
+    array = first_path_style_split_up
+    # could have done array[0] but this way it doesn't rely on fill being first
+    new_array = array.map{|s| s if s.start_with?("fill:")}
+    string = new_array.compact![0]
+    string.scan(/:(\S*$)/)[0][0]
+  end
+
+  def first_path_coords
+    # lop off the m at the start and the z at the end
+    array = first_path_coords_split_up[1..-2]
+    coords_array = []
+    array.each do |a|
+      coord_pair = a.split(',').map {|x| x.to_f }
+      coords_array << coord_pair
+    end
+    coords_array
+  end
+
+
+#gsub time
+  # def replace_fabric_urls(image_id, new_url)
+  #   selected_paths = @paths.xpath('//*[contains(@image-id, ' + image_id +')]')
+  #   selected_paths.each do |p|
+  #
+  #     replacement_fill = "fill:#{new_url};stroke:#000000;stroke-width:0.99000001;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+  #     p["style"] = replacement_fill
+  #   end
+  #   selected_paths
+  # end
+
+  # this works as far as replacing style with what the old fill exactly was
+  # def replace_fabric_urls(image_id, new_url)
+  #   selected_paths = @paths.xpath('//*[contains(@image-id, ' + image_id +')]')
+  #   selected_paths.each do |p|
+  #     style_array = p["style"].split(';')
+  #     new_array = style_array.map{|s| s if s.start_with?("fill:")}
+  #     string = new_array.compact![0]
+  #     old_fill = string.scan(/:(\S*$)/)[0][0]
+  #     p["style"] = old_fill
+  #   end
+  #   selected_paths
+  # end
+
+
+  # What I actually need to get out of this is the fabric ID...where will that be stored?
+
+  # irb(main):001:0> "fill:none".scan(/:(\S*$)/)
+  # => [["none"]]
+  # irb(main):002:0> "fill:none".scan(/:(\S*$)/)[0]
+  # => ["none"]
+  # irb(main):003:0> "fill:none".scan(/:(\S*$)/)[0][0]
+  # => "none"
+  # irb(main):004:0>
+
+
+
+&&&&&&&&make paths without strokes messing up the width YOU WANT VISUAL BOUNDING BOX
+-give coordinates in the consistent format I want
+
+&&&&&&WHAT FORMAT OF COORDS CAN I ASSUME?? neat and fancy and coddled
+
+***GET FRONT END TO DO IMAGE-IDs
+WHAT ABOUT STROKE OUTLINE IN FINAL PRINT? REMOVE IT
+-WHAT ABOUT TESSELATING TRIANGLES? WHAT IF EVERY TRIANGLE IS DIFFERENT? GRAINLINES IF WE DO TESSELATE
+-ALTHOUGH, COULD BE ODD NUMBER IN PATCH BUT SHOULD EVEN OUT ACROSS QUILT, MOSTLY
+
+MORE FANCY MASSAGING OF BLOCK NOTES...GET RID OF WEIRD LINE-TO RECTANGLES AND ROTATED TRIANGLES
+POSSIBLY LEAVE NSA AREA HASH IN SVG FOR REFERENCE IN CASE SVG GETS BUNGLED TO SANITY CHECK AREA
+
+-database needs featured/priority column

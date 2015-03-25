@@ -1,0 +1,88 @@
+/*------------------------------------*\
+    #FABRIC-MODAL
+\*------------------------------------*/
+
+
+.fabric-modal {
+  @include transition(all 0.5s ease);
+  visibility: hidden;
+  opacity: 0;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+}
+
+
+.show {
+  visibility: visible;
+  opacity: 1;
+}
+
+.fabric-modal-box {
+  background: $white;
+  box-shadow: 0px 2px 5px 2px gray;
+  height: 90%;
+  width: $max-width;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.close-fabric-modal-btn {
+  position: absolute;
+  top: -1.3em;
+  right: -1.1em;
+}
+
+.fabric-modal-preview {
+  // @include pad();
+}
+
+.current-block, .fabric-modal-options, .final-block {
+  @include pad();
+  @include span-columns(3);
+  // No mouse / touch events occur in current block
+  pointer-events: none;
+  // set `pointer-events: auto;` to override this
+  display: inline-block;
+
+  svg {
+    width: 175px ;
+    height: 100%;
+  }
+}
+
+.current-palette, .fabric-modal-results {
+  @include span-columns(9);
+  display: inline-block;
+  height: 210px;
+  padding-top: 11px;
+  overflow: auto;
+
+  .fabric-preview {
+    margin: 10px;
+    width: 80px;
+    display: inline-block;
+  }
+}
+
+.fabric-modal-divider {
+  @include span-columns(12);
+  border: 0;
+  border-bottom: $default-border;
+}
+
+.fabric-modal-options {
+  border-right: $default-border;
+  height: 50%;
+  pointer-events: auto;
+}
+
+.fabric-modal-results {
+  height: 300px;
+}

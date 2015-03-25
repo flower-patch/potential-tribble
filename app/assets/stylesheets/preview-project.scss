@@ -2,33 +2,108 @@
     # PREVIEW PAGE INPUTS / BUTTONS
 \*------------------------------------*/
 
-.quilt-name-container {
+.preview-view {
+  @include outer-container;
+  padding-bottom: 1em;
+}
+
+.my-new-quilt {
+  color: $alt-accent-text;
+  text-align: center;
   @include pad();
 }
 
+.preview-label {
+  font-family: $sans-serif;
+}
+
+.preview-info {
+  margin-top: 4em;
+  margin-left: 1em;
+  padding-left: 2.358%;
+  padding-right: 2.358%;
+  padding-bottom: 2.358%;
+  // border: 1px solid $light-pure-gray;
+  // box-shadow: $default-shadow;
+  border-radius: 3px;
+  @include span-columns(6);
+}
+
+.quilt-name-container {
+  font-size: 1.25em;
+  color: $alt-accent-text;
+  @include pad();
+}
+
+
+.preview-icon {
+  font-size: 1.05em;
+  padding: 5px;
+}
 .quilt-name {
   margin-top: 1em;
   margin-left: .5em;
   padding:.25em 0;
   font-size: 1em;
+  @include appearance(none);
+  @include box-sizing(border-box);
+  @include transition(border-color);
+  background-color: $lightest-gray;
+  box-shadow: inset $default-shadow;
+  border: 1px solid $light-pure-gray;
+  font-size: 1em;
+  font-weight: $thin;
+  // font-style: italic;
+  font-family: $sans-serif;
+  margin: 2.358%;
+  position: relative;
+
+  &:focus {
+    background-color: $light-pure-gray;
+  }
 }
 
 
 .awesome-submit {
-  font-family: $serif;
-  font-weight: $thin;
   line-height: 1.2em;
   margin: 0.2em;
+  border-top: 2px solid #c4ebd1;
+  outline: 1px solid #6ab784;
+  border: 1.5px dashed #c4ebd1;
+  background-color: #6ab784;
+  color: #ffffff;
+  font-family: "Kreon", serif;
+  font-weight: 100;
+  font-size: 1.25em;
   @include pad();
+
 }
 
+.share-quilt-container {
+  font-size: 1.25em;
+  color: $alt-accent-text;
+  padding-top: 9px;
+  padding-bottom: 2.358%;
+}
+
+
 .awesome-submit-container {
+  width: 300px;
   @include pad();
+  @include shift(2.5);
 }
 
 .preview-svg {
-  width: 58%;
+  width: 403px;
   margin-top: 2.358%;
+// <<<<<<< HEAD
   border: 3px solid $mercury;
   pointer-events: none;
+// =======
+  // border: 3px solid $light-pure-gray;
+  // background-color: $light-pure-gray;
+  // float: left;
+  // display: block;
+
+// >>>>>>> d9ce2150a2af221874705f1f2e26e23e8582fee5
 }
