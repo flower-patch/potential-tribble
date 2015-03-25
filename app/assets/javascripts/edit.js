@@ -1,7 +1,6 @@
 $(function () {
   var svg = Snap('.svg-editor svg');
   var $svg = $('.svg-editor svg');
-  var cardSvg = Snap('a svg');
 
   var palette = [{
     id: 'patterns-by-danny-ivan.jpg',
@@ -29,7 +28,6 @@ $(function () {
   //////////////////////////////////////////////////////////////////////////////
 
   function clearFill(item) {
-    console.log('testing');
     item.selectAll('path').forEach(function(path) {
     //this only works with fill:none; svg's
       if (!path.attr('fill') || path.attr('fill') === 'none') {
@@ -39,8 +37,6 @@ $(function () {
   }
 
   clearFill(svg);
-
-  clearFill(cardSvg);
 
   //////////////////////////////////////////////////////////////////////////////
 

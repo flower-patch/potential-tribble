@@ -96,9 +96,14 @@
 .preview-svg {
   width: 403px;
   margin-top: 2.358%;
-  border: 3px solid $light-pure-gray;
-  background-color: $light-pure-gray;
-  float: left;
-  display: block;
+// <<<<<<< HEAD
+  border: 3px solid $mercury;
+  pointer-events: none;
+// =======
+  // border: 3px solid $light-pure-gray;
+  // background-color: $light-pure-gray;
+  // float: left;
+  // display: block;
 
+// >>>>>>> d9ce2150a2af221874705f1f2e26e23e8582fee5
 }
