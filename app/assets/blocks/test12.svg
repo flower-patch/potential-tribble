@@ -54,14 +54,18 @@
      inkscape:groupmode="layer"
      id="layer1"
      transform="translate(0,-242.36215)">
-    <path
+    <g
+      id="group1"
+      style="fill:none;stroke:#c0c0c0;stroke-opacity:1;stroke-width:3.96;stroke-miterlimit:4;stroke-dasharray:none">
+     <path
        style="fill:none;fill-opacity:1;stroke:#c0c0c0;stroke-width:4;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        d="m 270,512.36215 270,0 0,270 -270,0 z"
        id="path4665"
        image-id="replaceme0"
        inkscape:connector-curvature="0" />
+    </g>
     <g
-       id="group1"
+       id="group2"
        style="fill:none;stroke:#c0c0c0;stroke-opacity:1;stroke-width:4;stroke-miterlimit:4;stroke-dasharray:none">
       <path
          style="fill:none;fill-opacity:1;stroke:#c0c0c0;stroke-width:4;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
@@ -89,7 +93,7 @@
          style="fill:none;fill-opacity:1;stroke:#c0c0c0;stroke-width:4;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
     </g>
     <g
-       id="group2"
+       id="group3"
        style="fill:none;stroke:#c0c0c0;stroke-opacity:1;stroke-width:4;stroke-miterlimit:4;stroke-dasharray:none">
       <path
          sodipodi:nodetypes="cccc"
@@ -121,7 +125,7 @@
          inkscape:connector-curvature="0" />
     </g>
     <g
-       id="group3"
+       id="group4"
        style="fill:none;stroke:#c0c0c0;stroke-opacity:1;stroke-width:4;stroke-miterlimit:4;stroke-dasharray:none">
       <path
          inkscape:connector-curvature="0"
