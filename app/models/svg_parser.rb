@@ -111,20 +111,18 @@ class SvgParser
     side2 = 2 * seam_allowance
     coords[1].each do |c|
       if c != 0
-        to_inches = c / 90
-        side1 += to_inches.abs
+        side1 += clean_up(c)
       end
     end
     coords[2].each do |d|
       if d != 0
-        to_inches = d / 90
-        side2 += to_inches.abs
+        side2 += clean_up(d)
       end
     end
     side1 * side2
   end
 
-  # triangle coordinates have 3 basic configurations:
+  # equilateral right triangle coordinates have 3 basic configurations:
   # triangle made from a square slashed diagonally: d="m 810,645 0,-405 -405,0 z"
   # in this case, the height of the triangle is 405
   # the heights were drawn, then the hypotenuse just closes the path, so it isn't reflected in the coordinates
@@ -173,7 +171,7 @@ class SvgParser
   end
 
   def total_area(area_hash)
-    area_hash.values.reduce(:+)
+    area_hash.values.reduce(:+).round(2)
   end
 
 
