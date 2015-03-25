@@ -45,16 +45,27 @@
     padding: 1.5em;
     text-align: center;
 
-  .hero-logo {
-     width: 5em;
+  .welcome-btn {
+    padding: 7%;
+    font-size: 1.5em;
+    min-width: 25%;
+    border-top: 2px solid $seafoam-light;
+    outline: 1px solid $accent-text;
+    border: 1.5px dashed $seafoam-light;
+    background-color: $accent-text;
+    color: $white;
+    font-family: $serif;
+    font-weight: $thin;
   }
 
+
   .title {
-    font-size: 2em;
-    line-height: 1.2em;
+    font-size: 2.5em;
+    line-height: 1.5em;
   }
       .hero-copy {
         text-align: center;
+        font-size: 1.2em;
 
         .hero-head {
           font-size: 1.6em;
@@ -93,7 +104,7 @@
 
 .featured-designs {
   text-align: center;
-  padding-top: 2.358%;
+  padding-top: 5%;
   padding-bottom: 1%;;
 }
 
@@ -142,7 +153,7 @@
   border: $card-border;
   box-shadow: 0px 1px 1px 1px $mid-gray;
   cursor: pointer;
-  margin: 7px 7px 7px;
+  margin: 14px 14px 14px;
   position: relative;
 
 
