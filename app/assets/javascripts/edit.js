@@ -79,50 +79,32 @@ $(function () {
 
   generateSets($svg, '.sets');
 
-  // too repitive but I couldn't figure how to refactor (see below) to an
-  // editSet() function with the $this object
+  function setClass(group, cssClass) {
+    getAllPaths(group).forEach(function(path) {
+      path.attr('class', cssClass);
+    });
+  }
+
+  function getAllPaths(group) {
+    var groupId = $(group).data('groupId');
+    return svg.selectAll('#' + groupId + ' path');
+  }
+
   $('.set')
     // reduce opacity of all path in the set on thumbnail hover
     .hover(function() {
-      var groupId = $(this).data('groupId');
-      svg.selectAll('#' + groupId + ' path').forEach(function(path) {
-        path.toggleClass('set-hover', true);
-    //   $('#' + groupId).children().forEach(function(path) {
-    //     path.toggleClass('set-hover');
-    //   // });
-      });
+      setClass($(this), 'set-hover');
+    },function() {
+      setClass($(this), '');
     })
     // apply pattern to all paths in set on click
     .click(function() {
-      var groupId = $(this).data('groupId');
-      svg.selectAll('#' + groupId + ' path').forEach(applyFabricPatch);
+      getAllPaths(this).forEach(applyFabricPatch);
     })
     // remove on dblclick
     .dblclick(function() {
-      var groupId = $(this).data('groupId');
-      svg.selectAll('#' + groupId + ' path').forEach(clearFabricPatch);
+      getAllPaths(this).forEach(clearFabricPatch);
     });
-
-    // function editSet() {
-    //   var groupId = $(this).data('groupId');
-    //   var setPaths = svg.selectAll('#' + groupId + ' path');
-    //   $('.set')
-    //     // reduce opacity of all path in the set on thumbnail hover
-    //     // .hover(function() {
-    //     //   setPaths.forEach(applyFabricPatch);
-    //     // })
-    //     // apply pattern to all paths in set on click
-    //     .click(function() {
-    //       setPaths.forEach(applyFabricPatch);
-    //     })
-    //     // remove on dblclick
-    //     .dblclick(function() {
-    //       setPaths.forEach(clearFabricPatch);
-    //     });
-    // }
-    //
-    // editSet();
-    //
 
 
   // function editSet(action) {
