@@ -26,14 +26,14 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.56743137"
-     inkscape:cx="405"
+     inkscape:cx="100.11731"
      inkscape:cy="392.05246"
      inkscape:document-units="in"
      inkscape:current-layer="layer1"
      showgrid="false"
      units="in"
      inkscape:window-width="1440"
-     inkscape:window-height="852"
+     inkscape:window-height="778"
      inkscape:window-x="0"
      inkscape:window-y="0"
      inkscape:window-maximized="1" />
@@ -45,7 +45,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -54,12 +54,6 @@
      inkscape:groupmode="layer"
      id="layer1"
      transform="translate(0,-242.36215)">
-    <path
-       inkscape:connector-curvature="0"
-       image-id="replaceme1"
-       style="fill:none;fill-opacity:1;stroke:#c0c0c0;stroke-width:4;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 0,242.36217 810,0 0,202.5 -810,0 z"
-       id="path4491" />
     <path
        id="path4551"
        image-id="replaceme1"
@@ -73,12 +67,6 @@
        style="fill:none;fill-opacity:1;stroke:#c0c0c0;stroke-width:4;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        inkscape:connector-curvature="0" />
     <path
-       inkscape:connector-curvature="0"
-       image-id="replaceme1"
-       style="fill:none;fill-opacity:1;stroke:#c0c0c0;stroke-width:4;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 0,444.86217 810,0 0,202.5 -810,0 z"
-       id="path4555" />
-    <path
        id="path4557"
        d="m 0,647.36217 810,0 0,202.5 -810,0 z"
        image-id="replaceme1"
@@ -88,19 +76,7 @@
        inkscape:connector-curvature="0"
        image-id="replaceme1"
        style="fill:none;fill-opacity:1;stroke:#c0c0c0;stroke-width:4;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 0,647.36217 810,0 0,202.5 -810,0 z"
-       id="path4559" />
-    <path
-       inkscape:connector-curvature="0"
-       image-id="replaceme1"
-       style="fill:none;fill-opacity:1;stroke:#c0c0c0;stroke-width:4;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        d="m 0,849.86217 810,0 0,202.5 -810,0 z"
        id="path4561" />
-    <path
-       id="path4563"
-       d="m 0,849.86217 810,0 0,202.5 -810,0 z"
-       image-id="replaceme1"
-       style="fill:none;fill-opacity:1;stroke:#c0c0c0;stroke-width:4;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       inkscape:connector-curvature="0" />
   </g>
 </svg>

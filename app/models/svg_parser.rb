@@ -124,12 +124,22 @@ class SvgParser
     side1 * side2
   end
 
-  # triangle coordinates have 2 basic configurations:
+  # triangle coordinates have 3 basic configurations:
   # triangle made from a square slashed diagonally: d="m 810,645 0,-405 -405,0 z"
   # in this case, the height of the triangle is 405
+  # the heights were drawn, then the hypotenuse just closes the path, so it isn't reflected in the coordinates
+
   # triangle made by lopping top 2 corners off a rectangle: "m 405,645 0,-405 -202.5,202.5 z"
   # in this case, the hypotenuse of the triangle is 405
-  # for both types, the absolute value of the first pair == the abs. value of the second pair
+  # it was drawn, then the last coordinate shows the midpoint of the opposite edge of the original rectangle, where the two sides connect
+
+  # triangle drawn point to point: "m 810,647.36215 -202.5,-202.5 202.5,0 z"
+  # in this case, the height of the triangle is 202.5
+
+  # since the negative is directional here, in terms of every coordinate's absolute value:
+  # the first kind is easy to spot because each pair is the value and 0
+  # the second kind has one value & 0 pair, and one pair of equal values that add up to the other pair
+  # the third kind looks similar, but all the values are the same
 
   def triangle_area(seam_allowance, coords)
     if seam_allowance == 0.25
@@ -151,7 +161,12 @@ class SvgParser
     if zero_checker.length == 2
       side += height_or_hypotenuse1
     else
-      side += find_height(height_or_hypotenuse1)
+      if height_or_hypotenuse1 == height_or_hypotenuse2
+        side += find_height(height_or_hypotenuse1)
+      else
+        average_side = height_or_hypotenuse1 + height_or_hypotenuse2
+        side += average_side / 3
+      end
     end
     square_area = side * side
     square_area / 2
