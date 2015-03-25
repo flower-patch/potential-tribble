@@ -2,6 +2,11 @@
     #EDIT-VIEW
 \*------------------------------------*/
 
+
+/*------------------------------------*\
+    #SVG-EDIT
+\*------------------------------------*/
+
 .edit-view {
   position: relative;
 
@@ -41,6 +46,11 @@ svg path,
 .save-project-btn {
 }
 
+
+/*------------------------------------*\
+    #SET-SECTION
+\*------------------------------------*/
+
 .choose-set {
   margin-top: 2em;
 }
@@ -74,6 +84,11 @@ svg path,
     }
   }
 }
+
+
+/*------------------------------------*\
+    #PALETTE-SECTION
+\*------------------------------------*/
 
 .choose-palette {
   @include span-columns(4 of 10);
@@ -131,6 +146,11 @@ svg path,
   }
 }
 
+
+/*------------------------------------*\
+    #BUTTONS
+\*------------------------------------*/
+
 .save-project-btn {
   position: absolute;
   bottom: 0.5em;
@@ -145,5 +165,29 @@ svg path,
 }
 
 .clear-patches-btn {
-  right: -1.6em;
+  right: -1.5em;
+}
+
+.clear-patches-modal {
+  @include pad();
+  width: 150px;
+  height: 100px;
+  font-size: 1em;
+  // color: $white;
+  text-align: center;
+  overflow: auto;
+  background: $light-pure-gray;
+  box-shadow: $default-shadow;
+  position: absolute;
+  right: -0.5em;
+  bottom: 0.9em;
+  visibility: hidden;
+  opacity: 0;
+}
+
+.modal-options {
+  display: flex;
+  width: 100%;
+  font-weight: $bold;
+  margin-top: 1em;
 }

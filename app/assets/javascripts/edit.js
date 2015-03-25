@@ -306,8 +306,8 @@ $(function () {
   // Additionally, no more newlines.
   $('.clear-patches-btn').on('click', function(e) {
     e.preventDefault();
-    $('.clear-patches-modal').toggleClass('.show');
-  })
+    $('.clear-patches-modal').toggleClass('show');
+  });
 
 
 
