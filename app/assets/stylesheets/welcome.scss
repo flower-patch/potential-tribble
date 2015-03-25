@@ -45,16 +45,27 @@
     padding: 1.5em;
     text-align: center;
 
-  .hero-logo {
-     width: 5em;
+  .welcome-btn {
+    padding: 7%;
+    font-size: 1.5em;
+    min-width: 25%;
+    border-top: 2px solid $seafoam-light;
+    outline: 1px solid $accent-text;
+    border: 1.5px dashed $seafoam-light;
+    background-color: $accent-text;
+    color: $white;
+    font-family: $serif;
+    font-weight: $thin;
   }
 
+
   .title {
-    font-size: 2em;
-    line-height: 1.2em;
+    font-size: 2.5em;
+    line-height: 1.5em;
   }
       .hero-copy {
         text-align: center;
+        font-size: 1.2em;
 
         .hero-head {
           font-size: 1.6em;
@@ -93,7 +104,7 @@
 
 .featured-designs {
   text-align: center;
-  padding-top: 2.358%;
+  padding-top: 5%;
   padding-bottom: 1%;;
 }
 
@@ -102,8 +113,15 @@
   padding: 1.34%;
   @include display(flex);
   @include flex-wrap(wrap);
-  @include justify-content(space-between);
-
+  text-align: justify;
+  // @include justify-content(space-between);
+  &:after {
+    content: '';
+    display: inline-block;
+  }
+  &:last-child {
+    margin-left: 7px !important;
+  }
 }
 
 .card {
@@ -125,8 +143,6 @@
   $card-hover-background: lighten($card-background, 5%);
   $card-image-background: #DBD199;
   $card-image-hover-background: lighten($card-image-background, 5%);
-  $card-margin: 1em;
-  margin-top: 7px;
   @include fill-parent;
   @include span-columns(2);
   @include flex-basis(15em);
@@ -137,12 +153,17 @@
   border: $card-border;
   box-shadow: 0px 1px 1px 1px $mid-gray;
   cursor: pointer;
-  // margin: 0 $card-margin $base-spacing $card-margin;
+  margin: 14px 14px 14px;
   position: relative;
 
+
+
+  &:hover {
+    box-shadow: $hover-shadow;
+  }
+
   .card-image {
-    overflow: hidden;
-    max-height: 150px;
+    // overflow: hidden;
 
     svg {
       width: 100%;
@@ -162,16 +183,17 @@
   .card-header {
     @include transition (all 0.2s ease-in-out);
     background-color: $card-header-background;
-    border-bottom: 1.5px dashed $light-pure-gray;
+    border-top: 1.5px dashed $light-pure-gray;
     border-radius: $base-border-radius $base-border-radius 0 0;
     font-weight: bold;
     line-height: 1.5em;
     padding: ($base-spacing / 3) ($base-spacing / 2);
+    margin-top: 7px;
   }
 
   .card-title {
     font-family: $serif;
-    font-size: 1.1em;
+    font-size: 1.3em;
   }
 
   .card-copy {
