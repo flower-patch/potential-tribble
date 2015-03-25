@@ -8,6 +8,7 @@
       <li class="next-step">
         <i class="fa fa-cloud-download next-step-icon"></i>
         Download your design–
+        <%= link_to "Your Design", {:action => "download_quilt", :quilt_id => params[:quilt_id]} %>
       </li>
 
       <li class="next-step">
