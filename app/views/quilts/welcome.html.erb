@@ -23,7 +23,7 @@
     <!-- add header here describing list -->
     <% max_preview_quilts = 3 %>
     <% @quilts.each do |quilt| %>
-      <% while max_preview_quilts > 0 %>
+      <% if max_preview_quilts > 0 %>
         <% max_preview_quilts -= 1 %>
         <% if quilt.public %>
         <div class="card paper-border">

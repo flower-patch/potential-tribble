@@ -23,7 +23,15 @@ https://fakepi.herokuapp.com/api/v1/design/search?q=goat
 Using the real API*:
 http://api.v1.spoonflower.com/design/search?color1=444444
 http://api.v1.spoonflower.com/design/search?q=goats
-*requires username and password.
+
+To get a set number of "popular" results: (where "limit" is number desired)
+http://api.v1.spoonflower.com/design/search?limit=10&sort=freshtastic
+
+To get a preview for a specific design, given its id:
+http://api.v1.spoonflower.com/design/previewImage/1454355?print_width=4.5&print_height=4.5&preview_width_pixels=150&preview_height_pixels=150
+for id = 1454355, print_width=4.5 inches, print_height = 4.5 inches
+
+*requires username and password. Get more documentation at http://api.v1.spoonflower.com/
 
 
 #Scripts
