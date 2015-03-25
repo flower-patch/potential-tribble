@@ -6,31 +6,42 @@
 
   <hr class="progress-line line-2">
   <div class="progress-element <%= 'selected' if page == 1 %>">
+  <!-- ASK TODD! <div class="progress-element"> -->
+    <%= link_to project_templates_choose_project_path(quilt_id: params[:quilt_id]) do %>
+
     <span class="<%= 'selected-text' if page == 1 %> circle one">
       <span class="progress-number">1</span>
     </span>
     <span class="<%= 'selected' if page == 1 %> progress-stage">Choose Project</span>
+    <% end %>
   </div>
 
+
   <div class="progress-element <%= 'selected' if page == 2 %>">
+    <%= link_to quilts_choose_block_path(project_id: params[:project_id]) do %>
     <span class="<%= 'selected-text' if page == 2 %> circle two">
       <span class="progress-number">2</span>
     </span>
     <span class="<%= 'selected' if page == 2 %> progress-stage">Choose Block</span>
+    <% end %>
   </div>
 
   <div class="progress-element <%= 'selected' if page == 3 %>">
+    <%= link_to quilts_edit_project_path(quilt_id: params[:quilt_id], project_id: params[:project_id], block_id: params[:block_id]) do %>
     <span class="<%= 'selected-text' if page == 3 %> circle three">
       <span class="progress-number">3</span>
     </span>
     <span class="<%= 'selected' if page == 3 %> progress-stage">Design Block</span>
+    <% end %>
   </div>
 
   <div class="progress-element <%= 'selected' if page == 4 %>">
+    <%= link_to quilts_preview_project_path(quilt_id: params[:quilt_id]) do %>
     <span class="<%= 'selected-text' if page == 4 %> circle four">
       <span class="progress-number">4</span>
     </span>
     <span class="<%= 'selected' if page == 4 %> progress-stage">Preview Project</span>
+    <% end %>
   </div>
 
   <div class="progress-element five <%= 'selected' if page == 5 %>">
@@ -41,12 +52,3 @@
   </div>
 
 </div>
-
-
-<!-- <div class="progress-bar">
- <span class="<%= 'selected' if page == 1 %> progress-stage">Choose Project</span>
- <span class="<%= 'selected' if page == 2 %> progress-stage">Choose Block</span>
- <span class="<%= 'selected' if page == 3 %> progress-stage">Design Block</span>
- <span class="<%= 'selected' if page == 4 %> progress-stage">Preview Project</span>
- <span class="<%= 'selected' if page == 5 %> progress-stage">Next Steps</span>
-</div> -->

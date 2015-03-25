@@ -12,21 +12,24 @@
 
  <div class="project-cards">
    <% @projects.each do |project| %>
-   <div id="<%= project.id %>" class="project-card paper-border <%= project.id %>">
-     <div class="project-card-img-container">
-       <!-- CHRISTEN: insert images of project type here [[once FE chooses images]] -->
-       <%= image_tag "#{project.example_thumb_url}", class:"project-card-img"%>
-     </div>
-     <div class="project-card-content">
-       <h2><%= link_to project.name, quilts_choose_block_path(quilt_id: params[:quilt_id], project_id: project.id) %></h2>
+    <%= link_to quilts_choose_block_path(quilt_id: params[:quilt_id], project_id: project.id), alt:"Get started with a project.name" do %>
+      <div id="<%= project.id %>" class="project-card paper-border <%= project.id %>">
 
-       <p class="project-card-copy"><%= project.description %> Retro viral High Life flexitarian, crucifix gastropub quinoa Marfa brunch PBR&B.</p>
-       <p class="project-card-copy"><%= project.directions_pdf_url %></p>
+       <div class="project-card-img-container">
+         <!-- CHRISTEN: insert images of project type here [[once FE chooses images]] -->
+         <%= image_tag "#{project.example_thumb_url}", class:"project-card-img"%>
+       </div>
+       <div class="project-card-content">
+         <h2><%= project.name %></h2>
 
-       <!-- <button alt="Get started with a <%= project.name %>" class="stitch-btn get-started-btn"><%= link_to "Get started", quilts_choose_block_path(quilt_id: params[:quilt_id], project_id: project.id) %></button> -->
-       <%= link_to "Get started", quilts_choose_block_path(quilt_id: params[:quilt_id], project_id: project.id), alt:"Get started with a project.name", class:"stitch-btn" %>
-     </div>
-   </div>
+         <p class="project-card-copy"><%= project.description %> Retro viral High Life flexitarian, crucifix gastropub quinoa Marfa brunch PBR&B.</p>
+         <p class="project-card-copy"><%= project.directions_pdf_url %></p>
+
+         <!-- <button alt="Get started with a <%= project.name %>" class="stitch-btn get-started-btn"><%= link_to "Get started", quilts_choose_block_path(quilt_id: params[:quilt_id], project_id: project.id) %></button> -->
+       </div>
+
+      </div>
+    <% end %>
    <% end %>
  </div>
 

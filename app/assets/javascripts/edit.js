@@ -75,23 +75,54 @@ $(function () {
     return svg.selectAll('#' + groupId + ' path');
   }
 
+
+  // too repetitive but I couldn't figure how to refactor (see below) to an
+  // editSet() function with the $this object
   $('.set')
     // reduce opacity of all path in the set on thumbnail hover
     .hover(function() {
-      setClass($(this), 'set-hover');
-    },function() {
-      setClass($(this), '');
+      var groupId = $(this).data('groupId');
+      svg.selectAll('#' + groupId + ' path').forEach(function(path) {
+        path.toggleClass('set-hover', true);
+    //   $('#' + groupId).children().forEach(function(path) {
+    //     path.toggleClass('set-hover');
+    //   // });
+      });
     })
     // apply pattern to all paths in set on click
     .click(function() {
-      getAllPaths(this).forEach(applyFabricPatch);
+      var groupId = $(this).data('groupId');
+      svg.selectAll('#' + groupId + ' path').forEach(applyFabricPatch);
     })
     // remove on dblclick
     .dblclick(function() {
-      getAllPaths(this).forEach(clearFabricPatch);
+      var groupId = $(this).data('groupId');
+      svg.selectAll('#' + groupId + ' path').forEach(clearFabricPatch);
     });
 
+
     //////////////////////////////////////////////////////////////////////////////
+    // function editSet() {
+    //   var groupId = $(this).data('groupId');
+    //   var setPaths = svg.selectAll('#' + groupId + ' path');
+    //   $('.set')
+    //     // reduce opacity of all path in the set on thumbnail hover
+    //     // .hover(function() {
+    //     //   setPaths.forEach(applyFabricPatch);
+    //     // })
+    //     // apply pattern to all paths in set on click
+    //     .click(function() {
+    //       setPaths.forEach(applyFabricPatch);
+    //     })
+    //     // remove on dblclick
+    //     .dblclick(function() {
+    //       setPaths.forEach(clearFabricPatch);
+    //     });
+    // }
+    //
+    // editSet();
+    //
+
 
 
   // function addFabricMessage() {
@@ -311,25 +342,30 @@ $(function () {
 
 
   $('.open-fabric-modal-btn').on('click', function () {
-    // Api.getDesignList().done(function(response) {
-      // var results = response.results[0].results;
-      // var designItem = JSON.parse(DESIGN_ITEM);
-      var results = [DESIGN_ITEM];
+    /*
+    Api.getDesignList().done(function(response) {
+      var results = response.results[0].results;
+      var designItem = JSON.parse(DESIGN_ITEM);
+      */
 
-      var resultElements = results.map(function(designItem) {
-        var img = $("<img>");
-        img.attr('data-id', designItem.id);
-        img.attr('src', designItem.thumbnail_url);
+      Api.getPopularList().done(function(response) {
+        var results = response.results[0].results;
+      // var results = [DESIGN_ITEM];
+        var resultElements = results.map(function(designItem) {
+          var img = $("<img>");
+          img.attr('data-id', designItem.id);
+          img.attr('src', designItem.thumbnail_url);
 
-        var li = $('<li>');
-        li.addClass('fabric-preview');
-        li.append(img);
+          var li = $('<li>');
+          li.addClass('fabric-preview');
+          li.append(img);
 
-        return li;
-      });
+          return li;
+        });
 
       $('.fabric-modal-list').empty().append(resultElements);
-    // })
+    })
+
     $('.fabric-modal').toggleClass('show');
     previewQuilt();
     drawPalette('.current-palette', palette);
