@@ -39,6 +39,7 @@ body {
   font-size: 12pt;
   font-weight: $light;
   color: $accent-darkest;
+  min-height: 710px;
 }
 
 a, button, input {
@@ -85,17 +86,31 @@ main {
 }
 
 .site-nav {
- background: $accent-light;
- // background-image: $green-pattern;
+ // background: $accent-light;
+ background-image: $green-pattern;
  height: 4em;
+ width: 100%;
  box-shadow: $default-shadow;
+ position: relative;
+ z-index: 1
 }
 
-footer {
-  background-color: rgba(0, 0, 0, 0.15);
-  height: 7.35em;
-  box-shadow: $default-shadow;
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4em;
+  background: $accent-light;
+  opacity: 0.6;
 }
+
+.flowerpatch-logo-section {
+  position: relative;
+  z-index: 2
+}
+
+
 
 .flowerpatch-logo-section {
  margin: 0 1em;
@@ -132,14 +147,21 @@ footer {
   margin: 4em 0 2em 0;
 }
 
+footer {
+  background-color: rgba(0, 0, 0, 0.15);
+  height: 7.35em;
+  box-shadow: $default-shadow;
+}
+
 .spoonflower-section {
   display: inline-block;
+  margin: 0 2em;
   float: right;
   font-family: $serif;
-  margin: 0 2em;
 }
 
 .spoonflower-tag {
+  color: $white;
   padding: 0 1em 2.75em 0;
   margin: auto 0;
   display: inline-block;
@@ -200,13 +222,25 @@ label {
 }
 
 .inner-button-icon {
-  background: $white;
-  height: 0.85em;
-  border-radius: 0.5em;
+  // background: $white;
+  // height: 0.85em;
+  // border-radius: 0.5em;
   text-shadow: $default-text-shadow;
 
   &:hover {
     text-shadow: $hover-text-shadow;
+  }
+
+  &:after {
+    content: '';
+    width: 30px;
+    height: 30px;
+    background: white;
+    position: absolute;
+    top: 0.1em;
+    left: 5px;
+    border-radius: 15px;
+    z-index: -1;
   }
 }
 
