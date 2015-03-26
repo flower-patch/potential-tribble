@@ -49,3 +49,18 @@ function getGroup(path) {
 
   group.selectAll('path').forEach(applyFabricPatch);
 }*/
+
+//////////////////////////////////////////////////////////////////////////////
+// DISABLE PROGRESS BUTTONS
+
+// $('.selected ~ .progress-element a').on('click', function(e) {
+//   e.preventDefault();
+// })
+
+// function disableProgressButtons() {
+//   var forwardButtons = $('.selected ~ .progress-element a');
+//   forwardButtons.attr("disabled","disabled");
+// }
+//
+// disableProgressButtons();
+//

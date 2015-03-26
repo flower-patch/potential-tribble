@@ -1,14 +1,10 @@
-/*
-* EDIT PAGE FUNCTIONALITY
-*/
 $(function () {
 
   var svg = Snap('.svg-editor svg');
   var $svg = $('.svg-editor svg');
 
-/*
-* DUMMY PALETTE
-*/
+  //////////////////////////////////////////////////////////////////////////////
+  //dummy palette
   var palette = [{
     id: 'patterns-by-danny-ivan.jpg',
     url: 'http://www.crafthubs.com/thumbs/patterns-by-danny-ivan.jpg',
@@ -32,11 +28,11 @@ $(function () {
     }
   }];
 
-/*
-* SET DEFAULTS for paths, makes the white if empty
-*/
-  function clearFill(item) {
-    item.selectAll('path').forEach(function(path) {
+  //////////////////////////////////////////////////////////////////////////////
+  //SET DEFAULTS for paths, makes the white if empty
+  function clearFill(path) {
+    path.selectAll('path').forEach(function(path) {
+    //this only works with fill:none; svg's
       if (!path.attr('fill') || path.attr('fill') === 'none') {
         path.attr('fill', 'white');
       }
@@ -45,10 +41,10 @@ $(function () {
 
   clearFill(svg);
 
-/*
-* CREATE GROUPS AND MAKE THUMBNAILS
-* generating a thumbnail for each group as a set
-*/
+  //////////////////////////////////////////////////////////////////////////////
+  //CREATE GROUPS AND MAKE THUMBNAILS
+  //generating a thumbnail for each group as a set
+
   function generateSets(svgSelector, setList) {
     svg.selectAll('g g').forEach(function(group) {
       // clone the svg for each group without event handlers
@@ -65,45 +61,60 @@ $(function () {
         .wrap('<li class="set"></li>')
         .parent()
         .data('groupId', groupId));
-      });
-    }
+    });
+  }
 
-    generateSets($svg, '.sets');
+  generateSets($svg, '.sets');
 
-/*
-* FUNCTIONS & CLICK HANDLERS
-* allow styling by group
-*/
-    function setClass(group, cssClass) {
-      getAllPaths(group).forEach(function(path) {
-        path.attr('class', cssClass);
-      });
-    }
+  //////////////////////////////////////////////////////////////////////////////
+  // FUNCTIONS that allow styling by group
 
-    function getAllPaths(group) {
-      var groupId = $(group).data('groupId');
-      return svg.selectAll('#' + groupId + ' path');
-    }
+  function setClass(group, cssClass) {
+    getAllPaths(group).forEach(function(path) {
+      path.attr('class', cssClass);
+    });
+  }
 
-    $('.set')
-      // reduce opacity of all path in the set on thumbnail hover
-      .hover(function() {
-        setClass($(this), 'set-hover');
-      },function() {
-        setClass($(this), '');
-      })
-      // apply pattern to all paths in set on click
-      .click(function() {
-        getAllPaths(this).forEach(applyFabricPatch);
-      })
-      // remove on dblclick
-      .dblclick(function() {
-        getAllPaths(this).forEach(clearFabricPatch);
-      });
+  function getAllPaths(group) {
+    var groupId = $(group).data('groupId');
+    return svg.selectAll('#' + groupId + ' path');
+  }
 
-/*
-* CREATES FABRIC SWATCH PALETTE
-*/
+  $('.set')
+    // reduce opacity of all path in the set on thumbnail hover
+    .hover(function() {
+      setClass($(this), 'set-hover');
+    },function() {
+      setClass($(this), '');
+    })
+    // apply pattern to all paths in set on click
+    .click(function() {
+      getAllPaths(this).forEach(applyFabricPatch);
+    })
+    // remove on dblclick
+    .dblclick(function() {
+      getAllPaths(this).forEach(clearFabricPatch);
+    });
+
+    //////////////////////////////////////////////////////////////////////////////
+    //DEPRECATED
+
+    // function addFabricMessage() {
+    //   if (palette === undefined || palette.length === 0) {
+    //   alt example from appointments app
+    //    if (appts === undefined || appts.length === 0) {
+    //       $('.no-frames').html(noFrames);
+    //       $('.no-frames').fadeIn('slow');
+    //    };
+    //     $('.add-fabric-message').fadeIn('slow');
+    //   }
+    // }
+
+    // addFabricMessage();
+
+  //////////////////////////////////////////////////////////////////////////////
+  //CREATES FABRIC SWATCH PALETTE
+
   function drawPalette(location, palette) {
     $(location).html(palette.map(function (fabric) {
       var li = $('<li class="fabric-preview"><img src="' + fabric.url +'"></li>');
@@ -116,21 +127,58 @@ $(function () {
 
   drawPalette('.palette', palette);
 
-/*
-*SETTING CURRENT FABRIC VARIABLE
-*/
+
+  //////////////////////////////////////////////////////////////////////////////
+  //SETTING CURRENT FABRIC VARIABLE
+
   var currFabric = palette[0];
+
+  // showCurrFabric();
 
   $('.palette').on('click', '.fabric-preview', function () {
     currFabric = $(this).data('fabric');
     showCurrFabric();
   });
 
+
+  // // add a class to li of currFabric
+  // // this isn't working,
+  // $('.palette .fabric-preview').each(function(item) {
+  //   // it's returning undefined
+  //   console.log(item);
+  //   var listItem = $(item).html();
+  //   console.log(listItem.fabric);
+  //   if (listItem.data.id === currFabric.id) {
+  //     listItem.addClass('current-fabric');
+  //     return;
+  //   } else {
+  //     listItem.removeClass('current-fabric')
+  //   }
+  // });
+
+  // add a class to li of currFabric
+  // this isn't working,
+
+  function showCurrFabric() {
+    $('.palette').children().forEach(function(item) {
+      // it's returning undefined
+      console.log(item);
+      console.log(listItem.fabric);
+      if (listItem.data.id === currFabric.id) {
+        listItem.addClass('current-fabric');
+        return;
+      } else {
+        listItem.removeClass('current-fabric')
+      };
+    });
+  }
+
+
+  //////////////////////////////////////////////////////////////////////////////
+  //EDIT PATCH
+
   editPatch(svg);
 
-/*
-*EDIT PATCH
-*/
   function editPatch(block) {
     block.selectAll('path').forEach(function (path) {
       // required arbitrary boolean
@@ -155,9 +203,11 @@ $(function () {
     });
   }
 
-/*
-* APPLY FABRIC PATCH
-*/
+
+  //////////////////////////////////////////////////////////////////////////////
+  //APPLY FABRIC PATCH
+
+
   function applyFabricPatch(path) {
     //empty palette, nothing happens!
     if (!currFabric) return;
@@ -175,32 +225,75 @@ $(function () {
     path.attr('fill', pattern);
   }
 
-/*
-*CLEAR FABRIC PATCH
-*/
   function clearFabricPatch(path) {
     path.attr('fill', '#ffffff');
   }
 
-/*
-* CURRENT SVG set as JQ element
-*/
+
+  //////////////////////////////////////////////////////////////////////////////
+  //deprecated atm
+
+  function getGroup(path) {
+    //empty palette, nothing happens!
+    if (!currFabric) return;
+    //use id for snappy shtuffz
+    var group = path.parent();
+    console.log(group);
+
+    group.selectAll('path').forEach(applyFabricPatch);
+  }
+
+  /////////////////////////////////////////////////////////////////////////////
+  //CURRENT SVG set as JQ element
+
   var currSvg;
   function getCurrSvg() {
     //take html from div svg-editor
     currSvg = $('.svg-editor')
     return currSvg;
   }
-/*
-* TAKES PREVIEW INTO THE MODAL
-*/
-  function previewQuilt() {
+  //////////////////////////////////////////////////////////////////////////////
+  /*
+  TAKES PREVIEW INTO THE MODAL
+  TO DO: REFACTOR
+  */
+
+
+  //////////////////////////////////////////////////////////////////////////////
+  // SAVE QUILT
+
+  function saveQuilt() {
     getCurrSvg();
-    /*
-    FIX FOR a hellish bug with svgs & jQuery .html()
-    We take the svg-editor element and move it from the main content area
-    to the modal when the modal opens
-    var svgElement = $('.svg-editor');
-    */
-    $('.fabric-modal .current-block').append(currSvg);
+    // get the html of the currSvg object
+    currSvg = $(currSvg).html();
+    //set as the value of the hidden field
+    $('.svg-input').val(currSvg);
   }
+
+  $('form').submit(function() {
+    saveQuilt();
+    console.log(newSvg);
+  });
+
+  //////////////////////////////////////////////////////////////////////////////
+  // CLEAR PATCHES MODAL
+
+  $('.clear-patches-modal').on('click', function(e) {
+    e.stopPropagation();
+  });
+
+  $('.clear-patches-btn, .clear-patches-modal-close, .clear-patches-modal-confirm')
+    .on('click', function(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    $('.clear-patches-modal').toggleClass('show');
+  });
+
+  $('.clear-patches-modal-confirm').on('click', function() {
+    var currPaths = svg.selectAll('path');
+    currPaths.forEach(function(path) {
+      clearFabricPatch(path);
+    });
+  });
+
+});

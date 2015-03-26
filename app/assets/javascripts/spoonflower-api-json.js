@@ -58,11 +58,9 @@ function setupSpoonflowerApi() {
     /*
     designId is based on what user chooses
     var designId = '1454355';
-
     //dimensions are variables now in case we want to change them later
     var previewWidth = 150;
     var previewHeight = 150;
-
     //probably change based on fabric design itself
     var printWidth = 4.5;
     var printHeight  = 4.5;
