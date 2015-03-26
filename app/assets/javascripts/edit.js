@@ -76,6 +76,10 @@ $(function () {
     return svg.selectAll('#' + groupId + ' path');
   }
 
+
+  // too repetitive but I couldn't figure how to refactor (see below) to an
+  // editSet() function with the $this object
+
   $('.set')
     // reduce opacity of all path in the set on thumbnail hover
     .hover(function() {
@@ -91,6 +95,29 @@ $(function () {
     .dblclick(function() {
       getAllPaths(this).forEach(clearFabricPatch);
     });
+
+
+    //////////////////////////////////////////////////////////////////////////////
+    // function editSet() {
+    //   var groupId = $(this).data('groupId');
+    //   var setPaths = svg.selectAll('#' + groupId + ' path');
+    //   $('.set')
+    //     // reduce opacity of all path in the set on thumbnail hover
+    //     // .hover(function() {
+    //     //   setPaths.forEach(applyFabricPatch);
+    //     // })
+    //     // apply pattern to all paths in set on click
+    //     .click(function() {
+    //       setPaths.forEach(applyFabricPatch);
+    //     })
+    //     // remove on dblclick
+    //     .dblclick(function() {
+    //       setPaths.forEach(clearFabricPatch);
+    //     });
+    // }
+    //
+    // editSet();
+    //
 
     //////////////////////////////////////////////////////////////////////////////
 
@@ -316,7 +343,6 @@ $(function () {
       var results = response.results[0].results;
       var designItem = JSON.parse(DESIGN_ITEM);
       // var results = [DESIGN_ITEM];
-
       var resultElements = results.map(function(designItem) {
         var img = $("<img>");
         img.attr('data-id', designItem.id);

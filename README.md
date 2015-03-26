@@ -20,8 +20,18 @@ To search via "search term"
 https://fakepi.herokuapp.com/api/v1/design/search?q=goat
 (Replace "goat" with your search term. Returns 10 results.)
 
+To get a set number of "popular" results: (where "limit" is number desired)
+https://fakepi.herokuapp.com/api/v1/design/search?limit=10&sort=freshtastic
+
+To get a preview for a specific design, given its id:
+https://fakepi.herokuapp.com/api/v1/design/previewImage/1454355?print_width=4.5&print_height=4.5&preview_width_pixels=150&preview_height_pixels=150
+for id = 1454355, print_width=4.5 inches, print_height = 4.5 inches. The id needs to be a number of 1 to 7 digits.
+
 Using the real API*:
+To search via color:
 http://api.v1.spoonflower.com/design/search?color1=444444
+
+To search via search term:
 http://api.v1.spoonflower.com/design/search?q=goats
 
 To get a set number of "popular" results: (where "limit" is number desired)
