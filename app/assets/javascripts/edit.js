@@ -380,9 +380,10 @@ $(function () {
 
 
   $('#picker').colpick({
+    // flat: true,
   	layout:'hex',
   	submit:0,
-  	colorScheme:'dark',
+  	colorScheme:'light',
   	onChange:function(hsb,hex,rgb,el,bySetColor) {
   		$(el).css('border-color','#'+hex);
   		// Fill the text box just if the color was set using the picker, and not the colpickSetColor function.
@@ -391,6 +392,12 @@ $(function () {
   }).keyup(function(){
   	$(this).colpickSetColor(this.value);
   });
+
+//   $('#picker').colpick({
+// 	flat:true,
+// 	layout:'hex',
+// 	submit:0
+// });
 
 
 
