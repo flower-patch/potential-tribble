@@ -83,6 +83,18 @@
   pointer-events: auto;
 }
 
+#picker {
+	margin:0;
+	padding:0;
+	border:0;
+	width:70px;
+	height:20px;
+	border-right:20px solid green;
+	line-height:20px;
+  position: relative;
+  z-index: 1001;
+}
+
 .fabric-modal-results {
   height: 300px;
 }

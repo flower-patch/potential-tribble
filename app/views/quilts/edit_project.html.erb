@@ -84,16 +84,22 @@
     <hr class="fabric-modal-divider">
 
     <div class="fabric-modal-options">
-      <form class="search-bar" role="search">
+      <form class="search-bar keyword-search" role="search">
+        Search by keyword
         <input type="search" placeholder="Enter Search" />
-        <button type="submit" class="fabric-modal-search-button">
-          <img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/search-icon.png" alt="Search Icon">
+        <button type="submit" class="fabric-modal-keyword-btn">
+          <i class="fa-fa-search" alt="Search Icon"></i>
         </button>
       </form>
-      <div class="input-group color-search-bar">
-        <input type="text" value="" class="form-control" />
-        <span class="input-group-addon"><i></i></span>
-      </div>
+      <form class="search-bar keyword-search">
+        <div class="input-group color-search-bar">
+          Search by color
+          <input type="text" id="picker"></input>
+          <button type="submit" class="fabric-modal-color-btn">
+            <i class="fa-fa-search" alt="Search Icon"></i>
+          </button>
+        </div>
+      </form>
     </div>
 
     <div class="fabric-modal-results">

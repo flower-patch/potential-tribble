@@ -42,6 +42,7 @@ $(function () {
 
   //generating a thumbnail for each group as a set
   function generateSets(svgSelector, setList) {
+    console.log('hi');
     svg.selectAll('g g').forEach(function(group) {
       // clone the svg for each group without event handlers
       var groupId = group.attr('id');
@@ -314,7 +315,7 @@ $(function () {
     Api.getDesignList().done(function(response) {
       var results = response.results[0].results;
       var designItem = JSON.parse(DESIGN_ITEM);
-      var results = [DESIGN_ITEM];
+      // var results = [DESIGN_ITEM];
 
       var resultElements = results.map(function(designItem) {
         var img = $("<img>");
@@ -352,11 +353,20 @@ $(function () {
 
 
 
-  $('.color-search-bar').colorpicker();
+  $('#picker').colpick({
+  	layout:'hex',
+  	submit:0,
+  	colorScheme:'dark',
+  	onChange:function(hsb,hex,rgb,el,bySetColor) {
+  		$(el).css('border-color','#'+hex);
+  		// Fill the text box just if the color was set using the picker, and not the colpickSetColor function.
+  		if(!bySetColor) $(el).val(hex);
+  	}
+  }).keyup(function(){
+  	$(this).colpickSetColor(this.value);
+  });
 
 
-
-});
 
 
   //////////////////////////////////////////////////////////////////////////////
@@ -377,3 +387,5 @@ $(function () {
   $(document).ready(function() {
     $('.selected.progress-element a, .selected ~ .progress-element a').attr('disable', 'disabled');
   });
+
+});
