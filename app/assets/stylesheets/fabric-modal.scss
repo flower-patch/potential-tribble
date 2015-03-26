@@ -117,6 +117,7 @@
 
   + button {
     margin-left: 5px;
+    position: relative;
   }
 
   &:hover {
@@ -131,6 +132,8 @@
 \*------------------------------------*/
 
 .colpick {
+  height: 172px !important;
+  width: 170px !important;
   position: absolute !important;
   bottom: -20px !important;
   z-index: 2000;
@@ -144,13 +147,15 @@
   }
 }
 
-.colpick_color {
+.colpick_color,
+.colpick_color_overlay1,
+.colpick_color_overlay2 {
   outline: none !important;
+  width: 119px !important;
 }
 
-.colpick_hue,
-.colpick_new_color,
-.colpick_current_color {
+.colpick_hue {
+  left: 137px !important;
   border: none !important;
 }
 
@@ -159,6 +164,7 @@
 }
 
 .colpick_field,
+.colpick_new_color,
 .colpick_hex_field {
   display: none !important;
 }

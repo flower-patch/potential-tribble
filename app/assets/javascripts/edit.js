@@ -1,7 +1,10 @@
 $(function () {
+
   var svg = Snap('.svg-editor svg');
   var $svg = $('.svg-editor svg');
 
+  //////////////////////////////////////////////////////////////////////////////
+  //dummy palette
   var palette = [{
     id: 'patterns-by-danny-ivan.jpg',
     url: 'http://www.crafthubs.com/thumbs/patterns-by-danny-ivan.jpg',
@@ -26,7 +29,7 @@ $(function () {
   }];
 
   //////////////////////////////////////////////////////////////////////////////
-
+  //SET DEFAULTS for paths, makes the white if empty
   function clearFill(item) {
     item.selectAll('path').forEach(function(path) {
     //this only works with fill:none; svg's
@@ -39,8 +42,9 @@ $(function () {
   clearFill(svg);
 
   //////////////////////////////////////////////////////////////////////////////
-
+  //CREATE GROUPS AND MAKE THUMBNAILS
   //generating a thumbnail for each group as a set
+
   function generateSets(svgSelector, setList) {
     console.log('hi');
     svg.selectAll('g g').forEach(function(group) {
@@ -64,6 +68,7 @@ $(function () {
   generateSets($svg, '.sets');
 
   //////////////////////////////////////////////////////////////////////////////
+  // FUNCTIONS that allow styling by group
 
   function setClass(group, cssClass) {
     getAllPaths(group).forEach(function(path) {
@@ -120,22 +125,23 @@ $(function () {
     //
 
     //////////////////////////////////////////////////////////////////////////////
+    //DEPRECATED
 
+    // function addFabricMessage() {
+    //   if (palette === undefined || palette.length === 0) {
+    //   alt example from appointments app
+    //    if (appts === undefined || appts.length === 0) {
+    //       $('.no-frames').html(noFrames);
+    //       $('.no-frames').fadeIn('slow');
+    //    };
+    //     $('.add-fabric-message').fadeIn('slow');
+    //   }
+    // }
 
-  // function addFabricMessage() {
-  //   if (palette === undefined || palette.length === 0) {
-  //   alt example from appointments app
-  //    if (appts === undefined || appts.length === 0) {
-  //       $('.no-frames').html(noFrames);
-  //       $('.no-frames').fadeIn('slow');
-  //    };
-  //     $('.add-fabric-message').fadeIn('slow');
-  //   }
-  // }
-
-  // addFabricMessage();
+    // addFabricMessage();
 
   //////////////////////////////////////////////////////////////////////////////
+  //CREATES FABRIC SWATCH PALETTE
 
   function drawPalette(location, palette) {
     $(location).html(palette.map(function (fabric) {
@@ -196,6 +202,7 @@ $(function () {
 
 
   //////////////////////////////////////////////////////////////////////////////
+  //EDIT PATCH
 
   editPatch(svg);
 
@@ -224,6 +231,8 @@ $(function () {
     });
   }
 
+  //////////////////////////////////////////////////////////////////////////////
+  //APPLY FABRIC PATCH
 
 
   function applyFabricPatch(path) {
@@ -249,7 +258,7 @@ $(function () {
 
 
   //////////////////////////////////////////////////////////////////////////////
-
+  //deprecated atm
 
   function getGroup(path) {
     //empty palette, nothing happens!
@@ -261,24 +270,34 @@ $(function () {
     group.selectAll('path').forEach(applyFabricPatch);
   }
 
+  /////////////////////////////////////////////////////////////////////////////
+  //CURRENT SVG set as JQ element
+
   var currSvg;
-
-
   function getCurrSvg() {
     //take html from div svg-editor
     currSvg = $('.svg-editor')
     return currSvg;
   }
-
-  //takes preview into the modal
+  //////////////////////////////////////////////////////////////////////////////
+  /*
+  TAKES PREVIEW INTO THE MODAL
+  TO DO: REFACTOR
+  */
   function previewQuilt() {
     getCurrSvg();
-    // FIX FOR a hellish bug with svgs & jQuery .html()
-    // We take the svg-editor element and move it from the main content area
-    // to the modal when the modal opens
-    // var svgElement = $('.svg-editor');
+    /*
+    FIX FOR a hellish bug with svgs & jQuery .html()
+    We take the svg-editor element and move it from the main content area
+    to the modal when the modal opens
+    var svgElement = $('.svg-editor');
+    */
+
     $('.fabric-modal .current-block').append(currSvg);
   }
+
+  //////////////////////////////////////////////////////////////////////////////
+  // SAVE QUILT
 
   function saveQuilt() {
     getCurrSvg();
@@ -294,18 +313,8 @@ $(function () {
   });
 
   //////////////////////////////////////////////////////////////////////////////
+  // CLEAR PATCHES MODAL
 
-
-  // The API is on heroku currently, and does not enable cross origin resource sharing (CORS).
-  // This means that a different origin (aka our localhost) cannot access your API.
-
-  // This can be fixed by:
-  // A) Put the api on our localhost
-  // B) enable cross origin resource sharing (CORS) on the api on heroku
-  // Additionally, no more newlines.
-
-
-  // click events for the clear patches modal
   $('.clear-patches-modal').on('click', function(e) {
     e.stopPropagation();
   });
@@ -326,37 +335,32 @@ $(function () {
 
 
   //////////////////////////////////////////////////////////////////////////////
-
-
-  // The API is on heroku currently, and does not enable cross origin resource sharing (CORS).
-  // This means that a different origin (aka our localhost) cannot access your API.
-
-  // This can be fixed by:
-  // A) Put the api on our localhost
-  // B) enable cross origin resource sharing (CORS) on the api on heroku
-  // Additionally, no more newlines.
+  /*
+  CALL API HERE on modal-open
+  separate names for Spoonflower's API and fAkePI
+  */
 
 
 
   $('.open-fabric-modal-btn').on('click', function () {
-    Api.getDesignList().done(function(response) {
-      var results = response.results[0].results;
-      var designItem = JSON.parse(DESIGN_ITEM);
-      // var results = [DESIGN_ITEM];
-      var resultElements = results.map(function(designItem) {
-        var img = $("<img>");
-        img.attr('data-id', designItem.id);
-        img.attr('src', designItem.thumbnail_url);
-
-        var li = $('<li>');
-        li.addClass('fabric-preview');
-        li.append(img);
-
-        return li;
-      });
-
-      $('.fabric-modal-list').empty().append(resultElements);
-    })
+    // Api.getDesignList().done(function(response) {
+    //   var results = response.results[0].results;
+    //   var designItem = JSON.parse(DESIGN_ITEM);
+    //   // var results = [DESIGN_ITEM];
+    //   var resultElements = results.map(function(designItem) {
+    //     var img = $("<img>");
+    //     img.attr('data-id', designItem.id);
+    //     img.attr('src', designItem.thumbnail_url);
+    //
+    //     var li = $('<li>');
+    //     li.addClass('fabric-preview');
+    //     li.append(img);
+    //
+    //     return li;
+    //   });
+    //
+    //   $('.fabric-modal-list').empty().append(resultElements);
+    // })
     $('.fabric-modal').toggleClass('show');
     previewQuilt();
     drawPalette('.current-palette', palette);
@@ -374,10 +378,8 @@ $(function () {
     $('.svg-editor-parent').append(currSvg);
   });
 
-
   //////////////////////////////////////////////////////////////////////////////
-
-
+  // COLOR PICKER
 
   $('#picker').colpick({
     // flat: true,
@@ -393,17 +395,9 @@ $(function () {
   	$(this).colpickSetColor(this.value);
   });
 
-//   $('#picker').colpick({
-// 	flat:true,
-// 	layout:'hex',
-// 	submit:0
-// });
-
-
-
 
   //////////////////////////////////////////////////////////////////////////////
-
+  // DISABLE PROGRESS BUTTONS
 
   // $('.selected ~ .progress-element a').on('click', function(e) {
   //   e.preventDefault();
