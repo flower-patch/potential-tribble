@@ -10,8 +10,6 @@
       var promise = $.Deferred();
         // this has to change for JSONP
 
-
-
       var req = $.ajax({
         //url property with this value
         url: url,
