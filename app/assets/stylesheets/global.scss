@@ -73,7 +73,6 @@ main {
 }
 
 .site-nav {
- // background: $accent-light;
  background-image: $green-pattern;
  height: 4em;
  width: 100%;
@@ -248,7 +247,6 @@ form.search-bar {
     display: block;
     font-size: 1em;
     font-weight: $thin;
-    // font-style: italic;
     font-family: $sans-serif;
     margin: 0;
     position: relative;
@@ -317,10 +315,6 @@ form.search-bar {
   height: $switch-height;
   position: relative;
   width: $switch-width;
-  // padding-top: 1.3% !important;
-  // padding-left: 1.36% !important;
-
-
 
 
   input[type="checkbox"] {
