@@ -347,4 +347,33 @@ $(function () {
     $('.svg-editor-parent').append(currSvg);
   });
 
+
+  //////////////////////////////////////////////////////////////////////////////
+
+
+
+  $('.color-search-bar').colorpicker();
+
+
+
 });
+
+
+  //////////////////////////////////////////////////////////////////////////////
+
+
+  // $('.selected ~ .progress-element a').on('click', function(e) {
+  //   e.preventDefault();
+  // })
+
+  // function disableProgressButtons() {
+  //   var forwardButtons = $('.selected ~ .progress-element a');
+  //   forwardButtons.attr("disabled","disabled");
+  // }
+  //
+  // disableProgressButtons();
+  //
+
+  $(document).ready(function() {
+    $('.selected.progress-element a, .selected ~ .progress-element a').attr('disable', 'disabled');
+  });
