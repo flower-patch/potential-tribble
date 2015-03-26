@@ -1,4 +1,4 @@
-$(function () {
+$(function() {
 
   var svg = Snap('.svg-editor svg');
   var $svg = $('.svg-editor svg');
@@ -32,7 +32,7 @@ $(function () {
   //SET DEFAULTS for paths, makes the white if empty
   function clearFill(path) {
     path.selectAll('path').forEach(function(path) {
-    //this only works with fill:none; svg's
+      //this only works with fill:none; svg's
       if (!path.attr('fill') || path.attr('fill') === 'none') {
         path.attr('fill', 'white');
       }
@@ -84,7 +84,7 @@ $(function () {
     // reduce opacity of all path in the set on thumbnail hover
     .hover(function() {
       setClass($(this), 'set-hover');
-    },function() {
+    }, function() {
       setClass($(this), '');
     })
     // apply pattern to all paths in set on click
@@ -96,28 +96,28 @@ $(function () {
       getAllPaths(this).forEach(clearFabricPatch);
     });
 
-    //////////////////////////////////////////////////////////////////////////////
-    //DEPRECATED
+  //////////////////////////////////////////////////////////////////////////////
+  //DEPRECATED
 
-    // function addFabricMessage() {
-    //   if (palette === undefined || palette.length === 0) {
-    //   alt example from appointments app
-    //    if (appts === undefined || appts.length === 0) {
-    //       $('.no-frames').html(noFrames);
-    //       $('.no-frames').fadeIn('slow');
-    //    };
-    //     $('.add-fabric-message').fadeIn('slow');
-    //   }
-    // }
+  // function addFabricMessage() {
+  //   if (palette === undefined || palette.length === 0) {
+  //   alt example from appointments app
+  //    if (appts === undefined || appts.length === 0) {
+  //       $('.no-frames').html(noFrames);
+  //       $('.no-frames').fadeIn('slow');
+  //    };
+  //     $('.add-fabric-message').fadeIn('slow');
+  //   }
+  // }
 
-    // addFabricMessage();
+  // addFabricMessage();
 
   //////////////////////////////////////////////////////////////////////////////
   //CREATES FABRIC SWATCH PALETTE
 
   function drawPalette(location, palette) {
-    $(location).html(palette.map(function (fabric) {
-      var li = $('<li class="fabric-preview"><img src="' + fabric.url +'"></li>');
+    $(location).html(palette.map(function(fabric) {
+      var li = $('<li class="fabric-preview"><img src="' + fabric.url + '"></li>');
       //.data(key, value) key= string 'fabric', value is fabric object
       // .data makes the thing a part of the DOM
       li.data('fabric', fabric);
@@ -135,7 +135,7 @@ $(function () {
 
   // showCurrFabric();
 
-  $('.palette').on('click', '.fabric-preview', function () {
+  $('.palette').on('click', '.fabric-preview', function() {
     currFabric = $(this).data('fabric');
     showCurrFabric();
   });
@@ -180,26 +180,26 @@ $(function () {
   editPatch(svg);
 
   function editPatch(block) {
-    block.selectAll('path').forEach(function (path) {
+    block.selectAll('path').forEach(function(path) {
       // required arbitrary boolean
       var prevent = false;
       // defines the functions called in timeout
       var timer = 0;
 
       path
-      .click(function () {
-        timer = setTimeout(function () {
-          if (!prevent) {
-            applyFabricPatch(path);
-          }
-          prevent = false;
-        }, 200);
-      })
-      .dblclick(function () {
-        clearTimeout(timer);
-        prevent = true;
-        clearFabricPatch(path);
-      });
+        .click(function() {
+          timer = setTimeout(function() {
+            if (!prevent) {
+              applyFabricPatch(path);
+            }
+            prevent = false;
+          }, 200);
+        })
+        .dblclick(function() {
+          clearTimeout(timer);
+          prevent = true;
+          clearFabricPatch(path);
+        });
     });
   }
 
@@ -218,8 +218,10 @@ $(function () {
 
     if (!pattern) {
       pattern = svg.image(currFabric.url, 0, 0, currFabric.size.width, currFabric.size.height)
-      .toPattern(0, 0, currFabric.size.width, currFabric.size.height)
-      .attr({ id: patternId });
+        .toPattern(0, 0, currFabric.size.width, currFabric.size.height)
+        .attr({
+          id: patternId
+        });
     }
 
     path.attr('fill', pattern);
@@ -247,16 +249,17 @@ $(function () {
   //CURRENT SVG set as JQ element
 
   var currSvg;
+
   function getCurrSvg() {
-    //take html from div svg-editor
-    currSvg = $('.svg-editor')
-    return currSvg;
-  }
-  //////////////////////////////////////////////////////////////////////////////
-  /*
-  TAKES PREVIEW INTO THE MODAL
-  TO DO: REFACTOR
-  */
+      //take html from div svg-editor
+      currSvg = $('.svg-editor')
+      return currSvg;
+    }
+    //////////////////////////////////////////////////////////////////////////////
+    /*
+    TAKES PREVIEW INTO THE MODAL
+    TO DO: REFACTOR
+    */
 
 
   //////////////////////////////////////////////////////////////////////////////
@@ -284,10 +287,10 @@ $(function () {
 
   $('.clear-patches-btn, .clear-patches-modal-close, .clear-patches-modal-confirm')
     .on('click', function(e) {
-    e.preventDefault();
-    e.stopPropagation();
-    $('.clear-patches-modal').toggleClass('show');
-  });
+      e.preventDefault();
+      e.stopPropagation();
+      $('.clear-patches-modal').toggleClass('show');
+    });
 
   $('.clear-patches-modal-confirm').on('click', function() {
     var currPaths = svg.selectAll('path');

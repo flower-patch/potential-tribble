@@ -2,20 +2,38 @@
 //DEPRECATED
 // add a class to li of currFabric
 
-  /*
-  $('.palette .fabric-preview').each(function(item) {
-      // it's returning undefined
-      console.log(item);
-      var listItem = $(item).html();
-      console.log(listItem.fabric);
-      if (listItem.data.id === currFabric.id) {
-        listItem.addClass('current-fabric');
-        return;
-      } else {
-        listItem.removeClass('current-fabric')
-      }
-  });
-  */
+// // add a class to li of currFabric
+// // this isn't working,
+// $('.palette .fabric-preview').each(function(item) {
+//   // it's returning undefined
+//   console.log(item);
+//   var listItem = $(item).html();
+//   console.log(listItem.fabric);
+//   if (listItem.data.id === currFabric.id) {
+//     listItem.addClass('current-fabric');
+//     return;
+//   } else {
+//     listItem.removeClass('current-fabric')
+//   }
+// });
+
+// add a class to li of currFabric
+// this isn't working,
+
+// function showCurrFabric() {
+//   $('.palette').children().forEach(function(item) {
+//     // it's returning undefined
+//     console.log(item);
+//     console.log(listItem.fabric);
+//     if (listItem.data.id === currFabric.id) {
+//       listItem.addClass('current-fabric');
+//       return;
+//     } else {
+//       listItem.removeClass('current-fabric')
+//     };
+//   });
+// }
+
 
 //////////////////////////////////////////////////////////////////////////////
 //DEPRECATED
@@ -63,4 +81,23 @@ function getGroup(path) {
 // }
 //
 // disableProgressButtons();
-//
+
+//////////////////////////////////////////////////////////////////////////////
+//DEPRECATED
+
+/*
+function disableProgressButtons() {
+  var forwardButtons = $('.selected ~ .progress-element a');
+  forwardButtons.attr("disabled","disabled");
+}
+
+disableProgressButtons();
+*/
+
+
+//DEPRECATED TAKE 2
+/*
+$('.selected ~ .progress-element a').on('click', function(e) {
+  e.preventDefault();
+})
+*/

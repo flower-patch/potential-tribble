@@ -1,4 +1,4 @@
-$(function () {
+$(function() {
 
   //////////////////////////////////////////////////////////////////////////////
   //dummy palette
@@ -27,6 +27,7 @@ $(function () {
 
 
   var currSvg;
+
   function getCurrSvg() {
     //take html from div svg-editor
     currSvg = $('.svg-editor')
@@ -49,8 +50,8 @@ $(function () {
   //CREATES FABRIC SWATCH PALETTE
 
   function drawPalette(location, palette) {
-    $(location).html(palette.map(function (fabric) {
-      var li = $('<li class="fabric-preview"><img src="' + fabric.url +'"></li>');
+    $(location).html(palette.map(function(fabric) {
+      var li = $('<li class="fabric-preview"><img src="' + fabric.url + '"></li>');
       //.data(key, value) key= string 'fabric', value is fabric object
       // .data makes the thing a part of the DOM
       li.data('fabric', fabric);
@@ -58,14 +59,13 @@ $(function () {
     }));
   }
 
-
   //////////////////////////////////////////////////////////////////////////////
   /*
   CALL API HERE on modal-open
   separate names for Spoonflower's API and fAkePI
   */
 
-  $('.open-fabric-modal-btn').on('click', function () {
+  $('.open-fabric-modal-btn').on('click', function() {
     Api.getPopularList().done(function(response) {
       var results = response.results[0].results;
       // var designItem = JSON.parse(DESIGN_ITEM);
@@ -94,7 +94,7 @@ $(function () {
     e.stopPropagation();
   });
 
-  $('.close-fabric-modal-btn, .fabric-modal').on('click', function () {
+  $('.close-fabric-modal-btn, .fabric-modal').on('click', function() {
     $('.fabric-modal').toggleClass('show');
     // Once the modal closes, move the svg-editor element back into its original
     // area (.svg-editor-parent), in the main content.
@@ -103,10 +103,17 @@ $(function () {
   });
 
   //////////////////////////////////////////////////////////////////////////////
-  // COLOR PICKER
-
-  // $('.color-search-bar').colorpicker();
-  // });
-
+  // SEARCH BAR
+  $('.fabric-modal-search-button').on('click', function(e) {
+    console.log('clicked');
+    e.preventDefault();
+    e.stopPropagation();
+  });
 
 });
+
+//////////////////////////////////////////////////////////////////////////////
+// COLOR PICKER
+
+// $('.color-search-bar').colorpicker();
+// });

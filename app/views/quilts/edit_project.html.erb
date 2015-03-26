@@ -1,6 +1,5 @@
 <%= render :partial => 'shared/progress', :locals => {:page => 3} %>
 
-<!-- Edit Block Section -->
 <div class="edit-view view-container">
   <div class="edit-block">
     <%= form_for(@quilt) do |f|  %>
@@ -21,9 +20,11 @@
       <div class="svg-editor">
         <%= @starting_svg.html_safe %>
       </div>
+
       <button alt="Clear all patches" class="clear-patches-btn icon-button">
         <i class="fa fa-minus-circle inner-button-icon"></i>
       </button>
+
       <div class="clear-patches-modal">
         <span class="modal-confirm">Clear all patches?</span>
         <div class="modal-options">
@@ -44,18 +45,15 @@
     <div >
       <%= f.submit "Preview Quilt", class:"save-project-btn stitch-btn", alt:"Preview quilt" %>
     </div>
-
     <% end %>
 
     <div class="choose-set">
       <ul class="sets">
       </ul>
     </div>
-
   </div>
 
   <!-- Palette Section -->
-
   <div class="choose-palette">
     <div class="add-fabric-message">
       <p>You don't have any fabrics in your palette. Click the + button below to gather awesome Spoonflower fabrics for your quilt.</p>
@@ -69,7 +67,6 @@
 </div>
 
 <!-- Fabric Modal -->
-
 <div class="fabric-modal">
   <div class="fabric-modal-box paper-border">
     <button alt="Close window" class="close-fabric-modal-btn icon-button"><i class="fa fa-times-circle inner-button-icon"></i></button>
@@ -97,11 +94,7 @@
     </div>
 
     <div class="fabric-modal-results">
-
-      <ul class="fabric-modal-list">
-
-      </ul>
-
+      <ul class="fabric-modal-list"></ul>
     </div>
 
   </div>
