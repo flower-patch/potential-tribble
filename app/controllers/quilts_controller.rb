@@ -32,7 +32,8 @@ class QuiltsController < ApplicationController
     @quilt = Quilt.new(quilt_params)
     @quilt.in_progress = true
     if @quilt.save
-      redirect_to quilts_preview_project_path(quilt_id: @quilt.id), notice: 'Quilt was successfully created.'
+
+      redirect_to quilts_preview_project_path(project_id: @quilt.project_template_id, quilt_id: @quilt.id), notice: 'Quilt was successfully created.'
     else
       render :edit_project
     end

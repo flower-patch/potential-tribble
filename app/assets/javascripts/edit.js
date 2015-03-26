@@ -311,9 +311,9 @@ $(function () {
 
 
   $('.open-fabric-modal-btn').on('click', function () {
-    // Api.getDesignList().done(function(response) {
-      // var results = response.results[0].results;
-      // var designItem = JSON.parse(DESIGN_ITEM);
+    Api.getDesignList().done(function(response) {
+      var results = response.results[0].results;
+      var designItem = JSON.parse(DESIGN_ITEM);
       var results = [DESIGN_ITEM];
 
       var resultElements = results.map(function(designItem) {
@@ -329,7 +329,7 @@ $(function () {
       });
 
       $('.fabric-modal-list').empty().append(resultElements);
-    // })
+    })
     $('.fabric-modal').toggleClass('show');
     previewQuilt();
     drawPalette('.current-palette', palette);
