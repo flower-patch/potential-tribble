@@ -6,7 +6,7 @@
 .progress-bar {
   @include fill-parent();
   background-color: $white;
-  padding-top: 2px;
+  padding-top: 8px;
   height: 120px;
   max-height: 120px;
   position: relative;
@@ -22,6 +22,23 @@
   z-index: 1000;
 
 }
+
+
+.selected.progress-element a,
+.selected ~ .progress-element,
+.selected ~ .progress-element a {
+  cursor: default;
+}
+
+.selected ~ .progress-element .circle {
+  background-color: $light-pure-gray;
+  box-shadow: none;
+}
+
+.selected ~ .progress-element .progress-stage {
+  color: $mid-gray;
+}
+
 
 .progress-stage {
   @include span-columns(2.4);
@@ -50,6 +67,19 @@
   font-size: 1.7em;
   border: 1px solid $light-pure-gray;
   box-shadow: $default-shadow;
+
+  &:hover {
+    box-shadow: $hover-shadow;
+  }
+}
+
+.selected-text.circle {
+  box-shadow: none;
+  border: 1px solid $accent-text;
+
+  &:hover {
+    box-shadow: none;
+  }
 }
 
 .selected {
@@ -87,7 +117,7 @@
   border-color: $accent-text;
   position: absolute;
   left: 5.5em;
-  bottom: 4.6em;
+  bottom: 4.3em;
   z-index: 0;
 
   @include media($responsive) {

@@ -6,9 +6,7 @@
 
   <hr class="progress-line line-2">
   <div class="progress-element <%= 'selected' if page == 1 %>">
-  <!-- ASK TODD! <div class="progress-element"> -->
     <%= link_to project_templates_choose_project_path(quilt_id: params[:quilt_id]) do %>
-
     <span class="<%= 'selected-text' if page == 1 %> circle one">
       <span class="progress-number">1</span>
     </span>

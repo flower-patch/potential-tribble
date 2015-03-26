@@ -75,31 +75,29 @@ $(function () {
     return svg.selectAll('#' + groupId + ' path');
   }
 
+<<<<<<< HEAD
 
   // too repetitive but I couldn't figure how to refactor (see below) to an
   // editSet() function with the $this object
+=======
+>>>>>>> links-and-buttons
   $('.set')
     // reduce opacity of all path in the set on thumbnail hover
     .hover(function() {
-      var groupId = $(this).data('groupId');
-      svg.selectAll('#' + groupId + ' path').forEach(function(path) {
-        path.toggleClass('set-hover', true);
-    //   $('#' + groupId).children().forEach(function(path) {
-    //     path.toggleClass('set-hover');
-    //   // });
-      });
+      setClass($(this), 'set-hover');
+    },function() {
+      setClass($(this), '');
     })
     // apply pattern to all paths in set on click
     .click(function() {
-      var groupId = $(this).data('groupId');
-      svg.selectAll('#' + groupId + ' path').forEach(applyFabricPatch);
+      getAllPaths(this).forEach(applyFabricPatch);
     })
     // remove on dblclick
     .dblclick(function() {
-      var groupId = $(this).data('groupId');
-      svg.selectAll('#' + groupId + ' path').forEach(clearFabricPatch);
+      getAllPaths(this).forEach(clearFabricPatch);
     });
 
+<<<<<<< HEAD
 
     //////////////////////////////////////////////////////////////////////////////
     // function editSet() {
@@ -123,6 +121,9 @@ $(function () {
     // editSet();
     //
 
+=======
+    //////////////////////////////////////////////////////////////////////////////
+>>>>>>> links-and-buttons
 
 
   // function addFabricMessage() {
@@ -342,30 +343,23 @@ $(function () {
 
 
   $('.open-fabric-modal-btn').on('click', function () {
-    /*
     Api.getDesignList().done(function(response) {
       var results = response.results[0].results;
       var designItem = JSON.parse(DESIGN_ITEM);
-      */
+      var resultElements = results.map(function(designItem) {
+        var img = $("<img>");
+        img.attr('data-id', designItem.id);
+        img.attr('src', designItem.thumbnail_url);
 
-      Api.getPopularList().done(function(response) {
-        var results = response.results[0].results;
-      // var results = [DESIGN_ITEM];
-        var resultElements = results.map(function(designItem) {
-          var img = $("<img>");
-          img.attr('data-id', designItem.id);
-          img.attr('src', designItem.thumbnail_url);
+        var li = $('<li>');
+        li.addClass('fabric-preview');
+        li.append(img);
 
-          var li = $('<li>');
-          li.addClass('fabric-preview');
-          li.append(img);
-
-          return li;
-        });
+        return li;
+      });
 
       $('.fabric-modal-list').empty().append(resultElements);
     })
-
     $('.fabric-modal').toggleClass('show');
     previewQuilt();
     drawPalette('.current-palette', palette);
@@ -383,4 +377,33 @@ $(function () {
     $('.svg-editor-parent').append(currSvg);
   });
 
+
+  //////////////////////////////////////////////////////////////////////////////
+
+
+
+  $('.color-search-bar').colorpicker();
+
+
+
 });
+
+
+  //////////////////////////////////////////////////////////////////////////////
+
+
+  // $('.selected ~ .progress-element a').on('click', function(e) {
+  //   e.preventDefault();
+  // })
+
+  // function disableProgressButtons() {
+  //   var forwardButtons = $('.selected ~ .progress-element a');
+  //   forwardButtons.attr("disabled","disabled");
+  // }
+  //
+  // disableProgressButtons();
+  //
+
+  $(document).ready(function() {
+    $('.selected.progress-element a, .selected ~ .progress-element a').attr('disable', 'disabled');
+  });
