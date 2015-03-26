@@ -33,6 +33,11 @@
   transform: translate(-50%, -50%);
 }
 
+.fabric-modal-content {
+  overflow: auto;
+  height: 100%;
+}
+
 .close-fabric-modal-btn {
   position: absolute;
   top: -1.3em;
@@ -79,8 +84,9 @@
 
 .fabric-modal-options {
   border-right: $default-border;
-  height: 50%;
+  height: 70%;
   pointer-events: auto;
+  overflow: auto;
 }
 
 .fabric-modal-results {

@@ -75,12 +75,10 @@ $(function () {
     return svg.selectAll('#' + groupId + ' path');
   }
 
-<<<<<<< HEAD
 
   // too repetitive but I couldn't figure how to refactor (see below) to an
   // editSet() function with the $this object
-=======
->>>>>>> links-and-buttons
+
   $('.set')
     // reduce opacity of all path in the set on thumbnail hover
     .hover(function() {
@@ -97,7 +95,6 @@ $(function () {
       getAllPaths(this).forEach(clearFabricPatch);
     });
 
-<<<<<<< HEAD
 
     //////////////////////////////////////////////////////////////////////////////
     // function editSet() {
@@ -121,9 +118,7 @@ $(function () {
     // editSet();
     //
 
-=======
     //////////////////////////////////////////////////////////////////////////////
->>>>>>> links-and-buttons
 
 
   // function addFabricMessage() {
