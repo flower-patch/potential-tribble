@@ -16,20 +16,6 @@ $block-height: em(400);
 /*------------------------------------*\
     #Application Page Elements
 \*------------------------------------*/
-//
-// .logo-icon {
-//   font-size: 2em;
-//   float: left;
-//   color: $alt-accent-text;
-// }
-
-// .logo-text {
-//   color: $alt-accent-text;
-//   font-size: 1.5em;
-//   font-weight: $light;
-//   padding-top: 3px;
-//   margin-left: 8px;
-// }
 
 body {
   background-color: $light-pure-gray;
@@ -39,7 +25,8 @@ body {
   font-size: 12pt;
   font-weight: $light;
   color: $accent-darkest;
-  min-height: 710px;
+  min-height: 925px;
+  position: relative;
 }
 
 a, button, input {
@@ -86,7 +73,6 @@ main {
 }
 
 .site-nav {
- // background: $accent-light;
  background-image: $green-pattern;
  height: 4em;
  width: 100%;
@@ -151,6 +137,10 @@ footer {
   background-color: rgba(0, 0, 0, 0.15);
   height: 7.35em;
   box-shadow: $default-shadow;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
 }
 
 .spoonflower-section {
@@ -213,6 +203,8 @@ label {
   }
 }
 
+
+
 .icon-button {
   background: none;
   border: none;
@@ -222,9 +214,7 @@ label {
 }
 
 .inner-button-icon {
-  // background: $white;
-  // height: 0.85em;
-  // border-radius: 0.5em;
+
   text-shadow: $default-text-shadow;
 
   &:hover {
@@ -257,7 +247,6 @@ form.search-bar {
     display: block;
     font-size: 1em;
     font-weight: $thin;
-    // font-style: italic;
     font-family: $sans-serif;
     margin: 0;
     position: relative;
@@ -326,10 +315,6 @@ form.search-bar {
   height: $switch-height;
   position: relative;
   width: $switch-width;
-  // padding-top: 1.3% !important;
-  // padding-left: 1.36% !important;
-
-
 
 
   input[type="checkbox"] {

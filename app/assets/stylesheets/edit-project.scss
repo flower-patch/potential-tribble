@@ -30,8 +30,7 @@ svg {
   position: relative;
 }
 
-svg path,
-.set-hover {
+svg path {
   &:hover {
     stroke: 7px;
     opacity: 0.5;
@@ -39,6 +38,14 @@ svg path,
     -webkit-transition-duration: 30ms;
     transition-duration: 30ms;
   }
+}
+
+.set-hover {
+  stroke: 7px;
+  opacity: 0.5;
+  transition: all 300ms ease;
+  -webkit-transition-duration: 30ms;
+  transition-duration: 30ms;
 }
 
 
@@ -177,7 +184,7 @@ svg path,
   padding: 1em;
   width: 150px;
   font-size: 1em;
-  text-align: center;
+  text-align: justify;
   overflow: auto;
   background: $light-pure-gray;
   box-shadow: $default-shadow;
@@ -197,11 +204,13 @@ svg path,
   font-weight: $bold;
   font-size: 1.25em;
   margin-top: 1em;
+  border-top: $default-border;
+  padding-top: 1em;
 }
 
 .clear-patches-modal-close,
 .clear-patches-modal-confirm {
-  text-align: center;
+  text-align: left;
   margin: 0.5em;
   cursor: pointer;
 }

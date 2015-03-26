@@ -2,7 +2,7 @@
 
 <div class="preview-view view-container">
 
-  <%= form_for @quilt, :url => { :action => "next_steps"} do |f| %>
+  <%= form_for @quilt, :url => { :action => "next_steps", :project_id => @quilt.project_template_id} do |f| %>
 
   <% if @quilt.errors.any? %>
     <div id="error_explanation">

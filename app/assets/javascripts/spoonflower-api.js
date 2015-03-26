@@ -58,7 +58,7 @@ STICK WITH PIXELS AND INCHES!
 previewWidth = 150; (px)
 previewHeight = 150; (px)
 var printWidth = 4.5; (in)
-var printHeigh  = 4.5; (in)
+var printHeigh  = 4.5; (in)m
 */
 
 /*
