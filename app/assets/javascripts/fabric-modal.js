@@ -1,21 +1,17 @@
-//FABRIC-MODAL-JS
-
-//////////////////////////////////////////////////////////////////////////////
 /*
-CALL API HERE on modal-open
-separate names for Spoonflower's API and fAkePI
+* FABRIC-MODAL-JS
 */
 
+/*
+* MODAL OPEN CLICK EVENT
+* API CALL getPopularList
+*/
 $('.open-fabric-modal-btn').on('click', function () {
   Api.getPopularList().done(function(response) {
     var results = response.results[0].results;
     console.log(results);
-    /*
-    DEPRECATED
-    var designItem = JSON.parse(DESIGN_ITEM);
-    var results = [DESIGN_ITEM];
-    */
-
+    // var designItem = JSON.parse(DESIGN_ITEM);
+    // var results = [DESIGN_ITEM];
 
     var resultElements = results.map(function(designItem) {
       var img = $("<img>");
@@ -36,20 +32,60 @@ $('.open-fabric-modal-btn').on('click', function () {
   drawPalette('.current-palette', palette);
 });
 
-$('.fabric-modal-box').on('click', function(e) {
+
+//////////////////////////////////////////////////////////////////////////////
+// SAVE QUILT
+
+
+function saveQuilt() {
+  getCurrSvg();
+  // get the html of the currSvg object
+  currSvg = $(currSvg).html();
+  //set as the value of the hidden field
+  $('.svg-input').val(currSvg);
+}
+
+$('.clear-patches-btn, .clear-patches-modal-close, .clear-patches-modal-confirm')
+.on('click', function(e) {
+e.preventDefault();
+e.stopPropagation();
+$('.clear-patches-modal').toggleClass('show');
+});
+
+
+$('form').submit(function() {
+  saveQuilt();
+  console.log(newSvg);
+});
+
+
+$('.clear-patches-modal').on('click', function(e) {
   e.stopPropagation();
 });
 
-$('.close-fabric-modal-btn, .fabric-modal').on('click', function () {
-  $('.fabric-modal').toggleClass('show');
-  // Once the modal closes, move the svg-editor element back into its original
-  // area (.svg-editor-parent), in the main content.
-  currSvg = $('.fabric-modal .current-block').children();
-  $('.svg-editor-parent').append(currSvg);
+$('.clear-patches-btn, .clear-patches-modal-close, .clear-patches-modal-confirm')
+.on('click', function(e) {
+  e.preventDefault();
+  e.stopPropagation();
+  $('.clear-patches-modal').toggleClass('show');
 });
 
-//////////////////////////////////////////////////////////////////////////////
-// COLOR PICKER
+$('.clear-patches-modal-confirm').on('click', function() {
+  var currPaths = svg.selectAll('path');
+  currPaths.forEach(function(path) {
+    clearFabricPatch(path);
+  });
+});
 
-// $('.color-search-bar').colorpicker();
-// });
+/*
+* COLOR PICKER FUNCTION
+*/
+
+  /*
+  $('.color-search-bar').colorpicker();
+  });
+  */
+
+/*
+* SEARCH FUNCTION
+*/
