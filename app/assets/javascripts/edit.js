@@ -1,7 +1,10 @@
 $(function () {
+
   var svg = Snap('.svg-editor svg');
   var $svg = $('.svg-editor svg');
 
+  //////////////////////////////////////////////////////////////////////////////
+  //dummy palette
   var palette = [{
     id: 'patterns-by-danny-ivan.jpg',
     url: 'http://www.crafthubs.com/thumbs/patterns-by-danny-ivan.jpg',
@@ -25,8 +28,10 @@ $(function () {
     }
   }];
 
-  function clearFill(item) {
-    item.selectAll('path').forEach(function(path) {
+  //////////////////////////////////////////////////////////////////////////////
+  //SET DEFAULTS for paths, makes the white if empty
+  function clearFill(path) {
+    path.selectAll('path').forEach(function(path) {
     //this only works with fill:none; svg's
       if (!path.attr('fill') || path.attr('fill') === 'none') {
         path.attr('fill', 'white');
@@ -34,30 +39,12 @@ $(function () {
     });
   }
 
-  // //POSSIBLY ADD A CLASS AND REMOVE TO DO STYLING
-  // svg.selectAll('path').forEach(function(path) {
-  //    var currFill = path.attr('fill');
-  //   path.hover(function() {
-  //     path.attr({
-  //       "fill": "#000000"
-  //       "stroke": "#233B89",
-  //       "stroke-width": "10px",
-  //        "fill-opacity": "0.5"
-  //     });
-  //    //passing the off-hover event as parameter
-  //   }, function() {
-  //       path.attr({
-  //         "fill": currFill
-  //        "stroke": "#C0C0C0",
-  //        "stroke-width": "4px",
-  //        "fill-opacity": "1"
-  //       });
-  //   });
-  // });
-
   clearFill(svg);
 
+  //////////////////////////////////////////////////////////////////////////////
+  //CREATE GROUPS AND MAKE THUMBNAILS
   //generating a thumbnail for each group as a set
+
   function generateSets(svgSelector, setList) {
     svg.selectAll('g g').forEach(function(group) {
       // clone the svg for each group without event handlers
@@ -79,96 +66,54 @@ $(function () {
 
   generateSets($svg, '.sets');
 
-  // too repitive but I couldn't figure how to refactor (see below) to an
-  // editSet() function with the $this object
+  //////////////////////////////////////////////////////////////////////////////
+  // FUNCTIONS that allow styling by group
+
+  function setClass(group, cssClass) {
+    getAllPaths(group).forEach(function(path) {
+      path.attr('class', cssClass);
+    });
+  }
+
+  function getAllPaths(group) {
+    var groupId = $(group).data('groupId');
+    return svg.selectAll('#' + groupId + ' path');
+  }
+
   $('.set')
     // reduce opacity of all path in the set on thumbnail hover
     .hover(function() {
-      var groupId = $(this).data('groupId');
-      svg.selectAll('#' + groupId + ' path').forEach(function(path) {
-        path.toggleClass('set-hover', true);
-    //   $('#' + groupId).children().forEach(function(path) {
-    //     path.toggleClass('set-hover');
-    //   // });
-      });
+      setClass($(this), 'set-hover');
+    },function() {
+      setClass($(this), '');
     })
     // apply pattern to all paths in set on click
     .click(function() {
-      var groupId = $(this).data('groupId');
-      svg.selectAll('#' + groupId + ' path').forEach(applyFabricPatch);
+      getAllPaths(this).forEach(applyFabricPatch);
     })
     // remove on dblclick
     .dblclick(function() {
-      var groupId = $(this).data('groupId');
-      svg.selectAll('#' + groupId + ' path').forEach(clearFabricPatch);
+      getAllPaths(this).forEach(clearFabricPatch);
     });
 
-    // function editSet() {
-    //   var groupId = $(this).data('groupId');
-    //   var setPaths = svg.selectAll('#' + groupId + ' path');
-    //   $('.set')
-    //     // reduce opacity of all path in the set on thumbnail hover
-    //     // .hover(function() {
-    //     //   setPaths.forEach(applyFabricPatch);
-    //     // })
-    //     // apply pattern to all paths in set on click
-    //     .click(function() {
-    //       setPaths.forEach(applyFabricPatch);
-    //     })
-    //     // remove on dblclick
-    //     .dblclick(function() {
-    //       setPaths.forEach(clearFabricPatch);
-    //     });
+    //////////////////////////////////////////////////////////////////////////////
+    //DEPRECATED
+
+    // function addFabricMessage() {
+    //   if (palette === undefined || palette.length === 0) {
+    //   alt example from appointments app
+    //    if (appts === undefined || appts.length === 0) {
+    //       $('.no-frames').html(noFrames);
+    //       $('.no-frames').fadeIn('slow');
+    //    };
+    //     $('.add-fabric-message').fadeIn('slow');
+    //   }
     // }
-    //
-    // editSet();
-    //
 
+    // addFabricMessage();
 
-  // function editSet(action) {
-  //   var groupId = $(this).data('groupId');
-  //   svg.selectAll('#' + groupId + ' path').forEach(action);
-  // }
-
-  // function drawSets() {
-  //   var groups = $('.svg-editor').find('g g').clone();
-  //   // var groups = (svg.selectAll('g')).items;
-  //   console.log(groups);
-  //   for (var i = 0; i < groups.length; ++i) {
-  //     var baseSvg = $('.svg-editor').clone().remove('g').html();
-  //     console.log(baseSvg);
-  //
-  //     // why is this sometimes returning html, sometimes svg objects?
-  //     var set = $(groups[i]).html();
-  //     console.log(set);
-  //     // var set = $(i).html();
-  //     // console.log(set);
-  //     $('.sets').append('<li>' + set + '</li>');
-  //   }
-
-    // why did this keep reading as undefined?
-    // groups.forEach(function(group) {
-    //   console.log(group);
-    //   var set = $(group).html();
-    //   console.log(set);
-    //   $('.sets').append(set);
-    // });
-  // }
-
-  // drawSets();
-
-  // function addFabricMessage() {
-  //   if (palette === undefined || palette.length === 0) {
-  //   alt example from appointments app
-  //    if (appts === undefined || appts.length === 0) {
-  //       $('.no-frames').html(noFrames);
-  //       $('.no-frames').fadeIn('slow');
-  //    };
-  //     $('.add-fabric-message').fadeIn('slow');
-  //   }
-  // }
-
-  // addFabricMessage();
+  //////////////////////////////////////////////////////////////////////////////
+  //CREATES FABRIC SWATCH PALETTE
 
   function drawPalette(location, palette) {
     $(location).html(palette.map(function (fabric) {
@@ -182,12 +127,17 @@ $(function () {
 
   drawPalette('.palette', palette);
 
+
+  //////////////////////////////////////////////////////////////////////////////
+  //SETTING CURRENT FABRIC VARIABLE
+
   var currFabric = palette[0];
 
-
+  // showCurrFabric();
 
   $('.palette').on('click', '.fabric-preview', function () {
     currFabric = $(this).data('fabric');
+    showCurrFabric();
   });
 
 
@@ -206,8 +156,28 @@ $(function () {
   //   }
   // });
 
-  editPatch(svg);
+  // add a class to li of currFabric
+  // this isn't working,
 
+  // function showCurrFabric() {
+  //   $('.palette').children().forEach(function(item) {
+  //     // it's returning undefined
+  //     console.log(item);
+  //     console.log(listItem.fabric);
+  //     if (listItem.data.id === currFabric.id) {
+  //       listItem.addClass('current-fabric');
+  //       return;
+  //     } else {
+  //       listItem.removeClass('current-fabric')
+  //     };
+  //   });
+  // }
+
+
+  //////////////////////////////////////////////////////////////////////////////
+  //EDIT PATCH
+
+  editPatch(svg);
 
   function editPatch(block) {
     block.selectAll('path').forEach(function (path) {
@@ -234,6 +204,10 @@ $(function () {
   }
 
 
+  //////////////////////////////////////////////////////////////////////////////
+  //APPLY FABRIC PATCH
+
+
   function applyFabricPatch(path) {
     //empty palette, nothing happens!
     if (!currFabric) return;
@@ -255,6 +229,10 @@ $(function () {
     path.attr('fill', '#ffffff');
   }
 
+
+  //////////////////////////////////////////////////////////////////////////////
+  //deprecated atm
+
   function getGroup(path) {
     //empty palette, nothing happens!
     if (!currFabric) return;
@@ -265,24 +243,34 @@ $(function () {
     group.selectAll('path').forEach(applyFabricPatch);
   }
 
+  /////////////////////////////////////////////////////////////////////////////
+  //CURRENT SVG set as JQ element
+
   var currSvg;
-
-
   function getCurrSvg() {
     //take html from div svg-editor
     currSvg = $('.svg-editor')
     return currSvg;
   }
-
-  //takes preview into the modal
+  //////////////////////////////////////////////////////////////////////////////
+  /*
+  TAKES PREVIEW INTO THE MODAL
+  TO DO: REFACTOR
+  */
   function previewQuilt() {
     getCurrSvg();
-    // FIX FOR a hellish bug with svgs & jQuery .html()
-    // We take the svg-editor element and move it from the main content area
-    // to the modal when the modal opens
-    // var svgElement = $('.svg-editor');
+    /*
+    FIX FOR a hellish bug with svgs & jQuery .html()
+    We take the svg-editor element and move it from the main content area
+    to the modal when the modal opens
+    var svgElement = $('.svg-editor');
+    */
+
     $('.fabric-modal .current-block').append(currSvg);
   }
+
+  //////////////////////////////////////////////////////////////////////////////
+  // SAVE QUILT
 
   function saveQuilt() {
     getCurrSvg();
@@ -297,16 +285,9 @@ $(function () {
     console.log(newSvg);
   });
 
-  // The API is on heroku currently, and does not enable cross origin resource sharing (CORS).
-  // This means that a different origin (aka our localhost) cannot access your API.
+  //////////////////////////////////////////////////////////////////////////////
+  // CLEAR PATCHES MODAL
 
-  // This can be fixed by:
-  // A) Put the api on our localhost
-  // B) enable cross origin resource sharing (CORS) on the api on heroku
-  // Additionally, no more newlines.
-
-
-  // click events for the clear patches modal
   $('.clear-patches-modal').on('click', function(e) {
     e.stopPropagation();
   });
@@ -314,7 +295,7 @@ $(function () {
   $('.clear-patches-btn, .clear-patches-modal-close, .clear-patches-modal-confirm')
     .on('click', function(e) {
     e.preventDefault();
-    // e.stopPropagation();
+    e.stopPropagation();
     $('.clear-patches-modal').toggleClass('show');
   });
 
@@ -325,89 +306,26 @@ $(function () {
     });
   });
 
-  // $('.clear-patches-modal-close()').on('click', function)
 
-  // $('body').on('click', function(e) {
-  //   e.stopPropagation();
+
+
+  //////////////////////////////////////////////////////////////////////////////
+  // DISABLE PROGRESS BUTTONS
+
+  // $('.selected ~ .progress-element a').on('click', function(e) {
   //   e.preventDefault();
-  //   $('.clear-patches-modal').removeClass('show');
-  // });
+  // })
 
-  // function closePatchesModal() {
-  //   var modalClass = $('body').find('.show');
-  //   console.log(modalClass);
-  //   if (modalClass.length !== 0) {
-  //     $('body').on('click', function(e) {
-  //       // e.preventDefault();
-  //       e.stopPropagation();
-  //       $('.clear-patches-modal').toggleClass('show');
-  //     });
-  //   }
+  // function disableProgressButtons() {
+  //   var forwardButtons = $('.selected ~ .progress-element a');
+  //   forwardButtons.attr("disabled","disabled");
   // }
   //
-  // closePatchesModal();
+  // disableProgressButtons();
   //
-  // $('.clear-patches-modal').on('click', function(e) {
-  //   e.stopPropagation();
-  // });
-  //
-  // $('.clear-patches-btn body').on('click', function(e) {
-  //   e.preventDefault();
-  //   e.stopPropagation();
-  //   $('.clear-patches-modal').toggleClass('show');
-  // });
 
-
-  // The API is on heroku currently, and does not enable cross origin resource sharing (CORS).
-  // This means that a different origin (aka our localhost) cannot access your API.
-
-  // This can be fixed by:
-  // A) Put the api on our localhost
-  // B) enable cross origin resource sharing (CORS) on the api on heroku
-  // Additionally, no more newlines.
-
-
-
-  $('.open-fabric-modal-btn').on('click', function () {
-    /*
-    Api.getDesignList().done(function(response) {
-      var results = response.results[0].results;
-      var designItem = JSON.parse(DESIGN_ITEM);
-      */
-
-      Api.getPopularList().done(function(response) {
-        var results = response.results[0].results;
-      // var results = [DESIGN_ITEM];
-        var resultElements = results.map(function(designItem) {
-          var img = $("<img>");
-          img.attr('data-id', designItem.id);
-          img.attr('src', designItem.thumbnail_url);
-
-          var li = $('<li>');
-          li.addClass('fabric-preview');
-          li.append(img);
-
-          return li;
-        });
-
-      $('.fabric-modal-list').empty().append(resultElements);
-    })
-
-    $('.fabric-modal').toggleClass('show');
-    previewQuilt();
-    drawPalette('.current-palette', palette);
-  });
-
-  $('.fabric-modal-box').on('click', function(e) {
-    e.stopPropagation();
-  });
-
-  $('.close-fabric-modal-btn, .fabric-modal').on('click', function () {
-    $('.fabric-modal').toggleClass('show');
-    // Once the modal closes, move the svg-editor element back into its original
-    // area (.svg-editor-parent), in the main content.
-    currSvg = $('.fabric-modal .current-block').children();
-    $('.svg-editor-parent').append(currSvg);
+  $(document).ready(function() {
+    $('.selected.progress-element a, .selected ~ .progress-element a').attr('disable', 'disabled');
   });
 
 });
