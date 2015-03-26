@@ -322,7 +322,7 @@ form.search-bar {
 
     + .checkbox {
       @include transition(all 0.3s ease);
-      background: $accent-lightest;
+      background: $mercury;
       border-radius: $switch-radius;
       border: none;
       cursor: pointer;
@@ -332,6 +332,7 @@ form.search-bar {
       position: relative;
       width: $switch-width;
       z-index: 0;
+      box-shadow: $default-shadow;
 
       &:before {
         @include position(absolute, 2px 0 0 2px);
@@ -349,6 +350,7 @@ form.search-bar {
         @include position(absolute, 2px 0 0 2px);
         @include transition(all 0.3s ease);
         @include size($knob-size);
+        box-shadow: $default-shadow;
         background: $switch-background;
         border-radius: $knob-radius;
         box-shadow: $switch-shadow;
@@ -359,7 +361,7 @@ form.search-bar {
 
     &:checked {
       + .checkbox {
-        background: $base-accent-color;
+        background: $alt-accent-text;
 
         &:before {
           @include transform(scale(0));

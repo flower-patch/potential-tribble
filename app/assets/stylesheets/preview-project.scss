@@ -18,14 +18,12 @@
 }
 
 .preview-info {
-  margin-top: 4em;
-  margin-left: 1em;
+  margin-top: 2em;
+  margin-left: 2.358%m;
   padding-left: 2.358%;
   padding-right: 2.358%;
   padding-bottom: 2.358%;
-  // border: 1px solid $light-pure-gray;
-  // box-shadow: $default-shadow;
-  border-radius: 3px;
+  margin-top: 4em;
   @include span-columns(6);
 }
 
@@ -43,7 +41,7 @@
 .quilt-name {
   margin-top: 1em;
   margin-left: .5em;
-  padding:.25em 0;
+  @include pad();
   font-size: 1em;
   @include appearance(none);
   @include box-sizing(border-box);
@@ -52,8 +50,8 @@
   box-shadow: inset $default-shadow;
   border: 1px solid $light-pure-gray;
   font-size: 1em;
-  font-weight: $thin;
-  // font-style: italic;
+  font-weight: $light;
+
   font-family: $sans-serif;
   margin: 2.358%;
   position: relative;
