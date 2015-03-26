@@ -32,7 +32,7 @@ $(function () {
   //SET DEFAULTS for paths, makes the white if empty
   function clearFill(path) {
     path.selectAll('path').forEach(function(path) {
-    //this only works with fill:none; svg's
+      //this only works with fill:none; svg's
       if (!path.attr('fill') || path.attr('fill') === 'none') {
         path.attr('fill', 'white');
       }
@@ -61,26 +61,26 @@ $(function () {
         .wrap('<li class="set"></li>')
         .parent()
         .data('groupId', groupId));
-    });
-  }
+      });
+    }
 
-  generateSets($svg, '.sets');
+    generateSets($svg, '.sets');
 
-  //////////////////////////////////////////////////////////////////////////////
-  // FUNCTIONS that allow styling by group
+    //////////////////////////////////////////////////////////////////////////////
+    // FUNCTIONS that allow styling by group
 
-  function setClass(group, cssClass) {
-    getAllPaths(group).forEach(function(path) {
-      path.attr('class', cssClass);
-    });
-  }
+    function setClass(group, cssClass) {
+      getAllPaths(group).forEach(function(path) {
+        path.attr('class', cssClass);
+      });
+    }
 
-  function getAllPaths(group) {
-    var groupId = $(group).data('groupId');
-    return svg.selectAll('#' + groupId + ' path');
-  }
+    function getAllPaths(group) {
+      var groupId = $(group).data('groupId');
+      return svg.selectAll('#' + groupId + ' path');
+    }
 
-  $('.set')
+    $('.set')
     // reduce opacity of all path in the set on thumbnail hover
     .hover(function() {
       setClass($(this), 'set-hover');
@@ -112,220 +112,270 @@ $(function () {
 
     // addFabricMessage();
 
-  //////////////////////////////////////////////////////////////////////////////
-  //CREATES FABRIC SWATCH PALETTE
+    //////////////////////////////////////////////////////////////////////////////
+    //CREATES FABRIC SWATCH PALETTE
 
-  function drawPalette(location, palette) {
-    $(location).html(palette.map(function (fabric) {
-      var li = $('<li class="fabric-preview"><img src="' + fabric.url +'"></li>');
-      //.data(key, value) key= string 'fabric', value is fabric object
-      // .data makes the thing a part of the DOM
-      li.data('fabric', fabric);
-      return li;
-    }));
-  }
+    function drawPalette(location, palette) {
+      $(location).html(palette.map(function (fabric) {
+        var li = $('<li class="fabric-preview"><img src="' + fabric.url +'"></li>');
+        //.data(key, value) key= string 'fabric', value is fabric object
+        // .data makes the thing a part of the DOM
+        li.data('fabric', fabric);
+        return li;
+      }));
+    }
 
-  drawPalette('.palette', palette);
-
-
-  //////////////////////////////////////////////////////////////////////////////
-  //SETTING CURRENT FABRIC VARIABLE
-
-  var currFabric = palette[0];
-
-  // showCurrFabric();
-
-  $('.palette').on('click', '.fabric-preview', function () {
-    currFabric = $(this).data('fabric');
-    showCurrFabric();
-  });
+    drawPalette('.palette', palette);
 
 
-  // // add a class to li of currFabric
-  // // this isn't working,
-  // $('.palette .fabric-preview').each(function(item) {
-  //   // it's returning undefined
-  //   console.log(item);
-  //   var listItem = $(item).html();
-  //   console.log(listItem.fabric);
-  //   if (listItem.data.id === currFabric.id) {
-  //     listItem.addClass('current-fabric');
-  //     return;
-  //   } else {
-  //     listItem.removeClass('current-fabric')
-  //   }
-  // });
+    //////////////////////////////////////////////////////////////////////////////
+    //SETTING CURRENT FABRIC VARIABLE
 
-  // add a class to li of currFabric
-  // this isn't working,
+    var currFabric = palette[0];
 
-  // function showCurrFabric() {
-  //   $('.palette').children().forEach(function(item) {
-  //     // it's returning undefined
-  //     console.log(item);
-  //     console.log(listItem.fabric);
-  //     if (listItem.data.id === currFabric.id) {
-  //       listItem.addClass('current-fabric');
-  //       return;
-  //     } else {
-  //       listItem.removeClass('current-fabric')
-  //     };
-  //   });
-  // }
+    // showCurrFabric();
+
+    $('.palette').on('click', '.fabric-preview', function () {
+      currFabric = $(this).data('fabric');
+      showCurrFabric();
+    });
 
 
-  //////////////////////////////////////////////////////////////////////////////
-  //EDIT PATCH
+    // // add a class to li of currFabric
+    // // this isn't working,
+    // $('.palette .fabric-preview').each(function(item) {
+    //   // it's returning undefined
+    //   console.log(item);
+    //   var listItem = $(item).html();
+    //   console.log(listItem.fabric);
+    //   if (listItem.data.id === currFabric.id) {
+    //     listItem.addClass('current-fabric');
+    //     return;
+    //   } else {
+    //     listItem.removeClass('current-fabric')
+    //   }
+    // });
 
-  editPatch(svg);
+    // add a class to li of currFabric
+    // this isn't working,
 
-  function editPatch(block) {
-    block.selectAll('path').forEach(function (path) {
-      // required arbitrary boolean
-      var prevent = false;
-      // defines the functions called in timeout
-      var timer = 0;
+    // function showCurrFabric() {
+    //   $('.palette').children().forEach(function(item) {
+    //     // it's returning undefined
+    //     console.log(item);
+    //     console.log(listItem.fabric);
+    //     if (listItem.data.id === currFabric.id) {
+    //       listItem.addClass('current-fabric');
+    //       return;
+    //     } else {
+    //       listItem.removeClass('current-fabric')
+    //     };
+    //   });
+    // }
 
-      path
-      .click(function () {
-        timer = setTimeout(function () {
-          if (!prevent) {
-            applyFabricPatch(path);
-          }
-          prevent = false;
-        }, 200);
-      })
-      .dblclick(function () {
-        clearTimeout(timer);
-        prevent = true;
+
+    //////////////////////////////////////////////////////////////////////////////
+    //EDIT PATCH
+
+    editPatch(svg);
+
+    function editPatch(block) {
+      block.selectAll('path').forEach(function (path) {
+        // required arbitrary boolean
+        var prevent = false;
+        // defines the functions called in timeout
+        var timer = 0;
+
+        path
+        .click(function () {
+          timer = setTimeout(function () {
+            if (!prevent) {
+              applyFabricPatch(path);
+            }
+            prevent = false;
+          }, 200);
+        })
+        .dblclick(function () {
+          clearTimeout(timer);
+          prevent = true;
+          clearFabricPatch(path);
+        });
+      });
+    }
+
+
+    //////////////////////////////////////////////////////////////////////////////
+    //APPLY FABRIC PATCH
+
+
+    function applyFabricPatch(path) {
+      //empty palette, nothing happens!
+      if (!currFabric) return;
+      //use id for snappy shtuffz
+      var patternId = 'img_' + currFabric.id;
+      //pattern is used here because of svg pattern tag
+      var pattern = svg.select('#' + patternId);
+
+      if (!pattern) {
+        pattern = svg.image(currFabric.url, 0, 0, currFabric.size.width, currFabric.size.height)
+        .toPattern(0, 0, currFabric.size.width, currFabric.size.height)
+        .attr({ id: patternId });
+      }
+
+      path.attr('fill', pattern);
+    }
+
+    function clearFabricPatch(path) {
+      path.attr('fill', '#ffffff');
+    }
+
+
+    //////////////////////////////////////////////////////////////////////////////
+    //deprecated atm
+
+    function getGroup(path) {
+      //empty palette, nothing happens!
+      if (!currFabric) return;
+      //use id for snappy shtuffz
+      var group = path.parent();
+      console.log(group);
+
+      group.selectAll('path').forEach(applyFabricPatch);
+    }
+
+    /////////////////////////////////////////////////////////////////////////////
+    //CURRENT SVG set as JQ element
+
+    var currSvg;
+    function getCurrSvg() {
+      //take html from div svg-editor
+      currSvg = $('.svg-editor')
+      return currSvg;
+    }
+    //////////////////////////////////////////////////////////////////////////////
+    /*
+    TAKES PREVIEW INTO THE MODAL
+    TO DO: REFACTOR
+    */
+    function previewQuilt() {
+      getCurrSvg();
+      /*
+      FIX FOR a hellish bug with svgs & jQuery .html()
+      We take the svg-editor element and move it from the main content area
+      to the modal when the modal opens
+      var svgElement = $('.svg-editor');
+      */
+
+      $('.fabric-modal .current-block').append(currSvg);
+    }
+
+    //////////////////////////////////////////////////////////////////////////////
+    // SAVE QUILT
+
+    function saveQuilt() {
+      getCurrSvg();
+      // get the html of the currSvg object
+      currSvg = $(currSvg).html();
+      //set as the value of the hidden field
+      $('.svg-input').val(currSvg);
+    }
+
+    $('form').submit(function() {
+      saveQuilt();
+      console.log(newSvg);
+    });
+
+    //////////////////////////////////////////////////////////////////////////////
+    // CLEAR PATCHES MODAL
+
+    $('.clear-patches-modal').on('click', function(e) {
+      e.stopPropagation();
+    });
+
+    $('.clear-patches-btn, .clear-patches-modal-close, .clear-patches-modal-confirm')
+    .on('click', function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      $('.clear-patches-modal').toggleClass('show');
+    });
+
+    $('.clear-patches-modal-confirm').on('click', function() {
+      var currPaths = svg.selectAll('path');
+      currPaths.forEach(function(path) {
         clearFabricPatch(path);
       });
     });
-  }
 
-
-  //////////////////////////////////////////////////////////////////////////////
-  //APPLY FABRIC PATCH
-
-
-  function applyFabricPatch(path) {
-    //empty palette, nothing happens!
-    if (!currFabric) return;
-    //use id for snappy shtuffz
-    var patternId = 'img_' + currFabric.id;
-    //pattern is used here because of svg pattern tag
-    var pattern = svg.select('#' + patternId);
-
-    if (!pattern) {
-      pattern = svg.image(currFabric.url, 0, 0, currFabric.size.width, currFabric.size.height)
-      .toPattern(0, 0, currFabric.size.width, currFabric.size.height)
-      .attr({ id: patternId });
-    }
-
-    path.attr('fill', pattern);
-  }
-
-  function clearFabricPatch(path) {
-    path.attr('fill', '#ffffff');
-  }
-
-
-  //////////////////////////////////////////////////////////////////////////////
-  //deprecated atm
-
-  function getGroup(path) {
-    //empty palette, nothing happens!
-    if (!currFabric) return;
-    //use id for snappy shtuffz
-    var group = path.parent();
-    console.log(group);
-
-    group.selectAll('path').forEach(applyFabricPatch);
-  }
-
-  /////////////////////////////////////////////////////////////////////////////
-  //CURRENT SVG set as JQ element
-
-  var currSvg;
-  function getCurrSvg() {
-    //take html from div svg-editor
-    currSvg = $('.svg-editor')
-    return currSvg;
-  }
-  //////////////////////////////////////////////////////////////////////////////
-  /*
-  TAKES PREVIEW INTO THE MODAL
-  TO DO: REFACTOR
-  */
-  function previewQuilt() {
-    getCurrSvg();
+    //////////////////////////////////////////////////////////////////////////////
     /*
-    FIX FOR a hellish bug with svgs & jQuery .html()
-    We take the svg-editor element and move it from the main content area
-    to the modal when the modal opens
-    var svgElement = $('.svg-editor');
+    CALL API HERE on modal-open
+    separate names for Spoonflower's API and fAkePI
     */
 
-    $('.fabric-modal .current-block').append(currSvg);
-  }
+    $('.open-fabric-modal-btn').on('click', function () {
+      Api.getPopularList().done(function(response) {
+        var results = response.results[0].results;
+        console.log(results);
+        // var designItem = JSON.parse(DESIGN_ITEM);
+        // var results = [DESIGN_ITEM];
 
-  //////////////////////////////////////////////////////////////////////////////
-  // SAVE QUILT
+        var resultElements = results.map(function(designItem) {
+          var img = $("<img>");
+          img.attr('data-id', designItem.id);
+          img.attr('src', designItem.thumbnail_url);
 
-  function saveQuilt() {
-    getCurrSvg();
-    // get the html of the currSvg object
-    currSvg = $(currSvg).html();
-    //set as the value of the hidden field
-    $('.svg-input').val(currSvg);
-  }
+          var li = $('<li>');
+          li.addClass('fabric-preview');
+          li.append(img);
 
-  $('form').submit(function() {
-    saveQuilt();
-    console.log(newSvg);
-  });
+          return li;
+        });
 
-  //////////////////////////////////////////////////////////////////////////////
-  // CLEAR PATCHES MODAL
-
-  $('.clear-patches-modal').on('click', function(e) {
-    e.stopPropagation();
-  });
-
-  $('.clear-patches-btn, .clear-patches-modal-close, .clear-patches-modal-confirm')
-    .on('click', function(e) {
-    e.preventDefault();
-    e.stopPropagation();
-    $('.clear-patches-modal').toggleClass('show');
-  });
-
-  $('.clear-patches-modal-confirm').on('click', function() {
-    var currPaths = svg.selectAll('path');
-    currPaths.forEach(function(path) {
-      clearFabricPatch(path);
+        $('.fabric-modal-list').empty().append(resultElements);
+      })
+      $('.fabric-modal').toggleClass('show');
+      previewQuilt();
+      drawPalette('.current-palette', palette);
     });
+
+    $('.fabric-modal-box').on('click', function(e) {
+      e.stopPropagation();
+    });
+
+    $('.close-fabric-modal-btn, .fabric-modal').on('click', function () {
+      $('.fabric-modal').toggleClass('show');
+      // Once the modal closes, move the svg-editor element back into its original
+      // area (.svg-editor-parent), in the main content.
+      currSvg = $('.fabric-modal .current-block').children();
+      $('.svg-editor-parent').append(currSvg);
+    });
+
+    //////////////////////////////////////////////////////////////////////////////
+    // COLOR PICKER
+
+    // $('.color-search-bar').colorpicker();
+    // });
+
+
+
+
+    //////////////////////////////////////////////////////////////////////////////
+    // DISABLE PROGRESS BUTTONS
+
+    // $('.selected ~ .progress-element a').on('click', function(e) {
+    //   e.preventDefault();
+    // })
+
+    // function disableProgressButtons() {
+    //   var forwardButtons = $('.selected ~ .progress-element a');
+    //   forwardButtons.attr("disabled","disabled");
+    // }
+    //
+    // disableProgressButtons();
+    //
+
+    $(document).ready(function() {
+      $('.selected.progress-element a, .selected ~ .progress-element a').attr('disable', 'disabled');
+    });
+
   });
-
-
-
-
-  //////////////////////////////////////////////////////////////////////////////
-  // DISABLE PROGRESS BUTTONS
-
-  // $('.selected ~ .progress-element a').on('click', function(e) {
-  //   e.preventDefault();
-  // })
-
-  // function disableProgressButtons() {
-  //   var forwardButtons = $('.selected ~ .progress-element a');
-  //   forwardButtons.attr("disabled","disabled");
-  // }
-  //
-  // disableProgressButtons();
-  //
-
-  $(document).ready(function() {
-    $('.selected.progress-element a, .selected ~ .progress-element a').attr('disable', 'disabled');
-  });
-
-});
