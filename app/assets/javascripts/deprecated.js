@@ -4,18 +4,18 @@
 
 // // add a class to li of currFabric
 // // this isn't working,
-$('.palette .fabric-preview').each(function(item) {
-  // it's returning undefined
-  console.log(item);
-  var listItem = $(item).html();
-  console.log(listItem.fabric);
-  if (listItem.data.id === currFabric.id) {
-    listItem.addClass('current-fabric');
-    return;
-  } else {
-    listItem.removeClass('current-fabric')
-  }
-});
+// $('.palette .fabric-preview').forEach(function(item) {
+//   // it's returning undefined
+//   console.log(item);
+//   var listItem = $(item).html();
+//   console.log(listItem.fabric);
+//   if (listItem.data.id === currFabric.id) {
+//     listItem.addClass('current-fabric');
+//     return;
+//   } else {
+//     listItem.removeClass('current-fabric')
+//   }
+// });
 
 // add a class to li of currFabric
 // this isn't working,
@@ -38,7 +38,7 @@ $('.palette .fabric-preview').each(function(item) {
 //////////////////////////////////////////////////////////////////////////////
 //DEPRECATED
 
-/*
+
 function addFabricMessage() {
   if (palette === undefined || palette.length === 0) {
   alt example from appointments app
@@ -50,7 +50,7 @@ function addFabricMessage() {
   }
 }
 addFabricMessage();
-*/
+
 
 //////////////////////////////////////////////////////////////////////////////
 //DEPRECATED
@@ -117,4 +117,37 @@ $('.selected ~ .progress-element a').on('click', function(e) {
 // }
 //
 // editSet();
+
+// // add a class to li of currFabric
+// // this isn't working,
+// $('.palette .fabric-preview').each(function(item) {
+//   // it's returning undefined
+//   console.log(item);
+//   var listItem = $(item).html();
+//   console.log(listItem.fabric);
+//   if (listItem.data.id === currFabric.id) {
+//     listItem.addClass('current-fabric');
+//     return;
+//   } else {
+//     listItem.removeClass('current-fabric')
+//   }
+// });
+
+// add a class to li of currFabric
+// this isn't working,
+
+// function showCurrFabric() {
+//   $('.palette').children().forEach(function(item) {
+//     // it's returning undefined
+//     console.log(item);
+//     console.log(listItem.fabric);
+//     if (listItem.data.id === currFabric.id) {
+//       listItem.addClass('current-fabric');
+//       return;
+//     } else {
+//       listItem.removeClass('current-fabric')
+//     };
+//   });
+// }
+
 //
