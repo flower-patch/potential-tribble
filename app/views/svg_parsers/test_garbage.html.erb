@@ -1,5 +1,6 @@
 <!-- CHRISTEN'S TEST AREA FOR PLAYING WITH SVG PARSING AND SVG TO PNG CONVERSION -->
 <!-- DELETE THIS VIEW, CONTROLLER METHOD, AND ROUTE BEFORE SITE GOES LIVE -->
+<img width="150" height="150" src="data:image/png;base64,<%= @svg_parser_object.get_image_from_web( "http://www.housefabric.com/assets/ProductDetail/44250.jpg" ) %>">
 
 <p>Starting SVG:</p>
 <br><br>
@@ -12,17 +13,17 @@
 
 <br><br>
 <h2>Get patterns?</h2>
-<%= @svg_parser_object.get_images %>
+<%= @svg_parser_object.remove_path_style %>
 <br><br>
 Class:<br>
-<%= @svg_parser_object.get_images.class %>
+<%= @svg_parser_object.remove_path_style.class %>
 <br><br>
 Length:<br>
-<%= @svg_parser_object.get_images.length %>
+<%= @svg_parser_object.remove_path_style.length %>
 <br><br>
 
 <p>Pretty parser object?</p>
-<% @svg_parser_object.get_images.each do |x| %>
+<% @svg_parser_object.remove_path_style.each do |x| %>
 X is a <%= x.class %><br><br>
 <%= x %><br><br>
 <%= x["xlink:href"] %><br><br>

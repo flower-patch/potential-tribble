@@ -1,3 +1,5 @@
+require 'net/http'
+
 class SvgParser
   attr_reader :svg, :paths
 
@@ -16,15 +18,40 @@ class SvgParser
     @paths.map {|p| p["d"].split}
   end
 
-  def get_images
+  def replace_image_fill( replacement_uri )
     images = @svg.css("image")
-    # images["xlink:href"] = "DATA URI GOES HERE"
     images.each do |x|
-      x["xlink:href"] = "DATA URI GOES HERE"
+      x["xlink:href"] = replacement_uri
     end
-    
+
     return images
   end
+
+  # TODO this doesn't seem to actually remove the path in my render of the svg???
+  def remove_path_style
+    path = @svg.css("path")
+    path.each do |x|
+      x.delete("style")
+    end
+    return path
+  end
+
+  def get_image_from_web( location )
+    # # require 'open-uri'
+    # open('image.png', 'wb') do |file|
+    # file << open('location').read
+    # end
+
+    png = Net::HTTP.get(URI(location))
+
+    # png = ""
+    # File.open(location) do |f|
+    #   png += f.read
+    # end
+
+    return Base64.encode64(png)
+  end
+
 
   def get_path_styles
   end
