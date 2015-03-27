@@ -1,6 +1,11 @@
 <!-- CHRISTEN'S TEST AREA FOR PLAYING WITH SVG PARSING AND SVG TO PNG CONVERSION -->
 <!-- DELETE THIS VIEW, CONTROLLER METHOD, AND ROUTE BEFORE SITE GOES LIVE -->
-<img width="150" height="150" src="data:image/png;base64,<%= @svg_parser_object.get_image_from_web( "http://www.housefabric.com/assets/ProductDetail/44250.jpg" ) %>">
+<h2>Pull an image from online and convert to Base64:</h2>
+<h4>Location:</h4>
+<% location = @svg_parser_object.spoonflower_image_location_from_id( "3179830" ) %>
+<%= location %><br><br>
+
+<img src="data:image/png;base64,<%= @svg_parser_object.get_image_from_web( location ) %>">
 
 <p>Starting SVG:</p>
 <br><br>

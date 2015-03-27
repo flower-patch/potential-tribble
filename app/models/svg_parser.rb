@@ -36,26 +36,29 @@ class SvgParser
     return path
   end
 
+  # provide Base64 URI for an image online, where location is a string, ex: "http://place.com/someimage.png"
   def get_image_from_web( location )
-    # # require 'open-uri'
-    # open('image.png', 'wb') do |file|
-    # file << open('location').read
-    # end
-
     png = Net::HTTP.get(URI(location))
-
-    # png = ""
-    # File.open(location) do |f|
-    #   png += f.read
-    # end
-
     return Base64.encode64(png)
   end
 
+  # TODO: if you ever make blocks in a size other than 9", this method will be a problem
+  # TODO: if anything changes with the Spoonflower API, this location URL might not work
+  def spoonflower_image_location_from_id( design_id )
+    # blargh. magic numbers:
+    print_width = "9" #inches
+    print_height = "9" #inches
+    preview_pixels = "150" #assuming 150 DPI and 9 inch blocks
 
-  def get_path_styles
+    location = "http://api.v1.spoonflower.com/design/previewImage/"
+    location += design_id
+    location += "?print_width=" + print_width
+    location += "&print_height=" + print_height
+    location += "&preview_width_pixels=" + preview_pixels
+    location += "&preview_height_pixels=" + preview_pixels
+
+    return location
   end
-
 
   def all_paths_coord_pairs
     array = all_paths_coords_split
