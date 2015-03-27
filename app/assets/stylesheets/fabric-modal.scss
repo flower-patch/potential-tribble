@@ -62,7 +62,8 @@
   }
 }
 
-.current-palette, .fabric-modal-results {
+.current-palette,
+.fabric-modal-results {
   @include span-columns(9);
   display: inline-block;
   height: 210px;
