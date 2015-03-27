@@ -16,6 +16,19 @@ class SvgParser
     @paths.map {|p| p["d"].split}
   end
 
+  def get_images
+    images = @svg.css("image")
+    # images["xlink:href"] = "DATA URI GOES HERE"
+    images.each do |x|
+      x["xlink:href"] = "DATA URI GOES HERE"
+    end
+    
+    return images
+  end
+
+  def get_path_styles
+  end
+
 
   def all_paths_coord_pairs
     array = all_paths_coords_split

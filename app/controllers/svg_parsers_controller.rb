@@ -9,5 +9,14 @@ class SvgParsersController < ApplicationController
 
   end
 
+  def test_garbage
+    @starting_svg = Quilt.last.svg
+
+    @nokogiri_svg = SvgParser.new( @starting_svg ).svg
+    @svg_parser_object = SvgParser.new( @starting_svg )
+
+    # TODO: edit the svg
+    @edited_svg = @svg_parser_object.svg.to_xml
+  end
 
 end
