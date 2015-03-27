@@ -89,7 +89,7 @@ function setupSpoonflowerApi() {
 
 
       getDesignByColor: function(color) {
-        var color = '000000';
+        var color = '4e81bd';
         var url = baseUrl + 'search?color1=' + color;
         return fetchUrl(url);
       },
@@ -103,7 +103,6 @@ function setupSpoonflowerApi() {
       */
 
       getDesignByQuery: function(query) {
-        var query = 'star';
         var url = baseUrl + 'search?q=' + query;
         return fetchUrl(url);
       }
