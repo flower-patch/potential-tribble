@@ -11,28 +11,24 @@
   color: $alt-accent-text;
   text-align: center;
   @include pad();
+  margin-bottom: 1em;
 }
 
 .preview-label {
   font-family: $sans-serif;
+  text-align: left;
+  margin: 0 0 1em 0;
 }
 
 .preview-info {
-  margin-top: 4em;
-  margin-left: 1em;
-  padding-left: 2.358%;
-  padding-right: 2.358%;
-  padding-bottom: 2.358%;
-  // border: 1px solid $light-pure-gray;
-  // box-shadow: $default-shadow;
-  border-radius: 3px;
-  @include span-columns(6);
+  margin-left: 2.358%;
+  @include pad();
+  @include span-columns(4);
 }
 
 .quilt-name-container {
   font-size: 1.25em;
   color: $alt-accent-text;
-  @include pad();
 }
 
 
@@ -43,19 +39,20 @@
 .quilt-name {
   margin-top: 1em;
   margin-left: .5em;
-  padding:.25em 0;
+  @include pad();
   font-size: 1em;
   @include appearance(none);
   @include box-sizing(border-box);
   @include transition(border-color);
+  width: 211px;
   background-color: $lightest-gray;
   box-shadow: inset $default-shadow;
   border: 1px solid $light-pure-gray;
   font-size: 1em;
-  font-weight: $thin;
-  // font-style: italic;
+  font-weight: $light;
   font-family: $sans-serif;
   margin: 2.358%;
+  display: inline-block;
   position: relative;
 
   &:focus {
@@ -68,14 +65,19 @@
   line-height: 1.2em;
   margin: 0.2em;
   border-top: 2px solid #c4ebd1;
-  outline: 1px solid #6ab784;
   border: 1.5px dashed #c4ebd1;
+  outline: 2px solid $accent-text;
   background-color: #6ab784;
   color: #ffffff;
   font-family: "Kreon", serif;
   font-weight: 100;
   font-size: 1.25em;
   @include pad();
+  box-shadow: $default-shadow;
+
+  &:hover {
+    box-shadow: $hover-shadow;
+  }
 
 }
 
@@ -86,17 +88,46 @@
   padding-bottom: 2.358%;
 }
 
+.share-quilt-label,
+.quilt-name-label {
+  display: block;
+  margin-bottom: 0.5em;
+}
+
+
 
 .awesome-submit-container {
-  width: 300px;
   @include pad();
-  @include shift(2.5);
+  margin: 2em auto;
+  text-align: center;
 }
+
 
 
 .preview-svg {
  margin-top: 2.358%;
  margin-bottom: 2.358%;
- pointer-events: none;
+ @include span-columns(8);
 
+}
+
+.choose-preview-thumbnail {
+  @include span-columns(2 of 8);
+}
+
+.preview-thumbnail {
+  margin: 1em;
+  cursor: pointer;
+  width: 6em;
+  height: 6em;
+  box-shadow: $default-shadow;
+  
+  &:hover {
+    box-shadow: $hover-shadow;
+  }
+}
+
+.current-preview {
+  @include span-columns(6 of 8);
+  text-align: right;
 }

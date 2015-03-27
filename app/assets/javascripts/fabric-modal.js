@@ -46,6 +46,35 @@ $(function() {
     $('.fabric-modal .current-block').append(currSvg);
   }
 
+  function previewQuilt() {
+    getCurrSvg();
+    /*
+    FIX FOR a hellish bug with svgs & jQuery .html()
+    We take the svg-editor element and move it from the main content area
+    to the modal when the modal opens
+    var svgElement = $('.svg-editor');
+    */
+
+    $('.fabric-modal .current-block').append(currSvg);
+  }
+
+  //////////////////////////////////////////////////////////////////////////////
+  // SAVE QUILT
+
+  function saveQuilt() {
+    getCurrSvg();
+    // get the html of the currSvg object
+    currSvg = $(currSvg).html();
+    //set as the value of the hidden field
+    $('.svg-input').val(currSvg);
+  }
+
+  $('form').submit(function() {
+    saveQuilt();
+    console.log(newSvg);
+  });
+
+
   //////////////////////////////////////////////////////////////////////////////
   //CREATES FABRIC SWATCH PALETTE
 
@@ -66,9 +95,9 @@ $(function() {
   */
 
   $('.open-fabric-modal-btn').on('click', function() {
-    // Api.getDesignByQuery().done(function(response) {
+
     Api.getPopularList().done(function(response) {
-    //Api.getDesignbyColor().done(function(response) {
+
       var results = response.results[0].results;
       // var designItem = JSON.parse(DESIGN_ITEM);
       // var results = [DESIGN_ITEM];
@@ -147,14 +176,5 @@ $(function() {
     previewQuilt();
     drawPalette('.current-palette', palette);
   });
+
 });
-
-
-
-
-
-//////////////////////////////////////////////////////////////////////////////
-// COLOR PICKER
-
-// $('.color-search-bar').colorpicker();
-// });

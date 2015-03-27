@@ -33,6 +33,11 @@
   transform: translate(-50%, -50%);
 }
 
+.fabric-modal-content {
+  overflow: auto;
+  height: 100%;
+}
+
 .close-fabric-modal-btn {
   position: absolute;
   top: -1.3em;
@@ -79,9 +84,95 @@
 
 .fabric-modal-options {
   border-right: $default-border;
-  height: 50%;
+  height: 70%;
   pointer-events: auto;
+  overflow: auto;
+  position: relative;
 }
+
+.fabric-options-logo {
+  text-align: center;
+  width: 100%;
+  margin-bottom: 2em;
+}
+.search-bar input {
+  margin: 1em 0 3em 0 !important;
+}
+
+.color-search-bar {
+  position: relative;
+}
+
+
+#picker {
+	margin:0;
+	padding:0;
+	border:0;
+	width: 0;
+	height: 27px;
+	border-right:118px solid #A2ADD7;
+	line-height:27px;
+  cursor: pointer;
+  box-shadow: $default-shadow;
+
+  + button {
+    margin-left: 5px;
+    position: relative;
+  }
+
+  &:hover {
+    box-shadow: $hover-shadow;
+  }
+
+}
+
+
+/*------------------------------------*\
+    #COLOR-PICKER-MODAL
+\*------------------------------------*/
+
+.colpick {
+  height: 172px !important;
+  width: 170px !important;
+  position: absolute !important;
+  bottom: -20px !important;
+  z-index: 2000;
+  border-radius: 0 !important;
+  border: none;
+  box-shadow: $default-shadow !important;
+  background: $light-pure-gray !important;
+
+  &:hover {
+    box-shadow: $hover-shadow !important;
+  }
+}
+
+.colpick_color,
+.colpick_color_overlay1,
+.colpick_color_overlay2 {
+  outline: none !important;
+  width: 119px !important;
+}
+
+.colpick_hue {
+  left: 137px !important;
+  border: none !important;
+}
+
+.colpick_new_color {
+  width: 91% !important;
+}
+
+.colpick_field,
+.colpick_new_color,
+.colpick_hex_field {
+  display: none !important;
+}
+
+
+/*------------------------------------*\
+    #RESULTS-SECTION
+\*------------------------------------*/
 
 .fabric-modal-results {
   height: 300px;

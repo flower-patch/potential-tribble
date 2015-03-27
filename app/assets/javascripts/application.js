@@ -14,3 +14,5 @@
 //= require jquery_ujs
 //= require_tree .
 //= require lodash
+//= require snap.svg-min
+//= require colpick

@@ -1,8 +1,9 @@
 // //Api is an instance of the `self` object below
-// var Api = setupSpoonflowerApi();
+// var Api = setupFakeApi();
 //
 //  //setupSpoonflowerApi is just setting up the `self` object below and returning it.\
-// function setupSpoonflowerApi() {
+//
+// function setupFakeApi() {
 //   var baseUrl = 'https://fakepi.herokuapp.com/api/v1/';
 //
 //   function fetchUrl(url) {

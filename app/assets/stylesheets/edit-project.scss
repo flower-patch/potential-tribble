@@ -64,7 +64,6 @@ svg path {
 
 .sets {
   width: 400px;
-  height: 8em;
   text-align: center;
   overflow-x: auto;
   white-space: nowrap;
@@ -120,7 +119,7 @@ svg path {
 .palette {
   text-align: left;
   height: $block-height;
-  overflow: auto;
+  // overflow: auto;
 }
 
 .current-fabric {
@@ -131,7 +130,6 @@ svg path {
   display: inline-block;
   padding-right: 10px;
   width: 40%;
-  overflow: hidden;
   position: relative;
   margin: 5%;
   cursor: pointer;
@@ -140,16 +138,23 @@ svg path {
 
   &:after {
     content: "";
-    padding-top: 100%;
+    padding-top: 112%;
     visibility: hidden;
     display: block;
-    border-top: 14px;
+    // border-top: 14px;
   }
 
-  img {
+  .fabric-img-container {
     position: absolute;
+    width: 100%;
+    height: 100%;
     min-width: 100%;
     min-height: 100%;
+    overflow: hidden;
+
+    // img {
+    //   width: 100%;
+    // }
   }
 }
 
@@ -160,14 +165,15 @@ svg path {
 
 .save-project-btn {
   position: absolute;
-  bottom: 25px;
+  bottom: 15px;
   right: 55px;
   width: 150px;
   padding: 0.5em;
 }
 
 .open-fabric-modal-btn,
-.clear-patches-btn {
+.clear-patches-btn,
+.remove-fabric-btn {
   position: absolute;
   bottom: -1.5em;
   right: -1.1em;
@@ -176,6 +182,16 @@ svg path {
 .clear-patches-btn {
   right: -1.5em;
   bottom: -1.4em;
+}
+
+.remove-fabric-btn {
+  font-size: 1.75em;
+  right: -1.35em;
+
+  i:after {
+    width: 15px;
+    height: 15px;
+  }
 }
 
 .clear-patches-modal {

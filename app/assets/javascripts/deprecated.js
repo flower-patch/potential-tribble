@@ -35,6 +35,7 @@
 // }
 
 
+
 //////////////////////////////////////////////////////////////////////////////
 //DEPRECATED
 
@@ -93,6 +94,33 @@ function disableProgressButtons() {
 
 disableProgressButtons();
 */
+
+//////////////////////////////////////////////////////////////////////////////
+//DEPRECATED
+
+
+  // function editSet() {
+  //   var groupId = $(this).data('groupId');
+  //   var setPaths = svg.selectAll('#' + groupId + ' path');
+  //   $('.set')
+  //     // reduce opacity of all path in the set on thumbnail hover
+  //     // .hover(function() {
+  //     //   setPaths.forEach(applyFabricPatch);
+  //     // })
+  //     // apply pattern to all paths in set on click
+  //     .click(function() {
+  //       setPaths.forEach(applyFabricPatch);
+  //     })
+  //     // remove on dblclick
+  //     .dblclick(function() {
+  //       setPaths.forEach(clearFabricPatch);
+  //     });
+  // }
+  //
+  // editSet();
+  //
+
+
 
 
 //DEPRECATED TAKE 2

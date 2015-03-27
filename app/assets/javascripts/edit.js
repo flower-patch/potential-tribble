@@ -1,7 +1,8 @@
-$(function() {
+$(function () {
 
   var svg = Snap('.svg-editor svg');
   var $svg = $('.svg-editor svg');
+  var carSvg = Snap('a svg');
 
   //////////////////////////////////////////////////////////////////////////////
   //dummy palette
@@ -9,8 +10,8 @@ $(function() {
     id: 'patterns-by-danny-ivan.jpg',
     url: 'http://www.crafthubs.com/thumbs/patterns-by-danny-ivan.jpg',
     size: {
-      width: 50,
-      height: 50
+      width: 100,
+      height: 100
     }
   }, {
     id: 'fun-with-shapes-and-patterns.jpg',
@@ -29,95 +30,197 @@ $(function() {
   }];
 
   //////////////////////////////////////////////////////////////////////////////
-  //SET DEFAULTS for paths, makes the white if empty
-  function clearFill(path) {
-    path.selectAll('path').forEach(function(path) {
-      //this only works with fill:none; svg's
-      if (!path.attr('fill') || path.attr('fill') === 'none') {
-        path.attr('fill', 'white');
+
+   function clearFill(item) {
+     console.log('testing');
+     item.selectAll('path').forEach(function(path) {
+     //this only works with fill:none; svg's
+       if (!path.attr('fill') || path.attr('fill') === 'none') {
+         path.attr('fill', 'white');
       }
-    });
-  }
+     });
+   }
 
-  clearFill(svg);
+   clearFill(svg);
 
-  //////////////////////////////////////////////////////////////////////////////
-  //CREATE GROUPS AND MAKE THUMBNAILS
-  //generating a thumbnail for each group as a set
+   //clearFill(cardSvg);
 
-  function generateSets(svgSelector, setList) {
-    svg.selectAll('g g').forEach(function(group) {
-      // clone the svg for each group without event handlers
-      var groupId = group.attr('id');
-      var clone = svgSelector.clone().off();
-      var cloneSvg = Snap(clone[0]);
+   //////////////////////////////////////////////////////////////////////////////
 
-      cloneSvg.selectAll('#' + groupId + ' path').forEach(function(path) {
-        path.attr('fill', '#c0c0c0');
-      });
+   //generating a thumbnail for each group as a set
+   function generateSets(svgSelector, setList) {
+     svg.selectAll('g g').forEach(function(group) {
+       // clone the svg for each group without event handlers
+       var groupId = group.attr('id');
+       var clone = svgSelector.clone().off();
+       var cloneSvg = Snap(clone[0]);
 
-      // add each group's thumbnail as an li in .sets
-      $(setList).append(clone
-        .wrap('<li class="set"></li>')
-        .parent()
-        .data('groupId', groupId));
-    });
-  }
+       cloneSvg.selectAll('#' + groupId + ' path').forEach(function(path) {
+         path.attr('fill', '#c0c0c0');
+       });
 
-  generateSets($svg, '.sets');
+       // add each group's thumbnail as an li in .sets
+       $(setList).append(clone
+         .wrap('<li class="set"></li>')
+         .parent()
+         .data('groupId', groupId));
+     });
+   }
 
-  //////////////////////////////////////////////////////////////////////////////
-  // FUNCTIONS that allow styling by group
+   generateSets($svg, '.sets');
 
-  function setClass(group, cssClass) {
-    getAllPaths(group).forEach(function(path) {
-      path.attr('class', cssClass);
-    });
-  }
+   //////////////////////////////////////////////////////////////////////////////
 
-  function getAllPaths(group) {
-    var groupId = $(group).data('groupId');
-    return svg.selectAll('#' + groupId + ' path');
-  }
+   function setClass(group, cssClass) {
+     getAllPaths(group).forEach(function(path) {
+       path.attr('class', cssClass);
+     });
+   }
 
-  $('.set')
-    // reduce opacity of all path in the set on thumbnail hover
-    .hover(function() {
-      setClass($(this), 'set-hover');
-    }, function() {
-      setClass($(this), '');
-    })
-    // apply pattern to all paths in set on click
-    .click(function() {
-      getAllPaths(this).forEach(applyFabricPatch);
-    })
-    // remove on dblclick
-    .dblclick(function() {
-      getAllPaths(this).forEach(clearFabricPatch);
-    });
+   function getAllPaths(group) {
+     var groupId = $(group).data('groupId');
+     return svg.selectAll('#' + groupId + ' path');
+   }
 
-  //////////////////////////////////////////////////////////////////////////////
-  //DEPRECATED
+   $('.set')
+     // reduce opacity of all path in the set on thumbnail hover
+     .hover(function() {
+       setClass($(this), 'set-hover');
+     },function() {
+       setClass($(this), '');
+     })
+     // apply pattern to all paths in set on click
+     .click(function() {
+       getAllPaths(this).forEach(applyFabricPatch);
+     })
+     // remove on dblclick
+     .dblclick(function() {
+       getAllPaths(this).forEach(clearFabricPatch);
+     });
 
-  // function addFabricMessage() {
-  //   if (palette === undefined || palette.length === 0) {
-  //   alt example from appointments app
-  //    if (appts === undefined || appts.length === 0) {
-  //       $('.no-frames').html(noFrames);
-  //       $('.no-frames').fadeIn('slow');
-  //    };
-  //     $('.add-fabric-message').fadeIn('slow');
-  //   }
+     //////////////////////////////////////////////////////////////////////////////
+
+
+  // //////////////////////////////////////////////////////////////////////////////
+  // //SET DEFAULTS for paths, makes the white if empty
+  // function clearFill(item) {
+  //   item.selectAll('path').forEach(function(path) {
+  //   //this only works with fill:none; svg's
+  //     if (!path.attr('fill') || path.attr('fill') === 'none') {
+  //       path.attr('fill', 'white');
+  //     }
+  //   });
   // }
+  //
+  // clearFill(svg);
+  //
+  // clearFill(cardSvg);
+  //
+  // //////////////////////////////////////////////////////////////////////////////
+  // //CREATE GROUPS AND MAKE THUMBNAILS
+  // //generating a thumbnail for each group as a set
+  //
+  // function generateSets(svgSelector, setList) {
+  //   console.log('hi');
+  //   svg.selectAll('g g').forEach(function(group) {
+  //     // clone the svg for each group without event handlers
+  //     var groupId = group.attr('id');
+  //     var clone = svgSelector.clone().off();
+  //     var cloneSvg = Snap(clone[0]);
+  //
+  //     cloneSvg.selectAll('#' + groupId + ' path').forEach(function(path) {
+  //       path.attr('fill', '#c0c0c0');
+  //     });
+  //
+  //     // add each group's thumbnail as an li in .sets
+  //     $(setList).append(clone
+  //       .wrap('<li class="set"></li>')
+  //       .parent()
+  //       .data('groupId', groupId));
+  //   });
+  // }
+  //
+  // generateSets($svg, '.sets');
+  //
+  // //////////////////////////////////////////////////////////////////////////////
+  // // FUNCTIONS that allow styling by group
+  //
+  // function setClass(group, cssClass) {
+  //   getAllPaths(group).forEach(function(path) {
+  //     path.attr('class', cssClass);
+  //   });
+  // }
+  //
+  // function getAllPaths(group) {
+  //   var groupId = $(group).data('groupId');
+  //   return svg.selectAll('#' + groupId + ' path');
+  // }
+  //
+  //
+  // // too repetitive but I couldn't figure how to refactor (see below) to an
+  // // editSet() function with the $this object
+  //
+  // $('.set')
+  //   // reduce opacity of all path in the set on thumbnail hover
+  //   .hover(function() {
+  //     setClass($(this), 'set-hover');
+  //   },function() {
+  //     setClass($(this), '');
+  //   })
+  //   // apply pattern to all paths in set on click
+  //   .click(function() {
+  //     getAllPaths(this).forEach(applyFabricPatch);
+  //   })
+  //   // remove on dblclick
+  //   .dblclick(function() {
+  //     getAllPaths(this).forEach(clearFabricPatch);
+  //   });
 
-  // addFabricMessage();
+
+    //////////////////////////////////////////////////////////////////////////////
+    // function editSet() {
+    //   var groupId = $(this).data('groupId');
+    //   var setPaths = svg.selectAll('#' + groupId + ' path');
+    //   $('.set')
+    //     // reduce opacity of all path in the set on thumbnail hover
+    //     // .hover(function() {
+    //     //   setPaths.forEach(applyFabricPatch);
+    //     // })
+    //     // apply pattern to all paths in set on click
+    //     .click(function() {
+    //       setPaths.forEach(applyFabricPatch);
+    //     })
+    //     // remove on dblclick
+    //     .dblclick(function() {
+    //       setPaths.forEach(clearFabricPatch);
+    //     });
+    // }
+    //
+    // editSet();
+    //
+
+    //////////////////////////////////////////////////////////////////////////////
+    //DEPRECATED
+
+    // function addFabricMessage() {
+    //   if (palette === undefined || palette.length === 0) {
+    //   alt example from appointments app
+    //    if (appts === undefined || appts.length === 0) {
+    //       $('.no-frames').html(noFrames);
+    //       $('.no-frames').fadeIn('slow');
+    //    };
+    //     $('.add-fabric-message').fadeIn('slow');
+    //   }
+    // }
+
+    // addFabricMessage();
 
   //////////////////////////////////////////////////////////////////////////////
   //CREATES FABRIC SWATCH PALETTE
 
   function drawPalette(location, palette) {
-    $(location).html(palette.map(function(fabric) {
-      var li = $('<li class="fabric-preview"><img src="' + fabric.url + '"></li>');
+    $(location).html(palette.map(function (fabric) {
+      var li = $('<li class="fabric-preview card"><button alt="Remove from palette" class="remove-fabric-btn icon-button"><i class="fa fa-minus-circle inner-button-icon"></i></button><div class="fabric-img-container"><img src="' + fabric.url + '"></div></li>');
       //.data(key, value) key= string 'fabric', value is fabric object
       // .data makes the thing a part of the DOM
       li.data('fabric', fabric);
@@ -129,13 +232,12 @@ $(function() {
 
 
   //////////////////////////////////////////////////////////////////////////////
-  //SETTING CURRENT FABRIC VARIABLE
 
   var currFabric = palette[0];
 
   // showCurrFabric();
 
-  $('.palette').on('click', '.fabric-preview', function() {
+  $('.palette').on('click', '.fabric-preview', function () {
     currFabric = $(this).data('fabric');
     showCurrFabric();
   });
@@ -159,19 +261,19 @@ $(function() {
   // add a class to li of currFabric
   // this isn't working,
 
-  function showCurrFabric() {
-    $('.palette').children().forEach(function(item) {
-      // it's returning undefined
-      console.log(item);
-      console.log(listItem.fabric);
-      if (listItem.data.id === currFabric.id) {
-        listItem.addClass('current-fabric');
-        return;
-      } else {
-        listItem.removeClass('current-fabric')
-      };
-    });
-  }
+  // function showCurrFabric() {
+  //   $('.palette').children().forEach(function(item) {
+  //     // it's returning undefined
+  //     console.log(item);
+  //     console.log(listItem.fabric);
+  //     if (listItem.data.id === currFabric.id) {
+  //       listItem.addClass('current-fabric');
+  //       return;
+  //     } else {
+  //       listItem.removeClass('current-fabric')
+  //     };
+  //   });
+  // }
 
 
   //////////////////////////////////////////////////////////////////////////////
@@ -179,30 +281,30 @@ $(function() {
 
   editPatch(svg);
 
+
   function editPatch(block) {
-    block.selectAll('path').forEach(function(path) {
+    block.selectAll('path').forEach(function (path) {
       // required arbitrary boolean
       var prevent = false;
       // defines the functions called in timeout
       var timer = 0;
 
       path
-        .click(function() {
-          timer = setTimeout(function() {
-            if (!prevent) {
-              applyFabricPatch(path);
-            }
-            prevent = false;
-          }, 200);
-        })
-        .dblclick(function() {
-          clearTimeout(timer);
-          prevent = true;
-          clearFabricPatch(path);
-        });
+      .click(function () {
+        timer = setTimeout(function () {
+          if (!prevent) {
+            applyFabricPatch(path);
+          }
+          prevent = false;
+        }, 200);
+      })
+      .dblclick(function () {
+        clearTimeout(timer);
+        prevent = true;
+        clearFabricPatch(path);
+      });
     });
   }
-
 
   //////////////////////////////////////////////////////////////////////////////
   //APPLY FABRIC PATCH
@@ -218,10 +320,8 @@ $(function() {
 
     if (!pattern) {
       pattern = svg.image(currFabric.url, 0, 0, currFabric.size.width, currFabric.size.height)
-        .toPattern(0, 0, currFabric.size.width, currFabric.size.height)
-        .attr({
-          id: patternId
-        });
+      .toPattern(0, 0, currFabric.size.width, currFabric.size.height)
+      .attr({ id: patternId });
     }
 
     path.attr('fill', pattern);
@@ -249,18 +349,27 @@ $(function() {
   //CURRENT SVG set as JQ element
 
   var currSvg;
-
   function getCurrSvg() {
-      //take html from div svg-editor
-      currSvg = $('.svg-editor')
-      return currSvg;
-    }
-    //////////////////////////////////////////////////////////////////////////////
+    //take html from div svg-editor
+    currSvg = $('.svg-editor')
+    return currSvg;
+  }
+  //////////////////////////////////////////////////////////////////////////////
+  /*
+  TAKES PREVIEW INTO THE MODAL
+  TO DO: REFACTOR
+  */
+  function previewQuilt() {
+    getCurrSvg();
     /*
-    TAKES PREVIEW INTO THE MODAL
-    TO DO: REFACTOR
+    FIX FOR a hellish bug with svgs & jQuery .html()
+    We take the svg-editor element and move it from the main content area
+    to the modal when the modal opens
+    var svgElement = $('.svg-editor');
     */
 
+    $('.fabric-modal .current-block').append(currSvg);
+  }
 
   //////////////////////////////////////////////////////////////////////////////
   // SAVE QUILT
@@ -275,7 +384,7 @@ $(function() {
 
   $('form').submit(function() {
     saveQuilt();
-    // console.log(newSvg);
+    console.log(newSvg);
   });
 
   //////////////////////////////////////////////////////////////////////////////
@@ -287,16 +396,81 @@ $(function() {
 
   $('.clear-patches-btn, .clear-patches-modal-close, .clear-patches-modal-confirm')
     .on('click', function(e) {
-      e.preventDefault();
-      e.stopPropagation();
-      $('.clear-patches-modal').toggleClass('show');
-    });
+    e.preventDefault();
+    e.stopPropagation();
+    $('.clear-patches-modal').toggleClass('show');
+  });
 
   $('.clear-patches-modal-confirm').on('click', function() {
     var currPaths = svg.selectAll('path');
     currPaths.forEach(function(path) {
       clearFabricPatch(path);
     });
+  });
+
+
+  //////////////////////////////////////////////////////////////////////////////
+  /*
+  CALL API HERE on modal-open
+  separate names for Spoonflower's API and fAkePI
+  */
+
+
+
+  $('.open-fabric-modal-btn').on('click', function () {
+
+    $('.fabric-modal').toggleClass('show');
+    previewQuilt();
+    drawPalette('.current-palette', palette);
+  });
+
+  $('.fabric-modal-box').on('click', function(e) {
+    e.stopPropagation();
+  });
+
+  $('.close-fabric-modal-btn, .fabric-modal').on('click', function () {
+    $('.fabric-modal').toggleClass('show');
+    // Once the modal closes, move the svg-editor element back into its original
+    // area (.svg-editor-parent), in the main content.
+    currSvg = $('.fabric-modal .current-block').children();
+    $('.svg-editor-parent').append(currSvg);
+  });
+
+  //////////////////////////////////////////////////////////////////////////////
+  // COLOR PICKER
+
+  $('#picker').colpick({
+    // flat: true,
+  	layout:'hex',
+  	submit:0,
+  	colorScheme:'light',
+  	onChange:function(hsb,hex,rgb,el,bySetColor) {
+  		$(el).css('border-color','#'+hex);
+  		// Fill the text box just if the color was set using the picker, and not the colpickSetColor function.
+  		if(!bySetColor) $(el).val(hex);
+  	}
+  }).keyup(function(){
+  	$(this).colpickSetColor(this.value);
+  });
+
+
+  //////////////////////////////////////////////////////////////////////////////
+  // DISABLE PROGRESS BUTTONS
+
+  // $('.selected ~ .progress-element a').on('click', function(e) {
+  //   e.preventDefault();
+  // })
+
+  // function disableProgressButtons() {
+  //   var forwardButtons = $('.selected ~ .progress-element a');
+  //   forwardButtons.attr("disabled","disabled");
+  // }
+  //
+  // disableProgressButtons();
+  //
+
+  $(document).ready(function() {
+    $('.selected.progress-element a, .selected ~ .progress-element a').attr('disable', 'disabled');
   });
 
 });

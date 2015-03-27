@@ -1,7 +1,7 @@
 // Global elements such as divs, containers, inputs, buttons etc
 
 /*------------------------------------*\
-    #NEAT Variables
+#NEAT Variables
 \*------------------------------------*/
 
 $max-width: em(960) !global;
@@ -14,7 +14,7 @@ $block-height: em(400);
 
 
 /*------------------------------------*\
-    #Application Page Elements
+#Application Page Elements
 \*------------------------------------*/
 
 body {
@@ -67,18 +67,18 @@ p {
 main {
   margin-top: 2em;
   margin-bottom: 4em;
-  min-height: 300px;
+  min-height: 650px;
   padding: 0;
   @include outer-container;
 }
 
 .site-nav {
- background-image: $green-pattern;
- height: 4em;
- width: 100%;
- box-shadow: $default-shadow;
- position: relative;
- z-index: 1
+  background-image: $green-pattern;
+  height: 4em;
+  width: 100%;
+  box-shadow: $default-shadow;
+  position: relative;
+  z-index: 1
 }
 
 .overlay {
@@ -93,39 +93,41 @@ main {
 
 .flowerpatch-logo-section {
   position: relative;
-  z-index: 2
+  z-index: 2;
 }
-
 
 
 .flowerpatch-logo-section {
- margin: 0 1em;
- padding-top: 0.4em;
- font-size: 2em;
+  margin: 0 1em;
+  padding-top: 0.4em;
+  font-size: 2em;
+  font-family: $sans-serif;
 }
 
 .flowerpatch-logo {
- width: 2em;
- box-shadow: $default-shadow;
+  width: 2em;
+  box-shadow: $default-shadow;
 
- &:hover {
-   box-shadow: $hover-shadow;
- }
+  &:hover {
+    box-shadow: $hover-shadow;
+  }
 }
 
-.flowerpatch-logo-text {
- vertical-align: top;
- display: inline-block;
- margin-top: 0.5em;
- letter-spacing: -1px;
+.flowerpatch-logo-text,
+.license-tag {
+  vertical-align: top;
+  display: inline-block;
+  margin-top: 0.5em;
+  letter-spacing: -1px;
 }
+
 
 .flower-text {
- font-weight: $light;
+  font-weight: $light;
 }
 
 .patch-text {
- font-weight: $bold;
+  font-weight: $bold;
 }
 
 
@@ -137,25 +139,37 @@ footer {
   background-color: rgba(0, 0, 0, 0.15);
   height: 7.35em;
   box-shadow: $default-shadow;
-  position: absolute;
-  top: 100%;
-  left: 0;
-  right: 0;
+  // position: absolute;
+  // top: 100%;
+  // left: 0;
+  // right: 0;
+  // bottom: 0;
+}
+
+.legal-section {
+  display: inline-block;
+  color: $white;
+  font-size: 1em;
+  margin: 5em 0 0 2em;
+
+  .fa-github {
+    font-size: 1.25em;
+    padding-top: 0.3em;
+  }
 }
 
 .spoonflower-section {
   display: inline-block;
-  margin: 0 2em;
+  margin: 1em 2em 0 0;
   float: right;
   font-family: $serif;
 }
 
 .spoonflower-tag {
   color: $white;
-  padding: 0 1em 2.75em 0;
-  margin: auto 0;
+  margin: 2.2em 1em 0 0;
   display: inline-block;
-  vertical-align: middle;
+  vertical-align: top;
 }
 
 svg {
@@ -170,7 +184,7 @@ svg {
 
 
 /*------------------------------------*\
-    #INPUTS / BUTTONS
+#INPUTS / BUTTONS
 \*------------------------------------*/
 
 input {
@@ -190,19 +204,19 @@ label {
 .stitch-btn {
   @include pad();
   border-top: 2px solid $seafoam-light;
-  outline: 1px solid $accent-text;
+  outline: 2px solid $accent-text;
   border: 1.5px dashed $seafoam-light;
   background-color: $accent-text;
   color: $white;
   font-family: $serif;
   font-weight: $thin;
   font-size: 1.25em;
+  box-shadow: $default-shadow;
 
   &:hover {
     box-shadow: $hover-shadow;
   }
 }
-
 
 
 .icon-button {
@@ -211,10 +225,20 @@ label {
   font-size: 3em;
   color: $accent-darkest;
   cursor: pointer;
+  z-index: 2000;
+  opacity: 0;
+  visibility: hidden;
+  transition: $transition;
+
+}
+
+*:hover > .icon-button {
+  opacity: 1;
+  visibility: visible;
+  transition: $transition;
 }
 
 .inner-button-icon {
-
   text-shadow: $default-text-shadow;
 
   &:hover {
@@ -229,7 +253,7 @@ label {
     position: absolute;
     top: 0.1em;
     left: 5px;
-    border-radius: 15px;
+    border-radius: 50%;
     z-index: -1;
   }
 }
@@ -244,13 +268,13 @@ form.search-bar {
     background-color: $lightest-gray;
     box-shadow: inset $default-shadow;
     border: 1px solid $light-pure-gray;
-    display: block;
+    display: inline-block;
     font-size: 1em;
     font-weight: $thin;
     font-family: $sans-serif;
     margin: 0;
     position: relative;
-    width: 100%;
+    width: 120px;
 
     @include pad();
 
@@ -261,12 +285,27 @@ form.search-bar {
 
   button[type=submit] {
     @include button(flat, $accent-text);
-    @include position(absolute, 0 0 0 null);
+    background-clip: border-box;
+    display: inline-block;
     border-radius: 0;
+    border: none;
     outline: none;
-    padding: 2px 10px;
+    height: 27px;
+    width: 30px;
+    margin-bottom: -3px;
+    position: relative;
+    box-shadow: $default-shadow;
 
-    img {
+    &:hover {
+      box-shadow: $hover-shadow;
+    }
+
+    i {
+      color: $white;
+      position: absolute;
+      top: 45%;
+      left: 50%;
+      transform: translate(-50%, -50%);
       height: 12px;
       opacity: 0.7;
     }
@@ -276,8 +315,8 @@ form.search-bar {
 
 
 /*------------------------------------*\
-    #Switch Checkbox
-    variables found in variables.scss
+#Switch Checkbox
+variables found in variables.scss
 \*------------------------------------*/
 
 .label-switch {
@@ -287,27 +326,27 @@ form.search-bar {
   $base-accent-color: $lightest-gray;
   //////////////////////////////////////////////////////////////////////////////////
 
-    $switch-width: 52px;
-    $switch-padding: 2px;
-    $switch-height: 32px;
-    $switch-radius: $switch-height;
-    $switch-background: $base-accent-color;
-    $base-background-color: $base-accent-color;
-    $switch-shadow: $default-shadow inset;
-    $knob-size: $switch-height - ($switch-padding * 2);
-    $knob-radius: $switch-height - ($switch-padding * 2);
-    $knob-width: $knob-size;
-    $background: $base-background-color;
-    $border-background: darken($base-background-color, 9%);
-    $shadow: inset $default-shadow;
-    padding-top: 2.3%;
-    padding-left: 2.36%;
-    border-radius: $switch-radius;
-    cursor: pointer;
-    display: inline-block;
-    height: $switch-height;
-    position: relative;
-    width: $switch-width;
+  $switch-width: 52px;
+  $switch-padding: 2px;
+  $switch-height: 32px;
+  $switch-radius: $switch-height;
+  $switch-background: $base-accent-color;
+  $base-background-color: $base-accent-color;
+  $switch-shadow: $default-shadow inset;
+  $knob-size: $switch-height - ($switch-padding * 2);
+  $knob-radius: $switch-height - ($switch-padding * 2);
+  $knob-width: $knob-size;
+  $background: $base-background-color;
+  $border-background: darken($base-background-color, 9%);
+  $shadow: inset $default-shadow;
+  padding-top: 2.3%;
+  padding-left: 2.36%;
+  border-radius: $switch-radius;
+  cursor: pointer;
+  display: inline-block;
+  height: $switch-height;
+  position: relative;
+  width: $switch-width;
 
   border-radius: $switch-radius;
   cursor: pointer;
@@ -322,7 +361,7 @@ form.search-bar {
 
     + .checkbox {
       @include transition(all 0.3s ease);
-      background: $accent-lightest;
+      background: $mercury;
       border-radius: $switch-radius;
       border: none;
       cursor: pointer;
@@ -332,6 +371,11 @@ form.search-bar {
       position: relative;
       width: $switch-width;
       z-index: 0;
+      box-shadow: inset $default-shadow;
+
+      &:hover {
+        background: $light-pure-gray;
+      }
 
       &:before {
         @include position(absolute, 2px 0 0 2px);
@@ -349,17 +393,20 @@ form.search-bar {
         @include position(absolute, 2px 0 0 2px);
         @include transition(all 0.3s ease);
         @include size($knob-size);
+        box-shadow: inset $default-shadow;
         background: $switch-background;
         border-radius: $knob-radius;
         box-shadow: $switch-shadow;
         content: "";
         z-index: 2;
+
+
       }
     }
 
     &:checked {
       + .checkbox {
-        background: $base-accent-color;
+        background: $alt-accent-text;
 
         &:before {
           @include transform(scale(0));
@@ -374,7 +421,7 @@ form.search-bar {
 }
 
 /*------------------------------------*\
-    #CLICKS
+#CLICKS
 \*------------------------------------*/
 
 .no-click {
@@ -382,7 +429,7 @@ form.search-bar {
 }
 
 /*------------------------------------*\
-    #CONTAINERS
+#CONTAINERS
 \*------------------------------------*/
 
 
