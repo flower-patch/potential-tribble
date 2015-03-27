@@ -25,7 +25,7 @@
     <form>
       <%= f.label :quilt_name, class:"quilt-name-label"  %>
       <i class="preview-icon fa fa-pencil"></i>
-      <%= f.text_field :name, class: "quilt-name" %>*
+      <%= f.text_field :name, class: "quilt-name" %>
       <!-- make field required- required:"required" -->
     </form>
     </div>
@@ -34,7 +34,7 @@
     <%# TODO: Make seam_allowance editable by user %>
     <%= f.hidden_field :seam_allowance, :value => 0.25 %>
     <div class="share-quilt-container preview-label">
-      <%= f.label "Toggle to make your quilt public", class:"share-quilt-label" %>
+      <%= f.label "Make your quilt public?", class:"share-quilt-label" %>
       <i class="preview-icon fa fa-users"></i>
       <label class="label-switch">
         <%= f.check_box :public, class: "public-checkbox"%>
@@ -51,19 +51,23 @@
 
 
 
-  <div class="preview-svg no-click">
+  <div class="preview-svg">
+
+    <div class="current-preview no-click">
+      <%= @quilt.svg.html_safe %>
+    </div>
+
     <div class="choose-preview-thumbnail">
       <ul class="preview-thumbnails-">
-        <li class="preview-thumbnail">
+        <li class="preview-thumbnail paper-border">
+          <div style="background-color: gray;">
+        </div>
         </li>
-        <li class="preview-thumbnail">
+        <li class="preview-thumbnail paper-border">
         </li>
-        <li class="preview-thumbnail">
+        <li class="preview-thumbnail paper-border">
         </li>
       </ul>
-    </div>
-    <div class="current-preview">
-      <%= @quilt.svg.html_safe %>
     </div>
   </div>
   <% end %>

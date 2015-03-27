@@ -17,15 +17,13 @@
 .preview-label {
   font-family: $sans-serif;
   text-align: left;
-  margin: 0 0 1em 1em;
+  margin: 0 0 1em 0;
 }
 
 .preview-info {
   margin-left: 2.358%;
-  padding-left: 2.358%;
-  padding-right: 2.358%;
-  padding-bottom: 2.358%;
-  @include span-columns(5);
+  @include pad();
+  @include span-columns(4);
 }
 
 .quilt-name-container {
@@ -46,7 +44,7 @@
   @include appearance(none);
   @include box-sizing(border-box);
   @include transition(border-color);
-  width: 235px;
+  width: 211px;
   background-color: $lightest-gray;
   box-shadow: inset $default-shadow;
   border: 1px solid $light-pure-gray;
@@ -100,16 +98,36 @@
 
 .awesome-submit-container {
   @include pad();
-  width: 300px;
   margin: 2em auto;
   text-align: center;
 }
 
 
+
 .preview-svg {
  margin-top: 2.358%;
  margin-bottom: 2.358%;
- pointer-events: none;
- @include span-columns(7);
+ @include span-columns(8);
 
+}
+
+.choose-preview-thumbnail {
+  @include span-columns(2 of 8);
+}
+
+.preview-thumbnail {
+  margin: 1em;
+  cursor: pointer;
+  width: 6em;
+  height: 6em;
+  box-shadow: $default-shadow;
+  
+  &:hover {
+    box-shadow: $hover-shadow;
+  }
+}
+
+.current-preview {
+  @include span-columns(6 of 8);
+  text-align: right;
 }

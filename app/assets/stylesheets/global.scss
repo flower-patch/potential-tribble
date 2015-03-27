@@ -364,6 +364,10 @@ variables found in variables.scss
       z-index: 0;
       box-shadow: inset $default-shadow;
 
+      &:hover {
+        background: $light-pure-gray;
+      }
+
       &:before {
         @include position(absolute, 2px 0 0 2px);
         @include transform(scale(1));
@@ -386,6 +390,8 @@ variables found in variables.scss
         box-shadow: $switch-shadow;
         content: "";
         z-index: 2;
+
+
       }
     }
 
