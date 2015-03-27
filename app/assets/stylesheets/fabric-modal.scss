@@ -1,0 +1,179 @@
+/*------------------------------------*\
+    #FABRIC-MODAL
+\*------------------------------------*/
+
+
+.fabric-modal {
+  @include transition(all 0.5s ease);
+  visibility: hidden;
+  opacity: 0;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+}
+
+
+.show {
+  visibility: visible;
+  opacity: 1;
+}
+
+.fabric-modal-box {
+  background: $white;
+  box-shadow: 0px 2px 5px 2px gray;
+  height: 90%;
+  width: $max-width;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.fabric-modal-content {
+  overflow: auto;
+  height: 100%;
+}
+
+.close-fabric-modal-btn {
+  position: absolute;
+  top: -1.3em;
+  right: -1.1em;
+}
+
+.fabric-modal-preview {
+  // @include pad();
+}
+
+.current-block, .fabric-modal-options, .final-block {
+  @include pad();
+  @include span-columns(3);
+  // No mouse / touch events occur in current block
+  pointer-events: none;
+  // set `pointer-events: auto;` to override this
+  display: inline-block;
+
+  svg {
+    width: 175px ;
+    height: 100%;
+  }
+}
+
+.current-palette, .fabric-modal-results {
+  @include span-columns(9);
+  display: inline-block;
+  height: 210px;
+  padding-top: 11px;
+  overflow: auto;
+
+  .fabric-preview {
+    margin: 10px;
+    width: 80px;
+    display: inline-block;
+  }
+}
+
+.fabric-modal-divider {
+  @include span-columns(12);
+  border: 0;
+  border-bottom: $default-border;
+}
+
+.fabric-modal-options {
+  border-right: $default-border;
+  height: 70%;
+  pointer-events: auto;
+  overflow: auto;
+  position: relative;
+}
+
+.fabric-options-logo {
+  text-align: center;
+  width: 100%;
+  margin-bottom: 2em;
+}
+.search-bar input {
+  margin: 1em 0 3em 0 !important;
+}
+
+.color-search-bar {
+  position: relative;
+}
+
+
+#picker {
+	margin:0;
+	padding:0;
+	border:0;
+	width: 0;
+	height: 27px;
+	border-right:118px solid #A2ADD7;
+	line-height:27px;
+  cursor: pointer;
+  box-shadow: $default-shadow;
+
+  + button {
+    margin-left: 5px;
+    position: relative;
+  }
+
+  &:hover {
+    box-shadow: $hover-shadow;
+  }
+
+}
+
+
+/*------------------------------------*\
+    #COLOR-PICKER-MODAL
+\*------------------------------------*/
+
+.colpick {
+  height: 172px !important;
+  width: 170px !important;
+  position: absolute !important;
+  bottom: -20px !important;
+  z-index: 2000;
+  border-radius: 0 !important;
+  border: none;
+  box-shadow: $default-shadow !important;
+  background: $light-pure-gray !important;
+
+  &:hover {
+    box-shadow: $hover-shadow !important;
+  }
+}
+
+.colpick_color,
+.colpick_color_overlay1,
+.colpick_color_overlay2 {
+  outline: none !important;
+  width: 119px !important;
+}
+
+.colpick_hue {
+  left: 137px !important;
+  border: none !important;
+}
+
+.colpick_new_color {
+  width: 91% !important;
+}
+
+.colpick_field,
+.colpick_new_color,
+.colpick_hex_field {
+  display: none !important;
+}
+
+
+/*------------------------------------*\
+    #RESULTS-SECTION
+\*------------------------------------*/
+
+.fabric-modal-results {
+  height: 300px;
+}

@@ -4,19 +4,139 @@
 
 
 .progress-bar {
-  background-color: $white;
-  border-bottom: $default-border;
-  // @include outer-container;
   @include fill-parent();
-  @include row(table);
-  @include pad();
+  background-color: $white;
+  padding-top: 8px;
+  height: 120px;
+  max-height: 120px;
+  position: relative;
 }
 
-.progress-stage {
-  font-size: 1em;
-  font-weight: $normal;
+.progress-element {
   text-align: center;
-  @include span-columns(2);
-  @include fill-parent();
+  @include span-columns(2.4);
+  padding-top: 1%;
+  padding-bottom: 1%;
+  line-height: 1px;
+  position: relative;
+  z-index: 1000;
 
+}
+
+
+.selected.progress-element a,
+.selected ~ .progress-element,
+.selected ~ .progress-element a {
+  cursor: default;
+}
+
+.selected ~ .progress-element .circle {
+  background-color: $light-pure-gray;
+  box-shadow: none;
+}
+
+.selected ~ .progress-element .progress-stage {
+  color: $mid-gray;
+}
+
+
+.progress-stage {
+  @include span-columns(2.4);
+  @include fill-parent();
+  font-family: $sans-serif;
+  font-size: 1.15em;
+  font-weight: $light;
+  text-align: center;
+  padding-top: .75em;
+  line-height: 7px;
+  color: $accent-text;
+  line-height: 1.2em;
+}
+
+
+.circle {
+  width: 50px;
+  height: 50px;
+  border-radius: 3em;
+  display: inline-block;
+  background-color: $accent-text;
+  padding-top: 25px;
+  color: $white;
+  font-weight: $bold;
+  font-family: $serif;
+  font-size: 1.7em;
+  border: 1px solid $light-pure-gray;
+  box-shadow: $default-shadow;
+
+  &:hover {
+    box-shadow: $hover-shadow;
+  }
+}
+
+.selected-text.circle {
+  box-shadow: none;
+  border: 1px solid $accent-text;
+
+  &:hover {
+    box-shadow: none;
+  }
+}
+
+.selected {
+  font-size: 1.2em;
+  font-weight: $bold;
+  padding-top: 3px;
+
+  .progress-stage {
+    padding-top: 6px;
+  }
+}
+
+.selected-text.circle {
+  width: 60px;
+  height: 60px;
+  border-radius: 30px;
+  padding-top: 30px;
+}
+
+.selected-text {
+  padding-top: 30px;
+  font-size: 1.75em;
+  background-color: $white;
+  color: $accent-text;
+
+  .progress-number {
+    margin-top: 10px;
+    font-weight: $bold;
+  }
+}
+
+.progress-line {
+  border: 0;
+  border-bottom: $default-border;
+  border-color: $accent-text;
+  position: absolute;
+  left: 5.5em;
+  bottom: 4.3em;
+  z-index: 0;
+
+  @include media($responsive) {
+    display: none;
+  }
+}
+
+.two .progress-line {
+  width: 188px;
+}
+
+.three .progress-line {
+  width: 380px;
+}
+
+.four .progress-line {
+  width: 572px;
+}
+
+.five .progress-line {
+  width: 764px;
 }

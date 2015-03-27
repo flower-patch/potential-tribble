@@ -1,13 +1,23 @@
+
 <%= render :partial => 'shared/progress', :locals => {:page => 2} %>
 
 <div class="block-view view-container">
 
-  <h1>Choose a Block</h1>
-  <p>The block is a template that you fill with fabrics of your choice. When complete, the block will be applied to your project for printing.</p>
+  <div class="cards">
+    <% @blocks.each do |block| %>
+      <%= link_to quilts_edit_project_path(block_id: block.id, project_id: params[:project_id]) do %>
+        <div class="card paper-border block">
+          <div class="card-image">
+            <%= Block.getXML_for_filename( block.block_svg_url ).html_safe %>
+          </div>
+          <div class="card-header">
+            <p class="card-title"><%= block.name %></p>
+          </div>
 
+          <% end %>
+        </div>
 
-  <% @blocks.each do |block| %>
-  <div><%= link_to block.name, quilts_edit_project_path(block_id: block.id, project_id: params[:project_id]) %></div>
-  <% end %>
+    <% end %>
+  </div>
 
 </div>

@@ -2,43 +2,75 @@
 
 <div class="preview-view view-container">
 
-  <h1>Quilts#preview_project</h1>
-  <!-- page 4 wireframe -->
-  <p>Find me in app/views/quilts/preview_project.html.erb</p>
-
-    <%= form_for @quilt, :url => { :action => "next_steps"} do |f| %>
+  <%= form_for @quilt, :url => { :action => "next_steps", :project_id => @quilt.project_template_id} do |f| %>
 
   <% if @quilt.errors.any? %>
-  <div id="error_explanation">
-    <h2><%= pluralize(@quilt.errors.count, "error") %> prohibited this quilt from being saved:</h2>
+    <div id="error_explanation">
+      <h2><%= pluralize(@quilt.errors.count, "error") %> prohibited this quilt from being saved:</h2>
 
-    <ul>
-      <% @quilt.errors.full_messages.each do |message| %>
-      <li><%= message %></li>
-      <% end %>
-    </ul>
+      <ul>
+        <% @quilt.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+    <% end %>
+
+
+
+  <div class="preview-info">
+
+    <h2 class="my-new-quilt">Your Masterpiece</h2>
+    <div class= "quilt-name-container preview-label">
+    <form>
+      <%= f.label :quilt_name, class:"quilt-name-label"  %>
+      <i class="preview-icon fa fa-pencil"></i>
+      <%= f.text_field :name, class: "quilt-name" %>
+      <!-- make field required- required:"required" -->
+    </form>
+    </div>
+
+    <%= hidden_field_tag :quilt_id, params[:quilt_id] %>
+    <%# TODO: Make seam_allowance editable by user %>
+    <%= f.hidden_field :seam_allowance, :value => 0.25 %>
+    <div class="share-quilt-container preview-label">
+      <%= f.label "Make your quilt public?", class:"share-quilt-label" %>
+      <i class="preview-icon fa fa-users"></i>
+      <label class="label-switch">
+        <%= f.check_box :public, class: "public-checkbox"%>
+        <div class ="checkbox"></div>
+      </label>
+    </div>
+
+
+    <div class= "awesome-submit-container">
+      <%= f.submit 'Awesome! All Finished.', class:"awesome-submit stitch-button" %>
+    </div>
+
   </div>
-  <% end %>
+
+
+
   <div class="preview-svg">
-    <%= @quilt.svg.html_safe %>
-  </div>
-  <%= hidden_field_tag :quilt_id, params[:quilt_id] %>
-  <%# TODO: Make seam_allowance editable by user %>
-  <%= f.hidden_field :seam_allowance, :value => 0.25 %>
 
-  <div class= "quilt-name-container">
-    <%= f.label :name %>:
-    <%= f.text_field :name, class: "quilt-name" %>
-  </div>
+    <div class="current-preview no-click">
+      <%= @quilt.svg.html_safe %>
+    </div>
 
-  <div class= "awesome-submit-container">
-    <%= f.label "Check if you would like to make this quilt configuration public." %>
-    <%= f.check_box :public, class: "public-checkbox."%>
-  </div>
-
-  <div>
-    <%= f.submit 'This Quilt Is Awesome.  I Approve.', class:"awesome-submit" %>
+    <div class="choose-preview-thumbnail">
+      <ul class="preview-thumbnails-">
+        <li class="preview-thumbnail paper-border">
+          <div style="background-color: gray;">
+        </div>
+        </li>
+        <li class="preview-thumbnail paper-border">
+        </li>
+        <li class="preview-thumbnail paper-border">
+        </li>
+      </ul>
+    </div>
   </div>
   <% end %>
+
 
 </div>
