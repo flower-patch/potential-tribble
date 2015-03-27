@@ -11,26 +11,26 @@
   color: $alt-accent-text;
   text-align: center;
   @include pad();
+  margin-bottom: 1em;
 }
 
 .preview-label {
   font-family: $sans-serif;
+  text-align: left;
+  margin: 0 0 1em 1em;
 }
 
 .preview-info {
-  margin-top: 2em;
-  margin-left: 2.358%m;
+  margin-left: 2.358%;
   padding-left: 2.358%;
   padding-right: 2.358%;
   padding-bottom: 2.358%;
-  margin-top: 4em;
-  @include span-columns(6);
+  @include span-columns(5);
 }
 
 .quilt-name-container {
   font-size: 1.25em;
   color: $alt-accent-text;
-  @include pad();
 }
 
 
@@ -46,14 +46,15 @@
   @include appearance(none);
   @include box-sizing(border-box);
   @include transition(border-color);
+  width: 235px;
   background-color: $lightest-gray;
   box-shadow: inset $default-shadow;
   border: 1px solid $light-pure-gray;
   font-size: 1em;
   font-weight: $light;
-
   font-family: $sans-serif;
   margin: 2.358%;
+  display: inline-block;
   position: relative;
 
   &:focus {
@@ -66,14 +67,19 @@
   line-height: 1.2em;
   margin: 0.2em;
   border-top: 2px solid #c4ebd1;
-  outline: 1px solid #6ab784;
   border: 1.5px dashed #c4ebd1;
+  outline: 2px solid $accent-text;
   background-color: #6ab784;
   color: #ffffff;
   font-family: "Kreon", serif;
   font-weight: 100;
   font-size: 1.25em;
   @include pad();
+  box-shadow: $default-shadow;
+
+  &:hover {
+    box-shadow: $hover-shadow;
+  }
 
 }
 
@@ -84,11 +90,19 @@
   padding-bottom: 2.358%;
 }
 
+.share-quilt-label,
+.quilt-name-label {
+  display: block;
+  margin-bottom: 0.5em;
+}
+
+
 
 .awesome-submit-container {
-  width: 300px;
   @include pad();
-  @include shift(2.5);
+  width: 300px;
+  margin: 2em auto;
+  text-align: center;
 }
 
 
@@ -96,5 +110,6 @@
  margin-top: 2.358%;
  margin-bottom: 2.358%;
  pointer-events: none;
+ @include span-columns(7);
 
 }

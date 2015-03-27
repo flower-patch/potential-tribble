@@ -1,6 +1,5 @@
 .width-welcome {
   @include span-columns(12);
-
 }
 
 .welcome-img {
@@ -48,14 +47,19 @@
   .welcome-btn {
     padding: 7%;
     font-size: 1.5em;
-    min-width: 25%;
+    min-width: 200px;
     border-top: 2px solid $seafoam-light;
-    outline: 1px solid $accent-text;
+    outline: 2px solid $accent-text;
     border: 1.5px dashed $seafoam-light;
     background-color: $accent-text;
     color: $white;
     font-family: $serif;
     font-weight: $thin;
+    box-shadow: $default-shadow;
+
+    &:hover {
+      box-shadow: $hover-shadow;
+    }
   }
 
   .title {
@@ -64,7 +68,7 @@
   }
       .hero-copy {
         text-align: center;
-        font-size: 1.2em;
+        font-size: 1.1em;
 
         .hero-head {
           font-size: 1.6em;
@@ -148,7 +152,6 @@
   @include flex-grow(1);
   @include transition (all 0.2s ease-in-out);
   background-color: $card-background;
-  border-radius: $base-border-radius;
   border: $card-border;
   box-shadow: 0px 1px 1px 1px $mid-gray;
   cursor: pointer;
@@ -168,6 +171,8 @@
       width: 100%;
       height: 100%;
       border: 7px;
+      fill: $white;
+      box-shadow: none;
     }
 
     img {
@@ -182,7 +187,7 @@
   .card-header {
     @include transition (all 0.2s ease-in-out);
     background-color: $card-header-background;
-    border-top: 1.5px dashed $light-pure-gray;
+    border-top: $default-border;
     border-radius: $base-border-radius $base-border-radius 0 0;
     font-weight: bold;
     line-height: 1.5em;

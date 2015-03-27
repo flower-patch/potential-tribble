@@ -9,8 +9,8 @@ $(function () {
     id: 'patterns-by-danny-ivan.jpg',
     url: 'http://www.crafthubs.com/thumbs/patterns-by-danny-ivan.jpg',
     size: {
-      width: 50,
-      height: 50
+      width: 100,
+      height: 100
     }
   }, {
     id: 'fun-with-shapes-and-patterns.jpg',
@@ -145,7 +145,7 @@ $(function () {
 
   function drawPalette(location, palette) {
     $(location).html(palette.map(function (fabric) {
-      var li = $('<li class="fabric-preview"><img src="' + fabric.url +'"></li>');
+      var li = $('<li class="fabric-preview"><img src="' + fabric.url + '"><button alt="Remove from palette" class="remove-fabric-btn icon-button"><i class="fa fa-minus-circle inner-button-icon"></i></button></li>');
       //.data(key, value) key= string 'fabric', value is fabric object
       // .data makes the thing a part of the DOM
       li.data('fabric', fabric);
