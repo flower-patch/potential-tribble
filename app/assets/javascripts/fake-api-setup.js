@@ -1,3 +1,4 @@
+/*
 //Api is an instance of the `self` object below
 var Api = setupFakeApi();
 
@@ -37,3 +38,4 @@ function setupFakeApi() {
 
   return self;
 }
+*/

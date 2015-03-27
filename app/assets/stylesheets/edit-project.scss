@@ -16,14 +16,16 @@
 
 .edit-block {
   @include span-columns(5 of 10);
+
+  svg {
+    width: 400px;
+    height: 100%;
+    background-color: $mid-gray;
+    cursor: pointer;
+    box-shadow: $default-shadow;
+  }
 }
 
-svg {
-  width: 400px;
-  height: 100%;
-  cursor: pointer;
-  box-shadow: $default-shadow;
-}
 
 
 .svg-editor-parent {
