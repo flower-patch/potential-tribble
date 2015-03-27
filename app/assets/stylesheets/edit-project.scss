@@ -167,7 +167,8 @@ svg path {
 }
 
 .open-fabric-modal-btn,
-.clear-patches-btn {
+.clear-patches-btn,
+.remove-fabric-btn {
   position: absolute;
   bottom: -1.5em;
   right: -1.1em;
@@ -176,6 +177,10 @@ svg path {
 .clear-patches-btn {
   right: -1.5em;
   bottom: -1.4em;
+}
+
+.remove-fabric-btn {
+  font-size: 1.5em;
 }
 
 .clear-patches-modal {
