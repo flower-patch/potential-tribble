@@ -23,6 +23,12 @@ svg {
   height: 100%;
   cursor: pointer;
   box-shadow: $default-shadow;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 

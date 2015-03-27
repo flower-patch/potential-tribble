@@ -96,7 +96,7 @@ $(function () {
       getAllPaths(this).forEach(applyFabricPatch);
     })
     // remove on dblclick
-    .dblclick(function() {
+    .dblclick(function(e) {
       getAllPaths(this).forEach(clearFabricPatch);
     });
 
@@ -138,13 +138,14 @@ $(function () {
 
   var currFabric = palette[0];
 
-  // showCurrFabric();
 
   $('.palette').on('click', '.fabric-preview', function () {
     currFabric = $(this).data('fabric');
-    showCurrFabric();
+    $('.current-fabric').removeClass('current-fabric');
+    $(this).addClass('current-fabric');
   });
 
+  $('.fabric-preview').first().click();
 
   // // add a class to li of currFabric
   // // this isn't working,
@@ -324,20 +325,27 @@ $(function () {
     Api.getPopularList().done(function(response) {
       var results = response.results[0].results;
       var resultElements = results.map(function(designItem) {
-        var img = $("<img>");
+        var img = $('<img>');
         img.attr('data-id', designItem.id);
         img.attr('src', designItem.thumbnail_url);
 
-        var btn = $('<button alt="Remove from palette" class="remove-fabric-btn icon-button"><i class="fa fa-plus-circle inner-button-icon"></i></button>')
+        var imgCont = $('<div class="fabric-img-container"></div>');
+        imgCont.append(img);
 
-        var designer;
+        var btn = $('<button alt="Add to palette" class="remove-fabric-btn icon-button"><i class="fa fa-plus-circle inner-button-icon"></i></button>')
 
-        var designName;
+        var designName = $('<h3 class="fabric-name">' + designItem.name + '</h3>');
 
-        var li = $('<li class="fabric-preview card"><div class="fabric-img-container">');
-        li.addClass('fabric-preview');
-        li.append(img);
-        li.append(btn)
+        // this keeps coming in as undefined. Is it because of the underscore? Some privacy setting on api
+        // var designer = $('<span class="designer-screen-name">' + designItem.sceen_name + '</span>');
+
+        var li = $('<li></li>');
+        li.data('item', designItem);
+        li.addClass('fabric-preview, card');
+        li.append(imgCont);
+        li.append(btn);
+        li.append(designName);
+        // li.append(designer);
 
         return li;
 
@@ -433,7 +441,7 @@ $(function () {
         li.data('item', designItem);
 
         // this will get you the item
-        //li.data('item') 
+        //li.data('item')
 
         return li;
       });

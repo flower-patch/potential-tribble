@@ -4,18 +4,18 @@
 
 // // add a class to li of currFabric
 // // this isn't working,
-// $('.palette .fabric-preview').each(function(item) {
-//   // it's returning undefined
-//   console.log(item);
-//   var listItem = $(item).html();
-//   console.log(listItem.fabric);
-//   if (listItem.data.id === currFabric.id) {
-//     listItem.addClass('current-fabric');
-//     return;
-//   } else {
-//     listItem.removeClass('current-fabric')
-//   }
-// });
+$('.palette .fabric-preview').each(function(item) {
+  // it's returning undefined
+  console.log(item);
+  var listItem = $(item).html();
+  console.log(listItem.fabric);
+  if (listItem.data.id === currFabric.id) {
+    listItem.addClass('current-fabric');
+    return;
+  } else {
+    listItem.removeClass('current-fabric')
+  }
+});
 
 // add a class to li of currFabric
 // this isn't working,
