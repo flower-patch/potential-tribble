@@ -275,7 +275,7 @@ $(function() {
 
   $('form').submit(function() {
     saveQuilt();
-    console.log(newSvg);
+    // console.log(newSvg);
   });
 
   //////////////////////////////////////////////////////////////////////////////

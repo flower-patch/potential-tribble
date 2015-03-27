@@ -87,12 +87,13 @@ function setupSpoonflowerApi() {
       parse color later
       */
 
-      /*
+
       getDesignByColor: function(color) {
+        var color = '000000';
         var url = baseUrl + 'search?color1=' + color;
         return fetchUrl(url);
-      }
-      */
+      },
+
 
       /*
       http://api.v1.spoonflower.com/design/search?q=goats
@@ -101,12 +102,10 @@ function setupSpoonflowerApi() {
       var query = goat;
       */
 
-
       getDesignByQuery: function(query) {
+        var query = 'star';
         var url = baseUrl + 'search?q=' + query;
         return fetchUrl(url);
-
-
       }
 
     }

@@ -66,7 +66,9 @@ $(function() {
   */
 
   $('.open-fabric-modal-btn').on('click', function() {
+    // Api.getDesignByQuery().done(function(response) {
     Api.getPopularList().done(function(response) {
+    //Api.getDesignbyColor().done(function(response) {
       var results = response.results[0].results;
       // var designItem = JSON.parse(DESIGN_ITEM);
       // var results = [DESIGN_ITEM];
@@ -75,16 +77,19 @@ $(function() {
         var img = $("<img>");
         img.attr('data-id', designItem.id);
         img.attr('src', designItem.thumbnail_url);
+        img.attr('user', designItem.user_id.screen_name);
+
 
         var li = $('<li>');
         li.addClass('fabric-preview');
         li.append(img);
 
         return li;
-      });
 
+      });
       $('.fabric-modal-list').empty().append(resultElements);
     })
+
     $('.fabric-modal').toggleClass('show');
     previewQuilt();
     drawPalette('.current-palette', palette);
@@ -102,15 +107,51 @@ $(function() {
     $('.svg-editor-parent').append(currSvg);
   });
 
-  //////////////////////////////////////////////////////////////////////////////
-  // SEARCH BAR
-  $('.fabric-modal-search-button').on('click', function(e) {
-    console.log('clicked');
-    e.preventDefault();
-    e.stopPropagation();
-  });
+  /*
+  * SEARCH with String BAR
+  * Make API on form submit, then set it as var query with 'this'
+  */
 
+  //prevent Default and stop progration attach to click event, not submit
+  //  $('.fabric-modal-search-button').on('click', function(e) {
+  // });
+
+  //not working, goes back to home page
+  $('.fabric-modal-search-button').on('click', function(e) {
+
+    var query = $(this);
+
+    Api.getDesignByQuery().done(function(response) {
+      var results = response.results[0].results;
+      // var designItem = JSON.parse(DESIGN_ITEM);
+      // var results = [DESIGN_ITEM];
+
+      var resultElements = results.map(function(designItem) {
+        var img = $("<img>");
+        img.attr('data-id', designItem.id);
+        img.attr('src', designItem.thumbnail_url);
+        img.attr('user', designItem.user_id.screen_name);
+
+
+        var li = $('<li>');
+        li.addClass('fabric-preview');
+        li.append(img);
+
+        return li;
+
+      });
+      $('.fabric-modal-list').empty().append(resultElements);
+    })
+
+    $('.fabric-modal').toggleClass('show');
+    previewQuilt();
+    drawPalette('.current-palette', palette);
+  });
 });
+
+
+
+
 
 //////////////////////////////////////////////////////////////////////////////
 // COLOR PICKER
