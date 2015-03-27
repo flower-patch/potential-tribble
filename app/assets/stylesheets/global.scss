@@ -219,7 +219,6 @@ label {
 }
 
 
-
 .icon-button {
   background: none;
   border: none;
@@ -227,10 +226,19 @@ label {
   color: $accent-darkest;
   cursor: pointer;
   z-index: 2000;
+  opacity: 0;
+  visibility: hidden;
+  transition: $transition;
+
+}
+
+*:hover > .icon-button {
+  opacity: 1;
+  visibility: visible;
+  transition: $transition;
 }
 
 .inner-button-icon {
-
   text-shadow: $default-text-shadow;
 
   &:hover {

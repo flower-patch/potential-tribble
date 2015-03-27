@@ -145,7 +145,7 @@ $(function () {
 
   function drawPalette(location, palette) {
     $(location).html(palette.map(function (fabric) {
-      var li = $('<li class="fabric-preview card"><button alt="Remove from palette" class="remove-fabric-btn icon-button"><i class="fa fa-minus-circle inner-button-icon"></i></button><img src="' + fabric.url + '"></li>');
+      var li = $('<li class="fabric-preview card"><button alt="Remove from palette" class="remove-fabric-btn icon-button"><i class="fa fa-minus-circle inner-button-icon"></i></button><div class="fabric-img-container"><img src="' + fabric.url + '"></div></li>');
       //.data(key, value) key= string 'fabric', value is fabric object
       // .data makes the thing a part of the DOM
       li.data('fabric', fabric);
