@@ -226,6 +226,7 @@ label {
   font-size: 3em;
   color: $accent-darkest;
   cursor: pointer;
+  z-index: 2000;
 }
 
 .inner-button-icon {
