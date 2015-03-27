@@ -36,6 +36,24 @@ class SvgParser
     return path
   end
 
+  def remove_path_stroke
+    path = @svg.css("path")
+    path.each do |p|
+      style_array = p["style"].split(';')
+      stroke_index = 0
+      style_array.each_with_index do |style_attribute, index|
+        if style_attribute.start_with?("stroke:")
+          stroke_index = index
+        end
+      end
+      # style_array[stroke_index] = ["stroke:red"] use this to test, seems to work
+      style_array[stroke_index] = ["stroke:none"]
+      new_style = style_array.join(';')
+      p["style"] = new_style
+    end
+    path
+  end
+
   # provide Base64 URI for an image online, where location is a string, ex: "http://place.com/someimage.png"
   def get_image_from_web( location )
     png = Net::HTTP.get(URI(location))

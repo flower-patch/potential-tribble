@@ -42,6 +42,7 @@ class QuiltsController < ApplicationController
   def preview_project
     if params[:quilt_id]
       @quilt = Quilt.find(params[:quilt_id])
+      @project = ProjectTemplate.find(@quilt.project_template_id)
     else
       redirect_to root_path
     end
