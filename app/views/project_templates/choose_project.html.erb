@@ -5,7 +5,7 @@
  <div class="project-list-container">
    <ul class="project-list">
      <% @projects.each do |project| %>
-     <li class="project-list-item"><%= project.name %></li>
+     <li class="project-list-item"><a class="project-list-link" href="#<%= project.id %>"><%= project.name %></a></li>
      <% end %>
    </ul>
  </div>

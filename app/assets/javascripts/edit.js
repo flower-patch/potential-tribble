@@ -334,14 +334,14 @@ $(function () {
 
         var btn = $('<button alt="Add to palette" class="remove-fabric-btn icon-button"><i class="fa fa-plus-circle inner-button-icon"></i></button>')
 
-        var designName = $('<h3 class="fabric-name">' + designItem.name + '</h3>');
+        var designName = $('<div class="fabric-name-container"><h3 class="fabric-name">' + designItem.name + '</h3></div>');
 
         // this keeps coming in as undefined. Is it because of the underscore? Some privacy setting on api
         // var designer = $('<span class="designer-screen-name">' + designItem.sceen_name + '</span>');
 
         var li = $('<li></li>');
         li.data('item', designItem);
-        li.addClass('fabric-preview, card');
+        li.addClass('fabric-preview card search-result');
         li.append(imgCont);
         li.append(btn);
         li.append(designName);
