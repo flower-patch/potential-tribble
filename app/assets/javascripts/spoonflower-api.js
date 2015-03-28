@@ -51,17 +51,9 @@
       },
 
       getDesignByColor: function(color) {
-        var color = '4e81bd';
         var url = baseUrl + 'search?color1=' + color;
         return $.get(url);
       }
-
-
-      /*
-      getDesignById: function (designId) {
-        var url = baseUrl + 'designs/get?design_id=' + designId;
-        return fetchUrl(url);
-      }*/
 
     };
 

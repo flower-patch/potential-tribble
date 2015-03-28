@@ -27,6 +27,9 @@ body {
   color: $accent-darkest;
   min-height: 925px;
   position: relative;
+  // display: flex;
+  // min-height: 100vh;
+  // flex-direction: column;
 }
 
 a, button, input {
@@ -70,6 +73,7 @@ main {
   min-height: 650px;
   padding: 0;
   @include outer-container;
+  // flex: 1;
 }
 
 .site-nav {

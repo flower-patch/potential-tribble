@@ -39,10 +39,10 @@
     preview_width = 150px, preview_height = 150px
     var baseUrl= http://api.v1.spoonflower.com/design/
       STICK WITH PIXELS AND INCHES!
-      previewWidth = 150; (px)
-      previewHeight = 150; (px)
-      var printWidth = 4.5; (in)
-      var printHeight  = 4.5; (in)
+      previewWidth = 410; (px)
+      previewHeight = 410; (px)
+      var printWidth = 9; (in)
+      var printHeight  = 9; (in)
     */
 
     /*
