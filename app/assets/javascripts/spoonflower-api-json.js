@@ -1,9 +1,6 @@
-//Api is an instance of the `self` object below
 var Api = setupSpoonflowerApi();
 
-//setupSpoonflowerApi is just setting up the `self` object below and returning it.\
 function setupSpoonflowerApi() {
-    var FakePibaseUrl =  'https://fakepi.herokuapp.com/api/v1/design/';
     var baseUrl = 'http://api.v1.spoonflower.com/design/';
 
     function fetchUrl(url) {
@@ -26,13 +23,6 @@ function setupSpoonflowerApi() {
 
     var self = {
 
-      /*
-      API Call for default getList call
-      http://api.v1.spoonflower.com/design/search?limit=10&sort=freshtastic
-      var baseUrl= http://api.v1.spoonflower.com/design/
-      baseUrl + search?limit=10&sort=freshtastic
-      */
-
       getPopularList: function(limit) {
         var limit = '48';
         var freshtastic = '&sort=freshtastic';
@@ -52,18 +42,7 @@ function setupSpoonflowerApi() {
         previewWidth = 150; (px)
         previewHeight = 150; (px)
         var printWidth = 4.5; (in)
-        var printHeigh  = 4.5; (in)
-      */
-
-      /*
-      designId is based on what user chooses
-      var designId = '1454355';
-      //dimensions are variables now in case we want to change them later
-      var previewWidth = 150;
-      var previewHeight = 150;
-      //probably change based on fabric design itself
-      var printWidth = 4.5;
-      var printHeight  = 4.5;
+        var printHeight  = 4.5; (in)
       */
 
       /*
@@ -78,29 +57,12 @@ function setupSpoonflowerApi() {
       }*/
 
 
-      /*
-      API CALL
-      http://api.v1.spoonflower.com/design/search?color1=444444
-      in example, color = 444444
-      color is a hex value
-      444444 is testing API, not for real
-      parse color later
-      */
-
-
       getDesignByColor: function(color) {
         var color = '4e81bd';
         var url = baseUrl + 'search?color1=' + color;
         return fetchUrl(url);
       },
 
-
-      /*
-      http://api.v1.spoonflower.com/design/search?q=goats
-      10 results shown
-      var query = goat, eventually user search input
-      var query = goat;
-      */
 
       getDesignByQuery: function(query) {
         var url = baseUrl + 'search?q=' + query;
