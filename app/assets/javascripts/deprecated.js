@@ -39,6 +39,7 @@
 //DEPRECATED
 
 
+/*
 function addFabricMessage() {
   if (palette === undefined || palette.length === 0) {
   //alt example from appointments app
@@ -49,7 +50,8 @@ function addFabricMessage() {
     $('.add-fabric-message').fadeIn('slow');
   }
 }
-addFabricMessage();
+addFabricMessage();*/
+
 
 
 //////////////////////////////////////////////////////////////////////////////
