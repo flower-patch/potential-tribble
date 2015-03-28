@@ -125,7 +125,9 @@ svg path {
 }
 
 .current-fabric {
-  outline: 5px solid blue;
+  outline: 1.5px dashed $accent-darkest;
+  outline-offset: 5px;
+  // box-shadow: 0 2px 8px 5px $accent-text !important;
 }
 
 .fabric-preview {
@@ -137,6 +139,7 @@ svg path {
   cursor: pointer;
   border: $paper-margin solid $white;
   box-shadow: $default-shadow;
+
 
   &:after {
     content: "";

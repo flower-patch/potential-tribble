@@ -74,9 +74,9 @@ main {
 
 .site-nav {
   background-image: $green-pattern;
-  height: 4em;
+  height: 5.6em;
   width: 100%;
-  box-shadow: $default-shadow;
+  box-shadow: $hover-shadow;
   position: relative;
   z-index: 1
 }
@@ -86,26 +86,23 @@ main {
   top: 0;
   left: 0;
   right: 0;
-  height: 4em;
+  bottom: 0;
+  height: 5.6em;
   background: $accent-light;
-  opacity: 0.6;
+  opacity: 0.4;
 }
 
 .flowerpatch-logo-section {
   position: relative;
   z-index: 2;
-}
-
-
-.flowerpatch-logo-section {
-  margin: 0 1em;
-  padding-top: 0.4em;
+  margin: 0 0.5em;
+  padding-top: 0.5em;
   font-size: 2em;
   font-family: $sans-serif;
 }
 
 .flowerpatch-logo {
-  width: 2em;
+  width: 1.8em;
   box-shadow: $default-shadow;
 
   &:hover {
@@ -137,8 +134,12 @@ main {
 
 footer {
   background-color: rgba(0, 0, 0, 0.15);
+  background-image: $green-pattern;
+  background-image: image-url('flowerpatch_background_gray.png');
   height: 7.35em;
-  box-shadow: $default-shadow;
+  box-shadow: 0px 1px 8px 1px $mid-gray;
+  position: relative;
+  z-index: 1;
   // position: absolute;
   // top: 100%;
   // left: 0;
@@ -146,11 +147,24 @@ footer {
   // bottom: 0;
 }
 
+.footer-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 7.35em;
+  background: $mid-gray;
+  opacity: 0.5;
+  z-index: -5;
+}
+
 .legal-section {
   display: inline-block;
   color: $white;
   font-size: 1em;
   margin: 5em 0 0 2em;
+  z-index: 2;
 
   .fa-github {
     font-size: 1.25em;
@@ -163,6 +177,7 @@ footer {
   margin: 1em 2em 0 0;
   float: right;
   font-family: $serif;
+  z-index: 2;
 }
 
 .spoonflower-tag {
@@ -279,7 +294,7 @@ form.search-bar {
     font-family: $sans-serif;
     margin: 0;
     position: relative;
-    width: 120px;
+    width: 128px;
 
     @include pad();
 

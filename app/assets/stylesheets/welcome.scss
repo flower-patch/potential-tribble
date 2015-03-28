@@ -158,8 +158,6 @@
   margin: 14px 14px 14px;
   position: relative;
 
-
-
   &:hover {
     box-shadow: $hover-shadow;
   }
@@ -172,8 +170,8 @@
       height: 100%;
       border: 7px;
       fill: $white;
-      background-color: $light-pure-gray;
       box-shadow: none;
+      background-color: $light-pure-gray;
     }
 
     img {
@@ -230,5 +228,49 @@
     .card-header {
       background-color: $card-background;
     }
+  }
+}
+
+/* Slide up card animation */
+.project-card,
+.cards .card,
+.fabric-modal-list .cards {
+  -webkit-animation-name: slideInUp;
+  animation-name: slideInUp;
+
+  animation-duration: 0.25s;
+  -webkit-animation-duration: 0.25s;
+
+  animation-timing-function: ease-out;
+  -webkit-animation-timing-function: ease-out;
+
+  transform-origin: 0% 0%;
+  -ms-transform-origin: 0% 0%;
+  -webkit-transform-origin: 0% 0%;
+}
+
+@-webkit-keyframes slideInUp {
+  0% {
+    -webkit-transform: translate3d(0, 100%, 0);
+    transform: translate3d(0, 100%, 0);
+    visibility: visible;
+  }
+
+  100% {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes slideInUp {
+  0% {
+    -webkit-transform: translate3d(0, 100%, 0);
+    transform: translate3d(0, 100%, 0);
+    visibility: visible;
+  }
+
+  100% {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
   }
 }

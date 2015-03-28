@@ -59,6 +59,7 @@
   svg {
     width: 175px ;
     height: 100%;
+    box-shadow: $default-shadow;
   }
 }
 
@@ -84,7 +85,6 @@
 }
 
 .fabric-modal-options {
-  border-right: $default-border;
   height: 70%;
   pointer-events: auto;
   overflow: auto;
@@ -96,6 +96,7 @@
   width: 100%;
   margin-bottom: 2em;
 }
+
 .search-bar input {
   margin: 1em 0 3em 0 !important;
 }
@@ -111,7 +112,7 @@
 	border:0;
 	width: 0;
 	height: 27px;
-	border-right:118px solid #A2ADD7;
+	border-right:126px solid #A2ADD7;
 	line-height:27px;
   cursor: pointer;
   box-shadow: $default-shadow;
@@ -177,4 +178,6 @@
 
 .fabric-modal-results {
   height: 100%;
+  border-left: $default-border;
+
 }
