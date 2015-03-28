@@ -29,6 +29,7 @@
 
   &:hover {
     box-shadow: $hover-shadow;
+    transition: $transition;
   }
 }
 

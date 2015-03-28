@@ -16,7 +16,6 @@
   z-index: 2000;
 }
 
-
 .show {
   visibility: visible;
   opacity: 1;
@@ -42,10 +41,6 @@
   position: absolute;
   top: -1.3em;
   right: -1.1em;
-}
-
-.fabric-modal-preview {
-  // @include pad();
 }
 
 .current-block, .fabric-modal-options, .final-block {
@@ -97,14 +92,18 @@
   margin-bottom: 2em;
 }
 
+
 .search-bar input {
   margin: 1em 0 3em 0 !important;
 }
 
-.color-search-bar {
-  position: relative;
+.search-bar {
+  margin-top: 1em;
 }
 
+.search-bar input {
+  margin: 1em 0 3em 0 !important;
+}
 
 #picker {
 	margin:0;
@@ -124,8 +123,29 @@
 
   &:hover {
     box-shadow: $hover-shadow;
-  }
 
+  }
+}
+
+.popular-search {
+  margin-top:1em;
+  border-top: 2px solid $seafoam-light;
+  border-bottom: 2px solid $seafoam-light;
+  padding: 5.35765%;
+  outline: 2px solid $accent-text;
+  border: 1.5px dashed $seafoam-light;
+  background-color: $accent-text;
+  color: $white;
+  font-family: $serif;
+  font-weight: $thin;
+  font-size: 1em;
+  line-height: .5em;
+  box-shadow: $default-shadow;
+
+  &:hover {
+    box-shadow: $hover-shadow;
+    transition: $transition;
+  }
 }
 
 
@@ -146,6 +166,7 @@
 
   &:hover {
     box-shadow: $hover-shadow !important;
+    transition: $transition !important;
   }
 }
 
@@ -172,6 +193,33 @@
 }
 
 
+.color-search-bar {
+  position: relative;
+}
+
+
+#picker {
+	margin:0;
+	padding:0;
+	border:0;
+	width: 0;
+	height: 27px;
+	border-right:118px solid #A2ADD7;
+	line-height:27px;
+  cursor: pointer;
+  box-shadow: $default-shadow;
+
+  + button {
+    margin-left: 5px;
+    position: relative;
+  }
+
+  &:hover {
+    box-shadow: $hover-shadow;
+    transition: $transition;
+  }
+}
+
 /*------------------------------------*\
     #RESULTS-SECTION
 \*------------------------------------*/
@@ -188,7 +236,7 @@
 
 .fabric-modal-list {
   margin-left: 15px;
-}
+  }
 
 .search-result {
   padding: 0;

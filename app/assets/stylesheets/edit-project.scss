@@ -82,13 +82,17 @@ svg path {
   width: 5em;
   height: 5em;
 
+
+  //check if these transitions are appropriate
   &:hover {
     box-shadow: $hover-shadow;
+    transition: $transition;
   }
 
   path {
     &:hover {
       opacity: 1;
+      transition: $transition;
     }
   }
 }
