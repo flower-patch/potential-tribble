@@ -5,36 +5,6 @@ var Api = setupFakePi();
 function setupFakePi() {
   var baseUrl = 'https://fakepi.herokuapp.com/api/v1/design/';
 
-  // function fetchUrl(url) {
-  //   var promise = $.Deferred();
-  //    // this has to change for JSONP
-  //    var req = $.ajax({
-  //      //url property with this value
-  //      url: url,
-  //      dataType: "jsonp",
-  //      timeout: 5000, // fake .fail() a lot of time for the request to be successfully completed
-  //      success: function(data) {
-  //        promise.resolve(data);
-  //      },
-  //      error: function(data) {
-  //        promise.reject(req, 'Unknown error', data);
-  //      }
-  //    });
-  //    return promise;
-  //  }
-  //
-  //
-  //   var promise = $.Deferred();
-  //
-  //     var req = $.getJSON(url).done(function (data) {
-  //     if (!data.ok) {
-  //       promise.reject(req, 'Unknown error', data);
-  //     } else {
-  //       promise.resolve(data);
-  //     }
-  //   });
-  //   return promise;
-  // }
 
   var self = {
 
@@ -54,14 +24,23 @@ function setupFakePi() {
       var color = '4e81bd';
       var url = baseUrl + 'search?color1=' + color;
       return $.get(url);
+    },
+
+  
+    getDesignById: function(designId) {
+      //preview in px, print in inches
+      var previewWidth = 410;
+      var previewHeight = 410;
+      var printWidth = 9;
+      var printHeight  = 9;
+      var url = baseUrl + 'previewImage/' +
+        designId + '?' + 'print_width=' +
+        printWidth + '&print_height=' +
+        printHeight + '&preview_width_pixels=' +
+        previewWidth + '&preview_height_pixels=' +
+        previewHeight;
+      return $.get(url);
     }
-
-
-    /*
-    getDesignById: function (designId) {
-      var url = baseUrl + 'designs/get?design_id=' + designId;
-      return fetchUrl(url);
-    }*/
 
   };
 

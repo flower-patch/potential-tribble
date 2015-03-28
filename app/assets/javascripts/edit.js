@@ -3,31 +3,6 @@ $(function () {
   var svg = Snap('.svg-editor svg');
   var $svg = $('.svg-editor svg');
 
-  //////////////////////////////////////////////////////////////////////////////
-  //dummy palette
-  // var palette = [{
-  //   id: 'patterns-by-danny-ivan.jpg',
-  //   url: 'http://www.crafthubs.com/thumbs/patterns-by-danny-ivan.jpg',
-  //   size: {
-  //     width: 100,
-  //     height: 100
-  //   }
-  // }, {
-  //   id: 'fun-with-shapes-and-patterns.jpg',
-  //   url: 'http://www.crafthubs.com/thumbs/fun-with-shapes-and-patterns.jpg',
-  //   size: {
-  //     width: 50,
-  //     height: 50
-  //   }
-  // }, {
-  //   id: '44250.jpg',
-  //   url: 'http://www.housefabric.com/assets/ProductDetail/44250.jpg',
-  //   size: {
-  //     width: 50,
-  //     height: 50
-  //   }
-  // }];
-
   var palette = [];
   Api.getPopularList(5).then(function(response) {
     // The default palette is the first five results from the popular list
@@ -146,18 +121,62 @@ $(function () {
 
 
   //////////////////////////////////////////////////////////////////////////////
+//  currFabric();
+//
+// function currFabric() {
 
-  var currFabric = palette[0];
+  // $('.palette').on('click', 'fabric-preview', function(){
+  //   currFabric = $(this).data('fabric');
+  //   var designId = currFabric.id;
+  //   console.log(designId);
+  //   //refresh currFabric on click
+  //   $('.current-fabric').removeClass('current-fabric');
+  //   $(this).addClass('current-fabric');
+  // });
+  //
+  // $('.fabric-preview').first().click();
 
+  //   Api.getDesignById().done(function(response{
+  //
+  // }))
+//   return currFabric;
+// }
+
+
+
+
+currFabric = palette[0];
+
+var designId;
 
   $('.palette').on('click', '.fabric-preview', function () {
     currFabric = $(this).data('fabric');
+    console.log(currFabric);
+    var designId = currFabric.id;
+    console.log(designId);
+    // Api.getDesignById(designId).done(function(response) {
+    //    console.log(response);
+    //   //  var previewImg = response;
+    //   //  currFabric.preview_url = previewImg;
+    // });
+
+    //
     $('.current-fabric').removeClass('current-fabric');
     $(this).addClass('current-fabric');
+    return designId;
   });
 
-  $('.fabric-preview').first().click();
 
+
+  // var results = response.results[0].results;
+  // var resultElements = apiResultToElements(results);
+
+
+
+  var waitApi = 1000;
+  setTimeout(function () {
+    $('.fabric-preview').first().click();
+  }, waitApi);
 
 
   //////////////////////////////////////////////////////////////////////////////
@@ -436,9 +455,6 @@ $(function () {
     });
   }
 
-
-
-
   $('.open-fabric-modal-btn').on('click', function () {
     Api.getPopularList().done(function(response) {
       var results = response.results[0].results;
@@ -449,6 +465,8 @@ $(function () {
     previewQuilt();
     drawPalette('.current-palette', palette);
   });
+
+
 
 
 });
