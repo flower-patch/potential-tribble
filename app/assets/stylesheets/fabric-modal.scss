@@ -92,7 +92,6 @@
   margin-bottom: 2em;
 }
 
-
 .search-bar input {
   margin: 1em 0 3em 0 !important;
 }
@@ -101,17 +100,13 @@
   margin-top: 1em;
 }
 
-.search-bar input {
-  margin: 1em 0 3em 0 !important;
-}
-
 #picker {
 	margin:0;
 	padding:0;
 	border:0;
 	width: 0;
 	height: 27px;
-	border-right:126px solid #A2ADD7;
+	border-right:120px solid #A2ADD7;
 	line-height:27px;
   cursor: pointer;
   box-shadow: $default-shadow;
