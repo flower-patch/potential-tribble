@@ -5,6 +5,8 @@ one:
   example_thumb_url: MyString
   description: MyText
   directions_pdf_url: MyString
+  project_layout_svg: queen.svg
+
 
 two:
   name: MyString

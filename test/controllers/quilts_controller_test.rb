@@ -23,6 +23,7 @@ class QuiltsControllerTest < ActionController::TestCase
   end
 
   test "should get preview_project" do
+    @quilt.project_template_id = @project.id
     get :preview_project, {quilt_id: @quilt.id}
     assert_response :success
   end
