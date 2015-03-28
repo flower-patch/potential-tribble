@@ -8,7 +8,7 @@ $hover-shadow: 0 2px 4px 2px $mid-gray;
 
 $default-text-shadow: 0 1px 5px gray;
 
-$hover-text-shadow: 0 2px 8px gray;
+$hover-text-shadow: 0 6px 10px darkgray;
 
 $default-border: 1.5px dashed $mid-gray;
 
@@ -17,3 +17,9 @@ $paper-margin: 7px;
 $fabric-pattern: image-url("fabric_1.png");
 
 $green-pattern: image-url("farmer.png");
+
+$satin-pattern: image-url("satinweave.png");
+
+$denim-pattern: image-url("45degreee_fabric.png");
+
+$transition: all 300ms ease-in-out;

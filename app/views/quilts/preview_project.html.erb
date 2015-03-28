@@ -22,9 +22,10 @@
 
     <h2 class="my-new-quilt">Your Masterpiece</h2>
     <div class= "quilt-name-container preview-label">
-      <i class="preview-icon fa fa-pencil"></i>
     <form>
-      <%= f.label :name  %>:<%= f.text_field :name, class: "quilt-name" %>
+      <%= f.label :quilt_name, class:"quilt-name-label"  %>
+      <%= f.text_field :name, class: "quilt-name" %>
+      <!-- make field required- required:"required" -->
     </form>
     </div>
 
@@ -32,9 +33,8 @@
     <%# TODO: Make seam_allowance editable by user %>
     <%= f.hidden_field :seam_allowance, :value => 0.25 %>
     <div class="share-quilt-container preview-label">
-      <i class="preview-icon fa fa-share"></i>
-      <%= f.label "Check here to make your quilt public"
-       %> <label class="label-switch">
+      <%= f.label "Set your quilt for public use?", class:"share-quilt-label" %>
+      <label class="label-switch">
         <%= f.check_box :public, class: "public-checkbox"%>
         <div class ="checkbox"></div>
       </label>
@@ -42,22 +42,31 @@
 
 
     <div class= "awesome-submit-container">
-      <%= f.submit 'Awesome! I Approve.', class:"awesome-submit stitch-button" %>
+      <%= f.submit 'Awesome! All Finished.', class:"awesome-submit stitch-button" %>
     </div>
 
   </div>
 
 
+  <div class="preview-svg">
 
-  <div class="preview-svg no-click">
-    <%= @quilt.svg.html_safe %>
-    <%= ProjectTemplate.getXML_for_filename( @project.project_layout_svg ).html_safe %>
+    <div class="current-preview no-click">
+      <%= @quilt.svg.html_safe %>
+    </div>
+
+    <div class="choose-preview-thumbnail">
+      <ul class="preview-thumbnails-">
+        <li class="preview-thumbnail paper-border">
+          <%= ProjectTemplate.getXML_for_filename( @project.project_layout_svg ).html_safe %>
+        </li>
+        <li class="preview-thumbnail paper-border">
+        </li>
+        <li class="preview-thumbnail paper-border">
+        </li>
+      </ul>
+    </div>
   </div>
   <% end %>
-
-
-
-
 
 
 </div>

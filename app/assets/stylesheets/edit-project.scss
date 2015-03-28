@@ -16,14 +16,16 @@
 
 .edit-block {
   @include span-columns(5 of 10);
+
+  svg {
+    width: 400px;
+    height: 100%;
+    background-color: $mid-gray;
+    cursor: pointer;
+    box-shadow: $default-shadow;
+  }
 }
 
-svg {
-  width: 400px;
-  height: 100%;
-  cursor: pointer;
-  box-shadow: $default-shadow;
-}
 
 
 .svg-editor-parent {
@@ -64,7 +66,6 @@ svg path {
 
 .sets {
   width: 400px;
-  height: 8em;
   text-align: center;
   overflow-x: auto;
   white-space: nowrap;
@@ -108,48 +109,58 @@ svg path {
 }
 
 .add-fabric-message {
-  @include position(absolute, 80% 0 0 50%);
+  @include position(absolute, 55% 0 0 50%);
   transform: translate(-50%, -50%);
   width: 80%;
-  visibility: hidden;
+  // visibility: hidden;
+  // opacity: 0;
+  display: none;
   vertical-align: baseline;
   color: $mid-gray;
+  font-size: 1.5em;
 
 }
 
 .palette {
   text-align: left;
   height: $block-height;
-  overflow: auto;
+  // overflow: auto;
 }
 
 .current-fabric {
-  outline: 5px solid blue;
+  outline: 1.5px dashed $accent-darkest;
+  outline-offset: 5px;
+  // box-shadow: 0 2px 8px 5px $accent-text !important;
 }
 
 .fabric-preview {
   display: inline-block;
   padding-right: 10px;
   width: 40%;
-  overflow: hidden;
   position: relative;
   margin: 5%;
   cursor: pointer;
   border: $paper-margin solid $white;
   box-shadow: $default-shadow;
 
+
   &:after {
     content: "";
-    padding-top: 100%;
+    padding-top: 112%;
     visibility: hidden;
     display: block;
-    border-top: 14px;
+    // border-top: 14px;
   }
 
-  img {
+  .fabric-img-container {
     position: absolute;
-    min-width: 100%;
-    min-height: 100%;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+
+    // img {
+    //   width: 100%;
+    // }
   }
 }
 
@@ -160,14 +171,15 @@ svg path {
 
 .save-project-btn {
   position: absolute;
-  bottom: 25px;
+  bottom: 15px;
   right: 55px;
   width: 150px;
   padding: 0.5em;
 }
 
 .open-fabric-modal-btn,
-.clear-patches-btn {
+.clear-patches-btn,
+.remove-fabric-btn {
   position: absolute;
   bottom: -1.5em;
   right: -1.1em;
@@ -176,6 +188,16 @@ svg path {
 .clear-patches-btn {
   right: -1.5em;
   bottom: -1.4em;
+}
+
+.remove-fabric-btn {
+  font-size: 1.75em;
+  right: -1.35em;
+
+  i:after {
+    width: 15px;
+    height: 15px;
+  }
 }
 
 .clear-patches-modal {
