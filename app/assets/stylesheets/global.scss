@@ -107,6 +107,7 @@ main {
 
   &:hover {
     box-shadow: $hover-shadow;
+    transition: $transition;
   }
 }
 
@@ -238,6 +239,7 @@ label {
 
   &:hover {
     box-shadow: $hover-shadow;
+    transition: $transition;
   }
 }
 
@@ -252,7 +254,6 @@ label {
   opacity: 0;
   visibility: hidden;
   transition: $transition;
-
 }
 
 *:hover > .icon-button {
@@ -266,6 +267,7 @@ label {
 
   &:hover {
     text-shadow: $hover-text-shadow;
+    transition: transition;
   }
 
   &:after {
@@ -321,6 +323,7 @@ form.search-bar {
 
     &:hover {
       box-shadow: $hover-shadow;
+      transition: $transition;
     }
 
     i {
@@ -398,6 +401,7 @@ variables found in variables.scss
 
       &:hover {
         background: $light-pure-gray;
+        transition: $transition;
       }
 
       &:before {

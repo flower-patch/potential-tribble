@@ -77,6 +77,7 @@
 
   &:hover {
     box-shadow: $hover-shadow;
+    transition: $transition;
   }
 
 }
@@ -102,11 +103,10 @@
   text-align: center;
 }
 
-
-
 .preview-svg {
  margin-top: 2.358%;
  margin-bottom: 2.358%;
+ margin-right: 0;
  @include span-columns(8);
 
  svg {
@@ -118,6 +118,11 @@
 
 .choose-preview-thumbnail {
   @include span-columns(2 of 8);
+  margin-right: 0;
+}
+
+.preview-thumbnails {
+  margin-left: 1em;
 }
 
 .preview-thumbnail {
@@ -129,6 +134,7 @@
 
   &:hover {
     box-shadow: $hover-shadow;
+    transition: $transition;
   }
 }
 

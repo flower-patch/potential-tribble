@@ -12,18 +12,24 @@
 
     <ol class="next-steps-list">
       <li class="next-step">
-        <i class="fa fa-cloud-download next-step-icon"></i>
+        <div class="icon-holder">
+          <i class="fa fa-cloud-download next-step-icon"></i>
+        </div>
         Download your design:&nbsp;&nbsp;
         <%= link_to "Download Here", {:action => "download_quilt", :quilt_id => params[:quilt_id]}, class:"stitch-btn download-btn" %>
       </li>
 
       <li class="next-step">
-        <i class="fa fa-cloud-upload next-step-icon"></i>
+      <div class="icon-holder">
+          <i class="fa fa-cloud-upload next-step-icon"></i>
+      </div>
         Upload the design at <a class="spoonflower-link" href="http://www.spoonflower.com/welcome">spoonflower.com</a>
       </li>
 
       <li class="next-step">
-        <i class="fa fa-shopping-cart next-step-icon"></i>
+        <div class="icon-holder">
+          <i class="fa fa-shopping-cart next-step-icon"></i>
+        </div>
         Submit and pay for your order
       </li>
 
