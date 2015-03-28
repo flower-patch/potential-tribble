@@ -64,7 +64,7 @@
   font-weight: $bold;
   font-family: $serif;
   font-size: 1.7em;
-  border: 1px solid $light-pure-gray;
+  // border: 1px solid $light-pure-gray;
   box-shadow: $default-shadow;
 
   &:hover {
@@ -75,7 +75,7 @@
 
 .selected-text.circle {
   box-shadow: none;
-  border: 1px solid $accent-text;
+  border: 1.5px dashed $accent-text;
   -webkit-animation-name: rotateIn;
   animation-name: rotateIn;
 
