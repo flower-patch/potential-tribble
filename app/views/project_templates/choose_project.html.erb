@@ -5,7 +5,7 @@
  <div class="project-list-container">
    <ul class="project-list">
      <% @projects.each do |project| %>
-     <li class="project-list-item"><%= project.name %></li>
+     <li class="project-list-item"><a class="project-list-link" href="#<%= project.id %>"><%= project.name %></a></li>
      <% end %>
    </ul>
  </div>
@@ -20,17 +20,19 @@
          <%= image_tag "#{project.example_thumb_url}", class:"project-card-img"%>
        </div>
        <div class="project-card-content">
-         <h2><%= project.name %></h2>
+         <h2 class="project-card-name"><%= project.name %></h2>
 
          <p class="project-card-copy"><%= project.description %> Retro viral High Life flexitarian, crucifix gastropub quinoa Marfa brunch PBR&B.</p>
          <p class="project-card-copy"><%= project.directions_pdf_url %></p>
 
-         <!-- <button alt="Get started with a <%= project.name %>" class="stitch-btn get-started-btn"><%= link_to "Get started", quilts_choose_block_path(quilt_id: params[:quilt_id], project_id: project.id) %></button> -->
        </div>
 
       </div>
     <% end %>
    <% end %>
+   <div class="back-to-top">
+     <a class="project-list-link" href="#top-of-view">Back to top</a>
+   </div>
  </div>
 
 </div>

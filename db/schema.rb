@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150323212518) do
+ActiveRecord::Schema.define(version: 20150327142914) do
 
   create_table "block_templates", force: :cascade do |t|
     t.string   "name"
@@ -27,6 +27,9 @@ ActiveRecord::Schema.define(version: 20150323212518) do
     t.string   "directions_pdf_url"
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
+    t.string   "project_layout_svg"
+    t.integer  "blocks_across"
+    t.integer  "blocks_down"
   end
 
   create_table "quilts", force: :cascade do |t|

@@ -20,17 +20,22 @@
 }
 
 .project-cards {
-  // @include fill-parent();
-  // @include pad();
   @include span-columns(7 of 10);
 }
 
 .project-card {
-  // @include fill-parent();
-  // @include pad();
-  // @include span-columns(8 of 10);
   overflow: auto;
   margin-bottom: 2em;
+
+  &:hover {
+    box-shadow: $hover-shadow;
+    transition: $transition;
+  }
+}
+
+.project-card-name {
+  border-bottom: $default-border;
+  margin-bottom: 0.5em;
 }
 
 .project-card-img-container {
@@ -44,6 +49,7 @@
 
 .project-card-content {
   @include span-columns(4 of 7);
+  padding-right: 1.25em;
 }
 
 .project-card-copy {
