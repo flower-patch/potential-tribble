@@ -66,6 +66,7 @@ class QuiltsController < ApplicationController
     send_data(@quilt.svg , :filename => 'test.svg', :type=>'image/svg+xml')
   end
 
+
   private
 
   def quilt_params

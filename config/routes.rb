@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   get 'svg_parsers/test_garbage'
-  
+  get 'svg_parsers/download_full_res_quilt'
+  get 'svg_parsers/download_full_res_quilt_svg'
+
   get 'quilts/welcome'
   post 'quilts/welcome'
 

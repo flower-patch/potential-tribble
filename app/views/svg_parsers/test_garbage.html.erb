@@ -2,22 +2,31 @@
 <!-- DELETE THIS VIEW, CONTROLLER METHOD, AND ROUTE BEFORE SITE GOES LIVE -->
 <h2>Pull an image from online and convert to Base64:</h2>
 <h4>Location:</h4>
+
+<!-- get the URL for the Spoonflower image, given the ID -->
 <% location = @svg_parser_object.spoonflower_image_location_from_id( "3179830" ) %>
 <%= location %><br><br>
 
+<!-- given the URL, download the Spoonflower image -->
 <% full_res_image = @svg_parser_object.get_image_from_web_with_basic_auth( location ) %>
 <img src="data:image/png;base64,<%= full_res_image  %>">
 
+<br><br>
+<h3>Full res image fill, text</h3>
+<%= full_res_image %>
+<br><br>
+<%= full_res_image.to_s %>
+
+<!-- replace the image fill in the SVG with the downloaded image data (replaces all fills for now) -->
 <% @svg_parser_object.replace_image_fill( full_res_image ) %>
 
 <p>Starting SVG:</p>
 <br><br>
-
 <%= @starting_svg.html_safe %>
 
-<br><br>
-<h2>Nokogiri'd SVG</h2>
-<%= @svg_parser_object.svg.to_xml %>
+<!-- <br><br> -->
+<!-- <h2>Nokogiri'd SVG</h2> -->
+<%#= @svg_parser_object.svg.to_xml %>
 
 <!-- <br><br> -->
 <!-- <h2>Get patterns?</h2> -->
@@ -34,8 +43,33 @@
 <%# @svg_parser_object.remove_path_style.each do |x| %>
 <!-- X is a <%#= x.class %><br><br> -->
 <!-- <%#= x %><br><br> -->
-<%#= x["xlink:href"] %><br><br>
+<!-- <%#= x["xlink:href"] %><br><br> -->
 <%# end %>
 
 <p>Edited SVG</p>
 <%= @svg_parser_object.svg.to_xml.html_safe %>
+
+<br><br>
+<h3>Edited SVG, text</h3>
+<%= @svg_parser_object.svg.to_xml %>
+
+<br><br>
+<h3>Download SVG</h3>
+<% filename = "/Users/Spoonflower/IronYard/final/potential-tribble/tmp/I_MADE_A_FILE.svg" %>
+<% stuff_to_write = @svg_parser_object.svg.to_xml %>
+<% File.open(filename, 'w') {|f| f.write( stuff_to_write ) } %>
+LINK GOES HERE
+<!-- Download your design SVG– -->
+<%= link_to "Your Design", {:action => "download_full_res_quilt_svg" } %>
+
+<br><br>
+<h3>PNG of SVG</h3>
+<%# data_uri = Base64.encode64( @svg_parser_object.svg_to_png( @svg_parser_object.svg.to_xml, 810,810) ) %>
+<% svg_data = File.open(filename, 'rb') {|f| f.read } %>
+
+<% data_uri = Base64.encode64( @svg_parser_object.svg_file_to_png( filename, 50, 50 ) ) %>
+<img width="1350" height="1350" src="data:image/png;base64,<%= data_uri %>">
+
+
+<!-- Download your design– -->
+<%#= link_to "Your Design", {:action => "download_full_res_quilt", :quilt => @svg_parser_object.svg_to_png(810,810)} %>

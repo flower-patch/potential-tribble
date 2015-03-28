@@ -1,6 +1,9 @@
 require 'net/http'
 
 class SvgParser
+  IMAGE_FILL_RESOLUTION = "50" #width and height, in pixels, of image fills and final raster image
+# TODO this works for a final raster image of 810 (assuming 90 DPI). How do we get a DPI of 150 from this svg?
+
   attr_reader :svg, :paths
 
   def initialize(svg)
@@ -23,21 +26,18 @@ class SvgParser
     images = @svg.css("image")
     images.each do |x|
       x["xlink:href"] = "data:image/png;base64,"+replacement_uri
-      x["width"] = "810" #FIXME magic number used for image resolution :(
-      x["height"] = "810" #FIXME magic number used for image resolution :(
-      # x["y"] = "-242"
-      # x["x"] = "242"
-
+      x["width"] = IMAGE_FILL_RESOLUTION
+      x["height"] = IMAGE_FILL_RESOLUTION
     end
 
     patterns = @svg.css("pattern")
     patterns.each do |x|
-      x["width"] = "810" #FIXME magic numbers. you're doing it again!
-      x["height"] = "810" #FIXME magic numbers. STAHP.
+      x["width"] = IMAGE_FILL_RESOLUTION
+      x["height"] = IMAGE_FILL_RESOLUTION
       x["y"] = "242" #FIXME this works because SVG o.O
-      x["x"] = "-120" #FIXME this works and god knows why
+      # x["x"] = "-120" #FIXME this works and god knows why
 
-      x["viewBox"] = "0 0 810 810" #FIXME magic numbers. magic numbers everywhere.
+      x["viewBox"] = "0 0 #{IMAGE_FILL_RESOLUTION} #{IMAGE_FILL_RESOLUTION}"
     end
 # FIXME positioning:
 #   possible culprits: <svg ... viewBox="0 0 572.72729 810.00002"
@@ -46,13 +46,53 @@ class SvgParser
     return images
   end
 
-  # TODO this doesn't seem to actually remove the path in my render of the svg???
+  # TODO this doesn't seem to actually remove the stroke in my render of the svg???
   def remove_path_style
     path = @svg.css("path")
     path.each do |x|
       x.delete("style")
     end
+
+    group = @svg.css("g")
+    group.each do |x|
+      x.delete("style")
+    end
+
     return path
+  end
+
+  # if you just want to download a png, use this
+  # def self.svg_to_png(svg, width, height)
+  #width = width of the svg in px
+  #height = width of the svg in px
+  def svg_to_png(input, width, height)
+    # svg = RSVG::Handle.new_from_data(@svg.to_xml.to_s)
+    svg = RSVG::Handle.new_from_data(input)
+
+    width   = width  ||=500
+    height  = height ||=500
+    surface = Cairo::ImageSurface.new(Cairo::FORMAT_ARGB32, width, height)
+    context = Cairo::Context.new(surface)
+    context.render_rsvg_handle(svg)
+    b = StringIO.new
+    surface.write_to_png(b)
+    return b.string
+  end
+
+  # FIXME probably don't need to keep this method around forever, it's just to workaround a problem
+  def svg_file_to_png(filename, width, height)
+    svg_data = File.open(filename, 'rb') {|f| f.read }
+
+    svg = RSVG::Handle.new_from_data(svg_data)
+
+    width   = width  ||=500
+    height  = height ||=500
+    surface = Cairo::ImageSurface.new(Cairo::FORMAT_ARGB32, width, height)
+    context = Cairo::Context.new(surface)
+    context.render_rsvg_handle(svg)
+    b = StringIO.new
+    surface.write_to_png(b)
+    return b.string
   end
 
   # provide Base64 URI for an image online, where location is a string, ex: "http://place.com/someimage.png"
@@ -81,7 +121,7 @@ class SvgParser
     # blargh. magic numbers:
     print_width = "9" #inches
     print_height = "9" #inches
-    preview_pixels = "810" #assuming 150 DPI and 9 inch blocks
+    preview_pixels = IMAGE_FILL_RESOLUTION
 
     location = "http://api.v1.spoonflower.com/design/previewImage/"
     location += design_id
