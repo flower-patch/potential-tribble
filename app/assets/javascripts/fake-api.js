@@ -1,37 +1,48 @@
-// $(function () {
-//   $('.open-fabric-modal-btn').on('click', function () {
-//     Api.getDesignList().done(function(response) {
-//       var results = response.results[0].results;
-//       var designItem = JSON.parse(DESIGN_ITEM);
-//       // var results = [DESIGN_ITEM];
-//
-//       var resultElements = results.map(function(designItem) {
-//         var img = $("<img>");
-//         img.attr('data-id', designItem.id);
-//         img.attr('src', designItem.thumbnail_url);
-//
-//         var li = $('<li>');
-//         li.addClass('fabric-preview');
-//         li.append(img);
-//
-//         return li;
-//       });
-//       $('.fabric-modal-list').empty().append(resultElements);
-//       })
-//       $('.fabric-modal').toggleClass('show');
-//       previewQuilt();
-//       drawPalette('.current-palette', palette);
-//     });
-//
-//     $('.fabric-modal-box').on('click', function(e) {
-//       e.stopPropagation();
-//     });
-//
-//     $('.close-fabric-modal-btn, .fabric-modal').on('click', function () {
-//       $('.fabric-modal').toggleClass('show');
-//       // Once the modal closes, move the svg-editor element back into its original
-//       // area (.svg-editor-parent), in the main content.
-//       currSvg = $('.fabric-modal .current-block').children();
-//       $('.svg-editor-parent').append(currSvg);
-//     });
-//   });
+//Api is an instance of the `self` object below
+var Api = setupFakePi();
+
+ //setupSpoonflowerApi is just setting up the `self` object below and returning it.\
+function setupFakePi() {
+  var baseUrl = 'https://fakepi.herokuapp.com/api/v1/design/';
+
+
+  var self = {
+
+    getPopularList: function(limit) {
+      var limit = limit || '10';
+      var freshtastic = '&sort=freshtastic';
+      var url = baseUrl + 'search?limit=' + limit + freshtastic;
+      return $.get(url);
+    },
+
+    getDesignByKeyword: function(keyword) {
+      var url = baseUrl + 'search?q=' + keyword;
+      return $.get(url);
+    },
+
+    getDesignByColor: function(color) {
+      var color = '4e81bd';
+      var url = baseUrl + 'search?color1=' + color;
+      return $.get(url);
+    },
+
+  
+    getDesignById: function(designId) {
+      //preview in px, print in inches
+      var previewWidth = 410;
+      var previewHeight = 410;
+      var printWidth = 9;
+      var printHeight  = 9;
+      var url = baseUrl + 'previewImage/' +
+        designId + '?' + 'print_width=' +
+        printWidth + '&print_height=' +
+        printHeight + '&preview_width_pixels=' +
+        previewWidth + '&preview_height_pixels=' +
+        previewHeight;
+      return $.get(url);
+    }
+
+  };
+
+  return self;
+}
