@@ -41,8 +41,8 @@
 
 function addFabricMessage() {
   if (palette === undefined || palette.length === 0) {
-  alt example from appointments app
-   if (appts === undefined || appts.length === 0) {
+  //alt example from appointments app
+  // if (appts === undefined || appts.length === 0) {
       $('.no-frames').html(noFrames);
       $('.no-frames').fadeIn('slow');
    };

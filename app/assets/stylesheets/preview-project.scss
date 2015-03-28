@@ -107,12 +107,18 @@
 .preview-svg {
  margin-top: 2.358%;
  margin-bottom: 2.358%;
+ margin-right: 0;
  @include span-columns(8);
 
 }
 
 .choose-preview-thumbnail {
   @include span-columns(2 of 8);
+  margin-right: 0;
+}
+
+.preview-thumbnails {
+  margin-left: 1em;
 }
 
 .preview-thumbnail {
@@ -121,7 +127,7 @@
   width: 6em;
   height: 6em;
   box-shadow: $default-shadow;
-  
+
   &:hover {
     box-shadow: $hover-shadow;
   }
