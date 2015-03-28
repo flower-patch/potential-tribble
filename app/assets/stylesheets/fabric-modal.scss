@@ -141,6 +141,7 @@
   font-size: 1em;
   line-height: .5em;
   box-shadow: $default-shadow;
+  cursor: pointer;
 
   &:hover {
     box-shadow: $hover-shadow;

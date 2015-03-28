@@ -9,6 +9,7 @@
 
 .edit-view {
   position: relative;
+  height: 548px;
 
   @include span-columns(10);
   @include shift(1);
