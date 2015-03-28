@@ -122,6 +122,7 @@
 
   &:hover {
     box-shadow: $hover-shadow;
+    transition: $transition;
   }
 
 }
@@ -144,6 +145,7 @@
 
   &:hover {
     box-shadow: $hover-shadow !important;
+    transition: $transition !important;
   }
 }
 

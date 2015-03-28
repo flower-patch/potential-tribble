@@ -70,6 +70,7 @@
 
   &:hover {
     box-shadow: $hover-shadow;
+    transition: $transition;
   }
 }
 
@@ -79,6 +80,7 @@
 
   &:hover {
     box-shadow: none;
+    transition: transition;
   }
 }
 

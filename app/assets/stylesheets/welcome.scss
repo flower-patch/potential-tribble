@@ -59,6 +59,7 @@
 
     &:hover {
       box-shadow: $hover-shadow;
+      transition: $transition;
     }
   }
 
@@ -162,6 +163,7 @@
 
   &:hover {
     box-shadow: $hover-shadow;
+    transition: $transition;
   }
 
   .card-image {
@@ -214,6 +216,7 @@
   &:focus,
   &:hover {
     background-color: $card-hover-background;
+    transition: $transition;
 
     .card-image img {
       background: $card-image-hover-background;
