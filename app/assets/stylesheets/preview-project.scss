@@ -31,20 +31,20 @@
   color: $alt-accent-text;
 }
 
-
 .preview-icon {
   font-size: 1.05em;
   padding: 5px;
 }
 .quilt-name {
   margin-top: 1em;
-  margin-left: .5em;
+  margin-left: 0;
+  margin-right: 0;
   @include pad();
   font-size: 1em;
   @include appearance(none);
   @include box-sizing(border-box);
   @include transition(border-color);
-  width: 211px;
+  width: 100%;
   background-color: $lightest-gray;
   box-shadow: inset $default-shadow;
   border: 1px solid $light-pure-gray;
