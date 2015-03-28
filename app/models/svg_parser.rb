@@ -93,6 +93,7 @@ class SvgParser
     b = StringIO.new
     surface.write_to_png(b)
     return b.string
+  end
 
   # FIXME possibly deprecated?
   def remove_path_stroke
