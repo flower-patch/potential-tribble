@@ -18,11 +18,30 @@ class SvgParser
     @paths.map {|p| p["d"].split}
   end
 
+  # replaces the image in *every* pattern fill with a base64 png data uri
   def replace_image_fill( replacement_uri )
     images = @svg.css("image")
     images.each do |x|
-      x["xlink:href"] = replacement_uri
+      x["xlink:href"] = "data:image/png;base64,"+replacement_uri
+      x["width"] = "810" #FIXME magic number used for image resolution :(
+      x["height"] = "810" #FIXME magic number used for image resolution :(
+      # x["y"] = "-242"
+      # x["x"] = "242"
+
     end
+
+    patterns = @svg.css("pattern")
+    patterns.each do |x|
+      x["width"] = "810" #FIXME magic numbers. you're doing it again!
+      x["height"] = "810" #FIXME magic numbers. STAHP.
+      x["y"] = "242" #FIXME this works because SVG o.O
+      x["x"] = "-120" #FIXME this works and god knows why
+
+      x["viewBox"] = "0 0 810 810" #FIXME magic numbers. magic numbers everywhere.
+    end
+# FIXME positioning:
+#   possible culprits: <svg ... viewBox="0 0 572.72729 810.00002"
+# => <G ... transform="translate(0,-242.36215)" NOTE: don't undo this, it shifts the whole svg down!
 
     return images
   end
@@ -60,13 +79,27 @@ class SvgParser
     return Base64.encode64(png)
   end
 
+  # provide Base64 URI for an image online, with basic auth-- assumes that ENV is set for username and password
+  def get_image_from_web_with_basic_auth( location )
+    uri = URI(location)
+
+    req = Net::HTTP::Get.new(uri)
+    req.basic_auth ENV['SPOONFLOWER_USERNAME'], ENV['SPOONFLOWER_PASSWORD']
+
+    res = Net::HTTP.start(uri.hostname, uri.port) {|http|
+      http.request(req)
+    }
+    # return res.body
+    return Base64.encode64(res.body)
+  end
+
   # TODO: if you ever make blocks in a size other than 9", this method will be a problem
   # TODO: if anything changes with the Spoonflower API, this location URL might not work
   def spoonflower_image_location_from_id( design_id )
     # blargh. magic numbers:
     print_width = "9" #inches
     print_height = "9" #inches
-    preview_pixels = "150" #assuming 150 DPI and 9 inch blocks
+    preview_pixels = "810" #assuming 150 DPI and 9 inch blocks
 
     location = "http://api.v1.spoonflower.com/design/previewImage/"
     location += design_id
@@ -113,7 +146,7 @@ class SvgParser
     all_ids.uniq
   end
 
-
+  # FIXME this method is possibly deprecated
   def replace_fabric_urls(image_id, new_url)
     selected_paths = @paths.xpath('//*[@image-id="' + image_id +'"]')
     selected_paths.each do |path|
