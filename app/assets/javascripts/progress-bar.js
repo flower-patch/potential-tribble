@@ -1,7 +1,12 @@
-//JQ Progress Bar
+$(function () {
 
-$(function disableProgressButtons() {
-  $(document).ready(function() {
-    $('.selected.progress-element a, .selected ~ .progress-element a').attr('disable', 'disabled');
-  });
+  function disableProgressButtons() {
+    var forwardButtons = $('.selected ~ .progress-element a');
+    forwardButtons.on('click', function(e) {
+      e.preventDefault();
+    });
+  }
+
+  disableProgressButtons();
+
 });

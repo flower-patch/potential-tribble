@@ -69,7 +69,10 @@ function getGroup(path) {
 // DISABLE PROGRESS BUTTONS
 
 // $('.selected ~ .progress-element a').on('click', function(e) {
+//   alert('hiya');
 //   e.preventDefault();
+//   e.stopPropagation();
+//   return false;
 // })
 
 // function disableProgressButtons() {

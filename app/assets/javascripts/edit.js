@@ -28,6 +28,21 @@ $(function () {
     }
   }];
 
+
+  //////////////////////////////////////////////////////////////////////////////
+  //Disables forward progress bar buttons from being clicked
+  //Tried putting this is progress-bar.js but even though it's the same code
+  //I can not get it to work there
+  function disableProgressButtons() {
+    var forwardButtons = $('.selected ~ .progress-element a');
+    forwardButtons.on('click', function(e) {
+      e.preventDefault();
+    });
+  }
+
+  disableProgressButtons();
+
+
   //////////////////////////////////////////////////////////////////////////////
   //SET DEFAULTS for paths, makes the white if empty
   function clearFill(item) {
