@@ -76,7 +76,7 @@ main {
   background-image: $green-pattern;
   height: 5.6em;
   width: 100%;
-  box-shadow: $hover-shadow;
+  box-shadow: $default-shadow;
   position: relative;
   z-index: 1
 }
@@ -137,7 +137,7 @@ footer {
   background-image: $green-pattern;
   background-image: image-url('flowerpatch_background_gray.png');
   height: 7.35em;
-  box-shadow: 0px 1px 8px 1px $mid-gray;
+  box-shadow: 0px 1px 15px 1px darkgray;
   position: relative;
   z-index: 1;
   // position: absolute;
@@ -148,6 +148,9 @@ footer {
 }
 
 .footer-overlay {
+  border-top: $default-border;
+  border-color: $white;
+  outline: 2px solid $mid-gray;
   position: absolute;
   top: 0;
   left: 0;
