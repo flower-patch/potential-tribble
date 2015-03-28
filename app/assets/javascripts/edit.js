@@ -5,44 +5,42 @@ $(function () {
 
   //////////////////////////////////////////////////////////////////////////////
   //dummy palette
-  var palette = [{
-    id: 'patterns-by-danny-ivan.jpg',
-    url: 'http://www.crafthubs.com/thumbs/patterns-by-danny-ivan.jpg',
-    size: {
-      width: 100,
-      height: 100
-    }
-  }, {
-    id: 'fun-with-shapes-and-patterns.jpg',
-    url: 'http://www.crafthubs.com/thumbs/fun-with-shapes-and-patterns.jpg',
-    size: {
-      width: 50,
-      height: 50
-    }
-  }, {
-    id: '44250.jpg',
-    url: 'http://www.housefabric.com/assets/ProductDetail/44250.jpg',
-    size: {
-      width: 50,
-      height: 50
-    }
-  }];
+  // var palette = [{
+  //   id: 'patterns-by-danny-ivan.jpg',
+  //   url: 'http://www.crafthubs.com/thumbs/patterns-by-danny-ivan.jpg',
+  //   size: {
+  //     width: 100,
+  //     height: 100
+  //   }
+  // }, {
+  //   id: 'fun-with-shapes-and-patterns.jpg',
+  //   url: 'http://www.crafthubs.com/thumbs/fun-with-shapes-and-patterns.jpg',
+  //   size: {
+  //     width: 50,
+  //     height: 50
+  //   }
+  // }, {
+  //   id: '44250.jpg',
+  //   url: 'http://www.housefabric.com/assets/ProductDetail/44250.jpg',
+  //   size: {
+  //     width: 50,
+  //     height: 50
+  //   }
+  // }];
 
   var palette = [];
+  Api.getPopularList(5).then(function(response) {
+    // The default palette is the first five results from the popular list
+    palette = response.results[0].results;
+    palette.forEach(function(tile) {
+      tile.size = { width: 50, height: 50 };
+    })
+
+    drawPalette('.palette', palette);
+
+  })
 
 
-  //////////////////////////////////////////////////////////////////////////////
-  //Disables forward progress bar buttons from being clicked
-  //Tried putting this is progress-bar.js but even though it's the same code
-  //I can not get it to work there
-  function disableProgressButtons() {
-    var forwardButtons = $('.selected ~ .progress-element a');
-    forwardButtons.on('click', function(e) {
-      e.preventDefault();
-    });
-  }
-
-  disableProgressButtons();
 
 
   //////////////////////////////////////////////////////////////////////////////
@@ -130,22 +128,21 @@ $(function () {
       }
     }
 
-    addFabricMessage();
-
   //////////////////////////////////////////////////////////////////////////////
   //CREATES FABRIC SWATCH PALETTE
 
   function drawPalette(location, palette) {
     $(location).html(palette.map(function (fabric) {
-      var li = $('<li class="fabric-preview card"><button alt="Remove from palette" class="remove-fabric-btn icon-button"><i class="fa fa-minus-circle inner-button-icon"></i></button><div class="fabric-img-container"><img src="' + fabric.url + '"></div></li>');
+      var li = $('<li class="fabric-preview card"><button alt="Remove from palette" class="remove-fabric-btn icon-button"><i class="fa fa-minus-circle inner-button-icon"></i></button><div class="fabric-img-container"><img src="' + fabric.thumbnail_url + '"></div></li>');
       //.data(key, value) key= string 'fabric', value is fabric object
       // .data makes the thing a part of the DOM
       li.data('fabric', fabric);
       return li;
     }));
+    if (!palette.length) {
+      $('.add-fabric-message').css('display', 'block');
+    }
   }
-
-  drawPalette('.palette', palette);
 
 
   //////////////////////////////////////////////////////////////////////////////
@@ -206,7 +203,7 @@ $(function () {
     var pattern = svg.select('#' + patternId);
 
     if (!pattern) {
-      pattern = svg.image(currFabric.url, 0, 0, currFabric.size.width, currFabric.size.height)
+      pattern = svg.image(currFabric.thumbnail_url, 0, 0, currFabric.size.width, currFabric.size.height)
       .toPattern(0, 0, currFabric.size.width, currFabric.size.height)
       .attr({ id: patternId });
     }
@@ -301,50 +298,29 @@ $(function () {
   CALL API HERE on modal-open
   separate names for Spoonflower's API and fAkePI
   */
-
-
-
-  $('.open-fabric-modal-btn').on('click', function () {
+  function showPopularResults() {
     Api.getPopularList().done(function(response) {
       var results = response.results[0].results;
-      var resultElements = results.map(function(designItem) {
-        var img = $('<img>');
-        img.attr('data-id', designItem.id);
-        img.attr('src', designItem.thumbnail_url);
-
-        var imgCont = $('<div class="fabric-img-container"></div>');
-        imgCont.append(img);
-
-        var btn = $('<button alt="Add to palette" class="remove-fabric-btn icon-button"><i class="fa fa-plus-circle inner-button-icon"></i></button>')
-
-        var designName = $('<div class="fabric-name-container"><h3 class="fabric-name">' + designItem.name + '</h3></div>');
-
-        // this keeps coming in as undefined. Is it because of the underscore? Some privacy setting on api
-        // var designer = $('<span class="designer-screen-name">' + designItem.sceen_name + '</span>');
-
-        var li = $('<li></li>');
-        li.data('item', designItem);
-        li.addClass('fabric-preview card search-result');
-        li.append(imgCont);
-        li.append(btn);
-        li.append(designName);
-        // li.append(designer);
-
-        return li;
-
-        // var li = $('<li class="fabric-preview card">
-        // <button alt="Remove from palette" class="remove-fabric-btn icon-button">
-        // <i class="fa fa-minus-circle inner-button-icon"></i></button>
-        // <div class="fabric-img-container">
-        // <img src="' + fabric.url + '"></div></li>');
-
-      });
+      var resultElements = apiResultToElements(results);
 
       $('.fabric-modal-list').empty().append(resultElements);
     })
-    $('.fabric-modal').toggleClass('show');
+  }
+
+  $('.popular-search-form').submit(function(e) {
+    e.preventDefault();
+    showPopularResults();
+  });
+
+  $('.open-fabric-modal-btn').on('click', function () {
+    console.log('open fabric clicked');
+    showPopularResults();
+
     previewQuilt();
     drawPalette('.current-palette', palette);
+    setTimeout(function() {
+      $('.fabric-modal').addClass('show');
+    }, 10);
   });
 
   $('.fabric-modal-box').on('click', function(e) {
@@ -353,6 +329,7 @@ $(function () {
 
   $('.close-fabric-modal-btn, .fabric-modal').on('click', function () {
     $('.fabric-modal').toggleClass('show');
+    console.log('close modal');
     // Once the modal closes, move the svg-editor element back into its original
     // area (.svg-editor-parent), in the main content.
     currSvg = $('.fabric-modal .current-block').children();
@@ -379,21 +356,93 @@ $(function () {
   //////////////////////////////////////////////////////////////////////////////
   //GET BY COLOR API CALL
 
-  $('.fabric-modal-color-btn').on('click', function () {
-    Api.getDesignByColor().done(function(response) {
+  $('.color-search').submit( function (e) {
+    e.preventDefault();
+    Api.getDesignByColor($('input', this).val()).done(function(response) {
       var results = response.results[0].results;
-      var resultElements = results.map(function(designItem) {
-        var img = $("<img>");
-        img.attr('data-id', designItem.id);
-        img.attr('src', designItem.thumbnail_url);
+      var resultElements = apiResultToElements(results);
 
-        var li = $('<li>');
-        li.addClass('fabric-preview');
-        li.append(img);
+      $('.fabric-modal-list').empty().append(resultElements);
+    })
+  //   $('.fabric-modal').toggleClass('show');
+  //   previewQuilt();
+  //   drawPalette('.current-palette', palette);
+  });
 
-        return li;
-      });
+  $('.fabric-modal-box').on('click', function(e) {
+    e.stopPropagation();
+    console.log('click fabric modal box');
+  });
 
+  //////////////////////////////////////////////////////////////////////////////
+  //GET BY KEYWORD API CALL
+
+  $('.keyword-search').submit(function (e) {
+    e.preventDefault();
+    Api.getDesignByKeyword($('input', this).val()).done(function(response) {
+      var results = response.results[0].results;
+      var resultElements = apiResultToElements(results);
+
+      $('.fabric-modal-list').empty().append(resultElements);
+    })
+    // $('.fabric-modal').toggleClass('show');
+    // previewQuilt();
+    // drawPalette('.current-palette', palette);
+  });
+
+  $('.fabric-modal-box').on('click', function(e) {
+    e.stopPropagation();
+  });
+
+  function apiResultToElements(results) {
+    return results.map(function(designItem) {
+      var img = $('<img>');
+      img.attr('data-id', designItem.id);
+      img.attr('src', designItem.thumbnail_url);
+
+      var imgCont = $('<div class="fabric-img-container"></div>');
+      imgCont.append(img);
+
+      var btn = $('<button alt="Add to palette" class="remove-fabric-btn icon-button"><i class="fa fa-plus-circle inner-button-icon"></i></button>')
+
+      var designName = $('<div class="fabric-name-container"><h3 class="fabric-name">' + designItem.name + '</h3></div>');
+
+      // this keeps coming in as undefined. Is it because of the underscore? Some privacy setting on api
+      // var designer = $('<span class="designer-screen-name">' + designItem.sceen_name + '</span>');
+
+      var li = $('<li></li>');
+      li.data('item', designItem);
+      li.addClass('fabric-preview card search-result');
+      li.append(imgCont);
+      li.append(btn);
+      li.append(designName);
+      // li.append(designer);
+
+
+      li.on('click', function() {
+        console.log('clicking fabric-modal-results');
+        palette.push({
+          id: $(this).find('img').attr('data-id'),
+          thumbnail_url: $(this).find('img').attr('src'),
+          size: {
+            width: 50,
+            height: 50
+          }
+        })
+        drawPalette('.current-palette, .palette', palette)
+      })
+
+      return li;
+    });
+  }
+
+
+
+
+  $('.open-fabric-modal-btn').on('click', function () {
+    Api.getPopularList().done(function(response) {
+      var results = response.results[0].results;
+      var resultElements = apiResultToElements(results);
       $('.fabric-modal-list').empty().append(resultElements);
     })
     $('.fabric-modal').toggleClass('show');
@@ -401,63 +450,5 @@ $(function () {
     drawPalette('.current-palette', palette);
   });
 
-  $('.fabric-modal-box').on('click', function(e) {
-    e.stopPropagation();
-  });
-
-  //////////////////////////////////////////////////////////////////////////////
-  //GET BY QUERY API CALL
-
-
-  $('.keyword-search').submit(function (e) {
-    e.preventDefault();
-    Api.getDesignByQuery($('input', this).val()).done(function(response) {
-      var results = response.results[0].results;
-      var resultElements = results.map(function(designItem) {
-        var img = $('<img>');
-        img.attr('data-id', designItem.id);
-        img.attr('src', designItem.thumbnail_url);
-
-        var li = $('<li>');
-        li.addClass('fabric-preview');
-        li.append(img);
-        li.data('item', designItem);
-
-        // this will get you the item
-        //li.data('item')
-
-        return li;
-      });
-
-      $('.fabric-modal-list').empty().append(resultElements);
-    })
-    //$('.fabric-modal').toggleClass('show');
-    //previewQuilt();
-    //drawPalette('.current-palette', palette);
-  });
-
-  $('.fabric-modal-box').on('click', function(e) {
-    e.stopPropagation();
-  });
-
-
-  //////////////////////////////////////////////////////////////////////////////
-  // DISABLE PROGRESS BUTTONS
-
-  // $('.selected ~ .progress-element a').on('click', function(e) {
-  //   e.preventDefault();
-  // })
-
-  // function disableProgressButtons() {
-  //   var forwardButtons = $('.selected ~ .progress-element a');
-  //   forwardButtons.attr("disabled","disabled");
-  // }
-  //
-  // disableProgressButtons();
-  //
-
-  $(document).ready(function() {
-    $('.selected.progress-element a, .selected ~ .progress-element a').attr('disable', 'disabled');
-  });
 
 });
