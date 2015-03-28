@@ -28,6 +28,8 @@ $(function () {
     }
   }];
 
+  var palette = [];
+
 
   //////////////////////////////////////////////////////////////////////////////
   //Disables forward progress bar buttons from being clicked
@@ -118,20 +120,17 @@ $(function () {
 
 
     //////////////////////////////////////////////////////////////////////////////
-    //DEPRECATED
+    //Show message prompting user to add fabrics if there are none.
 
-    // function addFabricMessage() {
-    //   if (palette === undefined || palette.length === 0) {
-    //   alt example from appointments app
-    //    if (appts === undefined || appts.length === 0) {
-    //       $('.no-frames').html(noFrames);
-    //       $('.no-frames').fadeIn('slow');
-    //    };
-    //     $('.add-fabric-message').fadeIn('slow');
-    //   }
-    // }
+    function addFabricMessage() {
+      if (palette === undefined || palette.length === 0) {
+        $('.add-fabric-message').fadeIn(1500);
+        $('.open-fabric-modal-btn').css('visibility', 'visible')
+          .css('opacity', '1');
+      }
+    }
 
-    // addFabricMessage();
+    addFabricMessage();
 
   //////////////////////////////////////////////////////////////////////////////
   //CREATES FABRIC SWATCH PALETTE

@@ -109,12 +109,15 @@ svg path {
 }
 
 .add-fabric-message {
-  @include position(absolute, 80% 0 0 50%);
+  @include position(absolute, 55% 0 0 50%);
   transform: translate(-50%, -50%);
   width: 80%;
-  visibility: hidden;
+  // visibility: hidden;
+  // opacity: 0;
+  display: none;
   vertical-align: baseline;
   color: $mid-gray;
+  font-size: 1.5em;
 
 }
 
