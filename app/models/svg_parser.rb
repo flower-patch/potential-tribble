@@ -3,6 +3,8 @@ require 'net/http'
 class SvgParser
   attr_reader :svg, :paths
 
+  FABRIC_WIDTH = 42
+
   def initialize(svg)
     @svg = Nokogiri::XML(svg)
     @paths = @svg.xpath('//*[@d]')
@@ -55,6 +57,7 @@ class SvgParser
     return path
   end
 
+  #works great unless the stroke is in the group
   def remove_path_stroke
     path = @svg.css("path")
     path.each do |p|
@@ -266,6 +269,52 @@ class SvgParser
 
   def total_area(area_hash)
     area_hash.values.reduce(:+).round(2)
+  end
+
+  # write a method that gets total number of blocks from project_type
+  # fix the method so it uses the right sort of id
+  # could write a method that calls this and does each unique image id, puts all values in a hash
+  # and then rounds to the nearest yard...
+  # could pass this seam allowance, but just going to go with .25 for now
+  def cut_and_sew_print_area(design_id, project_type)
+    y = 0
+    total_coords = []
+    dimensions = [SvgParser::FABRIC_WIDTH, y]
+      selected_paths = @paths.xpath('//*[@image-id="' + design_id +'"]')
+      selected_paths.each do |path|
+        if path[:d]
+          coords = path_coords(path[:id])
+
+          if coords.length == 4
+            side1 = 2 * 0.25 #seam allowance
+            side2 = 2 * 0.25
+            coords[1].each do |c|
+              if c != 0
+                side1 += clean_up(c)
+              end
+            end
+            coords[2].each do |d|
+              if d != 0
+                side2 += clean_up(d)
+              end
+            end
+            project_type.times do
+              total_coords << [side1, side2]
+            end
+    #         rectangle
+    #       else
+    #         it is a triangle and a very scary thing
+          end
+        end
+      end
+      unique_coords = total_coords.uniq
+      sorted_coords = {}
+      unique_coords.each do |pair|
+        sorted_coords[pair] = total_coords.count(pair)
+      end
+
+    dimensions
+    sorted_coords
   end
 
 
