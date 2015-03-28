@@ -1,0 +1,41 @@
+<!-- CHRISTEN'S TEST AREA FOR PLAYING WITH SVG PARSING AND SVG TO PNG CONVERSION -->
+<!-- DELETE THIS VIEW, CONTROLLER METHOD, AND ROUTE BEFORE SITE GOES LIVE -->
+<h2>Pull an image from online and convert to Base64:</h2>
+<h4>Location:</h4>
+<% location = @svg_parser_object.spoonflower_image_location_from_id( "3179830" ) %>
+<%= location %><br><br>
+
+<% full_res_image = @svg_parser_object.get_image_from_web_with_basic_auth( location ) %>
+<img src="data:image/png;base64,<%= full_res_image  %>">
+
+<% @svg_parser_object.replace_image_fill( full_res_image ) %>
+
+<p>Starting SVG:</p>
+<br><br>
+
+<%= @starting_svg.html_safe %>
+
+<br><br>
+<h2>Nokogiri'd SVG</h2>
+<%= @svg_parser_object.svg.to_xml %>
+
+<!-- <br><br> -->
+<!-- <h2>Get patterns?</h2> -->
+<%#= @svg_parser_object.remove_path_style %>
+<!-- <br><br> -->
+<!-- Class:<br> -->
+<%#= @svg_parser_object.remove_path_style.class %>
+<!-- <br><br> -->
+<!-- Length:<br> -->
+<%#= @svg_parser_object.remove_path_style.length %>
+<!-- <br><br> -->
+
+<!-- <p>Pretty parser object?</p> -->
+<%# @svg_parser_object.remove_path_style.each do |x| %>
+<!-- X is a <%#= x.class %><br><br> -->
+<!-- <%#= x %><br><br> -->
+<%#= x["xlink:href"] %><br><br>
+<%# end %>
+
+<p>Edited SVG</p>
+<%= @svg_parser_object.svg.to_xml.html_safe %>

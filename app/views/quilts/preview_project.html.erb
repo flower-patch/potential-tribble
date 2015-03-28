@@ -51,7 +51,13 @@
 
 
 
-  <div class="preview-svg">
+
+  <div class="preview-svg no-click">
+    <%= @quilt.svg.html_safe %>
+    <%= ProjectTemplate.getXML_for_filename( @project.project_layout_svg ).html_safe %>
+  </div>
+  <% end %>
+
 
     <div class="current-preview no-click">
       <%= @quilt.svg.html_safe %>
