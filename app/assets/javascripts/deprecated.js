@@ -155,4 +155,27 @@ $('.selected ~ .progress-element a').on('click', function(e) {
 //   });
 // }
 
-//
+//////////////////////////////////////////////////////////////////////////////
+//dummy palette
+// var palette = [{
+//   id: 'patterns-by-danny-ivan.jpg',
+//   url: 'http://www.crafthubs.com/thumbs/patterns-by-danny-ivan.jpg',
+//   size: {
+//     width: 100,
+//     height: 100
+//   }
+// }, {
+//   id: 'fun-with-shapes-and-patterns.jpg',
+//   url: 'http://www.crafthubs.com/thumbs/fun-with-shapes-and-patterns.jpg',
+//   size: {
+//     width: 50,
+//     height: 50
+//   }
+// }, {
+//   id: '44250.jpg',
+//   url: 'http://www.housefabric.com/assets/ProductDetail/44250.jpg',
+//   size: {
+//     width: 50,
+//     height: 50
+//   }
+// }];
