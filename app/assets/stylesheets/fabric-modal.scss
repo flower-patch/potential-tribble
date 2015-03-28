@@ -123,10 +123,10 @@
 }
 
 .popular-search {
+  @include pad(0.5em);
   margin-top:1em;
   border-top: 2px solid $seafoam-light;
   border-bottom: 2px solid $seafoam-light;
-  padding: 5.35765%;
   outline: 2px solid $accent-text;
   border: 1.5px dashed $seafoam-light;
   background-color: $accent-text;

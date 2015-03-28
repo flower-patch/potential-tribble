@@ -72,7 +72,7 @@
   font-family: "Kreon", serif;
   font-weight: 100;
   font-size: 1.25em;
-  @include pad();
+  @include pad(0.5em);
   box-shadow: $default-shadow;
 
   &:hover {
