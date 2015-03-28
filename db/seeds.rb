@@ -25,11 +25,11 @@ BlockTemplate.create(name: "Square Upon Square", block_svg_url: "test16.svg")
 BlockTemplate.create(name: "Diamond", block_svg_url: "test17.svg")
 BlockTemplate.create(name: "Old Maid's Puzzle", block_svg_url: "test18.svg")
 
-ProjectTemplate.create( name: "Queen Sized Quilt", example_thumb_url: "queen_quilt.png", description: "Make a queen sized quilt")
-ProjectTemplate.create( name: "Twin Sized Quilt", example_thumb_url: "dummythumb.png", description: "Make a twin sized quilt")
-ProjectTemplate.create( name: "Lap Quilt", example_thumb_url: "dummythumb.png", description: "Make a lap quilt")
-ProjectTemplate.create( name: "Single Patch", example_thumb_url: "pillow_quilt.png", description: "Make a single patch and use it in a project of your choosing")
-ProjectTemplate.create( name: "Doll", example_thumb_url: "doll_quilt.png", description: "Make a doll sized quilt")
+ProjectTemplate.create( name: "Queen-Sized Quilt", example_thumb_url: "queen_quilt.png", description: "Make a queen sized quilt", blocks_across: 10, blocks_down: 12, project_layout_svg:"queen.svg")
+ProjectTemplate.create( name: "Twin-Sized Quilt", example_thumb_url: "dummythumb.png", description: "Make a twin sized quilt", blocks_across: 8, blocks_down: 10, project_layout_svg:"twin.svg")
+ProjectTemplate.create( name: "Lap Quilt", example_thumb_url: "dummythumb.png", description: "Make a lap quilt", blocks_across: 4, blocks_down: 5, project_layout_svg:"lap.svg")
+ProjectTemplate.create( name: "Single Patch", example_thumb_url: "pillow_quilt.png", description: "Make a single patch and use it in a project of your choosing", blocks_across: 1, blocks_down: 1, project_layout_svg:"singlepatch.svg")
+ProjectTemplate.create( name: "Doll", example_thumb_url: "doll_quilt.png", description: "Make a doll sized quilt", blocks_across: 2, blocks_down: 3, project_layout_svg:"doll.svg")
 
 Quilt.create( in_progress: false, name: "Default", seam_allowance: 0.25, public: true, preview_thumb_url: "dummythumb.png", project_template_id: 1, yardage: "fat quarter", svg:'<svg
    xmlns:dc="http://purl.org/dc/elements/1.1/"
