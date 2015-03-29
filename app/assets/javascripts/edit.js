@@ -103,8 +103,8 @@ $(function() {
     }
   }
 
-  //////////////////////////////////////////////////////////////////////////////
-  //CREATES FABRIC SWATCH PALETTE
+//////////////////////////////////////////////////////////////////////////////
+//CREATES FABRIC SWATCH PALETTE
 
   function drawPalette(location, palette) {
     $(location).html(palette.map(function(fabric) {
@@ -120,18 +120,23 @@ $(function() {
   }
 
 
+//////////////////////////////////////////////////////////////////////////////
+// SETTING currFabric
+
+
   currFabric = palette[0];
 
   var designId;
 
+
   $('.palette').on('click', '.fabric-preview', function() {
     currFabric = $(this).data('fabric');
-    console.log(currFabric);
+    // console.log(currFabric);
     var designId = currFabric.id;
-    console.log(designId);
+    // console.log(designId);
     //Api.getDesignById(designId).done(function(response) {
-    var baseUrl = 'http://api.v1.spoonflower.com/design/';
-    //var baseUrl = 'https://fakepi.herokuapp.com/api/v1/design/';
+    // var baseUrl = 'http://api.v1.spoonflower.com/design/';
+    var baseUrl = 'https://fakepi.herokuapp.com/api/v1/design/';
     var previewWidth = 400;
     var previewHeight = 400;
     var printWidth = 9;
@@ -144,7 +149,6 @@ $(function() {
       previewHeight;
 
     currFabric.preview_url = url;
-    console.log(currFabric.preview_url);
     $('.current-fabric').removeClass('current-fabric');
     $(this).addClass('current-fabric');
     return designId;
@@ -152,10 +156,24 @@ $(function() {
   });
 
 
-  var waitApi = 1000;
+///////////////////////////////////////////////////////////////////////////////
+//JQ TIMEOUTS
+
+  var timeout = 500;
   setTimeout(function() {
+    //sets the first currFabric
     $('.fabric-preview').first().click();
-  }, waitApi);
+    //click event for removing a fabric-preview
+    $('button','.fabric-preview', 'palette').click(function(e) {
+      e.stopPropagation();
+      console.log('click');
+    });
+
+    // $('button','.fabric-preview', 'ul','.fabric-modal-content').click(function(e) {
+    //   e.stopPropagation();
+    //   console.log('click inside modal');
+    // });
+  }, timeout);
 
   //////////////////////////////////////////////////////////////////////////////
   //EDIT PATCH
@@ -212,20 +230,6 @@ $(function() {
 
   function clearFabricPatch(path) {
     path.attr('fill', '#ffffff');
-  }
-
-
-  //////////////////////////////////////////////////////////////////////////////
-  //deprecated atm
-
-  function getGroup(path) {
-    //empty palette, nothing happens!
-    if (!currFabric) return;
-    //use id for snappy shtuffz
-    var group = path.parent();
-    console.log(group);
-
-    group.selectAll('path').forEach(applyFabricPatch);
   }
 
   /////////////////////////////////////////////////////////////////////////////
@@ -371,6 +375,7 @@ $(function() {
 
   $('.fabric-modal-box').on('click', function(e) {
     e.stopPropagation();
+    e.preventDefault();
     console.log('click fabric modal box');
   });
 
@@ -434,7 +439,7 @@ $(function() {
       return li;
     });
   }
-  
+
 
 
   $('.open-fabric-modal-btn').on('click', function() {
