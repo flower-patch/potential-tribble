@@ -33,7 +33,7 @@
 }
 
 .fabric-modal-content {
-  overflow: auto;
+  overflow: hidden;
   height: 100%;
 }
 
@@ -64,7 +64,9 @@
   display: inline-block;
   height: 210px;
   padding-top: 11px;
-  overflow: auto;
+  //overflow: auto;
+  overflow-x: hidden;
+  overflow-y: auto;
 
   .fabric-preview {
     margin: 10px;

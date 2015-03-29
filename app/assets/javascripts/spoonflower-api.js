@@ -30,22 +30,6 @@ function setupSpoonflowerApi() {
       return fetchUrl(url);
     },
 
-    /*
-    API Call
-    http://api.v1.spoonflower.com/design/
-    previewImage/
-    1454355?print_width=4.5&print_height=4.5&preview_width_pixels=150&preview_height_pixels=150
-    for id = 1454355, print_width=4.5 inches, print_height = 4.5 inches
-    preview_width = 150px, preview_height = 150px
-    var baseUrl= http://api.v1.spoonflower.com/design/
-      STICK WITH PIXELS AND INCHES!
-      previewWidth = 150; (px)
-      previewHeight = 150; (px)
-      var printWidth = 4.5; (in)
-      var printHeight  = 4.5; (in)
-    */
-
-    /*
     getDesignById: function(designId) {
       var url = baseUrl + 'previewImage/' +
         designId + '?' + 'print_width=' +
@@ -54,7 +38,7 @@ function setupSpoonflowerApi() {
         previewWidth + '&preview_height_pixels=' +
         previewHeight;
       return fetchUrl(url);
-    }*/
+    },
 
     getDesignByColor: function(color) {
       var color = '4e81bd';
@@ -66,7 +50,18 @@ function setupSpoonflowerApi() {
     getDesignByKeyword: function(keyword) {
       var url = baseUrl + 'search?q=' + keyword;
       return fetchUrl(url);
-    }
+    },
+
+    /*
+    getDesignById: function(designId) {
+      var url = baseUrl + 'previewImage/' +
+        designId + '?' + 'print_width=' +
+        printWidth + '&print_height=' +
+        printHeight + '&preview_width_pixels=' +
+        previewWidth + '&preview_height_pixels=' +
+        previewHeight;
+      return fetchUrl(url);
+    }*/
 
   }
   return self;

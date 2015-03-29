@@ -129,8 +129,9 @@ svg path {
 .palette {
   text-align: left;
   height: $block-height;
-  overflow-y: auto;
   overflow-x: hidden;
+  overflow-y: auto;
+  //overflow: scroll;
 }
 
 .current-fabric {
