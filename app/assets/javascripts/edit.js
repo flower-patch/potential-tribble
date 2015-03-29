@@ -135,12 +135,12 @@ $(function () {
     var designId = currFabric.id;
     console.log(designId);
     //Api.getDesignById(designId).done(function(response) {
-    // var baseUrl = 'http://api.v1.spoonflower.com/design/';
-    var baseUrl = 'https://fakepi.herokuapp.com/api/v1/design/';
-    var previewWidth = 100;
-    var previewHeight = 100;
-    var printWidth = 2.25;
-    var printHeight  = 2.25;
+    var baseUrl = 'http://api.v1.spoonflower.com/design/';
+    // var baseUrl = 'https://fakepi.herokuapp.com/api/v1/design/';
+    var previewWidth = 400;
+    var previewHeight = 400;
+    var printWidth = 9;
+    var printHeight  = 9;
     var url = baseUrl + 'previewImage/' +
     designId + '?' + 'print_width=' +
     printWidth + '&print_height=' +
