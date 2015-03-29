@@ -19,8 +19,8 @@
   @include span-columns(5 of 10);
 
   svg {
-    width: 400px;
-    height: 100%;
+    height: 400px;
+    width: 100%;
     background-color: $mid-gray;
     cursor: pointer;
     box-shadow: $default-shadow;

@@ -26,7 +26,7 @@ function setupFakePi() {
       return $.get(url);
     },
 
-  
+
     getDesignById: function(designId) {
       //preview in px, print in inches
       var previewWidth = 410;
@@ -39,7 +39,8 @@ function setupFakePi() {
         printHeight + '&preview_width_pixels=' +
         previewWidth + '&preview_height_pixels=' +
         previewHeight;
-      return $.get(url);
+      // return $.get(url);
+      return url;
     }
 
   };

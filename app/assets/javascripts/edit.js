@@ -125,32 +125,42 @@ $(function () {
 
 
 
-currFabric = palette[0];
+  currFabric = palette[0];
 
-var designId;
+  var designId;
 
   $('.palette').on('click', '.fabric-preview', function () {
     currFabric = $(this).data('fabric');
     console.log(currFabric);
     var designId = currFabric.id;
     console.log(designId);
-    Api.getDesignById(designId).done(function(response) {
-       console.log(response);
-      //  var previewImg = response;
-      //  currFabric.preview_url = previewImg;
-    });
+    //Api.getDesignById(designId).done(function(response) {
+    // var baseUrl = 'http://api.v1.spoonflower.com/design/';
+    var baseUrl = 'https://fakepi.herokuapp.com/api/v1/design/';
+    var previewWidth = 100;
+    var previewHeight = 100;
+    var printWidth = 2.25;
+    var printHeight  = 2.25;
+    var url = baseUrl + 'previewImage/' +
+    designId + '?' + 'print_width=' +
+    printWidth + '&print_height=' +
+    printHeight + '&preview_width_pixels=' +
+    previewWidth + '&preview_height_pixels=' +
+    previewHeight;
 
-    //
+    currFabric.preview_url = url;
+    console.log(currFabric.preview_url);
     $('.current-fabric').removeClass('current-fabric');
     $(this).addClass('current-fabric');
     return designId;
+    // });
   });
 
-  var waitApi = 1000;
-  setTimeout(function () {
-    $('.fabric-preview').first().click();
-  }, waitApi);
 
+  // var waitApi = 1000;
+  // setTimeout(function () {
+  //   $('.fabric-preview').first().click();
+  // }, waitApi);
 
   //////////////////////////////////////////////////////////////////////////////
   //EDIT PATCH
@@ -195,8 +205,8 @@ var designId;
     var pattern = svg.select('#' + patternId);
 
     if (!pattern) {
-      pattern = svg.image(currFabric.thumbnail_url, 0, 0, currFabric.size.width, currFabric.size.height)
-      .toPattern(0, 0, currFabric.size.width, currFabric.size.height)
+      pattern = svg.image(currFabric.preview_url, 0, 0, 100, 100)
+      .toPattern(0, 0, 100, 100)
       .attr({ id: patternId });
     }
 
