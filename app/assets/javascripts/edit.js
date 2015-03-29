@@ -135,11 +135,8 @@ $(function () {
     var designId = currFabric.id;
     console.log(designId);
     //Api.getDesignById(designId).done(function(response) {
-    var baseUrl = 'http://api.v1.spoonflower.com/design/';
-    // var baseUrl = 'https://fakepi.herokuapp.com/api/v1/design/';
-    //Lydia thought this might have fixed the preview prob at about 11 pm...
-    //but then the API went down....
-    //TEST SUNDAY!
+    // var baseUrl = 'http://api.v1.spoonflower.com/design/';
+    var baseUrl = 'https://fakepi.herokuapp.com/api/v1/design/';
     var previewWidth = 400;
     var previewHeight = 400;
     var printWidth = 9;
