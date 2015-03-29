@@ -10,16 +10,6 @@ class SvgParser
     @paths = @svg.xpath('//*[@d]')
   end
 
-
-  def all_path_ids
-    @paths.map {|p| p[:id]}
-  end
-
-
-  def all_paths_coords_split
-    @paths.map {|p| p["d"].split}
-  end
-
   # replaces the image in *every* pattern fill with a base64 png data uri
   def replace_image_fill( replacement_uri )
     images = @svg.css("image")
@@ -39,7 +29,7 @@ class SvgParser
       x["y"] = "242" #FIXME this works because SVG o.O
       x["x"] = "-120" #FIXME this works and god knows why
 
-      x["viewBox"] = "0 0 810 810" #FIXME magic numbers. magic numbers everywhere.
+      x["viewBox"] = "0 0 810 810" #FIXME magic numbers. magic numbers everywhere. numbers are made of stardust.
     end
 # FIXME positioning:
 #   possible culprits: <svg ... viewBox="0 0 572.72729 810.00002"
@@ -55,25 +45,6 @@ class SvgParser
       x.delete("style")
     end
     return path
-  end
-
-  #works great unless the stroke is in the group
-  def remove_path_stroke
-    path = @svg.css("path")
-    path.each do |p|
-      style_array = p["style"].split(';')
-      stroke_index = 0
-      style_array.each_with_index do |style_attribute, index|
-        if style_attribute.start_with?("stroke:")
-          stroke_index = index
-        end
-      end
-      # style_array[stroke_index] = ["stroke:red"] use this to test, seems to work
-      style_array[stroke_index] = ["stroke:none"]
-      new_style = style_array.join(';')
-      p["style"] = new_style
-    end
-    path
   end
 
   # provide Base64 URI for an image online, where location is a string, ex: "http://place.com/someimage.png"
@@ -114,28 +85,13 @@ class SvgParser
     return location
   end
 
-  def all_paths_coord_pairs
-    array = all_paths_coords_split
-    all_coord_pairs = []
-    array.each do |a|
-      inner_array = a
-      coords_array = []
-      inner_array.each do |i|
-        next if i.match(/[a-zA-Z]/)
-        coord_pair = i.split(',').map {|x| x.to_f }
-        coords_array << coord_pair
-      end
-      all_coord_pairs << coords_array
-    end
-    all_coord_pairs
-  end
-
 
   def path_coords(path_id)
     current_path = @paths.xpath('//*[@id="' + path_id +'"]')
     array = current_path.first[:d].split
     coords_array = []
     array.each do |a|
+      # gets rid of the m and z
       next if a.match(/[a-zA-Z]/)
       coord_pair = a.split(',').map {|x| x.to_f }
       coords_array << coord_pair
@@ -143,67 +99,54 @@ class SvgParser
     coords_array
   end
 
-
+  # KEA this needs to turn into a method that uses the actual design ids
   def all_unique_image_ids
     all_ids = @paths.map {|p| p['image-id']}
     all_ids.uniq
   end
 
-  # FIXME this method is possibly deprecated
-  def replace_fabric_urls(image_id, new_url)
-    selected_paths = @paths.xpath('//*[@image-id="' + image_id +'"]')
-    selected_paths.each do |path|
-      style_array = path["style"].split(';')
-      fill_index = 0
-      style_array.each_with_index do |style_attribute, index|
-        if style_attribute.start_with?("fill:")
-          fill_index = index
-        end
-      end
-      fill_value = ["fill:#{new_url}"]
-      style_array[fill_index] = fill_value
-      new_style = style_array.join(';')
-      path["style"] = new_style
-    end
-    @svg
-  end
-
-
-  def surface_area_by_design_id_with_seam_allowance(seam_allowance)
+  # KEA needs to know how many blocks are in the project and total them
+  # KEA needs to eventually incorporate edge bleed on seam allowance
+  def surface_area_for_cheater_block_royalties
     area_hash = {}
     all_unique_image_ids.each do |id|
       total_area = 0
-      # selected_paths = @paths.xpath('//*[contains(@image-id, ' + id +')]')
       selected_paths = @paths.xpath('//*[@image-id="' + id +'"]')
       selected_paths.each do |path|
         if path[:d]
           coords = path_coords(path[:id])
           if coords.length == 4
-            area = rectangle_area(seam_allowance, coords)
+            # 0 is for the seam allowance that we don't have here
+            sides = rectangle_side_lengths(0, coords)
+            area = sides[0] * sides[1]
           else
-            area = triangle_area(seam_allowance, coords)
+            side = triangle_base_side_length(0, coords)
+            # square being the imaginary square that you make when calculating triangle area
+            square_area = side * side
+            area = square_area / 2
           end
-          total_area += area.round(2)
+          total_area += area
         end
       end
-      area_hash["#{id}"] = total_area
+      area_hash["#{id}"] = total_area.round(2)
     end
     area_hash
   end
 
   def clean_up(coord_value)
     # sometimes path coordinates are negative
-    # conversion of 90 pixels per inch
+    # 90 is the magic number that takes us from pixels to inches
     c = coord_value.abs
     c / 90
   end
 
   def find_height(hypotenuse)
-    # magic number! 45 degrees expressed in radians
+    # super magic number! 45 degrees expressed in radians
     height = hypotenuse * (Math.sin(0.785398163))
   end
 
-  def rectangle_area(seam_allowance, coords)
+  # looks at the pair of coords derived from the svg and derives a side length of the shape in inches
+  def rectangle_side_lengths(seam_allowance, coords)
     side1 = 2 * seam_allowance
     side2 = 2 * seam_allowance
     coords[1].each do |c|
@@ -216,7 +159,7 @@ class SvgParser
         side2 += clean_up(d)
       end
     end
-    side1 * side2
+    [side1, side2]
   end
 
   # equilateral right triangle coordinates have 3 basic configurations:
@@ -236,11 +179,16 @@ class SvgParser
   # the second kind has one value & 0 pair, and one pair of equal values that add up to the other pair
   # the third kind looks similar, but all the values are the same
 
-  def triangle_area(seam_allowance, coords)
+  def triangle_base_side_length(seam_allowance, coords)
     if seam_allowance == 0.25
+      # 0.875 is our favorite magic number: the length you add to a straight side of a triangle
+      # when the seam allowance is 0.25 to account for
+      # the additional length of the side of a square made of two triangles together
+      # with seam allowance all around
+      # when we support additional seam allowances, we can change this
       side = 0.875
     else
-      side = 2 * seam_allowance
+      side = 0
     end
     height_or_hypotenuse1 = 0
     height_or_hypotenuse2 = 0
@@ -263,13 +211,10 @@ class SvgParser
         side += average_side / 3
       end
     end
-    square_area = side * side
-    square_area / 2
+    side
   end
 
-  def total_area(area_hash)
-    area_hash.values.reduce(:+).round(2)
-  end
+
 
   # write a method that gets total number of blocks from project_type
   # fix the method so it uses the right sort of id
@@ -290,66 +235,29 @@ class SvgParser
     total_coords = []
     selected_paths = @paths.xpath('//*[@image-id="' + design_id +'"]')
     selected_paths.each do |path|
+      # this if path[:d] is an irritating wrapper but otherwise was getting the entire svg along with the paths i wanted, which ruined my methods
       if path[:d]
         coords = path_coords(path[:id])
         # 4 pairs of coords means square or rectangle
         if coords.length == 4
-          side1 = 2 * 0.25 #seam allowance
-          side2 = 2 * 0.25
-          # looks at the pair of coords derived from the svg and derives a side length of the shape in inches
-          coords[1].each do |c|
-            if c != 0
-              side1 += clean_up(c)
-            end
-          end
-          coords[2].each do |d|
-            if d != 0
-              side2 += clean_up(d)
-            end
-          end
+          # quarter inch seam allowance
+          sides = rectangle_side_lengths(0.25, coords)
           # for as many blocks as are in the project, gives a set of patch dimensions
           # sorted so that if it's a rectangle, the longer side will be the x
           # and go across the stripes on the fabric instead of inflating the y length
           # uggh, and using the word coords again, but not the same as the path coords above
           project_type.times do
-            total_coords << [side1, side2].sort.reverse
+            total_coords << sides.sort.reverse
           end
         else
-          # 0.875 is our favorite magic number: the length you add to a straight side of a triangle
-          # when the seam allowance is 0.25 to account for
-          # the additional length of the side of a square made of two triangles together
-          # with seam allowance all around
-          side = 0.875
-          height_or_hypotenuse1 = 0
-          height_or_hypotenuse2 = 0
-          # same as the area method here, looks at 3 different types of right isosceles triangle coords from the svg
-          # and figures out "side", or, the side of a square made of two of these triangles together
-          zero_checker = []
-          coords[1].each do |c|
-            zero_checker << c if c == 0
-            height_or_hypotenuse1 += clean_up(c)
-          end
-          coords[2].each do |d|
-            zero_checker << d if d == 0
-            height_or_hypotenuse2 += clean_up(d)
-          end
-          if zero_checker.length == 2
-            side += height_or_hypotenuse1
-          else
-            if height_or_hypotenuse1 == height_or_hypotenuse2
-              side += find_height(height_or_hypotenuse1)
-            else
-              average_side = height_or_hypotenuse1 + height_or_hypotenuse2
-              side += average_side / 3
-            end
-          end
+          side = triangle_base_side_length(0.25, coords)
+          # triangles are easiest to print paired with others to make squares
           # figures out how many squares are needed, rounds up if it's an odd number
           paired_triangles = (project_type/2.to_f).ceil
           paired_triangles.times do
             total_coords << [side, side]
           end
         end
-
       end
     end
     # looking here for all different size patches of this fabric and how many there are of each

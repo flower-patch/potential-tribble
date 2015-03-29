@@ -1,59 +1,14 @@
-Doll-sized quilt
-Queen-sized quilt
-Single patch              1 block         prints on Fat Quarter
-Twin sized quilt
-Wallhanging sized quilt
-
-54 printable width inches
-
-
-
-
-
-
-
-
-
-
-all of this is svg_parser related
-
-from index.html.erb:
-
-<h3>FUN WITH PATHS</h3>
-<!-- we can list all the path ids -->
-<p><%= @svg_parser.all_path_ids %></p>
-<p><%= @svg_parser.all_unique_image_ids %></p>
-<p><%= @svg_parser.all_paths_styles_split %></p>
-<p><%= @svg_parser.all_paths_coords_split %></p>
-<p><%= @svg_parser.all_paths_fill_values %></p>
-<p><%= @svg_parser.all_paths_coord_pairs %></p>
-<p>GUMDROP<%= @svg_parser.paths %>GUMDROP</p>
-<p>SHOULD BE 4321<%= @svg_parser.replace_fabric_urls("4321", "http://www.mycooldesign.amazonserver.com") %>AND DONE</p>
-
-<!-- lucky first path is the lab rat here -->
-<% path = @svg_parser.paths.first %>
-
-<p><%= path %></p>
-<p><%= path.keys %></p>
-<p><%= path['id'] %></p>
-<p><%= path['style']%></p>
-<p><%= path['d']%></p>
-
-<p><%= @svg_parser.first_path_style_split_up %></p>
-<p><%= @svg_parser.first_path_coords_split_up %></p>
-<p><%= @svg_parser.first_path_fill_as_string %></p>
-<p><%= @svg_parser.first_path_coords %></p>
-
-
-from svgparser.rb
-
-
-  def all_paths_styles_split
-    @paths.map {|p| p["style"].split(";")}
+  def all_path_ids
+    @paths.map {|p| p[:id]}
   end
+
 
   def all_paths_coords_split
     @paths.map {|p| p["d"].split}
+  end
+
+  def all_paths_styles_split
+    @paths.map {|p| p["style"].split(";")}
   end
 
   def all_paths_fill_values
@@ -83,6 +38,45 @@ from svgparser.rb
     all_coord_pairs
   end
 
+  #works great unless the stroke is in the group
+  def remove_path_stroke
+    path = @svg.css("path")
+    path.each do |p|
+      style_array = p["style"].split(';')
+      stroke_index = 0
+      style_array.each_with_index do |style_attribute, index|
+        if style_attribute.start_with?("stroke:")
+          stroke_index = index
+        end
+      end
+      # style_array[stroke_index] = ["stroke:red"] use this to test, seems to work
+      style_array[stroke_index] = ["stroke:none"]
+      new_style = style_array.join(';')
+      p["style"] = new_style
+    end
+    path
+  end
+
+  def all_paths_coord_pairs
+    array = all_paths_coords_split
+    all_coord_pairs = []
+    array.each do |a|
+      inner_array = a
+      coords_array = []
+      inner_array.each do |i|
+        next if i.match(/[a-zA-Z]/)
+        coord_pair = i.split(',').map {|x| x.to_f }
+        coords_array << coord_pair
+      end
+      all_coord_pairs << coords_array
+    end
+    all_coord_pairs
+  end
+
+  def total_area(area_hash)
+    area_hash.values.reduce(:+).round(2)
+  end
+  
   # WILL NOT BE THE FIRST PATHS IN THE REAL WORLD...JUST TESTING
   def first_path_style_split_up
     @paths.first["style"].split(";")
@@ -111,33 +105,24 @@ from svgparser.rb
     coords_array
   end
 
+  def replace_fabric_urls(image_id, new_url)
+    selected_paths = @paths.xpath('//*[@image-id="' + image_id +'"]')
+    selected_paths.each do |path|
+      style_array = path["style"].split(';')
+      fill_index = 0
+      style_array.each_with_index do |style_attribute, index|
+        if style_attribute.start_with?("fill:")
+          fill_index = index
+        end
+      end
+      fill_value = ["fill:#{new_url}"]
+      style_array[fill_index] = fill_value
+      new_style = style_array.join(';')
+      path["style"] = new_style
+    end
+    @svg
+  end
 
-#gsub time
-  # def replace_fabric_urls(image_id, new_url)
-  #   selected_paths = @paths.xpath('//*[contains(@image-id, ' + image_id +')]')
-  #   selected_paths.each do |p|
-  #
-  #     replacement_fill = "fill:#{new_url};stroke:#000000;stroke-width:0.99000001;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-  #     p["style"] = replacement_fill
-  #   end
-  #   selected_paths
-  # end
-
-  # this works as far as replacing style with what the old fill exactly was
-  # def replace_fabric_urls(image_id, new_url)
-  #   selected_paths = @paths.xpath('//*[contains(@image-id, ' + image_id +')]')
-  #   selected_paths.each do |p|
-  #     style_array = p["style"].split(';')
-  #     new_array = style_array.map{|s| s if s.start_with?("fill:")}
-  #     string = new_array.compact![0]
-  #     old_fill = string.scan(/:(\S*$)/)[0][0]
-  #     p["style"] = old_fill
-  #   end
-  #   selected_paths
-  # end
-
-
-  # What I actually need to get out of this is the fabric ID...where will that be stored?
 
   # irb(main):001:0> "fill:none".scan(/:(\S*$)/)
   # => [["none"]]
@@ -146,20 +131,3 @@ from svgparser.rb
   # irb(main):003:0> "fill:none".scan(/:(\S*$)/)[0][0]
   # => "none"
   # irb(main):004:0>
-
-
-
-&&&&&&&&make paths without strokes messing up the width YOU WANT VISUAL BOUNDING BOX
--give coordinates in the consistent format I want
-
-&&&&&&WHAT FORMAT OF COORDS CAN I ASSUME?? neat and fancy and coddled
-
-***GET FRONT END TO DO IMAGE-IDs
-WHAT ABOUT STROKE OUTLINE IN FINAL PRINT? REMOVE IT
--WHAT ABOUT TESSELATING TRIANGLES? WHAT IF EVERY TRIANGLE IS DIFFERENT? GRAINLINES IF WE DO TESSELATE
--ALTHOUGH, COULD BE ODD NUMBER IN PATCH BUT SHOULD EVEN OUT ACROSS QUILT, MOSTLY
-
-MORE FANCY MASSAGING OF BLOCK NOTES...GET RID OF WEIRD LINE-TO RECTANGLES AND ROTATED TRIANGLES
-POSSIBLY LEAVE NSA AREA HASH IN SVG FOR REFERENCE IN CASE SVG GETS BUNGLED TO SANITY CHECK AREA
-
--database needs featured/priority column
