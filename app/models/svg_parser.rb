@@ -1,13 +1,16 @@
 require 'net/http'
 
 class SvgParser
-  IMAGE_FILL_RESOLUTION = "50" #width and height, in pixels, of image fills and final raster image
+  IMAGE_FILL_RESOLUTION = "810" #width and height, in pixels, of image fills and final raster image
 # TODO this works for a final raster image of 810 (assuming 90 DPI). How do we get a DPI of 150 from this svg?
 
   attr_reader :svg, :paths
 
   def initialize(svg)
     @svg = Nokogiri::XML(svg)
+    @svg.encoding = 'UTF-8'
+
+
     @paths = @svg.xpath('//*[@d]')
   end
 
@@ -23,9 +26,12 @@ class SvgParser
 
   # replaces the image in *every* pattern fill with a base64 png data uri
   def replace_image_fill( replacement_uri )
+    puts replacement_uri
+    puts replacement_uri.force_encoding('utf-8')
+    puts replacement_uri.encoding
     images = @svg.css("image")
     images.each do |x|
-      x["xlink:href"] = "data:image/png;base64,"+replacement_uri
+      x["xlink:href"] = "data:image/png;base64,"+replacement_uri.to_s
       x["width"] = IMAGE_FILL_RESOLUTION
       x["height"] = IMAGE_FILL_RESOLUTION
     end
@@ -43,6 +49,8 @@ class SvgParser
 #   possible culprits: <svg ... viewBox="0 0 572.72729 810.00002"
 # => <G ... transform="translate(0,-242.36215)" NOTE: don't undo this, it shifts the whole svg down!
 
+    puts images
+    puts @svg.encoding
     return images
   end
 
@@ -51,6 +59,8 @@ class SvgParser
     path = @svg.css("path")
     path.each do |x|
       x.delete("style")
+      modified_fill = x["fill"].to_s.gsub("'","")
+      x["style"] = "fill:"+ modified_fill + ";fill-opacity:1.0"
     end
 
     group = @svg.css("g")

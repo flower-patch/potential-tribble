@@ -1,5 +1,9 @@
 <!-- CHRISTEN'S TEST AREA FOR PLAYING WITH SVG PARSING AND SVG TO PNG CONVERSION -->
 <!-- DELETE THIS VIEW, CONTROLLER METHOD, AND ROUTE BEFORE SITE GOES LIVE -->
+<p>Starting SVG:</p>
+<br><br>
+<%= @starting_svg.html_safe %>
+
 <h2>Pull an image from online and convert to Base64:</h2>
 <h4>Location:</h4>
 
@@ -14,15 +18,9 @@
 <br><br>
 <h3>Full res image fill, text</h3>
 <%= full_res_image %>
-<br><br>
-<%= full_res_image.to_s %>
 
 <!-- replace the image fill in the SVG with the downloaded image data (replaces all fills for now) -->
 <% @svg_parser_object.replace_image_fill( full_res_image ) %>
-
-<p>Starting SVG:</p>
-<br><br>
-<%= @starting_svg.html_safe %>
 
 <!-- <br><br> -->
 <!-- <h2>Nokogiri'd SVG</h2> -->
@@ -30,7 +28,7 @@
 
 <!-- <br><br> -->
 <!-- <h2>Get patterns?</h2> -->
-<%#= @svg_parser_object.remove_path_style %>
+<% @svg_parser_object.remove_path_style %>
 <!-- <br><br> -->
 <!-- Class:<br> -->
 <%#= @svg_parser_object.remove_path_style.class %>
@@ -54,11 +52,18 @@
 <%= @svg_parser_object.svg.to_xml %>
 
 <br><br>
+<h3>Edited SVG with gsub</h3>
+<%= @svg_parser_object.svg.to_xml.gsub("&#10;","
+") %>
+
+
+<br><br>
 <h3>Download SVG</h3>
 <% filename = "/Users/Spoonflower/IronYard/final/potential-tribble/tmp/I_MADE_A_FILE.svg" %>
-<% stuff_to_write = @svg_parser_object.svg.to_xml %>
+<% stuff_to_write = @svg_parser_object.svg.to_xml.gsub("&#10;","
+") %>
 <% File.open(filename, 'w') {|f| f.write( stuff_to_write ) } %>
-LINK GOES HERE
+<!-- LINK GOES HERE -->
 <!-- Download your design SVG– -->
 <%= link_to "Your Design", {:action => "download_full_res_quilt_svg" } %>
 
@@ -67,7 +72,7 @@ LINK GOES HERE
 <%# data_uri = Base64.encode64( @svg_parser_object.svg_to_png( @svg_parser_object.svg.to_xml, 810,810) ) %>
 <% svg_data = File.open(filename, 'rb') {|f| f.read } %>
 
-<% data_uri = Base64.encode64( @svg_parser_object.svg_file_to_png( filename, 50, 50 ) ) %>
+<% data_uri = Base64.encode64( @svg_parser_object.svg_file_to_png( filename, 810, 810 ) ) %>
 <img width="1350" height="1350" src="data:image/png;base64,<%= data_uri %>">
 
 
