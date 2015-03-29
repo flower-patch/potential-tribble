@@ -24,7 +24,7 @@ function setupSpoonflowerApi() {
   var self = {
 
     getPopularList: function(limit) {
-      var limit = '1';
+      var limit = '12';
       var freshtastic = '&sort=freshtastic';
       var url = baseUrl + 'search?limit=' + limit + freshtastic;
       return fetchUrl(url);

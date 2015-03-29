@@ -4,6 +4,14 @@ $(function () {
   var $svg = $('.svg-editor svg');
 
   var palette = [];
+  // palette = [{
+  //   id: 040409,
+  //   preview_url: 'localhost:3000/Users/toddgroff/src/potential-tribble/app/assets/images/test_fabric1.png'
+  // },{
+  //   id:080310,
+  //   preview_url: 'localhost:3000/Users/toddgroff/src/potential-tribble/app/assets/images/test_fabric2.png'
+  // }];
+
   Api.getPopularList(5).then(function(response) {
     // The default palette is the first five results from the popular list
     palette = response.results[0].results;
@@ -15,6 +23,7 @@ $(function () {
 
   })
 
+  drawPalette('.palette', palette);
 
 
 
@@ -140,8 +149,8 @@ $(function () {
     //Lydia thought this might have fixed the preview prob at about 11 pm...
     //but then the API went down....
     //TEST SUNDAY!
-    var previewWidth = 400;
-    var previewHeight = 400;
+    var previewWidth = 410;
+    var previewHeight = 410;
     var printWidth = 9;
     var printHeight  = 9;
     var url = baseUrl + 'previewImage/' +
@@ -208,8 +217,8 @@ $(function () {
     var pattern = svg.select('#' + patternId);
 
     if (!pattern) {
-      pattern = svg.image(currFabric.preview_url, 0, 0, 100, 100)
-      .toPattern(0, 0, 100, 100)
+      pattern = svg.image(currFabric.thumbnail_url, 0, 0, 410, 410)
+      .toPattern(0, 0, 410, 410)
       .attr({ id: patternId });
     }
 
@@ -429,11 +438,11 @@ $(function () {
         console.log('clicking fabric-modal-results');
         palette.push({
           id: $(this).find('img').attr('data-id'),
-          thumbnail_url: $(this).find('img').attr('src'),
-          size: {
-            width: 50,
-            height: 50
-          }
+          thumbnail_url: $(this).find('img').attr('src')
+          // size: {
+          //   width: 50,
+          //   height: 50
+          // }
         })
         drawPalette('.current-palette, .palette', palette)
       })
