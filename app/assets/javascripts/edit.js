@@ -137,6 +137,9 @@ $(function () {
     //Api.getDesignById(designId).done(function(response) {
     var baseUrl = 'http://api.v1.spoonflower.com/design/';
     // var baseUrl = 'https://fakepi.herokuapp.com/api/v1/design/';
+    //Lydia thought this might have fixed the preview prob at about 11 pm...
+    //but then the API went down....
+    //TEST SUNDAY!
     var previewWidth = 400;
     var previewHeight = 400;
     var printWidth = 9;
@@ -157,10 +160,10 @@ $(function () {
   });
 
 
-  // var waitApi = 1000;
-  // setTimeout(function () {
-  //   $('.fabric-preview').first().click();
-  // }, waitApi);
+  var waitApi = 1000;
+  setTimeout(function () {
+    $('.fabric-preview').first().click();
+  }, waitApi);
 
   //////////////////////////////////////////////////////////////////////////////
   //EDIT PATCH
