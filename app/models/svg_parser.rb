@@ -105,12 +105,12 @@ class SvgParser
     all_ids.uniq
   end
 
-  # KEA needs to know how many blocks are in the project and total them
+
   # KEA needs to eventually incorporate edge bleed on seam allowance
-  def surface_area_for_cheater_block_royalties
+  def surface_area_for_cheater_block_royalties(total_number_of_blocks)
     area_hash = {}
     all_unique_image_ids.each do |id|
-      total_area = 0
+      total_block_area = 0
       selected_paths = @paths.xpath('//*[@image-id="' + id +'"]')
       selected_paths.each do |path|
         if path[:d]
@@ -125,12 +125,18 @@ class SvgParser
             square_area = side * side
             area = square_area / 2
           end
-          total_area += area
+          total_block_area += area
         end
       end
+      total_area = total_block_area * total_number_of_blocks
       area_hash["#{id}"] = total_area.round(2)
     end
     area_hash
+  end
+
+  # for testing -- all areas of all fabrics in one square should be about 81
+  def total_area(area_hash)
+    area_hash.values.reduce(:+).round(2)
   end
 
   def clean_up(coord_value)
@@ -215,8 +221,6 @@ class SvgParser
   end
 
 
-
-  # write a method that gets total number of blocks from project_type
   # fix the method so it uses the right sort of id
   # could write a method that calls this and does each unique image id, puts all values in a hash
   # and then rounds to the nearest yard...
@@ -230,12 +234,14 @@ class SvgParser
   # so there is a smidge of extra fabric at row ends
   # and if patches don't go across the whole row, we're rounding up and including it
   # because tesselation is for later.
-  def cut_and_sew_print_area(design_id, project_type)
-    y = 1 #half inch extra at top and bottom to allow for grain issues
+  def cut_and_sew_print_dimensions_by_design(design_id, total_number_of_blocks)
+    y = 1 # half inch extra at top and bottom to allow for grain issues
     total_coords = []
     selected_paths = @paths.xpath('//*[@image-id="' + design_id +'"]')
     selected_paths.each do |path|
       # this if path[:d] is an irritating wrapper but otherwise was getting the entire svg along with the paths i wanted, which ruined my methods
+      # here we look at svg coords of all squares, rectangles, or isosceles right triangles
+      # and get a set of coords that reflect side lengths in inches out of that
       if path[:d]
         coords = path_coords(path[:id])
         # 4 pairs of coords means square or rectangle
@@ -246,14 +252,14 @@ class SvgParser
           # sorted so that if it's a rectangle, the longer side will be the x
           # and go across the stripes on the fabric instead of inflating the y length
           # uggh, and using the word coords again, but not the same as the path coords above
-          project_type.times do
+          total_number_of_blocks.times do
             total_coords << sides.sort.reverse
           end
         else
           side = triangle_base_side_length(0.25, coords)
           # triangles are easiest to print paired with others to make squares
           # figures out how many squares are needed, rounds up if it's an odd number
-          paired_triangles = (project_type/2.to_f).ceil
+          paired_triangles = (total_number_of_blocks/2.to_f).ceil
           paired_triangles.times do
             total_coords << [side, side]
           end
@@ -267,27 +273,28 @@ class SvgParser
       sorted_coords[pair] = total_coords.count(pair)
     end
     squares_per_row = []
-    number_of_squares = []
+    number_of_this_type_of_squares = []
     x_value = []
     y_value = []
-    # 42 inch fabric width, - 0.5 inch on each side seam allowance
+    # 42 inch fabric width, - 0.5 inch on each side seam allowance, so hi there 41
     # the floor gives the max number of full patches that can fit in a row
     sorted_coords.each do |key, value|
       squares_per_row << (41 / key[0].to_f).floor
       x_value << key[0]
       y_value << key[1]
-      number_of_squares << value
+      number_of_this_type_of_squares << value
     end
-    # the ceiling gives how many rows across...a partial row rounds up to a full row
+    # the ceiling gives how many rows across we need...a partial row rounds up to a full row
     number_of_rows = []
-    number_of_squares.each_with_index do |n, index|
+    number_of_this_type_of_squares.each_with_index do |n, index|
       number_of_rows << (n / squares_per_row[index].to_f).ceil
     end
-    # we now have an array of all total y lengths and just need to add them up
+    # for every row of that patch we need, we add a y-length to the total
     y_lengths = []
     number_of_rows.each_with_index do |n, index|
       y_lengths << n * y_value[index]
     end
+    # we now have an array of all total y lengths and just need to add them up
     y += y_lengths.reduce(:+).round(2)
     [SvgParser::FABRIC_WIDTH, y]
   end

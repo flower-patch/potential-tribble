@@ -10,4 +10,8 @@ class ProjectTemplate < ActiveRecord::Base
 
     return xml
   end
+
+  def total_number_of_blocks
+    self.blocks_across * self.blocks_down
+  end
 end

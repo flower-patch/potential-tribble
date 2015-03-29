@@ -8,4 +8,8 @@ class Quilt < ActiveRecord::Base
     return doc.xpath("//g")
   end
 
+  def total_blocks
+    ProjectTemplate.find(self.project_template_id).total_number_of_blocks
+  end
+
 end

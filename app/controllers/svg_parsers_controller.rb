@@ -6,6 +6,7 @@ class SvgParsersController < ApplicationController
     f = File.open("#{Rails.root}/app/assets/blocks/test11.svg")
     @svg_parser = SvgParser.new(f.read)
     f.close
+    @quilt = Quilt.first
 
   end
 
