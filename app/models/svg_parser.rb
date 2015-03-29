@@ -277,7 +277,7 @@ class SvgParser
   # and then rounds to the nearest yard...
   # could pass this seam allowance, but just going to go with .25 for now
   def cut_and_sew_print_area(design_id, project_type)
-    y = 0
+    y = 1 #half inch extra at top and bottom to allow for grain issues
     total_coords = []
     dimensions = [SvgParser::FABRIC_WIDTH, y]
       selected_paths = @paths.xpath('//*[@image-id="' + design_id +'"]')
@@ -301,6 +301,7 @@ class SvgParser
             project_type.times do
               total_coords << [side1, side2]
             end
+          # elsif
     #         rectangle
     #       else
     #         it is a triangle and a very scary thing
@@ -312,9 +313,26 @@ class SvgParser
       unique_coords.each do |pair|
         sorted_coords[pair] = total_coords.count(pair)
       end
+      squares_per_row = []
+      number_of_squares = []
+      y_value = []
+      sorted_coords.each do |key, value|
+        squares_per_row << (41 / key[0].to_f).floor
+        y_value << key[1]
+        number_of_squares << value
+      end
+      sack_of_potatoes = []
+      number_of_squares.each_with_index do |n, index|
+        sack_of_potatoes << (n / squares_per_row[index].to_f).ceil
+      end
+
+
 
     dimensions
     sorted_coords
+    squares_per_row
+    number_of_squares
+    sack_of_potatoes
   end
 
 
