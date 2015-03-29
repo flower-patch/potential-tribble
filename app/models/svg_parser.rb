@@ -297,7 +297,7 @@ class SvgParser
             end
           end
           project_type.times do
-            total_coords << [side1, side2]
+            total_coords << [side1, side2].sort.reverse
           end
         # elsif
   #         rectangle
