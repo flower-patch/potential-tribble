@@ -151,6 +151,11 @@ class SvgParser
     coords_array
   end
 
+  def all_unique_design_ids
+    patterns = @svg.css("pattern")
+    patterns.map {|p| p["id"]}
+  end
+
   # KEA this needs to turn into a method that uses the actual design ids
   def all_unique_image_ids
     all_ids = @paths.map {|p| p['image-id']}

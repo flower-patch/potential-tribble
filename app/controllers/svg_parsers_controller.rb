@@ -7,6 +7,7 @@ class SvgParsersController < ApplicationController
     @svg_parser = SvgParser.new(f.read)
     f.close
     @quilt = Quilt.first
+    @svg_parser_real = SvgParser.new(Quilt.last.svg)
 
   end
 
