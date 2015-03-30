@@ -159,6 +159,7 @@ class SvgParser
 
 
   # KEA needs to eventually incorporate edge bleed on seam allowance
+  # gives results in square inches
   def surface_area_for_cheater_block_royalties(total_number_of_blocks)
     area_hash = {}
     all_unique_image_ids.each do |id|
@@ -272,10 +273,19 @@ class SvgParser
     side
   end
 
+  # gives result in square inches with the design id
+  def all_cut_and_sew_fabric_areas(total_number_of_blocks)
+    area_hash = {}
+    all_unique_image_ids.each do |id|
+      dimensions = cut_and_sew_print_dimensions_by_design(id, total_number_of_blocks)
+      total_area = dimensions[0] * dimensions[1]
+      area_hash["#{id}"] = total_area.round(2)
+    end
+    area_hash
+  end
 
-  # fix the method so it uses the right sort of id
-  # could write a method that calls this and does each unique image id, puts all values in a hash
-  # and then rounds to the nearest yard...
+  # KEA fix the method so it uses the right sort of id
+
   # could pass this seam allowance, but just going to go with .25 for now
 
   # this method needs refactoring like whoa.  refactoring is for later.
