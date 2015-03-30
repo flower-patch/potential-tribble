@@ -238,9 +238,10 @@
   .loading-spinner {
     width: 200px;
     height: 200px;
+    border-color: $accent-darkest;
     position: absolute;
-    top: 50%;
-    left: 50%;
+    top: 52%;
+    left: 52%;
   }
 }
 

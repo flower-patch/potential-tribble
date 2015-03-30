@@ -458,8 +458,8 @@ variables found in variables.scss
   -webkit-animation-name: rotateLoop;
   animation-name: rotateLoop;
 
-  animation-duration: 1.5s;
-  -webkit-animation-duration: 1.5s;
+  animation-duration: 2s;
+  -webkit-animation-duration: 2s;
 
   animation-timing-function: ease-out;
   -webkit-animation-timing-function: ease-out;
@@ -521,8 +521,8 @@ variables found in variables.scss
   100% {
     -webkit-transform-origin: center;
     transform-origin: center;
-    -webkit-transform: rotate3d(0, 0, 1, -200deg);
-    transform: rotate3d(0, 0, 1, -200deg);
+    -webkit-transform: rotate3d(0, 0, 1, -360deg);
+    transform: rotate3d(0, 0, 1, -360deg);
     opacity: 1;
   }
 }
@@ -547,8 +547,8 @@ variables found in variables.scss
   100% {
     -webkit-transform-origin: center;
     transform-origin: center;
-    -webkit-transform: rotate3d(0, 0, 1, -200deg);
-    transform: rotate3d(0, 0, 1, -200deg);
+    -webkit-transform: rotate3d(0, 0, 1, -360deg);
+    transform: rotate3d(0, 0, 1, -360deg);
     opacity: 1;
   }
 }
