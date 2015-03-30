@@ -156,6 +156,13 @@ class SvgParser
     patterns.map {|p| p["id"]}
   end
 
+  def paths_from_id(id)
+    paths = @svg.css("path")
+    # nastiness to find paths with the fill in this format: fill="url('#img_1459730')"
+    selected_paths = paths.xpath('//*[@fill="url(' + "'#" + id + "')" + '"]')
+
+  end
+
   # KEA this needs to turn into a method that uses the actual design ids
   def all_unique_image_ids
     all_ids = @paths.map {|p| p['image-id']}
