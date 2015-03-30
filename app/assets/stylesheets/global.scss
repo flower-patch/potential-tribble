@@ -505,17 +505,17 @@ variables found in variables.scss
   0% {
     -webkit-transform-origin: center;
     transform-origin: center;
-    -webkit-transform: rotate3d(0, 0, 1, -200deg);
-    transform: rotate3d(0, 0, 1, -200deg);
-    opacity: 1;
+    -webkit-transform: rotate3d(0, 0, 1, 0);
+    transform: rotate3d(0, 0, 1, 0);
+    opacity: 0.3;
   }
 
   50% {
     -webkit-transform-origin: center;
     transform-origin: center;
-    -webkit-transform: none;
-    transform: none;
-    opacity: 0.3;
+    -webkit-transform: rotate3d(0, 0, 1, -200deg);
+    transform: rotate3d(0, 0, 1, -200deg);
+    opacity: 1;
   }
 
   100% {
@@ -523,7 +523,7 @@ variables found in variables.scss
     transform-origin: center;
     -webkit-transform: rotate3d(0, 0, 1, -360deg);
     transform: rotate3d(0, 0, 1, -360deg);
-    opacity: 1;
+    opacity: 0.3;
   }
 }
 
@@ -531,17 +531,17 @@ variables found in variables.scss
   0% {
     -webkit-transform-origin: center;
     transform-origin: center;
-    -webkit-transform: rotate3d(0, 0, 1, -200deg);
-    transform: rotate3d(0, 0, 1, -200deg);
-    opacity: 1;
+    -webkit-transform: rotate3d(0, 0, 1, 0);
+    transform: rotate3d(0, 0, 1, 0);
+    opacity: 0.3;
   }
 
   50% {
     -webkit-transform-origin: center;
     transform-origin: center;
-    -webkit-transform: none;
-    transform: none;
-    opacity: 0.3;
+    -webkit-transform: rotate3d(0, 0, 1, -200deg);
+    transform: rotate3d(0, 0, 1, -200deg);
+    opacity: 1;
   }
 
   100% {
@@ -549,6 +549,6 @@ variables found in variables.scss
     transform-origin: center;
     -webkit-transform: rotate3d(0, 0, 1, -360deg);
     transform: rotate3d(0, 0, 1, -360deg);
-    opacity: 1;
+    opacity: 0.3;
   }
 }

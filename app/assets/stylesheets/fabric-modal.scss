@@ -41,6 +41,8 @@
   position: absolute;
   top: -1.3em;
   right: -1.1em;
+  opacity: 1;
+  visibility: visible;
 }
 
 .current-block, .fabric-modal-options, .final-block {
@@ -84,7 +86,7 @@
 .fabric-modal-options {
   height: 70%;
   pointer-events: auto;
-  overflow: hidden;
+  overflow-y: scroll;
   position: relative;
 }
 

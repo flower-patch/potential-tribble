@@ -4,18 +4,18 @@ $(function() {
   var $svg = $('.svg-editor svg');
 
   var palette = [];
-  Api.getPopularList(5).then(function(response) {
-    // The default palette is the first five results from the popular list
-    palette = response.results[0].results;
-    // palette.forEach(function(tile) {
-    //   tile.size = {
-    //     width: 50,
-    //     height: 50
-    //   };
-    // })
-    drawPalette('.palette', palette);
-    return palette;
-  })
+  // Api.getPopularList(5).then(function(response) {
+  //   // The default palette is the first five results from the popular list
+  //   palette = response.results[0].results;
+  //   // palette.forEach(function(tile) {
+  //   //   tile.size = {
+  //   //     width: 50,
+  //   //     height: 50
+  //   //   };
+  //   // })
+  //   drawPalette('.palette', palette);
+  //   return palette;
+  // })
 
   // drawPalette('.palette', palette);
 
@@ -99,13 +99,11 @@ $(function() {
 
   function addFabricMessage() {
     if (palette === undefined || palette.length === 0) {
-      $('.add-fabric-message').fadeIn(1500);
+      $('.add-fabric-message').fadeIn(1000);
       $('.open-fabric-modal-btn').css('visibility', 'visible')
         .css('opacity', '1');
     } else {
       $('.add-fabric-message').fadeOut(10);
-      $('.open-fabric-modal-btn').css('visibility', 'hidden')
-        .css('opacity', '0');
     }
   }
 
@@ -141,8 +139,8 @@ $(function() {
     var designId = currFabric.id;
     // console.log(designId);
     //Api.getDesignById(designId).done(function(response) {
-    var baseUrl = 'http://api.v1.spoonflower.com/design/';
-    // var baseUrl = 'https://fakepi.herokuapp.com/api/v1/design/';
+    var baseUrl = 'https://fakepi.herokuapp.com/api/v1/design/';
+    // var baseUrl = 'http://api.v1.spoonflower.com/design/';
     var previewWidth = 400;
     var previewHeight = 400;
     var printWidth = 9;
@@ -352,6 +350,7 @@ $(function() {
     currSvg = $('.fabric-modal .current-block').children();
     $('.svg-editor-parent').append(currSvg);
     initializePalette(100);
+    addFabricMessage();
   });
 
   //////////////////////////////////////////////////////////////////////////////
@@ -395,9 +394,14 @@ $(function() {
 
   //////////////////////////////////////////////////////////////////////////////
   //GET BY KEYWORD API CALL
+  // $('.fabric-modal-box').on('click', function(e) {
+  //   e.stopPropagation();
+  // });
 
   $('.keyword-search').submit(function(e) {
+    debugger;
     e.preventDefault();
+    console.log('baaaaaaa');
     Api.getDesignByKeyword($('input', this).val()).done(function(response) {
         var results = response.results[0].results;
         var resultElements = apiResultToElements(results);
@@ -409,9 +413,6 @@ $(function() {
       // drawPalette('.current-palette', palette);
   });
 
-  $('.fabric-modal-box').on('click', function(e) {
-    e.stopPropagation();
-  });
 
   function apiResultToElements(results) {
     return results.map(function(designItem) {
