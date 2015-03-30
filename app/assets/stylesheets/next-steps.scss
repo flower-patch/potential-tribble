@@ -22,11 +22,15 @@
 .final-block {
   @include span-columns(3 of 10);
   padding: 0em;
-  margin-top: 40px;
   text-align: right;
 
   svg {
     width: 100%;
+  }
+
+  .your-quilt-name {
+    text-align: center;
+    margin-bottom: 20px;
   }
 }
 

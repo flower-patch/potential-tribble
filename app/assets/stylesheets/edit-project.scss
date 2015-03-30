@@ -192,9 +192,13 @@ svg path {
   right: -1.1em;
 }
 
+.open-fabric-modal-btn {
+  transition: all 1000ms ease-in-out;
+}
+
 .clear-patches-btn {
   right: -1.5em;
-  bottom: -1.4em;
+  bottom: -1.45em;
 }
 
 .remove-fabric-btn {
@@ -242,4 +246,10 @@ svg path {
   text-align: left;
   margin: 0.5em;
   cursor: pointer;
+}
+
+.palette:hover > .icon-button {
+  opacity: 1 !important;
+  visibility: visible !important;
+  transition: $transition !important;
 }

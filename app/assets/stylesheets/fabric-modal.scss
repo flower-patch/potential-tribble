@@ -41,6 +41,8 @@
   position: absolute;
   top: -1.3em;
   right: -1.1em;
+  opacity: 1;
+  visibility: visible;
 }
 
 .current-block, .fabric-modal-options, .final-block {
@@ -238,9 +240,10 @@
   .loading-spinner {
     width: 200px;
     height: 200px;
+    border-color: $accent-darkest;
     position: absolute;
-    top: 50%;
-    left: 50%;
+    top: 52%;
+    left: 52%;
   }
 }
 
