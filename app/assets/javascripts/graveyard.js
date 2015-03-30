@@ -325,3 +325,15 @@ $('.selected ~ .progress-element a').on('click', function(e) {
 //
 //   group.selectAll('path').forEach(applyFabricPatch);
 // }
+
+// 
+// function checkDesignItem (design) {
+//   console.log(palette.valueOf());
+//   var newSwatchId = designItem.id;
+//  //  for(var i = 0; tot = palette.length; i < tot; i++) {
+//  //
+//  //  }
+//  return newSwatchId;
+// }
+
+/////////////////

@@ -114,7 +114,7 @@ $(function() {
 //CREATES FABRIC SWATCH PALETTE
 
   function drawPalette(location, palette) {
-    console.log(palette);
+    //console.log(palette);
     $(location).html(palette.map(function(fabric) {
       var li = $('<li class="fabric-preview card"><button alt="Remove from palette" class="remove-fabric-btn icon-button"><i class="fa fa-minus-circle inner-button-icon"></i></button><div class="fabric-img-container"><img src="' + fabric.thumbnail_url + '"></div></li>');
       //.data(key, value) key= string 'fabric', value is fabric object
@@ -142,8 +142,8 @@ $(function() {
     currFabric = $(this).data('fabric');
     var designId = currFabric.id;
     //Api.getDesignById(designId).done(function(response) {
-    var baseUrl = 'http://api.v1.spoonflower.com/design/';
-    // var baseUrl = 'https://fakepi.herokuapp.com/api/v1/design/';
+    //var baseUrl = 'http://api.v1.spoonflower.com/design/';
+    var baseUrl = 'https://fakepi.herokuapp.com/api/v1/design/';
     var previewWidth = 400;
     var previewHeight = 400;
     var printWidth = 9;
@@ -169,7 +169,7 @@ $(function() {
 function initializePalette(timeout) {
   setTimeout(function() {
     $('.fabric-preview').first().click();
-    addFabricMessage();
+  //  addFabricMessage();
   }, timeout);
 }
 
@@ -180,20 +180,18 @@ var timeout= 500;
 ///REALLY BAD BUGGGG!
 setTimeout(function() {
   //sets the first currFabric
-  //  $('.fabric-preview').first().click();
+   $('.fabric-preview').first().click();
 
   $('.palette .fabric-preview').on('click', 'button', function(e) {
     //debugger;
     e.stopPropagation();
     console.log('click rmv-btn');
-    console.log(palette.valueOf());
     var parent = $(this).parent('.fabric-preview');
     var position = parent.index();
-    console.log(position);
     palette.splice(position, 1);
     drawPalette('.current-palette, .palette', palette);
     //$('button', '.fabric-preview', 'palette').off();
-    console.log('new palette:' + palette.valueOf());
+    //console.log('new palette:' + palette.valueOf());
     //addClick();
   });
 
@@ -416,7 +414,7 @@ setTimeout(function() {
   $('.fabric-modal-box').on('click', function(e) {
     e.stopPropagation();
     e.preventDefault();
-    console.log('click fabric modal box');
+    // console.log('click fabric modal box');
   });
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -439,6 +437,39 @@ setTimeout(function() {
   $('.fabric-modal-box').on('click', function(e) {
     e.stopPropagation();
   });
+
+////////////////////////////////////////////////////////////////////////////////
+//CHECK FOR DUPLICATES
+
+ function checkDuplicateSwatches (designItem) {
+   var newSwatchId = designItem.id;
+   console.log(newSwatchId);
+   var position = palette.indexOf(designItem);
+   console.log(position);
+   console.log(newSwatchId);
+   console.log(palette.valueOf());
+   for(var object in palette) {
+      var oldSwatch = palette[object];
+      var oldSwatchId = oldSwatch.id;
+      try {
+        if(oldSwatchId !== newSwatchId) {
+          drawPalette('.current-palette, .palette', palette);
+        } else {
+          throw new Error('oldSwatchId === newSwatchId');
+          setTimeout(function() {
+          $('.current-palette.fabric-preview-card').last().remove();
+        }, 10);
+        }
+      } catch (e) {
+        console.log(e.name + '' + e.message);
+        return alert('Do not add the same fabric design more than once to your palette.');
+      }
+    }
+  }
+
+
+////////////////////////////////////////////////////////////////////////////////
+//Translate API calls to html
 
   function apiResultToElements(results) {
     return results.map(function(designItem) {
@@ -478,7 +509,7 @@ setTimeout(function() {
           //   height: 50
           // }
         })
-        drawPalette('.current-palette, .palette', palette);
+        checkDuplicateSwatches(designItem);
       })
 
       return li;
@@ -497,5 +528,7 @@ setTimeout(function() {
     previewQuilt();
     drawPalette('.current-palette', palette);
   });
+
+
 
 });
