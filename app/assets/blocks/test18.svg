@@ -34,11 +34,11 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.61765806"
-     inkscape:cx="260.33119"
-     inkscape:cy="391.72012"
+     inkscape:zoom="0.4367502"
+     inkscape:cx="-113.63423"
+     inkscape:cy="574.89119"
      inkscape:document-units="in"
-     inkscape:current-layer="layer1"
+     inkscape:current-layer="svg2"
      showgrid="false"
      inkscape:window-width="1440"
      inkscape:window-height="778"
@@ -64,7 +64,8 @@
      transform="translate(0,-242.36215)">
     <g
        id="group1"
-       style="fill:none;stroke:#c0c0c0;stroke-width:4;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1">
+       style="fill:none;fill-opacity:1;stroke:#c0c0c0;stroke-width:4;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       transform="translate(0,242.36215)">
       <path
          sodipodi:nodetypes="cccc"
          inkscape:connector-curvature="0"
@@ -96,7 +97,8 @@
     </g>
     <g
        id="group2"
-       style="fill:none;stroke:#c0c0c0;stroke-width:4;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1">
+       style="fill:none;fill-opacity:1;stroke:#c0c0c0;stroke-width:4;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       transform="translate(0,242.36215)">
       <path
          sodipodi:nodetypes="cccc"
          inkscape:connector-curvature="0"
@@ -194,7 +196,8 @@
     </g>
     <g
        id="group3"
-       style="fill:none;stroke:#c0c0c0;stroke-width:4;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1">
+       style="fill:none;fill-opacity:1;stroke:#c0c0c0;stroke-width:4;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       transform="translate(0,242.36215)">
       <path
          sodipodi:nodetypes="cccc"
          inkscape:connector-curvature="0"
