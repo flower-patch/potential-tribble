@@ -151,7 +151,7 @@
   @include span-columns(2);
   @include flex-basis(15em);
   @include flex-grow(1);
-  @include transition (all 0.2s ease-in-out);
+  @include transition ($transition);
   background-color: $card-background;
   border: $card-border;
   box-shadow: 0px 1px 1px 1px $mid-gray;

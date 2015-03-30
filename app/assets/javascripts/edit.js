@@ -7,19 +7,22 @@ $(function() {
   Api.getPopularList(5).then(function(response) {
     // The default palette is the first five results from the popular list
     palette = response.results[0].results;
-    palette.forEach(function(tile) {
-      tile.size = {
-        width: 50,
-        height: 50
-      };
-    })
-
+    // palette.forEach(function(tile) {
+    //   tile.size = {
+    //     width: 50,
+    //     height: 50
+    //   };
+    // })
     drawPalette('.palette', palette);
-
+    return palette;
   })
 
-////////////////////////////////////////////////////////////////////////////////
-//SET DEFAULTS for paths, makes the white if empty
+  // drawPalette('.palette', palette);
+
+
+//////////////////////////////////////////////////////////////////////////////
+//SET DEFAULTS for paths, makes them white if empty
+
   function clearFill(item) {
     item.selectAll('path').forEach(function(path) {
       //this only works with fill:none; svg's
@@ -100,6 +103,10 @@ $(function() {
       $('.add-fabric-message').fadeIn(1500);
       $('.open-fabric-modal-btn').css('visibility', 'visible')
         .css('opacity', '1');
+    } else {
+      $('.add-fabric-message').fadeOut(10);
+      $('.open-fabric-modal-btn').css('visibility', 'hidden')
+        .css('opacity', '0');
     }
   }
 
@@ -115,9 +122,9 @@ $(function() {
       li.data('fabric', fabric);
       return li;
     }));
-    if (!palette.length) {
-      $('.add-fabric-message').css('display', 'block');
-    }
+    // if (!palette.length) {
+    //   $('.add-fabric-message').css('display', 'block');
+    // }
   }
 
 
@@ -133,12 +140,10 @@ $(function() {
 
     var designId;
     currFabric = $(this).data('fabric');
-    // console.log(currFabric);
     var designId = currFabric.id;
-    // console.log(designId);
-
-    // var baseUrl = 'http://api.v1.spoonflower.com/design/';
-    var baseUrl = 'https://fakepi.herokuapp.com/api/v1/design/';
+    //Api.getDesignById(designId).done(function(response) {
+    var baseUrl = 'http://api.v1.spoonflower.com/design/';
+    // var baseUrl = 'https://fakepi.herokuapp.com/api/v1/design/';
     var previewWidth = 400;
     var previewHeight = 400;
     var printWidth = 9;
@@ -157,56 +162,59 @@ $(function() {
     });
 
 
-  //////////////////////////////////////////////////////////////////////////////
-  //JQ TIMEOUTS
+
+//////////////////////////////////////////////////////////////////////////////
+//JQ TIMEOUTS
+
+function initializePalette(timeout) {
+  setTimeout(function() {
+    $('.fabric-preview').first().click();
+    addFabricMessage();
+  }, timeout);
+}
+
+initializePalette(1000);
 
 var timeout= 500;
-var handler;
- ///REALLY BAD BUGGGG!
-  setTimeout(function() {
-    //sets the first currFabric
-    $('.fabric-preview').first().click();
 
-     $('.palette .fabric-preview').on('click', 'button', function(e) {
-      //debugger;
-      e.stopPropagation();
-      console.log('click rmv-btn');
-      console.log(palette.valueOf());
-      var parent = $(this).parent('.fabric-preview');
-      var position = parent.index();
-      console.log(position);
-      palette.splice(position, 1);
-      drawPalette('.current-palette, .palette', palette);
-      //$('button', '.fabric-preview', 'palette').off();
-      console.log('new palette:' + palette.valueOf());
-    //addClick();
-    });
+///REALLY BAD BUGGGG!
+setTimeout(function() {
+  //sets the first currFabric
+  $('.fabric-preview').first().click();
 
-  }, timeout);
-
-
- function addClick () {
-   $('button', '.fabric-preview', 'palette').on('click', function(e) {
-   console.log('add click!');
-   });
-  }
-
-  function removeClick () {
-    $('button', '.fabric-preview', 'palette').on('click', function(e) {
-    console.log('removed click');
-    });
-   }
-
-
-
-    // console.log(palette.valueOf());
-
-////////////////////////////////////////////////////////////////////////////////
-// REMOVE FABRIC PREVIEW
-
-  function removeFabric() {
+  $('.palette .fabric-preview').on('click', 'button', function(e) {
+    //debugger;
+    e.stopPropagation();
+    console.log('click rmv-btn');
     console.log(palette.valueOf());
-  }
+    var parent = $(this).parent('.fabric-preview');
+    var position = parent.index();
+    console.log(position);
+    palette.splice(position, 1);
+    drawPalette('.current-palette, .palette', palette);
+    //$('button', '.fabric-preview', 'palette').off();
+    console.log('new palette:' + palette.valueOf());
+    //addClick();
+  });
+
+}, timeout);
+
+
+// function addClick () {
+//   $('button', '.fabric-preview', 'palette').on('click', function(e) {
+//     console.log('add click!');
+//   });
+// }
+//
+// function removeClick () {
+//   $('button', '.fabric-preview', 'palette').on('click', function(e) {
+//     console.log('removed click');
+//   });
+//}
+
+
+
+// console.log(palette.valueOf());
 
 ////////////////////////////////////////////////////////////////////////////////
 // EDIT PATCH
@@ -249,11 +257,10 @@ var handler;
     var pattern = svg.select('#' + patternId);
 
     if (!pattern) {
-      pattern = svg.image(currFabric.preview_url, 0, 0, 100, 100)
-        .toPattern(0, 0, 100, 100)
-        .attr({
-          id: patternId
-        });
+      pattern = svg.image(currFabric.preview_url, 0, 0, 810, 810)
+      // pattern = svg.image(currFabric.thumbnail_url, 0, 0, 810, 810)
+      .toPattern(0, 0, 810, 810)
+      .attr({ id: patternId, y: '242'});
     }
 
     path.attr('fill', pattern);
@@ -363,11 +370,11 @@ var handler;
 
   $('.close-fabric-modal-btn, .fabric-modal').on('click', function() {
     $('.fabric-modal').toggleClass('show');
-    console.log('close modal');
     // Once the modal closes, move the svg-editor element back into its original
     // area (.svg-editor-parent), in the main content.
     currSvg = $('.fabric-modal .current-block').children();
     $('.svg-editor-parent').append(currSvg);
+    initializePalette(100);
   });
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -465,11 +472,11 @@ var handler;
       li.on('click', function() {
         palette.push({
           id: $(this).find('img').attr('data-id'),
-          thumbnail_url: $(this).find('img').attr('src'),
-          size: {
-            width: 50,
-            height: 50
-          }
+          thumbnail_url: $(this).find('img').attr('src')
+          // size: {
+          //   width: 50,
+          //   height: 50
+          // }
         })
         drawPalette('.current-palette, .palette', palette);
       })
