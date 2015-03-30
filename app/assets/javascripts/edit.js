@@ -443,10 +443,6 @@ $(function() {
         palette.push({
           id: $(this).find('img').attr('data-id'),
           thumbnail_url: $(this).find('img').attr('src')
-          // size: {
-          //   width: 50,
-          //   height: 50
-          // }
         })
         drawPalette('.current-palette, .palette', palette)
       })

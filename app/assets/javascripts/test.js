@@ -4,15 +4,15 @@
 //   var $svg = $('.svg-editor svg');
 //
 //   var palette = [];
-//   Api.getPopularList(5).then(function(response) {
-//     // The default palette is the first five results from the popular list
-//     palette = response.results[0].results;
-//     palette.forEach(function(tile) {
-//       tile.size = {
-//         width: 50,
-//         height: 50
-//       };
-//     })
+//   // Api.getPopularList(5).then(function(response) {
+//   //   // The default palette is the first five results from the popular list
+//   //   palette = response.results[0].results;
+//   //   palette.forEach(function(tile) {
+//   //     tile.size = {
+//   //       width: 50,
+//   //       height: 50
+//   //     };
+//   //   })
 //
 //     drawPalette('.palette', palette);
 //
@@ -423,10 +423,10 @@
 //         palette.push({
 //           id: $(this).find('img').attr('data-id'),
 //           thumbnail_url: $(this).find('img').attr('src'),
-//           size: {
-//             width: 50,
-//             height: 50
-//           }
+//           // size: {
+//           //   width: 50,
+//           //   height: 50
+//           // }
 //         })
 //         drawPalette('.current-palette, .palette', palette)
 //       })
