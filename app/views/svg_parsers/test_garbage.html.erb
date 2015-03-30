@@ -15,9 +15,9 @@
 <% full_res_image = @svg_parser_object.get_image_from_web_with_basic_auth( location ) %>
 <img src="data:image/png;base64,<%= full_res_image  %>">
 
-<br><br>
-<h3>Full res image fill, text</h3>
-<%= full_res_image %>
+<!-- <br><br> -->
+<!-- <h3>Full res image fill, text</h3> -->
+<%#= full_res_image %>
 
 <!-- replace the image fill in the SVG with the downloaded image data (replaces all fills for now) -->
 <% @svg_parser_object.replace_image_fill( full_res_image ) %>
@@ -51,9 +51,9 @@
 <h3>Edited SVG, text</h3>
 <%= @svg_parser_object.svg.to_xml %>
 
-<br><br>
-<h3>Edited SVG with gsub</h3>
-<%= @svg_parser_object.svg.to_xml.gsub("&#10;","
+<!-- <br><br> -->
+<!-- <h3>Edited SVG with gsub</h3> -->
+<%#= @svg_parser_object.svg.to_xml.gsub("&#10;","
 ") %>
 
 
@@ -65,11 +65,14 @@
 <% File.open(filename, 'w') {|f| f.write( stuff_to_write ) } %>
 <!-- LINK GOES HERE -->
 <!-- Download your design SVG– -->
-<%= link_to "Your Design", {:action => "download_full_res_quilt_svg" } %>
+<%= link_to "Your Design SVG", {:action => "download_full_res_quilt_svg" } %>
+
+
+<br><br>
+<%= link_to "Your Design PNG", {:action => "download_full_res_quilt_png" } %>
 
 <br><br>
 <h3>PNG of SVG</h3>
-<%# data_uri = Base64.encode64( @svg_parser_object.svg_to_png( @svg_parser_object.svg.to_xml, 810,810) ) %>
 <% svg_data = File.open(filename, 'rb') {|f| f.read } %>
 
 <% data_uri = Base64.encode64( @svg_parser_object.svg_file_to_png( filename, 810, 810 ) ) %>
