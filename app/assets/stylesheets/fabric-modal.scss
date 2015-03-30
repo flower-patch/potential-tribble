@@ -84,7 +84,7 @@
 .fabric-modal-options {
   height: 70%;
   pointer-events: auto;
-  overflow: hidden;
+  overflow-y: scroll;
   position: relative;
 }
 
