@@ -4,27 +4,20 @@ $(function() {
   var $svg = $('.svg-editor svg');
 
   var palette = [];
-  // palette = [{
-  //   id: 040409,
-  //   preview_url: 'localhost:3000/Users/toddgroff/src/potential-tribble/app/assets/images/test_fabric1.png'
-  // },{
-  //   id:080310,
-  //   preview_url: 'localhost:3000/Users/toddgroff/src/potential-tribble/app/assets/images/test_fabric2.png'
-  // }];
-
   Api.getPopularList(5).then(function(response) {
     // The default palette is the first five results from the popular list
     palette = response.results[0].results;
-    palette.forEach(function(tile) {
-      tile.size = {
-        width: 50,
-        height: 50
-      };
-    })
-
+    // palette.forEach(function(tile) {
+    //   tile.size = {
+    //     width: 50,
+    //     height: 50
+    //   };
+    // })
     drawPalette('.palette', palette);
-
+    return palette;
   })
+
+  // drawPalette('.palette', palette);
 
 
   //////////////////////////////////////////////////////////////////////////////
@@ -109,8 +102,14 @@ $(function() {
       $('.add-fabric-message').fadeIn(1500);
       $('.open-fabric-modal-btn').css('visibility', 'visible')
         .css('opacity', '1');
+    } else {
+      $('.add-fabric-message').fadeOut(10);
+      $('.open-fabric-modal-btn').css('visibility', 'hidden')
+        .css('opacity', '0');
     }
   }
+
+
 
   //////////////////////////////////////////////////////////////////////////////
   //CREATES FABRIC SWATCH PALETTE
@@ -123,9 +122,9 @@ $(function() {
       li.data('fabric', fabric);
       return li;
     }));
-    if (!palette.length) {
-      $('.add-fabric-message').css('display', 'block');
-    }
+    // if (!palette.length) {
+    //   $('.add-fabric-message').css('display', 'block');
+    // }
   }
 
 
@@ -144,8 +143,8 @@ $(function() {
     //Lydia thought this might have fixed the preview prob at about 11 pm...
     //but then the API went down....
     //TEST SUNDAY!
-    var previewWidth = 410;
-    var previewHeight = 410;
+    var previewWidth = 400;
+    var previewHeight = 400;
     var printWidth = 9;
     var printHeight = 9;
     var url = baseUrl + 'previewImage/' +
@@ -164,10 +163,16 @@ $(function() {
   });
 
 
-  var waitApi = 1000;
-  setTimeout(function() {
-    $('.fabric-preview').first().click();
-  }, waitApi);
+
+
+  function initializePalette(timeout) {
+    setTimeout(function() {
+      $('.fabric-preview').first().click();
+      addFabricMessage();
+    }, timeout);
+  }
+
+  initializePalette(1000);
 
   //////////////////////////////////////////////////////////////////////////////
   //EDIT PATCH
@@ -212,9 +217,10 @@ $(function() {
     var pattern = svg.select('#' + patternId);
 
     if (!pattern) {
-      pattern = svg.image(currFabric.thumbnail_url, 0, 0, 410, 410)
-      .toPattern(0, 0, 410, 410)
-      .attr({ id: patternId });
+      pattern = svg.image(currFabric.preview_url, 0, 0, 810, 810)
+      // pattern = svg.image(currFabric.thumbnail_url, 0, 0, 810, 810)
+      .toPattern(0, 0, 810, 810)
+      .attr({ id: patternId, y: '242'});
     }
 
     path.attr('fill', pattern);
@@ -339,11 +345,11 @@ $(function() {
 
   $('.close-fabric-modal-btn, .fabric-modal').on('click', function() {
     $('.fabric-modal').toggleClass('show');
-    console.log('close modal');
     // Once the modal closes, move the svg-editor element back into its original
     // area (.svg-editor-parent), in the main content.
     currSvg = $('.fabric-modal .current-block').children();
     $('.svg-editor-parent').append(currSvg);
+    initializePalette(100);
   });
 
   //////////////////////////////////////////////////////////////////////////////
