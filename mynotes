@@ -124,7 +124,18 @@
     end
     @svg
   end
-
+  
+  # need this old stinker for testing blocks with no fill
+  # not great, as it artificially puts a fill in without giving that fill info at the top
+  # KEA investigate: fill =  vs fill:
+  def replace_fabric_urls(new_url)
+    #patterns
+    paths = @svg.css("path")
+    paths.each do |path|
+      path["fill"] = "url('#"  + new_url + "')"
+    end
+    @svg
+  end
 
   # irb(main):001:0> "fill:none".scan(/:(\S*$)/)
   # => [["none"]]

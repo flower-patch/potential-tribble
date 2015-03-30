@@ -137,7 +137,7 @@ class SvgParser
     return location
   end
 
-
+  #see if we need this @paths business for real
   def path_coords(path_id)
     current_path = @paths.xpath('//*[@id="' + path_id +'"]')
     array = current_path.first[:d].split
@@ -289,8 +289,6 @@ class SvgParser
     area_hash
   end
 
-  # KEA fix the method so it uses the right sort of id
-
   # could pass this seam allowance, but just going to go with .25 for now
 
   # this method needs refactoring like whoa.  refactoring is for later.
@@ -366,5 +364,6 @@ class SvgParser
     [SvgParser::FABRIC_WIDTH, y]
   end
 
+  
 
 end
