@@ -27,6 +27,9 @@ body {
   color: $accent-darkest;
   min-height: 925px;
   position: relative;
+  // display: flex;
+  // min-height: 100vh;
+  // flex-direction: column;
 }
 
 a, button, input {
@@ -70,6 +73,7 @@ main {
   min-height: 650px;
   padding: 0;
   @include outer-container;
+  // flex: 1;
 }
 
 .site-nav {
@@ -442,6 +446,34 @@ variables found in variables.scss
   }
 }
 
+
+/*------------------------------------*\
+#API-ELEMENTS
+\*------------------------------------*/
+.loading-spinner {
+  border-radius: 50%;
+  border: $default-border;
+  border-color: $accent-text;
+  opacity: 0.5;
+  -webkit-animation-name: rotateLoop;
+  animation-name: rotateLoop;
+
+  animation-duration: 1.5s;
+  -webkit-animation-duration: 1.5s;
+
+  animation-timing-function: ease-out;
+  -webkit-animation-timing-function: ease-out;
+
+  transform-origin: 0% 0%;
+  -ms-transform-origin: 0% 0%;
+  -webkit-transform-origin: 0% 0%;
+
+  animation-iteration-count: infinite;
+  -webkit-animation-iteration-count: infinite;
+
+}
+
+
 /*------------------------------------*\
 #CLICKS
 \*------------------------------------*/
@@ -459,4 +491,64 @@ variables found in variables.scss
   padding: 7px;
   background-color: white;
   box-shadow: $default-shadow;
+}
+
+
+
+
+/*------------------------------------*\
+#ANIMATION-KEYFRAMES
+\*------------------------------------*/
+
+
+@-webkit-keyframes rotateLoop {
+  0% {
+    -webkit-transform-origin: center;
+    transform-origin: center;
+    -webkit-transform: rotate3d(0, 0, 1, -200deg);
+    transform: rotate3d(0, 0, 1, -200deg);
+    opacity: 1;
+  }
+
+  50% {
+    -webkit-transform-origin: center;
+    transform-origin: center;
+    -webkit-transform: none;
+    transform: none;
+    opacity: 0.3;
+  }
+
+  100% {
+    -webkit-transform-origin: center;
+    transform-origin: center;
+    -webkit-transform: rotate3d(0, 0, 1, -200deg);
+    transform: rotate3d(0, 0, 1, -200deg);
+    opacity: 1;
+  }
+}
+
+@keyframes rotateLoop {
+  0% {
+    -webkit-transform-origin: center;
+    transform-origin: center;
+    -webkit-transform: rotate3d(0, 0, 1, -200deg);
+    transform: rotate3d(0, 0, 1, -200deg);
+    opacity: 1;
+  }
+
+  50% {
+    -webkit-transform-origin: center;
+    transform-origin: center;
+    -webkit-transform: none;
+    transform: none;
+    opacity: 0.3;
+  }
+
+  100% {
+    -webkit-transform-origin: center;
+    transform-origin: center;
+    -webkit-transform: rotate3d(0, 0, 1, -200deg);
+    transform: rotate3d(0, 0, 1, -200deg);
+    opacity: 1;
+  }
 }

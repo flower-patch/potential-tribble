@@ -33,7 +33,7 @@
 }
 
 .fabric-modal-content {
-  overflow: auto;
+  overflow: hidden;
   height: 100%;
 }
 
@@ -64,7 +64,9 @@
   display: inline-block;
   height: 210px;
   padding-top: 11px;
-  overflow: auto;
+  //overflow: auto;
+  overflow-x: hidden;
+  overflow-y: auto;
 
   .fabric-preview {
     margin: 10px;
@@ -82,7 +84,7 @@
 .fabric-modal-options {
   height: 70%;
   pointer-events: auto;
-  overflow: auto;
+  overflow-y: scroll;
   position: relative;
 }
 
@@ -232,7 +234,15 @@
 
 .fabric-modal-list {
   margin-left: 15px;
+
+  .loading-spinner {
+    width: 200px;
+    height: 200px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
   }
+}
 
 .search-result {
   padding: 0;
