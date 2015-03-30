@@ -69,7 +69,7 @@ class SvgParser
   # def self.svg_to_png(svg, width, height)
   #width = width of the svg in px
   #height = width of the svg in px
-  def svg_to_png(input, width, height)
+  def self.svg_to_png(input, width, height)
     # svg = RSVG::Handle.new_from_data(@svg.to_xml.to_s)
     svg = RSVG::Handle.new_from_data(input)
 

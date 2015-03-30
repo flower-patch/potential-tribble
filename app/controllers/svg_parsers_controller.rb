@@ -29,4 +29,11 @@ class SvgParsersController < ApplicationController
     # svg = params[:quilt]
     # send_data(svg , :filename => 'quilt.svg', :type=>'image/svg+xml')
   end
+
+  def download_full_res_quilt_png
+    svg_data = File.open('/Users/Spoonflower/IronYard/final/potential-tribble/tmp/I_MADE_A_FILE.svg', 'rb') {|f| f.read }
+
+    data_uri = SvgParser.svg_to_png( svg_data, 810, 810 )
+    send_data data_uri, :filename => 'I_MADE_A_FILE.png', :type => 'image/png'
+  end
 end
