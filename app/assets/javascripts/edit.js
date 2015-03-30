@@ -180,7 +180,7 @@ var timeout= 500;
 ///REALLY BAD BUGGGG!
 setTimeout(function() {
   //sets the first currFabric
-  $('.fabric-preview').first().click();
+  //  $('.fabric-preview').first().click();
 
   $('.palette .fabric-preview').on('click', 'button', function(e) {
     //debugger;
