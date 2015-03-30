@@ -98,17 +98,17 @@ $(function() {
 ////////////////////////////////////////////////////////////////////////////////
 //Show message prompting user to add fabrics if there are none.
 
-  function addFabricMessage() {
-    if (palette === undefined || palette.length === 0) {
-      $('.add-fabric-message').fadeIn(1500);
-      $('.open-fabric-modal-btn').css('visibility', 'visible')
-        .css('opacity', '1');
-    } else {
-      $('.add-fabric-message').fadeOut(10);
-      $('.open-fabric-modal-btn').css('visibility', 'hidden')
-        .css('opacity', '0');
-    }
-  }
+  // function addFabricMessage() {
+  //   if (palette === undefined || palette.length === 0) {
+  //     $('.add-fabric-message').fadeIn(1500);
+  //     $('.open-fabric-modal-btn').css('visibility', 'visible')
+  //       .css('opacity', '1');
+  //   } else {
+  //     $('.add-fabric-message').fadeOut(10);
+  //     $('.open-fabric-modal-btn').css('visibility', 'hidden')
+  //       .css('opacity', '0');
+  //   }
+  // }
 
 ////////////////////////////////////////////////////////////////////////////////
 //CREATES FABRIC SWATCH PALETTE
