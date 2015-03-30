@@ -4,20 +4,20 @@ $(function() {
   var $svg = $('.svg-editor svg');
 
   var palette = [];
-  Api.getPopularList(5).then(function(response) {
-    // The default palette is the first five results from the popular list
-    palette = response.results[0].results;
-    // palette.forEach(function(tile) {
-    //   tile.size = {
-    //     width: 50,
-    //     height: 50
-    //   };
-    // })
-    drawPalette('.palette', palette);
-    return palette;
-  })
+  // Api.getPopularList(5).then(function(response) {
+  //   // The default palette is the first five results from the popular list
+  //   palette = response.results[0].results;
+  //   // palette.forEach(function(tile) {
+  //   //   tile.size = {
+  //   //     width: 50,
+  //   //     height: 50
+  //   //   };
+  //   // })
+  //   drawPalette('.palette', palette);
+  //   return palette;
+  // });
 
-  // drawPalette('.palette', palette);
+  drawPalette('.palette', palette);
 
 
 //////////////////////////////////////////////////////////////////////////////
@@ -54,30 +54,31 @@ $(function() {
         .wrap('<li class="set"></li>')
         .parent()
         .data('groupId', groupId));
-    });
-  }
+      });
+    }
 
-  generateSets($svg, '.sets');
+    generateSets($svg, '.sets');
 
 ////////////////////////////////////////////////////////////////////////////////
 // FUNCTIONS that allow styling by group
 
-  function setClass(group, cssClass) {
-    getAllPaths(group).forEach(function(path) {
-      path.attr('class', cssClass);
-    });
-  }
 
-  function getAllPaths(group) {
-    var groupId = $(group).data('groupId');
-    return svg.selectAll('#' + groupId + ' path');
-  }
+    function setClass(group, cssClass) {
+      getAllPaths(group).forEach(function(path) {
+        path.attr('class', cssClass);
+      });
+    }
+
+    function getAllPaths(group) {
+      var groupId = $(group).data('groupId');
+      return svg.selectAll('#' + groupId + ' path');
+    }
 
 
-  // too repetitive but I couldn't figure how to refactor (see below) to an
-  // editSet() function with the $this object
+    // too repetitive but I couldn't figure how to refactor (see below) to an
+    // editSet() function with the $this object
 
-  $('.set')
+    $('.set')
     // reduce opacity of all path in the set on thumbnail hover
     .hover(function() {
       setClass($(this), 'set-hover');
@@ -94,21 +95,6 @@ $(function() {
     });
 
 
-
-////////////////////////////////////////////////////////////////////////////////
-//Show message prompting user to add fabrics if there are none.
-
-  // function addFabricMessage() {
-  //   if (palette === undefined || palette.length === 0) {
-  //     $('.add-fabric-message').fadeIn(1500);
-  //     $('.open-fabric-modal-btn').css('visibility', 'visible')
-  //       .css('opacity', '1');
-  //   } else {
-  //     $('.add-fabric-message').fadeOut(10);
-  //     $('.open-fabric-modal-btn').css('visibility', 'hidden')
-  //       .css('opacity', '0');
-  //   }
-  // }
 
 ////////////////////////////////////////////////////////////////////////////////
 //CREATES FABRIC SWATCH PALETTE
@@ -128,8 +114,38 @@ $(function() {
   }
 
 
-////////////////////////////////////////////////////////////////////////////////
-// SETTING currFabric
+    //////////////////////////////////////////////////////////////////////////////
+    //Show message prompting user to add fabrics if there are none.
+
+    function addFabricMessage() {
+      if (palette.length === 0) {
+        $('.add-fabric-message').fadeIn(750);
+        $('.open-fabric-modal-btn').css('visibility', 'visible')
+        .css('opacity', '1');
+      } else {
+        $('.add-fabric-message').fadeOut(10);
+      }
+    }
+
+    //////////////////////////////////////////////////////////////////////////////
+    //CREATES FABRIC SWATCH PALETTE
+
+    function drawPalette(location, palette) {
+      $(location).html(palette.map(function(fabric) {
+        var li = $('<li class="fabric-preview card"><button alt="Remove from palette" class="remove-fabric-btn icon-button"><i class="fa fa-minus-circle inner-button-icon"></i></button><div class="fabric-img-container"><img src="' + fabric.thumbnail_url + '"></div></li>');
+        //.data(key, value) key= string 'fabric', value is fabric object
+        // .data makes the thing a part of the DOM
+        li.data('fabric', fabric);
+        return li;
+      }));
+      // if (!palette.length) {
+      //   $('.add-fabric-message').css('display', 'block');
+      // }
+    }
+
+
+  //////////////////////////////////////////////////////////////////////////////
+  // SETTING currFabric
 
 
   currFabric = palette[0];
@@ -142,18 +158,18 @@ $(function() {
     currFabric = $(this).data('fabric');
     var designId = currFabric.id;
     //Api.getDesignById(designId).done(function(response) {
+    var baseUrl = 'https://fakepi.herokuapp.com/api/v1/design/';
     var baseUrl = 'http://api.v1.spoonflower.com/design/';
-    // var baseUrl = 'https://fakepi.herokuapp.com/api/v1/design/';
     var previewWidth = 400;
     var previewHeight = 400;
     var printWidth = 9;
     var printHeight = 9;
     var url = baseUrl + 'previewImage/' +
-      designId + '?' + 'print_width=' +
-      printWidth + '&print_height=' +
-      printHeight + '&preview_width_pixels=' +
-      previewWidth + '&preview_height_pixels=' +
-      previewHeight;
+    designId + '?' + 'print_width=' +
+    printWidth + '&print_height=' +
+    printHeight + '&preview_width_pixels=' +
+    previewWidth + '&preview_height_pixels=' +
+    previewHeight;
 
     currFabric.preview_url = url;
     $('.current-fabric').removeClass('current-fabric');
@@ -163,15 +179,46 @@ $(function() {
 
 
 
-//////////////////////////////////////////////////////////////////////////////
-//JQ TIMEOUTS
+  //////////////////////////////////////////////////////////////////////////////
+  //JQ TIMEOUTS
 
-function initializePalette(timeout) {
-  setTimeout(function() {
-    $('.fabric-preview').first().click();
-    addFabricMessage();
-  }, timeout);
-}
+  function initializePalette(timeout) {
+    setTimeout(function() {
+      $('.fabric-preview').first().click();
+      addFabricMessage();
+    }, timeout);
+  }
+
+  initializePalette(1000);
+
+  var timeout= 500;
+
+  // function removeSwatch(e) {
+  //   e.stopPropagation();
+  //   console.log('click rmv-btn');
+  //   var parent = $(this).parent('.fabric-preview');
+  //   var position = parent.index();
+  //   palette.splice(position, 1);
+  //   drawPalette('.current-palette, .palette', palette);
+  // }
+
+  ///REALLY BAD BUGGGG!
+  // setTimeout(function() {
+  //   //sets the first currFabric
+  //   $('.fabric-preview').first().click();
+  //   //REMOVE SWATCH
+  //   $('.palette .fabric-preview').on('click', 'button', function(e) {
+  //     //debugger;
+  //     e.stopPropagation();
+  //     console.log('click rmv-btn');
+  //     var parent = $(this).parent('.fabric-preview');
+  //     var position = parent.index();
+  //     palette.splice(position, 1);
+  //     drawPalette('.current-palette, .palette', palette);
+  //     // removeSwatch(e);
+  //   });
+  //
+  // }, timeout);
 
 initializePalette(1000);
 
@@ -229,19 +276,19 @@ setTimeout(function() {
       var timer = 0;
 
       path
-        .click(function() {
-          timer = setTimeout(function() {
-            if (!prevent) {
-              applyFabricPatch(path);
-            }
-            prevent = false;
-          }, 200);
-        })
-        .dblclick(function() {
-          clearTimeout(timer);
-          prevent = true;
-          clearFabricPatch(path);
-        });
+      .click(function() {
+        timer = setTimeout(function() {
+          if (!prevent) {
+            applyFabricPatch(path);
+          }
+          prevent = false;
+        }, 200);
+      })
+      .dblclick(function() {
+        clearTimeout(timer);
+        prevent = true;
+        clearFabricPatch(path);
+      });
     });
   }
 
@@ -278,13 +325,16 @@ setTimeout(function() {
   var currSvg;
 
   function getCurrSvg() {
-      //take html from div svg-editor
-      currSvg = $('.svg-editor')
-      return currSvg;
+    //take html from div svg-editor
+    currSvg = $('.svg-editor')
+    return currSvg;
   }
 
-////////////////////////////////////////////////////////////////////////////////
-// TAKES PREVIEW INTO THE MODAL, TO DO: REFACTOR
+  //////////////////////////////////////////////////////////////////////////////
+  /*
+  TAKES PREVIEW INTO THE MODAL
+  TO DO: REFACTOR
+  */
 
   function previewQuilt() {
     getCurrSvg();
@@ -322,11 +372,11 @@ setTimeout(function() {
   });
 
   $('.clear-patches-btn, .clear-patches-modal-close, .clear-patches-modal-confirm')
-    .on('click', function(e) {
-      e.preventDefault();
-      e.stopPropagation();
-      $('.clear-patches-modal').toggleClass('show');
-    });
+  .on('click', function(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    $('.clear-patches-modal').toggleClass('show');
+  });
 
   $('.clear-patches-modal-confirm').on('click', function() {
     var currPaths = svg.selectAll('path');
@@ -370,11 +420,13 @@ setTimeout(function() {
 
   $('.close-fabric-modal-btn, .fabric-modal').on('click', function() {
     $('.fabric-modal').toggleClass('show');
+    console.log('close modal');
     // Once the modal closes, move the svg-editor element back into its original
     // area (.svg-editor-parent), in the main content.
     currSvg = $('.fabric-modal .current-block').children();
     $('.svg-editor-parent').append(currSvg);
-    initializePalette(100);
+    addFabricMessage();
+    initializePalette();
   });
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -401,8 +453,8 @@ setTimeout(function() {
   $('.color-search').submit(function(e) {
     e.preventDefault();
     Api.getDesignByColor($('input', this).val()).done(function(response) {
-        var results = response.results[0].results;
-        var resultElements = apiResultToElements(results);
+      var results = response.results[0].results;
+      var resultElements = apiResultToElements(results);
 
         $('.fabric-modal-list').empty().append(resultElements);
       })
@@ -410,12 +462,10 @@ setTimeout(function() {
         $('.fabric-modal').toggleClass('show');
         previewQuilt();
         drawPalette('.current-palette', palette);*/
-
   });
 
   $('.fabric-modal-box').on('click', function(e) {
     e.stopPropagation();
-    e.preventDefault();
     console.log('click fabric modal box');
   });
 
@@ -425,20 +475,51 @@ setTimeout(function() {
   $('.keyword-search').submit(function(e) {
     e.preventDefault();
     Api.getDesignByKeyword($('input', this).val()).done(function(response) {
-        var results = response.results[0].results;
-        var resultElements = apiResultToElements(results);
+      var results = response.results[0].results;
+      var resultElements = apiResultToElements(results);
 
-        $('.fabric-modal-list').empty().append(resultElements);
-      })
-      /*$('.fabric-modal').toggleClass('show');
-      previewQuilt();
-      drawPalette('.current-palette', palette);*/
-
+      $('.fabric-modal-list').empty().append(resultElements);
+    })
+    // $('.fabric-modal').toggleClass('show');
+    // previewQuilt();
+    // drawPalette('.current-palette', palette);
   });
 
   $('.fabric-modal-box').on('click', function(e) {
     e.stopPropagation();
   });
+
+  ////////////////////////////////////////////////////////////////////////////////
+  //CHECK FOR DUPLICATES
+
+  function checkDuplicateSwatches (designItem) {
+    var newSwatchId = designItem.id;
+    console.log(newSwatchId);
+    var position = palette.indexOf(designItem);
+    console.log(position);
+    console.log(newSwatchId);
+    console.log(palette.valueOf());
+    for(var object in palette) {
+      var oldSwatch = palette[object];
+      var oldSwatchId = oldSwatch.id;
+      try {
+        if(oldSwatchId !== newSwatchId) {
+          drawPalette('.current-palette, .palette', palette);
+        } else {
+          throw new Error('oldSwatchId === newSwatchId');
+          setTimeout(function() {
+            $('.current-palette.fabric-preview-card').last().remove();
+          }, 10);
+        }
+      } catch (e) {
+        console.log(e.name + '' + e.message);
+        return alert('Do not add the same fabric design more than once to your palette.');
+      }
+    }
+  }
+
+  ////////////////////////////////////////////////////////////////////////////////
+  //Translate API calls to html
 
   function apiResultToElements(results) {
     return results.map(function(designItem) {
@@ -472,20 +553,19 @@ setTimeout(function() {
       li.on('click', function() {
         palette.push({
           id: $(this).find('img').attr('data-id'),
-          thumbnail_url: $(this).find('img').attr('src')
+          thumbnail_url: $(this).find('img').attr('src'),
           // size: {
           //   width: 50,
           //   height: 50
           // }
         })
         drawPalette('.current-palette, .palette', palette);
+        checkDuplicateSwatches(designItem);
       })
 
       return li;
     });
   }
-
-
 
   $('.open-fabric-modal-btn').on('click', function() {
     Api.getPopularList().done(function(response) {

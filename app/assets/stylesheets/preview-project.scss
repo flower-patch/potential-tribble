@@ -132,6 +132,10 @@
   height: 6em;
   box-shadow: $default-shadow;
 
+  svg {
+    width: 100%;
+  }
+
   &:hover {
     box-shadow: $hover-shadow;
     transition: $transition;
