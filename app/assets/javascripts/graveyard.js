@@ -310,3 +310,18 @@ $('.selected ~ .progress-element a').on('click', function(e) {
 //   }
 //   return self;
 // }
+
+
+
+//////////////////////////////////////////////////////////////////////////////
+//deprecated atm
+
+// function getGroup(path) {
+//   //empty palette, nothing happens!
+//   if (!currFabric) return;
+//   //use id for snappy shtuffz
+//   var group = path.parent();
+//   console.log(group);
+//
+//   group.selectAll('path').forEach(applyFabricPatch);
+// }
