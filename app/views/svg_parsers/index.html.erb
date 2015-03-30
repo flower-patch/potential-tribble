@@ -1,4 +1,7 @@
 
-<p>MOOOOOOO <%= @svg_parser.cut_and_sew_print_dimensions_by_design("replaceme1", @quilt.total_blocks) %></p><br>
-<p>OOM <%= @svg_parser.surface_area_for_cheater_block_royalties(@quilt.total_blocks) %></p><br>
-<p>OOMOO <%= @svg_parser.all_cut_and_sew_fabric_areas(@quilt.total_blocks) %></p><br>
+
+<p>cats_in_a_teacup <%= @svg_parser_from_quilt.all_unique_design_ids%></p><br>
+<p>goats_on_parade <%= @svg_parser_from_quilt.paths_from_id("img_1459730")%></p><br>
+<p>MOOOOOOO <%= @svg_parser_from_quilt.cut_and_sew_print_dimensions_by_design("img_1459730", @quilt.total_blocks) %></p><br>
+<p>OOM <%= @svg_parser_from_quilt.surface_area_for_cheater_block_royalties(@quilt.total_blocks) %></p><br>
+<p>OOMOO <%= @svg_parser_from_quilt.all_cut_and_sew_fabric_areas(@quilt.total_blocks) %></p><br>

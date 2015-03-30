@@ -137,7 +137,7 @@ class SvgParser
     return location
   end
 
-
+  #see if we need this @paths business for real
   def path_coords(path_id)
     current_path = @paths.xpath('//*[@id="' + path_id +'"]')
     array = current_path.first[:d].split
@@ -151,20 +151,25 @@ class SvgParser
     coords_array
   end
 
-  # KEA this needs to turn into a method that uses the actual design ids
-  def all_unique_image_ids
-    all_ids = @paths.map {|p| p['image-id']}
-    all_ids.uniq
+  def all_unique_design_ids
+    patterns = @svg.css("pattern")
+    patterns.map {|p| p["id"]}
   end
 
+  def paths_from_id(id)
+    paths = @svg.css("path")
+    # nastiness to find paths with the fill in this format: fill="url('#img_1459730')"
+    selected_paths = paths.xpath('//*[@fill="url(' + "'#" + id + "')" + '"]')
+
+  end
 
   # KEA needs to eventually incorporate edge bleed on seam allowance
   # gives results in square inches
   def surface_area_for_cheater_block_royalties(total_number_of_blocks)
     area_hash = {}
-    all_unique_image_ids.each do |id|
+    all_unique_design_ids.each do |id|
       total_block_area = 0
-      selected_paths = @paths.xpath('//*[@image-id="' + id +'"]')
+      selected_paths = paths_from_id(id)
       selected_paths.each do |path|
         if path[:d]
           coords = path_coords(path[:id])
@@ -276,15 +281,13 @@ class SvgParser
   # gives result in square inches with the design id
   def all_cut_and_sew_fabric_areas(total_number_of_blocks)
     area_hash = {}
-    all_unique_image_ids.each do |id|
+    all_unique_design_ids.each do |id|
       dimensions = cut_and_sew_print_dimensions_by_design(id, total_number_of_blocks)
       total_area = dimensions[0] * dimensions[1]
       area_hash["#{id}"] = total_area.round(2)
     end
     area_hash
   end
-
-  # KEA fix the method so it uses the right sort of id
 
   # could pass this seam allowance, but just going to go with .25 for now
 
@@ -299,7 +302,7 @@ class SvgParser
   def cut_and_sew_print_dimensions_by_design(design_id, total_number_of_blocks)
     y = 1 # half inch extra at top and bottom to allow for grain issues
     total_coords = []
-    selected_paths = @paths.xpath('//*[@image-id="' + design_id +'"]')
+    selected_paths = paths_from_id(design_id)
     selected_paths.each do |path|
       # this if path[:d] is an irritating wrapper but otherwise was getting the entire svg along with the paths i wanted, which ruined my methods
       # here we look at svg coords of all squares, rectangles, or isosceles right triangles
@@ -361,5 +364,6 @@ class SvgParser
     [SvgParser::FABRIC_WIDTH, y]
   end
 
+  
 
 end

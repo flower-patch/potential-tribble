@@ -1,12 +1,12 @@
 class SvgParsersController < ApplicationController
   def index
-    #WILL NOT BE THE FIRST QUILT's SVG ALWAYS...JUST TESTING
 
-    # @svg_parser = SvgParser.new(Quilt.first.svg)
     f = File.open("#{Rails.root}/app/assets/blocks/test12.svg")
-    @svg_parser = SvgParser.new(f.read)
+    @svg_parser_from_file = SvgParser.new(f.read)
     f.close
-    @quilt = Quilt.first
+
+    @quilt = Quilt.last
+    @svg_parser_from_quilt = SvgParser.new(Quilt.last.svg)
 
   end
 
