@@ -1,5 +1,4 @@
 <%= render :partial => 'shared/progress', :locals => {:page => 4} %>
-
 <div class="preview-view view-container">
 
   <%= form_for @quilt, :url => { :action => "next_steps", :project_id => @quilt.project_template_id} do |f| %>
