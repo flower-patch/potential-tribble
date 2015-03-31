@@ -1,45 +1,19 @@
-$(document).ready(function(){
-  var currentId;
-  var thumbId;
-
-
-  function comparePrevToThumb(currentId, thumbId, e) {
-    debugger;
-    if (current !== thumbId) {
-      replaceCurrentImage(current, thumb);
-    }
-  }
-
-  function replaceCurrentImage(big, small) {
-    $(current).detach();
-    console.log(currentId);
-    $('.preview-svg').append(thumb);
-    console.log('thumb =' + thumb);
-    current =$('.preview-svg').find('svg');
-    console.log('current =' + thumb);
-    //then i have to do some $parent stuff to move the current into the thumbnail.
-  }
-
-  $('.preview-thumbnail').click(function() {
-    console.log('click thumbnail');
-    //these may need to be sodipodi:docname or id
-
-    current = $('.preview-svg').find('svg');
-    currentId = current.attr('sodipodi:docname');
-    console.log('currentId=' + currentId);
-    thumb = $(this).find('svg');
-    thumbId = thumb.attr('sodipodi:docname');
-    console.log('thumbId=' + thumbId);
-    comparePrevToThumb(currentId, thumbId);
-
-
-    //animation stuff i don't like
-    // var img_attr = $(this).find('svg').attr("id"),
-    //     image_id = img_attr.replace('thumb_', '');
-    //
-    // $('.image_' + image_id + '').stop(true,true).fadeIn(300);
-    // return false;
-
+$(document).ready(function () {
+  $('.accordion-tabs').each(function(index) {
+    $(this).children('li').first().children('a').addClass('is-active').next().addClass('is-open').show();
   });
 
+  $('.accordion-tabs').on('click', 'li > a', function(event) {
+    if (!$(this).hasClass('is-active')) {
+      event.preventDefault();
+      var accordionTabs = $(this).closest('.accordion-tabs');
+      accordionTabs.find('.is-open').removeClass('is-open').hide();
+
+      $(this).next().toggleClass('is-open').toggle();
+      accordionTabs.find('.is-active').removeClass('is-active');
+      $(this).addClass('is-active');
+    } else {
+      event.preventDefault();
+    }
+  });
 });

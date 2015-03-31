@@ -42,7 +42,7 @@
 
 
     <div class= "awesome-submit-container">
-      <%= f.submit 'Awesome– All Finished!', class:"awesome-submit stitch-button" %>
+      <%= f.submit 'Awesome – All Finished!', class:"awesome-submit stitch-button" %>
     </div>
 
   </div>
@@ -59,11 +59,11 @@
       <ul class="preview-thumbnails">
         <li class="preview-thumbnail paper-border">
           <%= @quilt.svg.html_safe %>
+        </li>
         <li class="preview-thumbnail paper-border">
           <%= ProjectTemplate.getXML_for_filename( @project.project_layout_svg ).html_safe %>
         </li>
         <li class="preview-thumbnail paper-border">
-
         </li>
       </ul>
     </div>

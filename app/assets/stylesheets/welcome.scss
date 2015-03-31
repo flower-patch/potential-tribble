@@ -27,15 +27,16 @@
   $hero-background-bottom: #20392B;
   $hero-color: white;
   $gradient-angle: 10deg;
-  $hero-image: 'https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/mountains.png';
+  $hero-image: 'hero_image.png';
 
-  @include background(url($hero-image), linear-gradient($gradient-angle, $hero-background-bottom, $hero-background-top), no-repeat $hero-background-top scroll);
-  background-color: #324766;
+  @include background(url($hero-image));
+  background-color: $accent-darkest;
   background-position: top;
   background-repeat: no-repeat;
   background-size: cover;
   padding-bottom: 1em;
   margin-bottom: 7px;
+  height: 344px;
   .hero-inner {
     @include outer-container;
     @include clearfix;
