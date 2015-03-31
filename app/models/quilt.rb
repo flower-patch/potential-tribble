@@ -12,4 +12,8 @@ class Quilt < ActiveRecord::Base
     ProjectTemplate.find(self.project_template_id).total_number_of_blocks
   end
 
+  def name_of_my_project
+    ProjectTemplate.find(self.project_template_id).name
+  end
+
 end

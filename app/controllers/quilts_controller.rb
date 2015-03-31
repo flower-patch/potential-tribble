@@ -61,6 +61,7 @@ class QuiltsController < ApplicationController
     if params[:quilt_id]
       @quilt = Quilt.find(params[:quilt_id])
       @quilt.in_progress = false
+      @svg_parser_from_quilt = SvgParser.new(@quilt.svg)
       if @quilt.update(quilt_params)
         flash.now[:notice] = 'Quilt was successfully created.'
       else

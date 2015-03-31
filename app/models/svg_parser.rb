@@ -141,7 +141,7 @@ class SvgParser
     return location
   end
 
-  #see if we need this @paths business for real
+  # KEA see if we need this @paths business for real
   def path_coords(path_id)
     current_path = @paths.xpath('//*[@id="' + path_id +'"]')
     array = current_path.first[:d].split
@@ -156,8 +156,18 @@ class SvgParser
   end
 
   def all_unique_design_ids
+    design_ids_array = []
     patterns = @svg.css("pattern")
-    patterns.map {|p| p["id"]}
+    paths = @svg.css("path")
+    if patterns.length > 0
+      design_ids_array = patterns.map {|p| p["id"]}
+      if paths.xpath('path[@fill="#ffffff"]').length > 0
+        design_ids_array << "#ffffff"
+      end
+    else
+      design_ids_array << "#ffffff"
+    end
+    design_ids_array
   end
 
   def paths_from_id(id)
