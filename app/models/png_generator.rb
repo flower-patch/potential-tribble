@@ -1,12 +1,12 @@
 module PngGenerator
 
   # FIXME don't really want everything to be resolution 810
-  IMAGE_FILL_RESOLUTION = 810
+  IMAGE_FILL_RESOLUTION = "810"
 
   # given svg as a string, change <images> to have the full image ebedded
-  def svg_embed_images( svg )
-    # find id
-  end
+  # def svg_embed_images( svg )
+  #   # find id
+  # end
 
   # replaces the image in *every* pattern fill with a base64 png data uri, based on pattern id
   def svg_replace_image_fill( svg )
@@ -21,13 +21,15 @@ module PngGenerator
       x["viewBox"] = "0 0 #{IMAGE_FILL_RESOLUTION} #{IMAGE_FILL_RESOLUTION}"
 
       image = x.css("image")
-      image["width"] = IMAGE_FILL_RESOLUTION
-      image["height"] = IMAGE_FILL_RESOLUTION
-      x["xlink:href"] = "data:image/png;base64,"+ get_png_data( spoonflower_id )
+      # assuming that there is only one image in each pattern
+      image[0]["width"] = IMAGE_FILL_RESOLUTION
+      image[0]["height"] = IMAGE_FILL_RESOLUTION
+      image[0]["xlink:href"] = "data:image/png;base64,"+ get_png_data( spoonflower_id )
     end
 
     return new_svg.to_xml
   end
+
 
   def get_png_data( spoonflower_id )
     location = spoonflower_image_location_from_id( spoonflower_id )
