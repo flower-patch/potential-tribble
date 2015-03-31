@@ -1,0 +1,3 @@
+$(function() {
+  $('#thumbnail-list').pikachoose();
+});
