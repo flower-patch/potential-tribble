@@ -325,3 +325,63 @@ $('.selected ~ .progress-element a').on('click', function(e) {
 //
 //   group.selectAll('path').forEach(applyFabricPatch);
 // }
+
+// $(function(){
+//
+//   $('#gallery-demo').simplegallery({
+//     galltime : 400, // transition delay
+//     gallcontent: '.preview-svg',
+//     gallthumbnail: '.preview-thumbnails',
+//     gallthumb: '.preview-thumbnail'
+//   })
+//
+// });
+
+
+
+// $(document).ready(function() {
+//   var currentId;
+//   var thumbId;
+//   var replaceCurrent;
+//   var replaceThumb;
+//
+//
+//   function comparePrevToThumb(currentId, thumbId, e) {
+//     debugger;
+//     if (current !== thumbId) {
+//       replaceCurrentImage(current, thumb);
+//     }
+//   }
+//
+//   function replaceCurrentImage(big, small) {
+//     console.log(currentId);
+//     $(thumb).replaceWith(replaceCurrent);
+//     $(current).replaceWith(replaceThumb);
+//     console.log('thumb =' + thumb);
+//
+//     console.log(current);
+//     //then i have to do some $parent stuff to move the current into the thumbnail.
+//     //maybe unbind and reset click handlers?
+//   }
+//
+//   $('.preview-thumbnail').click(function() {
+//     console.log('click thumbnail');
+//     //these may need to be sodipodi:docname or id
+//
+//     current = $('.preview-svg').find('.current-preview.svg');
+//     replaceCurrent = current;
+//     console.log('replace =' + currentId);
+//     currentId = current.attr('sodipodi:docname');
+//     console.log('currentId=' + currentId);
+//     thumb = $(this).find('svg');
+//     replaceThumb = thumb;
+//     thumbId = thumb.attr('sodipodi:docname');
+//     console.log('thumbId=' + thumbId);
+//     comparePrevToThumb(currentId, thumbId);
+//
+//
+//
+//
+//   });
+//
+// });

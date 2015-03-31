@@ -500,8 +500,10 @@ setTimeout(function() {
     console.log(newSwatchId);
     console.log(palette.valueOf());
     for(var object in palette) {
+      //let's loop through every object in the palette array!
       var oldSwatch = palette[object];
       var oldSwatchId = oldSwatch.id;
+      //error handling so we can get a fancy alert and stuff.
       try {
         if(oldSwatchId !== newSwatchId) {
           drawPalette('.current-palette, .palette', palette);
