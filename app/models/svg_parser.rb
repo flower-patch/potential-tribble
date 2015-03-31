@@ -154,10 +154,9 @@ class SvgParser
   def all_unique_design_ids
     design_ids_array = []
     patterns = @svg.css("pattern")
-    paths = @svg.css("path")
     if patterns.length > 0
       design_ids_array = patterns.map {|p| p["id"]}
-      if paths.xpath('path[@fill="#ffffff"]').length > 0
+      if @svg.xpath('//*[contains(@fill, "#ffffff" )]').length > 0
         design_ids_array << "#ffffff"
       end
     else
