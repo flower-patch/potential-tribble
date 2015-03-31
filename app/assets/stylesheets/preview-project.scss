@@ -124,6 +124,13 @@
   }
 }
 
+.preview-project {
+
+    svg {
+      padding: 2%;
+    }
+}
+
 .choose-preview-thumbnail {
   @include span-columns(2 of 8);
   margin-right: 0;
@@ -153,7 +160,8 @@
     text-align: center;
     box-shadow: none;
     padding-left: auto;
-    background-image: $fabric-pattern;
+    // background-image: $fabric-pattern;
+    background: $light-pure-gray;
 
     path {
       stroke: none;
@@ -166,7 +174,9 @@
   text-align: right;
 
   svg {
-    background-image: $fabric-pattern;
+    // background-image: $fabric-pattern;
+    background: $white;
+    background: $light-pure-gray;
     height: 100%;
   }
 }
