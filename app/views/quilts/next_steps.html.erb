@@ -74,7 +74,9 @@
           <% if id == "#ffffff"%>
             <%= image_tag "flowerpatch_logo.svg", class:"logo-tiny" %>
           <% else %>
-            <img src="http://s3.amazonaws.com/spoonflower/public/design_thumbnails/0141/0950/rrrdeer_head_marine_shop_thumb.png">
+            <a href= "<%= 'http://www.spoonflower.com/designs/' + @svg_parser_from_quilt.get_design_number(id) %>" target="_blank">
+              <img src="http://s3.amazonaws.com/spoonflower/public/design_thumbnails/0141/0950/rrrdeer_head_marine_shop_thumb.png">
+            </a>
           <% end %>
         </div>
         <p class="fabric-type-header">

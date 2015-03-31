@@ -151,6 +151,11 @@ class SvgParser
     coords_array
   end
 
+  def get_design_number(design_id)
+    array = design_id.split("_")
+    array[1]
+  end
+
   def all_unique_design_ids
     design_ids_array = []
     patterns = @svg.css("pattern")
