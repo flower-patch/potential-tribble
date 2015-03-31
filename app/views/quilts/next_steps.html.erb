@@ -9,8 +9,8 @@
     <%= @quilt.svg.html_safe %>
 
     <div class="next-steps-btns">
-      <%= link_to "Fabric Measurements", {:action => "download_quilt", :quilt_id => params[:quilt_id]}, class:"stitch-btn download-btn next-steps-btn" %>
-      <%= link_to "Design Download", {:action => "download_quilt", :quilt_id => params[:quilt_id]}, class:"stitch-btn measurements-btn next-steps-btn" %>
+      <%= link_to "View Measurements", {:action => "download_quilt", :quilt_id => params[:quilt_id]}, class:"stitch-btn download-btn next-steps-btn" %>
+      <%= link_to "Download Design", {:action => "download_quilt", :quilt_id => params[:quilt_id]}, class:"stitch-btn measurements-btn next-steps-btn" %>
     </div>
 
   </div>
@@ -41,7 +41,7 @@
 
       <li class="next-step">
         <i class="fa fa-truck next-step-icon"></i>
-        When your package arrives, open and whip up your custom quilt masterpiece. Happy quilting!
+        When your package arrives, open and whip up your custom quilt masterpiece!
       </li>
     </ol>
 

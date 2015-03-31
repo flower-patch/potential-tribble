@@ -56,30 +56,33 @@
     color: $white;
     font-family: $serif;
     font-weight: $thin;
-    box-shadow: $default-shadow;
+    box-shadow: 0px 4px 13px 0px #444;
 
     &:hover {
-      box-shadow: $hover-shadow;
+      box-shadow: 0 8px 18px #444;
       transition: $transition;
     }
   }
 
   .title {
-    font-size: 2.5em;
-    line-height: 1.5em;
-  }
-      .hero-copy {
-        text-align: center;
-        font-size: 1.1em;
+   font-size: 2.5em;
+   line-height: 1.5em;
+   text-shadow: 0px 1px 10px #777;
+ }
+     .hero-copy {
+       text-align: center;
+       font-size: 1.1em;
+       text-shadow: 0px 2px 10px #777;
 
-        .hero-head {
-          font-size: 1.6em;
-          margin-bottom: 0;
-          padding: 0;
-          @include media($large-screen) {
-            font-size: 1.8em;
-          }
-        }
+
+       .hero-head {
+         font-size: 1.6em;
+         margin-bottom: 0;
+         padding: 0;
+         @include media($large-screen) {
+           font-size: 1.8em;
+         }
+       }
 
         p {
           font-weight: 200;
