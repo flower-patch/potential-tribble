@@ -16,6 +16,7 @@
   padding: 0;
 }
 
+
 .hero {
   ///////////////////////////////////////////////////////////////////////////////////
   $base-border-radius: 3px !default;
@@ -116,6 +117,7 @@
 .cards {
   margin-left: 0px;
   padding: 1.34%;
+  font-size: 0;
   @include display(flex);
   @include flex-wrap(wrap);
   text-align: justify;
@@ -159,7 +161,7 @@
   cursor: pointer;
   margin: 14px 14px 14px;
   position: relative;
-
+  font-size: 1.3em;
   &:hover {
     box-shadow: $hover-shadow;
     transition: $transition;
