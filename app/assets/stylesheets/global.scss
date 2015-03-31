@@ -17,6 +17,10 @@ $block-height: em(400);
 #Application Page Elements
 \*------------------------------------*/
 
+html {
+  height: 100%;
+}
+
 body {
   background-color: $light-pure-gray;
   background-image: $fabric-pattern;
@@ -25,7 +29,8 @@ body {
   font-size: 12pt;
   font-weight: $light;
   color: $accent-darkest;
-  min-height: 925px;
+  min-height: 100%;
+  padding-bottom: 7.35em;
   position: relative;
   // display: flex;
   // min-height: 100vh;
@@ -143,7 +148,10 @@ footer {
   background-image: image-url('flowerpatch_background_gray.png');
   height: 7.35em;
   box-shadow: 0px 1px 15px 1px #777;
-  position: relative;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
   z-index: 1;
 }
 
