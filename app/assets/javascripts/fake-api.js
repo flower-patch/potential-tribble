@@ -21,7 +21,6 @@ function setupFakePi() {
     },
 
     getDesignByColor: function(color) {
-      var color = '4e81bd';
       var url = baseUrl + 'search?color1=' + color;
       return $.get(url);
     },
