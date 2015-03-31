@@ -113,7 +113,22 @@
    width: 400px;
    height: 400px;
    box-shadow: $default-shadow;
- }
+  }
+
+  path, g {
+    stroke-opacity: 0;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+}
+
+.preview-project {
+
+    svg {
+      padding: 2%;
+    }
 }
 
 .choose-preview-thumbnail {
@@ -122,27 +137,43 @@
 }
 
 .preview-thumbnails {
-  margin-left: 1em;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .preview-thumbnail {
+  display: inline-block;
+  text-align: center;
   margin: 1em;
   cursor: pointer;
   width: 6em;
-  height: 6em;
+  // height: 6em;
   box-shadow: $default-shadow;
-
-  svg {
-    width: 100%;
-  }
 
   &:hover {
     box-shadow: $hover-shadow;
-    transition: $transition;
+  }
+
+  svg {
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    box-shadow: none;
+    padding-left: auto;
+
+    path {
+      stroke: none;
+    }
   }
 }
 
 .current-preview {
   @include span-columns(6 of 8);
   text-align: right;
+
+  svg {
+    background: $white;
+    background: $light-pure-gray;
+    height: 100%;
+  }
 }

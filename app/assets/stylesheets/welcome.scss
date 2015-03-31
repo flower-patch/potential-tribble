@@ -45,74 +45,67 @@
     padding: 1.5em;
     text-align: center;
 
-    .welcome-btn {
-      padding: 7%;
-      font-size: 1.5em;
-      min-width: 200px;
-      border-top: 2px solid $seafoam-light;
-      outline: 2px solid $accent-text;
-      border: 1.5px dashed $seafoam-light;
-      background-color: $accent-text;
-      color: $white;
-      font-family: $serif;
-      font-weight: $thin;
-      box-shadow: 0px 4px 13px 0px #444;
+  .welcome-btn {
+    padding: 7%;
+    font-size: 1.5em;
+    min-width: 200px;
+    border-top: 2px solid $seafoam-light;
+    outline: 2px solid $accent-text;
+    border: 1.5px dashed $seafoam-light;
+    background-color: $accent-text;
+    color: $white;
+    font-family: $serif;
+    font-weight: $thin;
+    box-shadow: 0px 4px 13px 0px #444;
 
-      &:hover {
-        box-shadow: 0 8px 18px #444;
-        transition: $transition;
-      }
+    &:hover {
+      box-shadow: 0 8px 18px #444;
+      transition: $transition;
     }
-
-    .title {
-      font-size: 3.5em;
-      line-height: 1.5em;
-
-      .flowerpatch-logo-text {
-        text-shadow: 0px 1px 10px #777;
-
-      }
-    }
-
-    .hero-copy {
-      text-align: center;
-      font-size: 1.5em;
-
-      // width: 60%;
-
-      .hero-head {
-        font-size: 1.6em;
-        margin-bottom: 0;
-        padding: 0;
-        @include media($large-screen) {
-          font-size: 1.8em;
-        }
-      }
-
-      p {
-        font-weight: 200;
-        line-height: 1.4em;
-        margin: 0 auto 3em auto;
-        width: 60%;
-        text-shadow: 0px 1px 10px #444;
-
-        @include media($large-screen) {
-          font-size: 1.1em;
-          // max-width: 40%;
-        }
-      }
-    }
-
-    .start-project {
-      @include button(flat, $base-accent-color);
-      padding: 0.7em 1em;
-      border-radius: 0;
-      letter-spacing: .5px;
-      background-color: $base-accent-color;
-      color: $white;
-    }
-
   }
+
+  .title {
+   font-size: 2.5em;
+   line-height: 1.5em;
+   text-shadow: 0px 1px 10px #777;
+ }
+     .hero-copy {
+       text-align: center;
+       font-size: 1.1em;
+       text-shadow: 0px 2px 10px #777;
+
+
+       .hero-head {
+         font-size: 1.6em;
+         margin-bottom: 0;
+         padding: 0;
+         @include media($large-screen) {
+           font-size: 1.8em;
+         }
+       }
+
+        p {
+          font-weight: 200;
+          line-height: 1.4em;
+          margin: 0 auto 3em auto;
+
+          @include media($large-screen) {
+            font-size: 1.1em;
+            max-width: 40%;
+          }
+        }
+      }
+
+      .start-project {
+        @include button(flat, $base-accent-color);
+        padding: 0.7em 1em;
+        border-radius: 0;
+        letter-spacing: .5px;
+        background-color: $base-accent-color;
+        color: $white;
+      }
+
+    }
 
 }
 
@@ -120,8 +113,7 @@
 .featured-designs {
   text-align: center;
   padding-top: 5%;
-  padding-bottom: 1%;
-  border-top: $default-border;
+  padding-bottom: 1%;;
 }
 
 .cards {

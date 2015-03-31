@@ -19,11 +19,10 @@
 
   <div class="preview-info">
 
-    <h2 class="my-new-quilt">Your Masterpiece</h2>
     <div class= "quilt-name-container preview-label">
     <form>
       <%= f.label :quilt_name, class:"quilt-name-label"  %>
-      <%= f.text_field :name, class: "quilt-name" %>
+      <%= f.text_field :name, class: "quilt-name", required: "required", placeholder:"ex: My Masterpiece" %>
       <!-- make field required- required:"required" -->
     </form>
     </div>
@@ -51,7 +50,15 @@
   <div class="preview-svg">
 
     <div class="current-preview no-click">
-      <%= @quilt.svg.html_safe %>
+      <div class="preview-block">
+        <%= @quilt.svg.html_safe %>
+      </div>
+      <p class="preview-img-url"></p>
+      <div class="preview-project">
+        <%= ProjectTemplate.getXML_for_filename( @project.project_layout_svg ).html_safe %>
+      </div>
+      <a class="test-img"></a>
+
     </div>
 
     <div class="choose-preview-thumbnail">
@@ -61,8 +68,6 @@
         </li>
         <li class="preview-thumbnail paper-border">
           <%= ProjectTemplate.getXML_for_filename( @project.project_layout_svg ).html_safe %>
-        </li>
-        <li class="preview-thumbnail paper-border">
         </li>
       </ul>
     </div>

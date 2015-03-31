@@ -1,19 +1,46 @@
-$(document).ready(function () {
-  $('.accordion-tabs').each(function(index) {
-    $(this).children('li').first().children('a').addClass('is-active').next().addClass('is-open').show();
-  });
+//////////////////////////////////////////////////////////////////////////////
+//CALLING FUNCTIONS FOR DEALING WITH PREVIEWS RENDERING/STYLING
 
-  $('.accordion-tabs').on('click', 'li > a', function(event) {
-    if (!$(this).hasClass('is-active')) {
-      event.preventDefault();
-      var accordionTabs = $(this).closest('.accordion-tabs');
-      accordionTabs.find('.is-open').removeClass('is-open').hide();
+$(function () {
 
-      $(this).next().toggleClass('is-open').toggle();
-      accordionTabs.find('.is-active').removeClass('is-active');
-      $(this).addClass('is-active');
-    } else {
-      event.preventDefault();
+  var previewBlockSvg = Snap('.preview-block svg');
+
+  if (previewBlockSvg) {
+    runPreviewPage();
+  }
+
+  function runPreviewPage() {
+    var previewProjectSvg = Snap('.preview-project svg');
+    var previewBlock = $('.preview-block').html();
+    var previewProject = $('.preview-project').html();
+
+
+    cleanUpPreview(previewBlockSvg);
+
+    cleanUpPreview(previewProjectSvg);
+
+    drawPreview();
+
+
+    function cleanUpPreview(prev) {
+      prev.selectAll('path').forEach(function(path) {
+        path.attr({stroke: 'none'});
+      });
     }
-  });
+
+
+    function drawPreview() {
+      var previewUrl = $('.preview-img-url').html();
+
+      var pattern = previewProjectSvg.image(previewUrl, 0, 0, 90, 90)
+        .toPattern(0, 0, 90, 90)
+        .attr({ id: 'patternId', y: '60'});
+
+      previewProjectSvg.selectAll('path').forEach(function(path) {
+        console.log('help');
+        path.attr({fill: pattern, stroke: 'none'});
+      });
+    }
+  }
+
 });
