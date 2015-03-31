@@ -41,7 +41,6 @@ function setupSpoonflowerApi() {
     },
 
     getDesignByColor: function(color) {
-      var color = '4e81bd';
       var url = baseUrl + 'search?color1=' + color;
       return fetchUrl(url);
     },
