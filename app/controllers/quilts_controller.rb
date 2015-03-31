@@ -45,10 +45,12 @@ class QuiltsController < ApplicationController
 
     if params[:quilt_id]
       @quilt = Quilt.find(params[:quilt_id])
-      #create png for @quilt.svg
-      # new_svg = svg_replace_image_fill( @quilt.svg )
+      # create png for @quilt.svg:
+      # new_svg = sanitize_svg( @quilt.svg )
       # @png = svg_to_png(new_svg,810,810)
       # store_png( @png, params[:quilt_id] )
+
+      ##probably leave this off...
       # Quilt.update( params[:quilt_id], svg: new_svg)
 
       @project = ProjectTemplate.find(@quilt.project_template_id)
