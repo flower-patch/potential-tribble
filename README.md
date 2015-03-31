@@ -79,4 +79,8 @@ in the terminal to do the necessary housekeeping (add to table, parse the paths,
 https://github.com/cHaden/sanitized_svg
 ----
 
+#A note on seed files
+
+The SVGs are stored in the database with lots of extra quotes.  If you try to take one from the database and put it in the seed file, the quotes are nested too deeply and the string breaks.  The easiest way to seed seems to be to design a quilt, inspect the page source on the preview page, copy the svg, and wrap it in quotes with something like %q^ ^.
+
 <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>

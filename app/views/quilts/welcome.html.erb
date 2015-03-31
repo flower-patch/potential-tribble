@@ -23,7 +23,14 @@
         <% max_preview_quilts -= 1 %>
         <% if quilt.public %>
         <div class="card paper-border">
-          <div class="card-image"><a href = "/project_templates/choose_project?quilt_id=<%=quilt.id%>"><%= quilt.svg.html_safe%></img></a></div><div class="card-header"><p class="card-title"><%= link_to quilt.name, project_templates_choose_project_path(quilt_id: quilt.id) %></p></div>
+          <div class="card-image">
+            <!-- TODO:  style svgs here in image_tag,  -->
+            <a href = "/project_templates/choose_project?quilt_id=<%=quilt.id%>"><%= quilt.svg.html_safe%></img></a>
+          </div>
+          <div class="card-header">
+            <p class="card-title"><%= link_to quilt.name, project_templates_choose_project_path(quilt_id: quilt.id) %></p>
+          </div>
+          <div class="card-copy"></div>
         </div>
         <% end %>
       <% end %>
