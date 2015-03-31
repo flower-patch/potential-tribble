@@ -4,8 +4,11 @@
 $(function () {
 
   var previewBlockSvg = Snap('.preview-block svg');
+  var previewBlockThumb = Snap('.preview-thumbnail svg');
+  var finalBlock = Snap('.final-block svg');
+  var modalBlock = Snap('.current-block .svg-editor svg');
 
-  if (previewBlockSvg) {
+  if (previewBlockSvg || finalBlock || modalBlock) {
     runPreviewPage();
   }
 
@@ -18,6 +21,8 @@ $(function () {
     cleanUpPreview(previewBlockSvg);
 
     cleanUpPreview(previewProjectSvg);
+
+    cleanUpPreview(previewBlockThumb);
 
     drawPreview();
 
@@ -36,10 +41,7 @@ $(function () {
         .toPattern(0, 0, 90, 90)
         .attr({ id: 'patternId', y: '60'});
 
-      previewProjectSvg.selectAll('path').forEach(function(path) {
-        console.log('help');
-        path.attr({fill: pattern, stroke: 'none'});
-      });
+      cleanUpPreview(previewProjectSvg);
     }
   }
 
