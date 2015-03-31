@@ -11,8 +11,17 @@
   font-size: 2em;
 }
 
-.download-btn {
+.next-steps-btns {
+  text-align: center;
+}
+
+.next-steps-btn {
+  padding: 0.75em;
   font-size: 1em;
+  margin-top: 1.5em;
+  width: 80%;
+  text-align: center;
+  cursor: pointer;
 }
 
 .spoonflower-link {
@@ -40,7 +49,7 @@
 
 .next-steps-list {
   font-size: 1.25em;
-  margin-top:3em;
+  margin-top: 3em;
 }
 
 .next-step {

@@ -9,8 +9,8 @@
     <%= @quilt.svg.html_safe %>
 
     <div class="next-steps-btns">
-      <%= link_to "Download Here", {:action => "download_quilt", :quilt_id => params[:quilt_id]}, class:"stitch-btn download-btn" %>
-      <%= link_to "Download Here", {:action => "download_quilt", :quilt_id => params[:quilt_id]}, class:"stitch-btn download-btn measurements-btn" %>
+      <%= link_to "Fabric Measurements", {:action => "download_quilt", :quilt_id => params[:quilt_id]}, class:"stitch-btn download-btn next-steps-btn" %>
+      <%= link_to "Design Download", {:action => "download_quilt", :quilt_id => params[:quilt_id]}, class:"stitch-btn measurements-btn next-steps-btn" %>
     </div>
 
   </div>
