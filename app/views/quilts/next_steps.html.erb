@@ -52,8 +52,7 @@
 
   <h3>To sew your <%= @quilt.name_of_my_project %> with 0.25" seam allowance, you will need:</h3>
   <ol>
-
-    <li class="fabric-type">
+    <!-- <li class="fabric-type">
       <div class="fabric-type-img-wrap">
         <img src="http://s3.amazonaws.com/spoonflower/public/design_thumbnails/0141/0950/rrrdeer_head_marine_shop_thumb.png">
       </div>
@@ -68,42 +67,25 @@
           X patches of x dimension by y dimension, each to be split into 2 triangles
         </li>
       </ol>
-    </li>
-
-        <li class="fabric-type">
-          <div class="fabric-type-img-wrap">
-            <img src="http://s3.amazonaws.com/spoonflower/public/design_thumbnails/0141/0950/rrrdeer_head_marine_shop_thumb.png">
-          </div>
-          <p class="fabric-type-header">
-            Fabric 1 - Approximately THIS MANY yards of 42” wide fabric
-          </p>
-          <ol class="fabric-type-dimensions">
-            <li>
-              X patches of x dimension by y dimension
-            </li>
-            <li>
-              X patches of x dimension by y dimension, each to be split into 2 triangles
-            </li>
-          </ol>
-        </li>
-
-            <li class="fabric-type">
-              <div class="fabric-type-img-wrap">
-                <img src="http://s3.amazonaws.com/spoonflower/public/design_thumbnails/0141/0950/rrrdeer_head_marine_shop_thumb.png">
-              </div>
-              <p class="fabric-type-header">
-                Fabric 1 - Approximately THIS MANY yards of 42” wide fabric
-              </p>
-              <ol class="fabric-type-dimensions">
-                <li>
-                  X patches of x dimension by y dimension
-                </li>
-                <li>
-                  X patches of x dimension by y dimension, each to be split into 2 triangles
-                </li>
-              </ol>
-            </li>
-
+    </li> -->
+    <% @svg_parser_from_quilt.all_unique_design_ids.each do %>
+      <li class="fabric-type">
+        <div class="fabric-type-img-wrap">
+          <%= image_tag "flowerpatch_logo.svg", class:"logo-tiny" %>
+        </div>
+        <p class="fabric-type-header">
+          Fabric 1 - Approximately THIS MANY yards of 42” wide fabric
+        </p>
+        <ol class="fabric-type-dimensions">
+          <li>
+            X patches of x dimension by y dimension
+          </li>
+          <li>
+            X patches of x <%=@svg_parser_from_quilt.all_unique_design_ids%>, each to be split into 2 triangles
+          </li>
+        </ol>
+      </li>
+    <% end %>
   </ol>
 
 </div>
