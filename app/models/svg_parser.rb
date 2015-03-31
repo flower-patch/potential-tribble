@@ -16,6 +16,7 @@ class SvgParser
     @paths = @svg.xpath('//*[@d]')
   end
 
+  # FIXME possibly deprecated. use PngGenerator module
   # replaces the image in *every* pattern fill with a base64 png data uri
   def replace_image_fill( replacement_uri )
     puts replacement_uri
@@ -65,6 +66,7 @@ class SvgParser
     return path
   end
 
+  # FIXME probably deprecated: use module PngGenerator
   # if you just want to download a png, use this
   # def self.svg_to_png(svg, width, height)
   #width = width of the svg in px
@@ -105,6 +107,7 @@ class SvgParser
     return Base64.encode64(png)
   end
 
+  #FIXME moved to PngGenerator module
   # provide Base64 URI for an image online, with basic auth-- assumes that ENV is set for username and password
   def get_image_from_web_with_basic_auth( location )
     uri = URI(location)
@@ -119,6 +122,7 @@ class SvgParser
     return Base64.encode64(res.body)
   end
 
+  #FIXME moved to PngGenerator module
   # TODO: if you ever make blocks in a size other than 9", this method will be a problem
   # TODO: if anything changes with the Spoonflower API, this location URL might not work
   def spoonflower_image_location_from_id( design_id )
@@ -364,6 +368,6 @@ class SvgParser
     [SvgParser::FABRIC_WIDTH, y]
   end
 
-  
+
 
 end

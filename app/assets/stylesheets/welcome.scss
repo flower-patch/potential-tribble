@@ -27,7 +27,7 @@
   $hero-background-bottom: #20392B;
   $hero-color: white;
   $gradient-angle: 10deg;
-  $hero-image: 'hero_quilt_4.png';
+  $hero-image: 'hero_image.png';
 
   @include background(url($hero-image));
   background-color: $accent-darkest;
@@ -36,8 +36,7 @@
   background-size: cover;
   padding-bottom: 1em;
   margin-bottom: 7px;
-  // border-bottom: $default-border;
-
+  height: 344px;
   .hero-inner {
     @include outer-container;
     @include clearfix;

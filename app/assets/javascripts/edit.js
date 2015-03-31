@@ -522,9 +522,7 @@ $(function() {
         } catch (e) {
           console.log(e.name + '' + e.message);
           return alert('Do not add the same fabric design more than once to your palette.');
-        }
-      }
-    }
+
 
     ////////////////////////////////////////////////////////////////////////////////
     //Translate API calls to html
