@@ -187,10 +187,10 @@ class SvgParser
         end
       end
       if @svg.xpath('//*[contains(@fill, "#ffffff" )]').length > 0
-        design_ids_array << "#ffffff"
+        real_array << "#ffffff"
       end
     else
-      design_ids_array << "#ffffff"
+      real_array << "#ffffff"
     end
     real_array
   end
@@ -341,7 +341,12 @@ class SvgParser
   def cut_and_sew_print_dimensions_by_design(design_id, total_number_of_blocks)
     y = 1 # half inch extra at top and bottom to allow for grain issues
     total_coords = []
-    selected_paths = paths_from_id(design_id)
+    if design_id == "#ffffff"
+      selected_paths = @svg.xpath('//*[contains(@fill, "#ffffff" )]')
+    else
+      selected_paths = paths_from_id(design_id)
+    end
+    counter = 0
     selected_paths.each do |path|
       # this if path[:d] is an irritating wrapper but otherwise was getting the entire svg along with the paths i wanted, which ruined my methods
       # here we look at svg coords of all squares, rectangles, or isosceles right triangles
@@ -363,9 +368,14 @@ class SvgParser
           side = triangle_base_side_length(0.25, coords)
           # triangles are easiest to print paired with others to make squares
           # figures out how many squares are needed, rounds up if it's an odd number
-          paired_triangles = (total_number_of_blocks/2.to_f).ceil
-          paired_triangles.times do
-            total_coords << [side, side]
+            if total_number_of_blocks == 1
+              total_coords << [side, side, "triangle"] if counter.even?
+              counter += 1
+            else
+              paired_triangles = (total_number_of_blocks/2.to_f).ceil
+              paired_triangles.times do
+                total_coords << [side, side, "triangle"]
+            end
           end
         end
       end
@@ -415,7 +425,12 @@ class SvgParser
   def get_sorted_coords(design_id, total_number_of_blocks)
     y = 1 # half inch extra at top and bottom to allow for grain issues
     total_coords = []
-    selected_paths = paths_from_id(design_id)
+    if design_id == "#ffffff"
+      selected_paths = @svg.xpath('//*[contains(@fill, "#ffffff" )]')
+    else
+      selected_paths = paths_from_id(design_id)
+    end
+    counter = 0
     selected_paths.each do |path|
       # this if path[:d] is an irritating wrapper but otherwise was getting the entire svg along with the paths i wanted, which ruined my methods
       # here we look at svg coords of all squares, rectangles, or isosceles right triangles
@@ -437,9 +452,14 @@ class SvgParser
           side = triangle_base_side_length(0.25, coords)
           # triangles are easiest to print paired with others to make squares
           # figures out how many squares are needed, rounds up if it's an odd number
-          paired_triangles = (total_number_of_blocks/2.to_f).ceil
-          paired_triangles.times do
-            total_coords << [side, side, "triangle"]
+            if total_number_of_blocks == 1
+              total_coords << [side, side, "triangle"] if counter.even?
+              counter += 1
+            else
+              paired_triangles = (total_number_of_blocks/2.to_f).ceil
+              paired_triangles.times do
+                total_coords << [side, side, "triangle"]
+            end
           end
         end
       end
