@@ -9,8 +9,8 @@ $(function() {
   var modalBlock = Snap('.current-block .svg-editor svg');
   var previewProjectSvg = Snap('.preview-project svg');
 
-  if (previewBlockSvg || finalBlock || modalBlock) {
-
+  if (previewBlockSvg) {
+    // || finalBlock || modalBlock
     runPreviewPage();
   }
 
@@ -25,8 +25,7 @@ $(function() {
 
     cleanUpPreview(previewBlockThumb);
 
-    drawPreview();
-
+    // drawPreview();
     console.log('drawPreview');
 
     initThumbnails();
@@ -38,6 +37,27 @@ $(function() {
         });
       });
     }
+
+
+    // function drawPreview() {
+    //   var previewUrl = $('.preview-img-url').html();
+    //
+    //   var pattern = previewProjectSvg.image(previewUrl, 0, 0, 90, 90)
+    //   .toPattern(0, 0, 90, 90)
+    //   .attr({
+    //     id: 'patternId',
+    //     y: '60'
+    //   });
+    //
+    //   cleanUpPreview(previewProjectSvg);
+    //   previewProjectSvg.selectAll('path').forEach(function(path) {
+    //     console.log('help');
+    //     path.attr({
+    //       fill: pattern,
+    //       stroke: 'none'
+    //     });
+    //   });
+    // }
 
     var previewBlockSvg = Snap('.preview-block svg');
     var previewBlockThumb = Snap('.preview-thumbnail svg');
@@ -55,22 +75,31 @@ $(function() {
       var DOMURL = self.URL || self.webkitURL || self;
       var img = new Image();
       var svg = new Blob([svgString], {type: "image/svg+xml;charset=utf-8"});
-      var url = DOMURL.createObjectURL(svg);
+      var url = window.URL.createObjectURL(svg);
+      console.log(url);
 
       img.onload = function() {
           ctx.drawImage(img, 0, 0);
           var png = canvas.toDataURL("image/png");
+          console.log(png);
           document.querySelector('#png-container').innerHTML = '<img src="'+png+'"/>';
           DOMURL.revokeObjectURL(png);
+          console.log('gotcha');
       };
 
       img.src = url;
-
+      console.log(url)
+      // imgUrl = '<img src="data:image/png;base64,<%= full_res_image  %>">'
       var pattern = previewProjectSvg.image(url, 0, 0, 90, 90)
       // var pattern = previewProject.image('http://www.mccallsquilting.com/images/wysiwyg_img/Celtic-Twist-300px_27999.jpg', 0, 0, 90, 90)
         .toPattern(0, 0, 90, 90)
         .attr({ id: 'patternId', y: '60'});
+        console.log('i made an image')
 
+
+      cleanUpPreview(previewProjectSvg);
+      console.log(previewProjectSvg);
+      console.log('joyridazzz');
       previewProjectSvg.selectAll('path').forEach(function(path) {
         // fillBlock.appendTo(path);
         console.log('i am in');
@@ -80,28 +109,6 @@ $(function() {
 
     drawPreviewPng();
 
-
-    // function drawPreview() {
-    //   var previewUrl = $('.preview-img-url a').attr('src');
-    //   console.log(previewUrl)d;
-    //
-    //   var pattern = previewProjectSvg.image(previewUrl, 0, 0, 90, 90)
-    //   .toPattern(0, 0, 90, 90)
-    //   .attr({
-    //     id: 'patternId',
-    //     y: '60'
-    //   });
-
-      cleanUpPreview(previewProjectSvg);
-      previewProjectSvg.selectAll('path').forEach(function(path) {
-        console.log('help');
-        path.attr({
-          fill: pattern,
-          stroke: 'none'
-        });
-      });
-
-    }
 
   //////////////////////////////////////////////////////////////////////////////
   //FUNCTIONS RELATED TO THUMBNAILS
@@ -135,76 +142,4 @@ $(function() {
     //
     // }
 
-
-});
-
-
-
-
-
-
-// //from the stack overflow method above
-// //another way of getting the objectURL
-// function drawPreview() {
-//   var DOMURL = window.URL || window.webkitURL || window;
-//   var canvas = document.querySelector('canvas');
-//   var ctx = canvas.getContext('2d');
-//   // var data = (new XMLSerializer()).serializeToString(svgNode);
-//   var img = new Image();
-//   var svgBlob = new Blob([previewBlock], {type: 'image/svg+xml;charset=utf-8'});
-//   // var svgNode = document.createElement(previewBlock);
-//
-//   // var svgBlock = document.querySelector('.preview-block svg');
-//   // console.log(svgtest)
-//   // var previewBlockContents = [previewBlock];
-//   // // console.log(previewBlockContents);
-//   // var previewBlockBlob = new Blob(previewBlockContents, {type: "image/svg+xml"}); // the blob
-//   // console.log(previewBlockBlob);
-//   var svgUrl = DOMURL.createObjectURL(svgBlob);
-//   console.log(svgUrl);
-//
-//   img.onload = function () {
-//     ctx.drawImage(img, 0, 0);
-//     DOMURL.revokeObjectURL(svgUrl);
-//
-//     var imgURI = canvas
-//       .toDataURL('image/png')
-//       .replace('image/png', 'image/octet-stream');
-//   }
-//
-//   img.src = svgUrl;
-//   $('.test-img').attr({src: svgUrl});
-//
-//   var pattern = previewProjectSvg.image(svgUrl, 0, 0, 90, 90)
-//   // var pattern = previewProject.image('http://www.mccallsquilting.com/images/wysiwyg_img/Celtic-Twist-300px_27999.jpg', 0, 0, 90, 90)
-//     .toPattern(0, 0, 90, 90)
-//     .attr({ id: 'patternId', y: '60'});
-//
-//   previewProjectSvg.selectAll('path').forEach(function(path) {
-//     // fillBlock.appendTo(path);
-//     console.log('help');
-//     path.attr({fill: pattern, stroke: 'none'});
-//   });
-// }
-//
-// drawPreview();
-//
-// // alt approach with CREATEOBJECTURL, was working excecpt not pulling fills
-// //   function drawPreview() {
-// //     var previewUrl = $('.preview-img-url').html();
-// //     var previewBlockContents = [previewBlock];
-// //     var previewBlockBlob = new Blob(previewBlockContents, {type: "image/svg+xml"}); // the blob
-// //     var svgUrl = window.URL.createObjectURL(previewBlockBlob);
-// //
-// //
-// //     var pattern = previewProjectSvg.image(svgUrl, 0, 0, 90, 90)
-// //     var pattern = previewProjectSvg.image(previewUrl, 0, 0, 90, 90)
-// //       .toPattern(0, 0, 90, 90)
-// //       .attr({ id: 'patternId', y: '60'});
-// //
-// //     previewProjectSvg.selectAll('path').forEach(function(path) {
-// //       console.log('help');
-// //       path.attr({fill: pattern, stroke: 'none'});
-// //     });
-// //   }
-// // }
+  });

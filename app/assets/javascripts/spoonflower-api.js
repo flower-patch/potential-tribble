@@ -11,6 +11,9 @@ function setupSpoonflowerApi() {
       url: url,
       dataType: "jsonp",
       timeout: 5000, // fake .fail() a lot of time for the request to be successfully completed
+      headers: {
+        "Authorization": "Basic " + btoa('DEMO:IRONDEMO')
+      },
       success: function(data) {
         promise.resolve(data);
       },
