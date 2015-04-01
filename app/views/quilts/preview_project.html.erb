@@ -53,7 +53,9 @@
       <div class="preview-block big-preview">
         <%= @quilt.svg.html_safe %>
       </div>
-      <p class="preview-img-url"></p>
+      <span class="preview-img-url">
+        <!-- <%#= image_tag @quilt.preview_thumb_url %> -->
+      </span>
       <div class="preview-project big-preview">
         <%= ProjectTemplate.getXML_for_filename( @project.project_layout_svg ).html_safe %>
       </div>
@@ -77,4 +79,4 @@
 
 </div>
 <!-- this is where your raster image lives -->
-<%#= image_tag "preview_thumbnails/img_#{params[:quilt_id]}.png"%>
+<!-- <%#= image_tag "preview_thumbnails/img_#{params[:quilt_id]}.png"%> -->
