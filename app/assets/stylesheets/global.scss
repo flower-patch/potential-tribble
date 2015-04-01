@@ -124,7 +124,7 @@ main {
   }
 }
 
-.flowerpatch-logo-text,
+header .flowerpatch-logo-text,
 .license-tag {
   vertical-align: top;
   display: inline-block;
@@ -148,7 +148,7 @@ main {
 }
 
 footer {
-  background-color: rgba(0, 0, 0, 0.15);
+  background-color: rgba(0, 0, 0, 0.2);
   background-image: $green-pattern;
   background-image: image-url('flowerpatch_background_gray.png');
   height: 7.35em;
