@@ -27,7 +27,7 @@
   $hero-background-bottom: #20392B;
   $hero-color: white;
   $gradient-angle: 10deg;
-  $hero-image: 'hero_image.png';
+  $hero-image: 'hero.jpg';
 
   @include background(image-url($hero-image));
   background-color: $accent-darkest;
