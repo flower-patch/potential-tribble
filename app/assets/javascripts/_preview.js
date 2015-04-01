@@ -22,7 +22,7 @@ $(function() {
     drawPreview();
     console.log('drawPreview');
 
-    toggleThumbnails();
+    initThumbnails();
 }
     function cleanUpPreview(prev) {
       prev.selectAll('path').forEach(function(path) {
@@ -51,17 +51,25 @@ $(function() {
         });
       });
     }
-    
+
   //////////////////////////////////////////////////////////////////////////////
   //FUNCTIONS RELATED TO THUMBNAILS
 
-    function toggleThumbnails () {
-      $('.preview-thumbnail').on('click', function() {
-        console.log('click thumbnail');
-        var parent = $(this).parent();
-        position = parent.index();
-        findChildren(parent, position);
+    function initThumbnails () {
+      $('.preview-thumbnail').on('click', function(ev) {
+        clickThumbnail($(this))
       });
+      clickThumbnail( $('.preview-thumbnail').eq(0) );
+    }
+
+    function clickThumbnail(thumb) {
+      var thumbIndex = thumb.index();
+
+      $('.preview-thumbnails .preview-thumbnail').removeClass('active');
+      thumb.addClass('active');
+
+      $('.current-preview .big-preview').removeClass('show');
+      $('.current-preview .big-preview').eq(thumbIndex).addClass('show');
     }
 
     function findChildren(parent, position) {

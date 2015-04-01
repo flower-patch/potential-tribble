@@ -543,22 +543,11 @@ $('.selected ~ .progress-element a').on('click', function(e) {
 //
 // });
 
-// 
-// $(document).ready(function () {
-//   $('.accordion-tabs').each(function(index) {
-//     $(this).children('li').first().children('a').addClass('is-active').next().addClass('is-open').show();
-//   });
-//
-//   $('.accordion-tabs').on('click', 'li > a', function(event) {
-//     if (!$(this).hasClass('is-active')) {
-//       event.preventDefault();
-//       var accordionTabs = $(this).closest('.accordion-tabs');
-//       accordionTabs.find('.is-open').removeClass('is-open').hide();
-//
-//       $(this).next().toggleClass('is-open').toggle();
-//       accordionTabs.find('.is-active').removeClass('is-active');
-//       $(this).addClass('is-active');
-//     } else {
-//       event.preventDefault();
-//     }
-//   });
+// NOT QUITE WORKING
+// WHEN you remove a swatch, it goes back to your palette,
+// it just needs to get the name
+// var paletteLi = addPaletteToPreview({
+//   id: fabricId,
+//   thumbnail_url: fabricSrc
+// });
+// $('.fabric-modal-list').prepend(paletteLi);
