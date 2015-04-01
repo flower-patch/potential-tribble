@@ -12,18 +12,7 @@ $(function() {
     var $svg = $('.svg-editor svg');
 
     var palette = [];
-    // Api.getPopularList(5).then(function(response) {
-    //   // The default palette is the first five results from the popular list
-    //   palette = response.results[0].results;
-    //   // palette.forEach(function(tile) {
-    //   //   tile.size = {
-    //   //     width: 50,
-    //   //     height: 50
-    //   //   };
-    //   // })
-    //   drawPalette('.palette', palette);
-    //   return palette;
-    // });
+
 
     drawPalette('.palette', palette);
 
@@ -149,6 +138,7 @@ $(function() {
             '</div>' +
           '</li>');
           li.find('img')
+          //Added data-id, and the url to refer to later
             .attr('src', fabric.thumbnail_url)
             .attr('data-id', fabric.id)
 
@@ -237,7 +227,7 @@ $(function() {
 
   var timeout= 500;
 
-  ///REALLY BAD BUGGGG!
+  // Search with data id from earlier
   setTimeout(function() {
     //sets the first currFabric
     //  $('.fabric-preview').first().click();
