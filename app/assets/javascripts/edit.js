@@ -140,7 +140,18 @@ $(function() {
 
       function drawPalette(location, palette) {
         $(location).html(palette.map(function(fabric) {
-          var li = $('<li class="fabric-preview card"><button alt="Remove from palette" class="remove-fabric-btn icon-button"><i class="fa fa-minus-circle inner-button-icon"></i></button><div class="fabric-img-container"><img src="' + fabric.thumbnail_url + '"></div></li>');
+          var li = $('<li class="fabric-preview card">' +
+            '<button alt="Remove from palette" class="remove-fabric-btn icon-button">' +
+              '<i class="fa fa-minus-circle inner-button-icon"></i>' +
+            '</button>' +
+            '<div class="fabric-img-container">' +
+              '<img>' +
+            '</div>' +
+          '</li>');
+          li.find('img')
+            .attr('src', fabric.thumbnail_url)
+            .attr('data-id', fabric.id)
+
           //.data(key, value) key= string 'fabric', value is fabric object
           // .data makes the thing a part of the DOM
           li.data('fabric', fabric);
@@ -199,34 +210,28 @@ $(function() {
 
     initializePalette(1000);
 
-    var timeout= 500;
+    $('.palette').on('click', '.remove-fabric-btn', onRemoveClick);
 
-    // function removeSwatch(e) {
-    //   e.stopPropagation();
-    //   console.log('click rmv-btn');
-    //   var parent = $(this).parent('.fabric-preview');
-    //   var position = parent.index();
-    //   palette.splice(position, 1);
-    //   drawPalette('.current-palette, .palette', palette);
-    // }
+    // Elsewhere, when the fabric-modal is clicked, we stop propagation on all click events.
+    // So we can't listen listen to click events on the fabric modal or any of its parents, because
+    // click events never reach that far because they are stopPropagation()'d.
+    // To get around this, we listen to click events on the children of the fabric modal.
+    $('.fabric-modal').children().on('click', '.remove-fabric-btn', onRemoveClick);
 
-    ///REALLY BAD BUGGGG!
-    // setTimeout(function() {
-    //   //sets the first currFabric
-    //   $('.fabric-preview').first().click();
-    //   //REMOVE SWATCH
-    //   $('.palette .fabric-preview').on('click', 'button', function(e) {
-    //     //debugger;
-    //     e.stopPropagation();
-    //     console.log('click rmv-btn');
-    //     var parent = $(this).parent('.fabric-preview');
-    //     var position = parent.index();
-    //     palette.splice(position, 1);
-    //     drawPalette('.current-palette, .palette', palette);
-    //     // removeSwatch(e);
-    //   });
-    //
-    // }, timeout);
+    function onRemoveClick(e) {
+      // e.stopPropagation();
+      var img = $(this).parent().find('img');
+      var fabricId = img.attr('data-id');
+      var fabricSrc = img.attr('src');
+      for (var i = 0; i < palette.length; i++) {
+        if (palette[i].id === fabricId) {
+          palette.splice(i, 1);
+          break;
+        }
+      }
+
+      drawPalette('.current-palette, .palette', palette);
+    }
 
   initializePalette(1000);
 
@@ -254,22 +259,6 @@ $(function() {
 
   }, timeout);
 
-
-  // function addClick () {
-  //   $('button', '.fabric-preview', 'palette').on('click', function(e) {
-  //     console.log('add click!');
-  //   });
-  // }
-  //
-  // function removeClick () {
-  //   $('button', '.fabric-preview', 'palette').on('click', function(e) {
-  //     console.log('removed click');
-  //   });
-  //}
-
-
-
-  // console.log(palette.valueOf());
 
   ////////////////////////////////////////////////////////////////////////////////
   // EDIT PATCH
@@ -370,7 +359,6 @@ $(function() {
 
     $('.new_quilt').submit(function() {
       saveQuilt();
-      console.log(newSvg);
     });
 
   ////////////////////////////////////////////////////////////////////////////////
@@ -420,6 +408,7 @@ $(function() {
       drawPalette('.current-palette', palette);
       setTimeout(function() {
         $('.fabric-modal').addClass('show');
+        $('body').addClass('no-scroll');
       }, 10);
     });
 
@@ -430,6 +419,7 @@ $(function() {
     $('.close-fabric-modal-btn, .fabric-modal').on('click', function() {
       $('.fabric-modal').toggleClass('show');
       console.log('close modal');
+      $('body').removeClass('no-scroll');
       // Once the modal closes, move the svg-editor element back into its original
       // area (.svg-editor-parent), in the main content.
       currSvg = $('.fabric-modal .current-block').children();
@@ -531,50 +521,58 @@ $(function() {
     //Translate API calls to html
 
     function apiResultToElements(results) {
-      return results.map(function(designItem) {
-        var img = $('<img>');
-        img.attr('data-id', designItem.id);
-        img.attr('src', designItem.thumbnail_url);
-        // img.attr('data-url', designItem.thumbnail_url);
 
-        var imgCont = $('<div class="fabric-img-container"></div>');
-        imgCont.append(img);
+      return results.map(function(item) { return addPaletteToPreview(item); });
+    }
+    function addPaletteToPreview(designItem) {
+      // When we get a result back from the API, if that result already exists
+      // in our palette, don't display it to the user.
+      // So in our for loop, if a palette with this id already exists, then abort displaying it.
+      for (var i = 0; i < palette.length; i++) {
+        if (palette[i].id === designItem.id) {
+          return; //stop the rest of the fn from running.
+        }
+      }
 
-        var btn = $('<button alt="Add to palette" class="remove-fabric-btn icon-button"><i class="fa fa-plus-circle inner-button-icon"></i></button>')
+      var img = $('<img>');
+      img.attr('data-id', designItem.id);
+      img.attr('src', designItem.thumbnail_url);
 
-        var designName = $('<div class="fabric-name-container"><h3 class="fabric-name">' + designItem.name + '</h3></div>');
+      var imgCont = $('<div class="fabric-img-container"></div>');
+      imgCont.append(img);
 
-        /*
-        this keeps coming in as undefined.
-        Is it because of the underscore? Some privacy setting on api
-        var designer = $('<span class="designer-screen-name">'
-                        + designItem.sceen_name + '</span>');
-        */
+      var btn = $('<button alt="Add to palette" class="remove-fabric-btn icon-button"><i class="fa fa-plus-circle inner-button-icon"></i></button>')
 
-        var li = $('<li></li>');
-        li.data('item', designItem);
-        li.addClass('fabric-preview card search-result');
-        li.append(imgCont);
-        li.append(btn);
-        li.append(designName);
-        // li.append(designer);
+      var designName = $('<div class="fabric-name-container"><h3 class="fabric-name">' + designItem.name + '</h3></div>');
 
-        //Add swatches from modal to palette
-        li.on('click', function() {
-          palette.push({
-            id: $(this).find('img').attr('data-id'),
-            thumbnail_url: $(this).find('img').attr('src'),
-            // size: {
-            //   width: 50,
-            //   height: 50
-            // }
-          })
-          drawPalette('.current-palette, .palette', palette);
-          checkDuplicateSwatches(designItem);
+      /*
+      this keeps coming in as undefined.
+      Is it because of the underscore? Some privacy setting on api
+      var designer = $('<span class="designer-screen-name">'
+                      + designItem.sceen_name + '</span>');
+      */
+
+      var li = $('<li></li>');
+      li.data('item', designItem);
+      li.addClass('fabric-preview card search-result');
+      li.append(imgCont);
+      li.append(btn);
+      li.append(designName);
+      // li.append(designer);
+
+      //Add swatches from modal to palette
+      li.on('click', function() {
+
+        palette.push({
+          id: $(this).find('img').attr('data-id'),
+          thumbnail_url: $(this).find('img').attr('src')
         })
+        drawPalette('.current-palette, .palette', palette);
+        li.remove();
 
-        return li;
-      });
+      })
+
+      return li;
     }
 
     $('.open-fabric-modal-btn').on('click', function() {

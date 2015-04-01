@@ -50,11 +50,11 @@
   <div class="preview-svg">
 
     <div class="current-preview no-click">
-      <div class="preview-block">
+      <div class="preview-block big-preview">
         <%= @quilt.svg.html_safe %>
       </div>
       <p class="preview-img-url"></p>
-      <div class="preview-project">
+      <div class="preview-project big-preview">
         <%= ProjectTemplate.getXML_for_filename( @project.project_layout_svg ).html_safe %>
       </div>
       <a class="test-img"></a>
