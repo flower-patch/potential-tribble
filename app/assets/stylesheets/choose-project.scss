@@ -21,6 +21,7 @@
 
 .project-cards {
   @include span-columns(7 of 10);
+  @include outer-container;
 }
 
 .project-card {
@@ -45,6 +46,7 @@
 
 .project-card-img {
   width: 100%;
+  @include fill-parent();
 }
 
 .project-card-content {
@@ -56,4 +58,8 @@
   font-family: $sans-serif;
   @include pad();
   line-height: 1.4em;
+}
+
+.back-to-top {
+  border-bottom: $default-border;
 }

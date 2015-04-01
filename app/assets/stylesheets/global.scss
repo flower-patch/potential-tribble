@@ -17,6 +17,10 @@ $block-height: em(400);
 #Application Page Elements
 \*------------------------------------*/
 
+html {
+  height: 100%;
+}
+
 body {
   background-color: $light-pure-gray;
   background-image: $fabric-pattern;
@@ -25,7 +29,8 @@ body {
   font-size: 12pt;
   font-weight: $light;
   color: $accent-darkest;
-  min-height: 925px;
+  min-height: 100%;
+  padding-bottom: 7.35em;
   position: relative;
   // display: flex;
   // min-height: 100vh;
@@ -52,7 +57,6 @@ button {
 
   @include pad();
 }
-
 
 h1 {
   font-size: 2.5em;
@@ -121,6 +125,7 @@ main {
   display: inline-block;
   margin-top: 0.5em;
   letter-spacing: -1px;
+  text-shadow: 0px 3px 10px #AAA;
 }
 
 
@@ -142,8 +147,11 @@ footer {
   background-image: $green-pattern;
   background-image: image-url('flowerpatch_background_gray.png');
   height: 7.35em;
-  box-shadow: 0px 1px 15px 1px darkgray;
-  position: relative;
+  box-shadow: 0px 1px 15px 1px #777;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
   z-index: 1;
 }
 
@@ -493,7 +501,79 @@ variables found in variables.scss
   box-shadow: $default-shadow;
 }
 
+.expander {
+  ///////////////////////////////////////////////////////////////////////////////////
+  $base-font-size: 1em !default;
+  $base-line-height: 1.5em !default;
+  $base-spacing: 1.5em !default;
+  $base-accent-color: #477DCA !default;
+  $base-link-color: $base-accent-color !default;
+  $dark-gray: #333 !default;
+  $light-gray: #DDD !default;
+  $base-font-color: $dark-gray !default;
 
+  p {
+    color: $accent-darkest;
+    line-height: $base-line-height;
+  }
+
+  a {
+    color: $accent-darkest;
+    text-decoration: none;
+  }
+  //////////////////////////////////////////////////////////////////////////////////
+
+  $expander-arrow-width: 0.7em;
+  $expander-toggle-size: 1em;
+  $expander-toggle-arrow-size: $expander-toggle-size;
+  $expander-toggle-margin: 1em;
+
+  width: 60%;
+
+  .expander-trigger {
+    @include user-select(none);
+    border-bottom: $default-border;
+    cursor: pointer;
+    display: block;
+    font-size: $expander-toggle-size;
+    margin-bottom: $expander-toggle-size;
+    padding-bottom: $expander-toggle-size / 4;
+
+    .fa-arrow-circle-down {
+      display: inline-block;
+    }
+
+    .fa-arrow-circle-right {
+      display: none;
+    }
+
+    &:before {
+      font-size: $expander-arrow-width;
+      // content: "\25BC";
+      margin-right: 0.5em;
+    }
+  }
+
+  .expander-hidden {
+
+    .fa-arrow-circle-down {
+      display: none;
+    }
+
+    .fa-arrow-circle-right {
+      display: inline-block;
+    }
+
+    &:before {
+      font-size: $expander-arrow-width;
+      // content: "\25BA";
+    }
+  }
+
+  .expander-hidden + .expander-content {
+    display: none;
+  }
+}
 
 
 /*------------------------------------*\

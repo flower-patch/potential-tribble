@@ -2,101 +2,95 @@
 
 <div class="next-steps-view view-container">
 
-  <div class="final-block">
+  <div class="next-steps-top-container">
+    <div class="final-block">
 
-  <h2 class="your-quilt-name"><%= @quilt.name %></h2>
+      <h2 class="your-quilt-name"><%= @quilt.name %></h2>
 
+      <%= @quilt.svg.html_safe %>
 
-  <%= @quilt.svg.html_safe %>
+      <div class="next-steps-btns">
+        <%= link_to "Download Design", {:action => "download_quilt", :quilt_id => params[:quilt_id]}, class:"stitch-btn measurements-btn next-steps-btn" %>
 
-
-  </div>
-
-  <div class="next-steps">
-
-    <ol class="next-steps-list">
-      <li class="next-step">
-        <div class="icon-holder">
-          <i class="fa fa-cloud-download next-step-icon"></i>
-        </div>
-        Download your design:&nbsp;&nbsp;
-        <%= link_to "Download Here", {:action => "download_quilt", :quilt_id => params[:quilt_id]}, class:"stitch-btn download-btn" %>
-      </li>
-
-      <li class="next-step">
-      <div class="icon-holder">
-          <i class="fa fa-cloud-upload next-step-icon"></i>
       </div>
-        Upload the design at <a class="spoonflower-link" href="http://www.spoonflower.com/welcome">spoonflower.com</a>
-      </li>
 
-      <li class="next-step">
-        <div class="icon-holder">
-          <i class="fa fa-shopping-cart next-step-icon"></i>
-        </div>
-        Submit and pay for your order
-      </li>
+    </div>
 
-      <li class="next-step">
-        <i class="fa fa-truck next-step-icon"></i>
-        When your package arrives, open and whip up your custom quilt masterpiece!
-      </li>
-    </ol>
+    <div class="next-steps">
 
-  </div>
-
-
-</div>
-
-<div class="fabric-chart">
-
-  <h3>To sew your <%= @quilt.name_of_my_project %> with 0.25" seam allowance, you will need:</h3>
-  <ol>
-    <!-- <li class="fabric-type">
-      <div class="fabric-type-img-wrap">
-        <img src="http://s3.amazonaws.com/spoonflower/public/design_thumbnails/0141/0950/rrrdeer_head_marine_shop_thumb.png">
-      </div>
-      <p class="fabric-type-header">
-        Fabric 1 - Approximately THIS MANY yards of 42” wide fabric
-      </p>
-      <ol class="fabric-type-dimensions">
-        <li>
-          X patches of x dimension by y dimension
+      <ol class="next-steps-list">
+        <li class="next-step">
+          <div class="icon-holder">
+            <i class="fa fa-cloud-download next-step-icon"></i>
+          </div>
+          Download your design below
         </li>
-        <li>
-          X patches of x dimension by y dimension, each to be split into 2 triangles
+
+        <li class="next-step">
+        <div class="icon-holder">
+            <i class="fa fa-cloud-upload next-step-icon"></i>
+        </div>
+          Upload the design at <a class="spoonflower-link" href="http://www.spoonflower.com/welcome">spoonflower.com</a>
+        </li>
+
+        <li class="next-step">
+          <div class="icon-holder">
+            <i class="fa fa-shopping-cart next-step-icon"></i>
+          </div>
+          Submit and pay for your order
+        </li>
+
+        <li class="next-step">
+          <i class="fa fa-truck next-step-icon"></i>
+          When your package arrives, open and whip up your custom quilt masterpiece!
         </li>
       </ol>
-    </li> -->
-    <% @svg_parser_from_quilt.all_unique_design_ids.each do |id| %>
-      <li class="fabric-type">
-        <div class="fabric-type-img-wrap">
-          <% if id == "#ffffff"%>
-            <%= image_tag "flowerpatch_logo.svg", class:"logo-tiny" %>
-          <% else %>
-            <a href= "<%= 'http://www.spoonflower.com/designs/' + @svg_parser_from_quilt.get_design_number(id) %>" target="_blank">
-              <img src= "http://s3.amazonaws.com/spoonflower/public/design_thumbnails/0141/0867/rrarrow_marine_shop_thumb.png">
-            </a>
-          <% end %>
-        </div>
-        <p class="fabric-type-header">
-          Fabric 1 - Approximately THIS MANY yards of 42” wide fabric
-        </p>
-        <ol class="fabric-type-dimensions">
-          <li>
-            X patches of x dimension by y dimension
-          </li>
-          <li>
-            X patches of x <%=@svg_parser_from_quilt.all_unique_design_ids%>, each to be split into 2 triangles
-          </li>
-        </ol>
-      </li>
-    <% end %>
-  </ol>
 
+    </div>
+
+  </div>
+
+  <div class="expander measurements-information-section">
+    <a href="javascript:void(0)" id="js-expander-trigger" class="expander-trigger expander-hidden"><i class="fa fa-arrow-circle-down"></i><i class="fa fa-arrow-circle-right"></i>&nbsp;View Measurements Information</a>
+    <div id="js-expander-content" class="expander-content">
+      <div class="fabric-chart expander-content" id="js-expander-content">
+
+        <h3>To sew your <%= @quilt.name_of_my_project %> with 0.25" seam allowance, you will need:</h3>
+        <ol>
+          <% @svg_parser_from_quilt.all_unique_design_ids.each do |id| %>
+            <li class="fabric-type">
+              <div class="fabric-type-img-wrap">
+                <% if id == "#ffffff"%>
+                  <%= image_tag "flowerpatch_logo.svg", class:"logo-tiny" %>
+                <% else %>
+                  <a href= "<%= 'http://www.spoonflower.com/designs/' + @svg_parser_from_quilt.get_design_number(id) %>" target="_blank">
+                    <img src= "http://s3.amazonaws.com/spoonflower/public/design_thumbnails/0141/0867/rrarrow_marine_shop_thumb.png">
+                  </a>
+                <% end %>
+              </div>
+              <p class="fabric-type-header">
+                Fabric 1 - Approximately THIS MANY yards of 42” wide fabric
+              </p>
+              <ol class="fabric-type-dimensions">
+                <li>
+                  X patches of x dimension by y dimension
+                </li>
+                <li>
+                  X patches of x <%=@svg_parser_from_quilt.all_unique_design_ids%>, each to be split into 2 triangles
+              </li>
+            </ol>
+          </li>
+        <% end %>
+        </ol>
+
+      </div>
+        <!-- <%= image_tag "spoonflower_logo.png", alt:"Find Spoonflower Fabrics", class:"fabric-options-logo" %> -->
+
+    </div>
+  </div>
 </div>
 
-  <h1 class="happy-quilting">Happy Quilting!</h1>
+
 
 <!-- ---- THIS IS CHRISTEN'S API DEBUG NONSENSE ---- -->
 <%# FIXME: this if statement is a hack to avoid the pain of ERB commenting %>

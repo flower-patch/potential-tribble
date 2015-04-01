@@ -325,3 +325,240 @@ $('.selected ~ .progress-element a').on('click', function(e) {
 //
 //   group.selectAll('path').forEach(applyFabricPatch);
 // }
+
+
+/////////////////////////////////////////////////////////////////////////////
+//Practice code for preview rendering
+
+  // var previewBlockSvg = Snap('.preview-block svg');
+  // var previewProjectSvg = Snap('.preview-project svg');
+  //
+  // var previewBlock = $('.preview-blow svg').html();
+  // var previewProject = ($'.preview-project svg').html();
+  // // var fillBlock = previewBlock.innerSVG();
+  //
+  // //
+  // // function cleanUpPreview() {
+  // //
+  // //   preview.selectAll('path').forEach(function(path) {
+  // //     path.attr({stroke: 'none'});
+  // //   });
+  // // }
+  //
+  // // cleanUpPreview(previewBlock);
+  //
+  // // cleanUpPreview(previewProject);
+  //
+  // function drawPreview() {
+  //
+  //   var previewBlockContents = [previewBlock];
+  //   console.log(previewBlockContents);
+  //   var previewBlockBlob = new Blob(previewBlockContents, {type : 'text/html'}); // the blob
+  //   console.log(previewBlockBlob);
+  //   var svgUrl = window.URL.createObjectUrl(previewBlockBlob);
+  //   console.log(svgUrl);
+  //
+  //   var pattern = previewProject.image(svgUrl, 0, 0, 90, 90)
+  //   // var pattern = previewProject.image('http://www.mccallsquilting.com/images/wysiwyg_img/Celtic-Twist-300px_27999.jpg', 0, 0, 90, 90)
+  //     .toPattern(0, 0, 90, 90)
+  //     .attr({ id: 'patternId', y: '60'});
+  //
+  //   previewProject.selectAll('path').forEach(function(path) {
+  //     // fillBlock.appendTo(path);
+  //     console.log('help');
+  //     path.attr({fill: pattern, stroke: 'none'});
+  //   });
+  // }
+  //
+  // drawPreview();
+
+
+////////////////////////////////////////////////////////////////////////////////
+//STACK OVERFLOW SVG TO CANVAS TO URL (my adaptation below)
+// var btn = document.querySelector('button');
+// var svg = document.querySelector('svg');
+// var canvas = document.querySelector('canvas');
+//
+// function triggerDownload (imgURI) {
+//   var evt = new MouseEvent('click', {
+//     view: window,
+//     bubbles: false,
+//     cancelable: true
+//   });
+//
+//   var a = document.createElement('a');
+//   a.setAttribute('download', 'MY_COOL_IMAGE.png');
+//   a.setAttribute('href', imgURI);
+//   a.setAttribute('target', '_blank');
+//
+//   a.dispatchEvent(evt);
+// }
+//
+// btn.addEventListener('click', function () {
+//   var canvas = document.getElementById('canvas');
+//   var ctx = canvas.getContext('2d');
+//   var data = (new XMLSerializer()).serializeToString(svg);
+//   var DOMURL = window.URL || window.webkitURL || window;
+//
+//   var img = new Image();
+//   var svgBlob = new Blob([data], {type: 'image/svg+xml;charset=utf-8'});
+//   var url = DOMURL.createObjectURL(svgBlob);
+//
+//   img.onload = function () {
+//     ctx.drawImage(img, 0, 0);
+//     DOMURL.revokeObjectURL(url);
+//
+//     var imgURI = canvas
+//         .toDataURL('image/png')
+//         .replace('image/png', 'image/octet-stream');
+//
+//     triggerDownload(imgURI);
+//   };
+//
+//   img.src = url;
+// });
+
+  //from the stack overflow method above
+  //another way of getting the objectURL
+  // function drawPreview() {
+  //   var DOMURL = window.URL || window.webkitURL || window;
+  //   var canvas = document.querySelector('canvas');
+  //   var ctx = canvas.getContext('2d');
+  //   // var data = (new XMLSerializer()).serializeToString(svgNode);
+  //   var img = new Image();
+  //   var svgBlob = new Blob([previewBlock], {type: 'image/svg+xml;charset=utf-8'});
+  //   // var svgNode = document.createElement(previewBlock);
+  //
+  //   // var svgBlock = document.querySelector('.preview-block svg');
+  //   // console.log(svgtest)
+  //   // var previewBlockContents = [previewBlock];
+  //   // // console.log(previewBlockContents);
+  //   // var previewBlockBlob = new Blob(previewBlockContents, {type: "image/svg+xml"}); // the blob
+  //   // console.log(previewBlockBlob);
+  //   var svgUrl = DOMURL.createObjectURL(svgBlob);
+  //   console.log(svgUrl);
+  //
+  //   img.onload = function () {
+  //     ctx.drawImage(img, 0, 0);
+  //     DOMURL.revokeObjectURL(svgUrl);
+  //
+  //     var imgURI = canvas
+  //       .toDataURL('image/png')
+  //       .replace('image/png', 'image/octet-stream');
+  //   }
+  //
+  //   img.src = svgUrl;
+  //   $('.test-img').attr({src: svgUrl});
+  //
+  //   var pattern = previewProjectSvg.image(svgUrl, 0, 0, 90, 90)
+  //   // var pattern = previewProject.image('http://www.mccallsquilting.com/images/wysiwyg_img/Celtic-Twist-300px_27999.jpg', 0, 0, 90, 90)
+  //     .toPattern(0, 0, 90, 90)
+  //     .attr({ id: 'patternId', y: '60'});
+  //
+  //   previewProjectSvg.selectAll('path').forEach(function(path) {
+  //     // fillBlock.appendTo(path);
+  //     console.log('help');
+  //     path.attr({fill: pattern, stroke: 'none'});
+  //   });
+  // }
+  //
+  // drawPreview();
+
+  // alt approach with CREATEOBJECTURL, was working excecpt not pulling fills
+  //   function drawPreview() {
+  //     var previewUrl = $('.preview-img-url').html();
+  //     var previewBlockContents = [previewBlock];
+  //     var previewBlockBlob = new Blob(previewBlockContents, {type: "image/svg+xml"}); // the blob
+  //     var svgUrl = window.URL.createObjectURL(previewBlockBlob);
+  //
+  //
+  //     var pattern = previewProjectSvg.image(svgUrl, 0, 0, 90, 90)
+  //     var pattern = previewProjectSvg.image(previewUrl, 0, 0, 90, 90)
+  //       .toPattern(0, 0, 90, 90)
+  //       .attr({ id: 'patternId', y: '60'});
+  //
+  //     previewProjectSvg.selectAll('path').forEach(function(path) {
+  //       console.log('help');
+  //       path.attr({fill: pattern, stroke: 'none'});
+  //     });
+  //   }
+  // }
+// $(function(){
+//
+//   $('#gallery-demo').simplegallery({
+//     galltime : 400, // transition delay
+//     gallcontent: '.preview-svg',
+//     gallthumbnail: '.preview-thumbnails',
+//     gallthumb: '.preview-thumbnail'
+//   })
+//
+// });
+
+
+
+// $(document).ready(function() {
+//   var currentId;
+//   var thumbId;
+//   var replaceCurrent;
+//   var replaceThumb;
+//
+//
+//   function comparePrevToThumb(currentId, thumbId, e) {
+//     debugger;
+//     if (current !== thumbId) {
+//       replaceCurrentImage(current, thumb);
+//     }
+//   }
+//
+//   function replaceCurrentImage(big, small) {
+//     console.log(currentId);
+//     $(thumb).replaceWith(replaceCurrent);
+//     $(current).replaceWith(replaceThumb);
+//     console.log('thumb =' + thumb);
+//
+//     console.log(current);
+//     //then i have to do some $parent stuff to move the current into the thumbnail.
+//     //maybe unbind and reset click handlers?
+//   }
+//
+//   $('.preview-thumbnail').click(function() {
+//     console.log('click thumbnail');
+//     //these may need to be sodipodi:docname or id
+//
+//     current = $('.preview-svg').find('.current-preview.svg');
+//     replaceCurrent = current;
+//     console.log('replace =' + currentId);
+//     currentId = current.attr('sodipodi:docname');
+//     console.log('currentId=' + currentId);
+//     thumb = $(this).find('svg');
+//     replaceThumb = thumb;
+//     thumbId = thumb.attr('sodipodi:docname');
+//     console.log('thumbId=' + thumbId);
+//     comparePrevToThumb(currentId, thumbId);
+//
+//
+//
+//
+//   });
+//
+// });
+
+// 
+// $(document).ready(function () {
+//   $('.accordion-tabs').each(function(index) {
+//     $(this).children('li').first().children('a').addClass('is-active').next().addClass('is-open').show();
+//   });
+//
+//   $('.accordion-tabs').on('click', 'li > a', function(event) {
+//     if (!$(this).hasClass('is-active')) {
+//       event.preventDefault();
+//       var accordionTabs = $(this).closest('.accordion-tabs');
+//       accordionTabs.find('.is-open').removeClass('is-open').hide();
+//
+//       $(this).next().toggleClass('is-open').toggle();
+//       accordionTabs.find('.is-active').removeClass('is-active');
+//       $(this).addClass('is-active');
+//     } else {
+//       event.preventDefault();
+//     }
+//   });
