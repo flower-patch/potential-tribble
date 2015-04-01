@@ -27,7 +27,15 @@ source: http://www.flickr.com/photos/polkadotcreations/2931655829/in/faves-12687
 
 *modified in Photoshop
 
+Angela
+source: https://flic.kr/p/cKr4Bo
 
+*modified in Photoshop
+
+Rossie
+source: https://flic.kr/p/6AX4DQ
+
+*modified in Photoshop
 
 lynn-anne bruns
 source: http://www.flickr.com/photos/lynnannebruns/4491323436/in/faves-126872798@N08/
