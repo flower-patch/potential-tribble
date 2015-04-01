@@ -26,7 +26,7 @@ $(function() {
     cleanUpPreview(previewBlockThumb);
 
     drawPreview();
-    
+
     console.log('drawPreview');
 
     initThumbnails();
