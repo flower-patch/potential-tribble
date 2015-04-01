@@ -152,8 +152,8 @@
   $card-hover-background: lighten($card-background, 5%);
   $card-image-background: #DBD199;
   $card-image-hover-background: lighten($card-image-background, 5%);
-  @include fill-parent;
-  @include span-columns(2);
+  // @include fill-parent;
+  // @include span-columns(2);
   @include flex-basis(15em);
   @include flex-grow(1);
   @include transition ($transition);
@@ -163,6 +163,11 @@
   cursor: pointer;
   margin: 14px 14px 14px;
   position: relative;
+  //
+  // @include flex-basis(15em);
+  // @include flex-grow(1);
+  // @include transition (all 0.2s ease-in-out);
+
 
   &:hover {
     box-shadow: $hover-shadow;
