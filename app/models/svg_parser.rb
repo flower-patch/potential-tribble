@@ -141,7 +141,7 @@ class SvgParser
     return location
   end
 
-  #see if we need this @paths business for real
+  # KEA see if we need this @paths business for real
   def path_coords(path_id)
     current_path = @paths.xpath('//*[@id="' + path_id +'"]')
     array = current_path.first[:d].split
@@ -155,9 +155,32 @@ class SvgParser
     coords_array
   end
 
+  # so not a method for this class, but these are desperate times.
+  def get_design_number(design_id)
+    array = design_id.split("_")
+    array[1]
+  end
+
   def all_unique_design_ids
+    design_ids_array = []
+    real_array = []
     patterns = @svg.css("pattern")
-    patterns.map {|p| p["id"]}
+    if patterns.length > 0
+      design_ids_array = patterns.map {|p| p["id"]}
+      # this bit of nastiness accounts for ids that are somehow in patterns but not any of the paths
+      # go figure, svg.  go.  go farr away.
+      design_ids_array.each do |d|
+        if paths_from_id(d).length > 0
+          real_array << d
+        end
+      end
+      if @svg.xpath('//*[contains(@fill, "#ffffff" )]').length > 0
+        design_ids_array << "#ffffff"
+      end
+    else
+      design_ids_array << "#ffffff"
+    end
+    real_array
   end
 
   def paths_from_id(id)

@@ -315,7 +315,8 @@ $(function() {
         pattern = svg.image(currFabric.preview_url, 0, 0, 810, 810)
         // pattern = svg.image(currFabric.thumbnail_url, 0, 0, 810, 810)
         .toPattern(0, 0, 810, 810)
-        .attr({ id: patternId, y: '242'});
+        .attr({ id: patternId, y: '242', "data-url": currFabric.thumbnail_url});
+
       }
 
       path.attr('fill', pattern);
@@ -534,6 +535,7 @@ $(function() {
         var img = $('<img>');
         img.attr('data-id', designItem.id);
         img.attr('src', designItem.thumbnail_url);
+        // img.attr('data-url', designItem.thumbnail_url);
 
         var imgCont = $('<div class="fabric-img-container"></div>');
         imgCont.append(img);
@@ -586,5 +588,6 @@ $(function() {
       drawPalette('.current-palette', palette);
     });
   }
+
 
 });

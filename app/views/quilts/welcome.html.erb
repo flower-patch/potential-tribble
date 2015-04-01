@@ -25,8 +25,8 @@
         <div class="card paper-border">
           <div class="card-image">
             <!-- TODO:  style svgs here in image_tag,  -->
-            <a href = "/project_templates/choose_project?quilt_id=<%=quilt.id%>"><%= quilt.svg.html_safe%></img></a>
-            <%= image_tag quilt.preview_thumb_url%>
+            <!-- <a href = "/project_templates/choose_project?quilt_id=<%#=quilt.id%>"><%#= quilt.svg.html_safe%></img></a> -->
+            <a href = "/project_templates/choose_project?quilt_id=<%=quilt.id%>"><%= image_tag quilt.preview_thumb_url%></a>
           </div>
           <div class="card-header">
             <p class="card-title"><%= link_to quilt.name, project_templates_choose_project_path(quilt_id: quilt.id) %></p>
