@@ -71,3 +71,74 @@
   text-align: center;
   margin-bottom: 1em;
 }
+
+
+// the following is for the modal, styling by chris
+
+.fabric-chart {
+  @include span-columns(11);
+  @include shift(0.5);
+  margin-bottom: 1em;
+
+  h3 {
+    font-size: 1.75em;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  p {
+    font-size:1.25em;
+  }
+
+  li li {
+    font-size:1.1em;
+    margin: 20px;
+    font-style:italic;
+  }
+}
+
+
+.fabric-chart-thumb {
+  @include span-columns(2);
+  height:110px;
+}
+
+.fabric-type {
+  padding-left: 8em;
+  min-height: 8em;
+}
+
+.fabric-type-header {
+  text-align: left;
+}
+
+.fabric-type-img-wrap {
+  margin-left: -7em;
+  float: left;
+  width: 5em;
+  height: 5em;
+  border: 7px solid white;
+  box-shadow: 0px 1px 1px 1px $mid-gray;
+  overflow: hidden;
+
+  img {
+    min-width: 100%;
+    min-height: 100%;
+  }
+}
+
+.logo-tiny {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.fabric-type-dimensions,
+.fabric-type-dimensions li {
+  margin-left: 0;
+  padding-left: 0;
+}
+
+.measurements-information-section {
+  @include span-columns(10 of 10);
+  margin-top: 3em;
+}

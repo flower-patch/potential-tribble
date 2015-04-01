@@ -167,7 +167,7 @@ $(function() {
       currFabric = $(this).data('fabric');
       var designId = currFabric.id;
       //Api.getDesignById(designId).done(function(response) {
-      var baseUrl = 'https://fakepi.herokuapp.com/api/v1/design/';
+      // var baseUrl = 'https://fakepi.herokuapp.com/api/v1/design/';
       var baseUrl = 'http://api.v1.spoonflower.com/design/';
       var previewWidth = 400;
       var previewHeight = 400;
@@ -208,6 +208,8 @@ $(function() {
     // To get around this, we listen to click events on the children of the fabric modal.
     $('.fabric-modal').children().on('click', '.remove-fabric-btn', onRemoveClick);
 
+
+    //remove palette from swatch
     function onRemoveClick(e) {
       // e.stopPropagation();
       var img = $(this).parent().find('img');
@@ -294,7 +296,8 @@ $(function() {
         pattern = svg.image(currFabric.preview_url, 0, 0, 810, 810)
         // pattern = svg.image(currFabric.thumbnail_url, 0, 0, 810, 810)
         .toPattern(0, 0, 810, 810)
-        .attr({ id: patternId, y: '242'});
+        .attr({ id: patternId, y: '242', "data-url": currFabric.thumbnail_url});
+
       }
 
       path.attr('fill', pattern);
@@ -510,54 +513,47 @@ $(function() {
     //Translate API calls to html
 
     function apiResultToElements(results) {
-      return results.map(function(item) { return addPaletteToPreview(item); });
-    }
-    function addPaletteToPreview(designItem) {
-      // When we get a result back from the API, if that result already exists
-      // in our palette, don't display it to the user.
-      // So in our for loop, if a palette with this id already exists, then abort displaying it.
-      for (var i = 0; i < palette.length; i++) {
-        if (palette[i].id === designItem.id) {
-          return; //stop the rest of the fn from running.
-        }
-      }
 
-      var img = $('<img>');
-      img.attr('data-id', designItem.id);
-      img.attr('src', designItem.thumbnail_url);
+      return results.map(function(designItem) {
+        var img = $('<img>');
+        img.attr('data-id', designItem.id);
+        img.attr('src', designItem.thumbnail_url);
+        // img.attr('data-url', designItem.thumbnail_url);
 
-      var imgCont = $('<div class="fabric-img-container"></div>');
-      imgCont.append(img);
+        var imgCont = $('<div class="fabric-img-container"></div>');
+        imgCont.append(img);
 
-      var btn = $('<button alt="Add to palette" class="remove-fabric-btn icon-button"><i class="fa fa-plus-circle inner-button-icon"></i></button>')
+        var btn = $('<button alt="Add to palette" class="remove-fabric-btn icon-button"><i class="fa fa-plus-circle inner-button-icon"></i></button>')
 
-      var designName = $('<div class="fabric-name-container"><h3 class="fabric-name">' + designItem.name + '</h3></div>');
+        var designName = $('<div class="fabric-name-container"><h3 class="fabric-name">' + designItem.name + '</h3></div>');
 
-      /*
-      this keeps coming in as undefined.
-      Is it because of the underscore? Some privacy setting on api
-      var designer = $('<span class="designer-screen-name">'
-                      + designItem.sceen_name + '</span>');
-      */
+        /*
+        this keeps coming in as undefined.
+        Is it because of the underscore? Some privacy setting on api
+        var designer = $('<span class="designer-screen-name">'
+                        + designItem.sceen_name + '</span>');
+        */
 
-      var li = $('<li></li>');
-      li.data('item', designItem);
-      li.addClass('fabric-preview card search-result');
-      li.append(imgCont);
-      li.append(btn);
-      li.append(designName);
-      // li.append(designer);
+        var li = $('<li></li>');
+        li.data('item', designItem);
+        li.addClass('fabric-preview card search-result');
+        li.append(imgCont);
+        li.append(btn);
+        li.append(designName);
+        // li.append(designer);
 
-      //Add swatches from modal to palette
-      li.on('click', function() {
-
-        palette.push({
-          id: $(this).find('img').attr('data-id'),
-          thumbnail_url: $(this).find('img').attr('src'),
-          // size: {
-          //   width: 50,
-          //   height: 50
-          // }
+        //Add swatches from modal to palette
+        li.on('click', function() {
+          palette.push({
+            id: $(this).find('img').attr('data-id'),
+            thumbnail_url: $(this).find('img').attr('src'),
+            // size: {
+            //   width: 50,
+            //   height: 50
+            // }
+          })
+          drawPalette('.current-palette, .palette', palette);
+          checkDuplicateSwatches(designItem);
         })
         drawPalette('.current-palette, .palette', palette);
         li.remove();
@@ -578,5 +574,6 @@ $(function() {
       drawPalette('.current-palette', palette);
     });
   }
+
 
 });

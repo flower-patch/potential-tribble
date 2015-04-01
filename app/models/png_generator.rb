@@ -8,6 +8,11 @@ module PngGenerator
   #   # find id
   # end
 
+  # format svg in *just* the way the png converter likes...
+  def sanitize_svg( svg )
+    temporary_svg = svg_replace_image_fill( svg )
+    return remove_path_style( temporary_svg )
+  end
   # replaces the image in *every* pattern fill with a base64 png data uri, based on pattern id
   def svg_replace_image_fill( svg )
     new_svg = Nokogiri::XML(svg)
@@ -27,9 +32,30 @@ module PngGenerator
       image[0]["xlink:href"] = "data:image/png;base64,"+ get_png_data( spoonflower_id )
     end
 
-    return new_svg.to_xml
+    # return new_svg.to_xml
+    return new_svg.to_xml.gsub("&#10;","
+    ")
   end
 
+  # remove old path style and replace with 1px stroke with pattern applied
+  def remove_path_style( svg )
+    new_svg = Nokogiri::XML(svg)
+
+    path = new_svg.css("path")
+    path.each do |x|
+      x.delete("style")
+      modified_fill = x["fill"].to_s.gsub("'","")
+      # x["style"] = "fill:"+ modified_fill + ";fill-opacity:1.0"
+      x["style"] = "fill:#{modified_fill};fill-opacity:1.0;stroke:#{modified_fill};stroke-width:1;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+    end
+
+    group = new_svg.css("g")
+    group.each do |x|
+      x.delete("style")
+    end
+
+    return new_svg.to_xml
+  end
 
   def get_png_data( spoonflower_id )
     location = spoonflower_image_location_from_id( spoonflower_id )
@@ -86,9 +112,10 @@ module PngGenerator
 
   # stores the png, using the quilt id in the filename. saves path to file in Quilt database
   def store_png( png, quilt_id )
-    path = "#{Rails.root}/app/assets/images/preview_thumbnails/img_" + quilt_id + ".png"
+    path_base = "#{Rails.root}/app/assets/images/"
+    path = "preview_thumbnails/img_" + quilt_id + ".png"
 
-    File.open(path, 'w') {|f| f.write( png ) }
+    File.open(path_base+path, 'w') {|f| f.write( png ) }
 
     Quilt.update( quilt_id, preview_thumb_url: path )
   end

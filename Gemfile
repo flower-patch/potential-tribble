@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 #this does my SVG converting.
-gem 'rsvg2'
+# gem 'rsvg2'
 
 gem 'httparty'
 gem 'nokogiri'
@@ -40,8 +40,10 @@ gem 'neat', '~> 1.7.2'
 
 gem "font-awesome-rails"
 
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
+
   gem 'sqlite3'
 
   # Access an IRB console on exception pages or by using <%= console %> in views

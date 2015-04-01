@@ -1,12 +1,12 @@
-//////////////////////////////////////////////////////////////////////////////
-//CALLING FUNCTIONS FOR DEALING WITH PREVIEWS RENDERING/STYLING
+////////////////////////////////////////////////////////////////////////////
+// CALLING FUNCTIONS FOR DEALING WITH PREVIEWS RENDERING/STYLING
 
 $(function() {
 
   var previewBlockSvg = Snap('.preview-block svg');
-  var previewProjectSvg = Snap('.preview-project svg');
 
   if (previewBlockSvg) {
+    // || finalBlock || modalBlock
     runPreviewPage();
   }
 
@@ -18,6 +18,8 @@ $(function() {
     cleanUpPreview(previewBlockSvg);
 
     cleanUpPreview(previewProjectSvg);
+
+    cleanUpPreview(previewBlockThumb);
 
     drawPreview();
     console.log('drawPreview');
@@ -43,13 +45,8 @@ $(function() {
         y: '60'
       });
 
-      previewProjectSvg.selectAll('path').forEach(function(path) {
-        console.log('help');
-        path.attr({
-          fill: pattern,
-          stroke: 'none'
-        });
-      });
+      cleanUpPreview(previewProjectSvg);
+
     }
 
   //////////////////////////////////////////////////////////////////////////////
