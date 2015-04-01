@@ -151,6 +151,7 @@ class SvgParser
     coords_array
   end
 
+  # so not a method for this class, but these are desperate times.
   def get_design_number(design_id)
     array = design_id.split("_")
     array[1]
@@ -162,6 +163,8 @@ class SvgParser
     patterns = @svg.css("pattern")
     if patterns.length > 0
       design_ids_array = patterns.map {|p| p["id"]}
+      # this bit of nastiness accounts for ids that are somehow in patterns but not any of the paths
+      # go figure, svg.  go.  go farr away.
       design_ids_array.each do |d|
         if paths_from_id(d).length > 0
           real_array << d
@@ -173,8 +176,6 @@ class SvgParser
     else
       design_ids_array << "#ffffff"
     end
-
-
     real_array
   end
 
