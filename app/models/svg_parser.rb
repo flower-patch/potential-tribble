@@ -161,6 +161,7 @@ class SvgParser
     array[1]
   end
 
+  # really hairy, and map didn't work after the first time, uncertain why
   def get_thumb_url(design_id)
     patterns = @svg.css("pattern")
     correct_pattern = []
@@ -402,6 +403,11 @@ class SvgParser
     [SvgParser::FABRIC_WIDTH, y]
   end
 
-
+  def approximate_yards(design_id, total_number_of_blocks)
+    array = cut_and_sew_print_dimensions_by_design(design_id, total_number_of_blocks)
+    inches = array[1]
+    yards = inches/36
+    yards.round(2)
+  end
 
 end

@@ -69,14 +69,14 @@
                 <% end %>
               </div>
               <p class="fabric-type-header">
-                Fabric 1 - Approximately THIS MANY yards of 42” wide fabric
+                - about <%=@svg_parser_from_quilt.approximate_yards(id, @quilt.total_blocks)%> yards of 42” wide fabric
               </p>
               <ol class="fabric-type-dimensions">
                 <li>
                   X patches of x dimension by y dimension
                 </li>
                 <li>
-                  X patches of x <%=@svg_parser_from_quilt.all_unique_design_ids%>, each to be split into 2 triangles
+                  X patches of x , each to be split into 2 triangles
               </li>
             </ol>
           </li>
