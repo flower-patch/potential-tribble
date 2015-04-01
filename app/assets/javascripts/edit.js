@@ -239,6 +239,8 @@ $(function() {
       }
 
       drawPalette('.current-palette, .palette', palette);
+      addFabricMessage();
+
     }
 
   initializePalette(1000);
@@ -433,7 +435,6 @@ $(function() {
       currSvg = $('.fabric-modal .current-block').children();
       $('.svg-editor-parent').append(currSvg);
       addFabricMessage();
-      initializePalette();
     });
 
   ////////////////////////////////////////////////////////////////////////////////
