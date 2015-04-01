@@ -36,7 +36,7 @@
   background-size: cover;
   padding-bottom: 1em;
   margin-bottom: 7px;
-  height: 450px;
+  height: 500px;
   .hero-inner {
     @include outer-container;
     @include clearfix;
@@ -92,7 +92,7 @@
         p {
           font-weight: 200;
           line-height: 1.4em;
-          margin: 0 auto 3em auto;
+          margin: 0 auto 1em auto;
 
           @include media($large-screen) {
             font-size: 1.1em;
