@@ -72,9 +72,9 @@
                 - about <%=@svg_parser_from_quilt.approximate_yards(id, @quilt.total_blocks)%> yards of 42” wide fabric
               </p>
               <ol class="fabric-type-dimensions">
-                <% @svg_parser_from_quilt.various_patch_sizes(id, @quilt.total_blocks).times do |size| %>
+                <% hash = @svg_parser_from_quilt.get_sorted_coords(id, @quilt.total_blocks)%> <% hash.each_with_index do |h, index| %>
                   <li>
-                    <% hash = @svg_parser_from_quilt.get_sorted_coords(id, @quilt.total_blocks)%> <%=hash.values[0]%> patches of <%=hash.keys[0][0]%> inches by <%=hash.keys[0][1]%> inches
+                     <%=patches = hash.values[index]%> patch<%="es" if patches > 1%> of <%=hash.keys[index][0]%> inches by <%=hash.keys[index][1]%> inches<%=", each split along the diagonal to make #{patches * 2} triangles" if hash.keys[index][2]%>
                   </li>
                   <% end %>
               </ol>

@@ -439,7 +439,7 @@ class SvgParser
           # figures out how many squares are needed, rounds up if it's an odd number
           paired_triangles = (total_number_of_blocks/2.to_f).ceil
           paired_triangles.times do
-            total_coords << [side, side]
+            total_coords << [side, side, "triangle"]
           end
         end
       end
