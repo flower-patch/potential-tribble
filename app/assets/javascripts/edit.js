@@ -358,7 +358,6 @@ $(function() {
 
     $('.new_quilt').submit(function() {
       saveQuilt();
-      console.log(newSvg);
     });
 
   ////////////////////////////////////////////////////////////////////////////////
