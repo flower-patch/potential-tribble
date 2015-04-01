@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 #this does my SVG converting.
-gem 'rsvg2'
+# gem 'rsvg2'
 
 gem 'httparty'
 gem 'nokogiri'

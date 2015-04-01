@@ -59,3 +59,7 @@
   @include pad();
   line-height: 1.4em;
 }
+
+.back-to-top {
+  border-bottom: $default-border;
+}
