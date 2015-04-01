@@ -543,22 +543,224 @@ $('.selected ~ .progress-element a').on('click', function(e) {
 //
 // });
 
-// 
-// $(document).ready(function () {
-//   $('.accordion-tabs').each(function(index) {
-//     $(this).children('li').first().children('a').addClass('is-active').next().addClass('is-open').show();
+
+
+// $(function () {
+//   //////////////////////////////////////////////////////////////////////////////
+//   /*
+//   CALL API HERE on modal-open
+//   separate names for Spoonflower's API and fAkePI
+//   */
+//   function showPopularResults() {
+//     Api.getPopularList().done(function(response) {
+//       var results = response.results[0].results;
+//       var resultElements = apiResultToElements(results);
+//
+//       $('.fabric-modal-list').empty().append(resultElements);
+//     })
+//   }
+//
+//   $('.popular-search-form').submit(function(e) {
+//     e.preventDefault();
+//     showPopularResults();
 //   });
 //
-//   $('.accordion-tabs').on('click', 'li > a', function(event) {
-//     if (!$(this).hasClass('is-active')) {
-//       event.preventDefault();
-//       var accordionTabs = $(this).closest('.accordion-tabs');
-//       accordionTabs.find('.is-open').removeClass('is-open').hide();
+//   $('.open-fabric-modal-btn').on('click', function() {
+//     console.log('open fabric clicked');
+//     showPopularResults();
 //
-//       $(this).next().toggleClass('is-open').toggle();
-//       accordionTabs.find('.is-active').removeClass('is-active');
-//       $(this).addClass('is-active');
-//     } else {
-//       event.preventDefault();
+//     previewQuilt();
+//     drawPalette('.current-palette', palette);
+//     setTimeout(function() {
+//       $('.fabric-modal').addClass('show');
+//     }, 10);
+//   });
+//
+//   $('.fabric-modal-box').on('click', function(e) {
+//     e.stopPropagation();
+//   });
+//
+//   $('.close-fabric-modal-btn, .fabric-modal').on('click', function() {
+//     $('.fabric-modal').toggleClass('show');
+//     console.log('close modal');
+//     // Once the modal closes, move the svg-editor element back into its original
+//     // area (.svg-editor-parent), in the main content.
+//     currSvg = $('.fabric-modal .current-block').children();
+//     $('.svg-editor-parent').append(currSvg);
+//     addFabricMessage();
+//     initializePalette();
+//   });
+//
+//   //////////////////////////////////////////////////////////////////////////////
+//   // COLOR PICKER
+//
+//   $('#picker').colpick({
+//     // flat: true,
+//     layout: 'hex',
+//     submit: 0,
+//     colorScheme: 'light',
+//     onChange: function(hsb, hex, rgb, el, bySetColor) {
+//       $(el).css('border-color', '#' + hex);
+//       // Fill the text box just if the color was set using the picker, and not the colpickSetColor function.
+//       if (!bySetColor) $(el).val(hex);
 //     }
+//   }).keyup(function() {
+//     $(this).colpickSetColor(this.value);
 //   });
+//
+//   //////////////////////////////////////////////////////////////////////////////
+//   //GET BY COLOR API CALL
+//
+//   $('.color-search').submit(function(e) {
+//     e.preventDefault();
+//     Api.getDesignByColor($('input', this).val()).done(function(response) {
+//       var results = response.results[0].results;
+//       var resultElements = apiResultToElements(results);
+//
+//       $('.fabric-modal-list').empty().append(resultElements);
+//     })
+//     //   $('.fabric-modal').toggleClass('show');
+//     //   previewQuilt();
+//     //   drawPalette('.current-palette', palette);
+//   });
+//
+//   $('.fabric-modal-box').on('click', function(e) {
+//     e.stopPropagation();
+//     console.log('click fabric modal box');
+//   });
+//
+//   //////////////////////////////////////////////////////////////////////////////
+//   //GET BY KEYWORD API CALL
+//
+//   $('.keyword-search').submit(function(e) {
+//     e.preventDefault();
+//     Api.getDesignByKeyword($('input', this).val()).done(function(response) {
+//       var results = response.results[0].results;
+//       var resultElements = apiResultToElements(results);
+//
+//       $('.fabric-modal-list').empty().append(resultElements);
+//     })
+//     // $('.fabric-modal').toggleClass('show');
+//     // previewQuilt();
+//     // drawPalette('.current-palette', palette);
+//   });
+//
+//   $('.fabric-modal-box').on('click', function(e) {
+//     e.stopPropagation();
+//   });
+//
+//   ////////////////////////////////////////////////////////////////////////////////
+//   //CHECK FOR DUPLICATES
+//
+// function checkDuplicateSwatches (designItem) {
+//   var newSwatchId = designItem.id;
+//   console.log(newSwatchId);
+//   var position = palette.indexOf(designItem);
+//   console.log(position);
+//   console.log(newSwatchId);
+//   console.log(palette.valueOf());
+//   for(var object in palette) {
+//      var oldSwatch = palette[object];
+//      var oldSwatchId = oldSwatch.id;
+//      try {
+//        if(oldSwatchId !== newSwatchId) {
+//          drawPalette('.current-palette, .palette', palette);
+//        } else {
+//          throw new Error('oldSwatchId === newSwatchId');
+//          setTimeout(function() {
+//          $('.current-palette.fabric-preview-card').last().remove();
+//        }, 10);
+//        }
+//      } catch (e) {
+//        console.log(e.name + '' + e.message);
+//        return alert('Do not add the same fabric design more than once to your palette.');
+//      }
+//    }
+//  }
+//
+//    ////////////////////////////////////////////////////////////////////////////////
+//    //Translate API calls to html
+//
+//   function apiResultToElements(results) {
+//     return results.map(function(designItem) {
+//       var img = $('<img>');
+//       img.attr('data-id', designItem.id);
+//       img.attr('src', designItem.thumbnail_url);
+//
+//       var imgCont = $('<div class="fabric-img-container"></div>');
+//       imgCont.append(img);
+//
+//       var btn = $('<button alt="Add to palette" class="remove-fabric-btn icon-button"><i class="fa fa-plus-circle inner-button-icon"></i></button>')
+//
+//       var designName = $('<div class="fabric-name-container"><h3 class="fabric-name">' + designItem.name + '</h3></div>');
+//
+//       // this keeps coming in as undefined. Is it because of the underscore? Some privacy setting on api
+//       // var designer = $('<span class="designer-screen-name">' + designItem.sceen_name + '</span>');
+//
+//       var li = $('<li></li>');
+//       li.data('item', designItem);
+//       li.addClass('fabric-preview card search-result');
+//       li.append(imgCont);
+//       li.append(btn);
+//       li.append(designName);
+//       // li.append(designer);
+//
+//       //Add swatches from modal to palette
+//       li.on('click', function() {
+//         palette.push({
+//           id: $(this).find('img').attr('data-id'),
+//           thumbnail_url: $(this).find('img').attr('src'),
+//           // size: {
+//           //   width: 50,
+//           //   height: 50
+//           // }
+//         })
+//         drawPalette('.current-palette, .palette', palette)
+//       })
+//
+//       return li;
+//     });
+//   }
+//
+//
+//
+//   $('.open-fabric-modal-btn').on('click', function() {
+//     Api.getPopularList().done(function(response) {
+//       var results = response.results[0].results;
+//       var resultElements = apiResultToElements(results);
+//       $('.fabric-modal-list').empty().append(resultElements);
+//     })
+//     $('.fabric-modal').toggleClass('show');
+//     previewQuilt();
+//     drawPalette('.current-palette', palette);
+//   });
+//
+// });
+//
+// NOT QUITE WORKING
+// WHEN you remove a swatch, it goes back to your palette,
+// it just needs to get the name
+// var paletteLi = addPaletteToPreview({
+//   id: fabricId,
+//   thumbnail_url: fabricSrc
+// });
+// $('.fabric-modal-list').prepend(paletteLi);
+//
+// });
+
+
+
+
+
+// Api.getPopularList(5).then(function(response) {
+//   // The default palette is the first five results from the popular list
+//   palette = response.results[0].results;
+//   // palette.forEach(function(tile) {
+//   //   tile.size = {
+//   //     width: 50,
+//   //     height: 50
+//   //   };
+//   // })
+//   drawPalette('.palette', palette);
+//   return palette;
+// });

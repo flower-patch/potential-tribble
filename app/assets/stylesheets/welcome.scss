@@ -113,7 +113,8 @@
 .featured-designs {
   text-align: center;
   padding-top: 5%;
-  padding-bottom: 1%;;
+  padding-bottom: 1%;
+  border-top: $default-border;
 }
 
 .cards {
@@ -122,13 +123,13 @@
   @include display(flex);
   @include flex-wrap(wrap);
   text-align: justify;
-  // @include justify-content(space-between);
+  @include justify-content(space-between);
   &:after {
     content: '';
     display: inline-block;
   }
   &:last-child {
-    margin-left: 7px !important;
+    // margin-right: 14px !important;
   }
 }
 

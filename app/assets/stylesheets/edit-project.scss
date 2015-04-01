@@ -27,8 +27,6 @@
   }
 }
 
-
-
 .svg-editor-parent {
   position: relative;
 }
@@ -137,7 +135,7 @@ svg path {
 .current-fabric {
   outline: 1.5px dashed $accent-darkest;
   outline-offset: 5px;
-  // box-shadow: 0 2px 8px 5px $accent-text !important;
+
 }
 
 .fabric-preview {
