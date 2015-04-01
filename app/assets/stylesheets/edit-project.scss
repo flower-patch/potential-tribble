@@ -225,6 +225,10 @@ svg path {
   visibility: hidden;
   opacity: 0;
   z-index: 1000;
+
+  &:hover {
+    box-shadow: $hover-shadow;
+  }
 }
 
 .modal-options {
@@ -244,6 +248,10 @@ svg path {
   text-align: left;
   margin: 0.5em;
   cursor: pointer;
+
+  &:hover {
+    color: $accent-text;
+  }
 }
 
 .palette:hover > .icon-button {

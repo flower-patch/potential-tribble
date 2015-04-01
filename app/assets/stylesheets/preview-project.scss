@@ -5,6 +5,7 @@
 .preview-view {
   @include outer-container;
   padding-bottom: 1em;
+  min-height: 560px;
 }
 
 .my-new-quilt {
