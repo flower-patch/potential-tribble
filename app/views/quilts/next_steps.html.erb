@@ -51,7 +51,7 @@
   </div>
 
   <div class="expander measurements-information-section">
-    <a href="javascript:void(0)" id="js-expander-trigger" class="expander-trigger expander-hidden"><i class="fa fa-arrow-circle-down"></i><i class="fa fa-arrow-circle-right"></i>&nbsp;View Measurements Information</a>
+    <a href="javascript:void(0)" id="js-expander-trigger" class="expander-trigger expander-hidden"><i class="fa fa-arrow-circle-down"></i><i class="fa fa-arrow-circle-right"></i>&nbsp;View Fabric Measurements</a>
     <div id="js-expander-content" class="expander-content">
       <div class="fabric-chart expander-content" id="js-expander-content">
 
@@ -72,15 +72,14 @@
                 - about <%=@svg_parser_from_quilt.approximate_yards(id, @quilt.total_blocks)%> yards of 42” wide fabric
               </p>
               <ol class="fabric-type-dimensions">
-                <li>
-                  X patches of x dimension by y dimension
-                </li>
-                <li>
-                  X patches of x , each to be split into 2 triangles
-              </li>
-            </ol>
-          </li>
-        <% end %>
+                <% @svg_parser_from_quilt.various_patch_sizes(id, @quilt.total_blocks).times do |size| %>
+                  <li>
+                    <% hash = @svg_parser_from_quilt.get_sorted_coords(id, @quilt.total_blocks)%> <%=hash.values[0]%> patches of <%=hash.keys[0][0]%> inches by <%=hash.keys[0][1]%> inches
+                  </li>
+                  <% end %>
+              </ol>
+            </li>
+          <% end %>
         </ol>
 
       </div>

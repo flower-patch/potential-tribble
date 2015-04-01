@@ -262,7 +262,7 @@ class SvgParser
         side2 += clean_up(d)
       end
     end
-    [side1, side2]
+    [side1.round(2), side2.round(2)]
   end
 
   # equilateral right triangle coordinates have 3 basic configurations:
@@ -314,7 +314,7 @@ class SvgParser
         side += average_side / 3
       end
     end
-    side
+    side.round(2)
   end
 
   # gives result in square inches with the design id
@@ -403,11 +403,59 @@ class SvgParser
     [SvgParser::FABRIC_WIDTH, y]
   end
 
+  # passing it right into another method like this feels weird...
   def approximate_yards(design_id, total_number_of_blocks)
     array = cut_and_sew_print_dimensions_by_design(design_id, total_number_of_blocks)
     inches = array[1]
     yards = inches/36
     yards.round(2)
+  end
+
+  # and here we go, totally butchering the already hairy big method
+  def get_sorted_coords(design_id, total_number_of_blocks)
+    y = 1 # half inch extra at top and bottom to allow for grain issues
+    total_coords = []
+    selected_paths = paths_from_id(design_id)
+    selected_paths.each do |path|
+      # this if path[:d] is an irritating wrapper but otherwise was getting the entire svg along with the paths i wanted, which ruined my methods
+      # here we look at svg coords of all squares, rectangles, or isosceles right triangles
+      # and get a set of coords that reflect side lengths in inches out of that
+      if path[:d]
+        coords = path_coords(path[:id])
+        # 4 pairs of coords means square or rectangle
+        if coords.length == 4
+          # quarter inch seam allowance
+          sides = rectangle_side_lengths(0.25, coords)
+          # for as many blocks as are in the project, gives a set of patch dimensions
+          # sorted so that if it's a rectangle, the longer side will be the x
+          # and go across the stripes on the fabric instead of inflating the y length
+          # uggh, and using the word coords again, but not the same as the path coords above
+          total_number_of_blocks.times do
+            total_coords << sides.sort.reverse
+          end
+        else
+          side = triangle_base_side_length(0.25, coords)
+          # triangles are easiest to print paired with others to make squares
+          # figures out how many squares are needed, rounds up if it's an odd number
+          paired_triangles = (total_number_of_blocks/2.to_f).ceil
+          paired_triangles.times do
+            total_coords << [side, side]
+          end
+        end
+      end
+    end
+    # looking here for all different size patches of this fabric and how many there are of each
+    unique_coords = total_coords.uniq
+    sorted_coords = {}
+    unique_coords.each do |pair|
+      sorted_coords[pair] = total_coords.count(pair)
+    end
+    sorted_coords
+  end
+
+  def various_patch_sizes(design_id, total_number_of_blocks)
+    hash = get_sorted_coords(design_id, total_number_of_blocks)
+    hash.keys.length
   end
 
 end
