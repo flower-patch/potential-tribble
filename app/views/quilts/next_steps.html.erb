@@ -64,7 +64,7 @@
                   <%= image_tag "flowerpatch_logo.svg", class:"logo-tiny" %>
                 <% else %>
                   <a href= "<%= 'http://www.spoonflower.com/designs/' + @svg_parser_from_quilt.get_design_number(id) %>" target="_blank">
-                    <img src= "http://s3.amazonaws.com/spoonflower/public/design_thumbnails/0141/0867/rrarrow_marine_shop_thumb.png">
+                    <img src= "<%=@svg_parser_from_quilt.get_thumb_url(id)%>">
                   </a>
                 <% end %>
               </div>

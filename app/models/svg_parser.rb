@@ -161,6 +161,17 @@ class SvgParser
     array[1]
   end
 
+  def get_thumb_url(design_id)
+    patterns = @svg.css("pattern")
+    correct_pattern = []
+    patterns.each do |p|
+      if p["id"] == design_id
+        correct_pattern << p["data-url"]
+      end
+    end
+    correct_pattern[0]
+  end
+
   def all_unique_design_ids
     design_ids_array = []
     real_array = []
