@@ -42,9 +42,9 @@ http://api.v1.spoonflower.com/design/previewImage/1454355?print_width=4.5&print_
 for id = 1454355, print_width=4.5 inches, print_height = 4.5 inches
 
 *requires username and password. 
-This API is still in Alpha mode. 
-Login credentials: Username: demo | Password: irondemo
-Get more documentation at http://api.v1.spoonflower.com/
+- This API is still in Alpha mode. 
+- Login credentials: Username: demo | Password: irondemo
+- Get more documentation at http://api.v1.spoonflower.com/
 
 
 
