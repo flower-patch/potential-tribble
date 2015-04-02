@@ -11,9 +11,9 @@ $(function() {
 
     var $svg = $('.svg-editor svg');
 
-    addFabricMessage();
     var palette = [];
 
+    addFabricMessage();
     drawPalette('.palette', palette);
 
 
@@ -576,5 +576,6 @@ $(function() {
       drawPalette('.current-palette', palette);
     });
   }
+
 
 });
