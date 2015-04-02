@@ -83,12 +83,7 @@ $(function() {
       var children = parent.children();
       console.log(children);
       var previewIndex = parent.index();
-    //  getImgMatch();
+
     }
 
-    // function getImgMatch(element, index, array) {
-    //   var check = previewIndex;
-    //
-    // }
-
-  });
+});

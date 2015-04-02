@@ -44,7 +44,6 @@ $(function() {
 
   ////////////////////////////////////////////////////////////////////////////////
   //CREATE GROUPS AND MAKE THUMBNAILS
-  //generating a thumbnail for each group as a set
 
     function generateSets(svgSelector, setList) {
       svg.selectAll('g g').forEach(function(group) {
@@ -53,6 +52,11 @@ $(function() {
         var clone = svgSelector.clone().off();
         var cloneSvg = Snap(clone[0]);
 
+        //clear the clone to have clearThumbnails
+        var thumbPaths = cloneSvg.selectAll('path');
+        thumbPaths.forEach(function(path) {
+          clearFabricPatch(path);
+        });
         cloneSvg.selectAll('#' + groupId + ' path').forEach(function(path) {
           path.attr('fill', '#c0c0c0');
         });
@@ -66,6 +70,10 @@ $(function() {
       }
 
       generateSets($svg, '.sets');
+
+      function generateThumbs(svgSelector, setList) {
+
+      }
 
   ////////////////////////////////////////////////////////////////////////////////
   // FUNCTIONS that allow styling by group
@@ -231,6 +239,8 @@ $(function() {
       }
 
       drawPalette('.current-palette, .palette', palette);
+      addFabricMessage();
+
     }
 
   initializePalette(1000);
@@ -425,7 +435,6 @@ $(function() {
       currSvg = $('.fabric-modal .current-block').children();
       $('.svg-editor-parent').append(currSvg);
       addFabricMessage();
-      initializePalette();
     });
 
   ////////////////////////////////////////////////////////////////////////////////
