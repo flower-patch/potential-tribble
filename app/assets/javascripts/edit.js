@@ -13,6 +13,7 @@ $(function() {
 
     var palette = [];
 
+    addFabricMessage();
     drawPalette('.palette', palette);
 
 
