@@ -223,7 +223,7 @@ $(function() {
 
       drawPalette('.current-palette, .palette', palette);
       addFabricMessage();
-      
+
     }
 
     initializePalette(1000);
