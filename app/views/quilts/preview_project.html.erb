@@ -22,7 +22,7 @@
     <div class= "quilt-name-container preview-label">
     <form>
       <%= f.label :quilt_name, class:"quilt-name-label"  %>
-      <%= f.text_field :name, class: "quilt-name", required: "required", placeholder:"ex: My Masterpiece", maxlength:"40" %>
+      <%= f.text_field :name, class: "quilt-name", required: "required", placeholder:"ex: 'My Masterpiece'", maxlength:"40" %>
       <!-- make field required- required:"required" -->
     </form>
     </div>
@@ -50,12 +50,12 @@
   <div class="preview-svg">
 
     <div class="current-preview no-click">
-      <div class="preview-block big-preview">
+      <div class="preview-block big-preview" data-project="<%= @quilt.project_template_id %>">
         <%= @quilt.svg.html_safe %>
       </div>
 
       <div class="preview-project big-preview">
-        <%= ProjectTemplate.getXML_for_filename( @project.project_layout_svg ).html_safe %>
+
       </div>
       <a class="test-img"></a>
 
@@ -66,8 +66,8 @@
         <li class="preview-thumbnail paper-border">
           <%= @quilt.svg.html_safe %>
         </li>
-        <li class="preview-thumbnail paper-border">
-          <%= ProjectTemplate.getXML_for_filename( @project.project_layout_svg ).html_safe %>
+        <li class="preview-thumbnail project-preview-thumbnail paper-border">
+
         </li>
       </ul>
     </div>
@@ -77,13 +77,5 @@
 </div>
 
 
-  <div class="hidden objects">
-  <span class="preview-img-url">
-    <!-- <%= image_tag "preview_thumbnails/img_1.png"%> -->
-  </span>
-
-  <canvas id="canvas" width="800" height="400"></canvas>
-  <div id="png-container"></div>
-  </div>
 <!-- this is where your raster image lives -->
 <%#= image_tag "preview_thumbnails/img_#{params[:quilt_id]}.png"%>

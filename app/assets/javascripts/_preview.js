@@ -7,7 +7,6 @@ $(function() {
   var previewBlockThumb = Snap('.preview-thumbnail svg');
   var finalBlock = Snap('.final-block svg');
   var modalBlock = Snap('.current-block .svg-editor svg');
-  var previewProjectSvg = Snap('.preview-project svg');
 
   if (previewBlockSvg) {
     // || finalBlock || modalBlock
@@ -15,103 +14,72 @@ $(function() {
   }
 
   function runPreviewPage() {
-    var previewBlock = $('.preview-block').html();
-    var previewProject = $('.preview-project').html();
-
 
     cleanUpPreview(previewBlockSvg);
 
-    cleanUpPreview(previewProjectSvg);
-
     cleanUpPreview(previewBlockThumb);
 
-    // drawPreview();
-    console.log('drawPreview');
+    drawPreview();
 
     initThumbnails();
-}
-    function cleanUpPreview(prev) {
-      prev.selectAll('path').forEach(function(path) {
-        path.attr({
-          stroke: 'none'
-        });
+  }
+
+  function cleanUpPreview(prev) {
+    prev.selectAll('path').forEach(function(path) {
+      path.attr({
+        stroke: 'none'
       });
+    });
+  }
+
+  function drawPreview() {
+    var projectId = $('.preview-block').data('project');
+    console.log(projectId);
+    var projectBlocks;
+
+    function projectClass(project) {
+      $('.preview-project').addClass(project);
     }
 
+    //determine the number of blocks to repeat based on project_id
+    if (projectId === 1) {
+      projectBlocks = 120;
+      projectClass('queen');
+    } else if (projectId === 2) {
+      projectBlocks = 80;
+      projectClass('twin');
+    } else if (projectId === 3) {
+      projectBlocks = 20;
+      projectClass('lap');
+    } else if (projectId === 4) {
+      projectBlocks = 1;
+      projectClass('single-block');
+    } else if (projectId === 5) {
+      projectBlocks = 1;
+      projectClass('doll');
+    };
 
-    // function drawPreview() {
-    //   var previewUrl = $('.preview-img-url').html();
-    //
-    //   var pattern = previewProjectSvg.image(previewUrl, 0, 0, 90, 90)
-    //   .toPattern(0, 0, 90, 90)
-    //   .attr({
-    //     id: 'patternId',
-    //     y: '60'
-    //   });
-    //
-    //   cleanUpPreview(previewProjectSvg);
-    //   previewProjectSvg.selectAll('path').forEach(function(path) {
-    //     console.log('help');
-    //     path.attr({
-    //       fill: pattern,
-    //       stroke: 'none'
-    //     });
-    //   });
-    // }
+    var svgXml = document.querySelector('.preview-block svg').outerHTML;
+    console.log(svgXml);
+    var tiledSvgs = '';
 
-    var previewBlockSvg = Snap('.preview-block svg');
-    var previewBlockThumb = Snap('.preview-thumbnail svg');
-    var finalBlock = Snap('.final-block svg');
-    var modalBlock = Snap('.current-block .svg-editor svg');
-    var previewProjectSvg = Snap('.preview-project svg');
-    var previewBlock = $('.preview-block').html();
-    var previewProject = $('.preview-project').html();
-
-
-    function drawPreviewPng() {
-      var svgString = new XMLSerializer().serializeToString(document.querySelector('.preview-block svg'));
-      var canvas = document.getElementById("canvas");
-      var ctx = canvas.getContext("2d");
-      var DOMURL = self.URL || self.webkitURL || self;
-      var img = new Image();
-      var svg = new Blob([svgString], {type: "image/svg+xml;charset=utf-8"});
-      var url = window.URL.createObjectURL(svg);
-      console.log(url);
-
-      img.onload = function() {
-          ctx.drawImage(img, 0, 0);
-          var png = canvas.toDataURL("image/png");
-          console.log(png);
-          document.querySelector('#png-container').innerHTML = '<img src="'+png+'"/>';
-          DOMURL.revokeObjectURL(png);
-          console.log('gotcha');
-      };
-
-      img.src = url;
-      console.log(url)
-      // imgUrl = '<img src="data:image/png;base64,<%= full_res_image  %>">'
-      var pattern = previewProjectSvg.image(url, 0, 0, 90, 90)
-      // var pattern = previewProject.image('http://www.mccallsquilting.com/images/wysiwyg_img/Celtic-Twist-300px_27999.jpg', 0, 0, 90, 90)
-        .toPattern(0, 0, 90, 90)
-        .attr({ id: 'patternId', y: '60'});
-        console.log('i made an image')
-
-
-      cleanUpPreview(previewProjectSvg);
-      console.log(previewProjectSvg);
-      console.log('joyridazzz');
-      previewProjectSvg.selectAll('path').forEach(function(path) {
-        // fillBlock.appendTo(path);
-        console.log('i am in');
-        path.attr({fill: pattern, stroke: 'none'});
-      });
+    for (var x = 0; x < projectBlocks; ++x) {
+      tiledSvgs += svgXml;
     }
 
-    drawPreviewPng();
+    $('.preview-project').append(tiledSvgs);
+
+    var projectThumbnail = $('.preview-project').clone()
+    .removeClass('big-preview')
+    .addClass('small-preview');
+
+    $('.project-preview-thumbnail').append(projectThumbnail);
+  }
+
 
 
   //////////////////////////////////////////////////////////////////////////////
-  //FUNCTIONS RELATED TO THUMBNAILS
+  //FUNCTIONS RELATED TO a
 
     function initThumbnails () {
       $('.preview-thumbnail').on('click', function(ev) {
@@ -134,12 +102,6 @@ $(function() {
       var children = parent.children();
       console.log(children);
       var previewIndex = parent.index();
-    //  getImgMatch();
     }
-
-    // function getImgMatch(element, index, array) {
-    //   var check = previewIndex;
-    //
-    // }
 
   });
