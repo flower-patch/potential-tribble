@@ -1,23 +1,17 @@
 /*------------------------------------*\
     #EDIT-VIEW
 \*------------------------------------*/
-
-
 /*------------------------------------*\
     #SVG-EDIT
 \*------------------------------------*/
-
 .edit-view {
   position: relative;
   height: 548px;
-
   @include span-columns(10);
   @include shift(1);
 }
-
 .edit-block {
   @include span-columns(5 of 10);
-
   svg {
     width: 400px;
     height: 100%;
@@ -26,11 +20,9 @@
     box-shadow: $default-shadow;
   }
 }
-
 .svg-editor-parent {
   position: relative;
 }
-
 svg path {
   &:hover {
     stroke: 7px;
@@ -40,7 +32,6 @@ svg path {
     transition-duration: 30ms;
   }
 }
-
 .set-hover {
   stroke: 7px;
   opacity: 0.5;
@@ -48,46 +39,35 @@ svg path {
   -webkit-transition-duration: 30ms;
   transition-duration: 30ms;
 }
-
-
-
 .save-project-btn {
+
 }
-
-
 /*------------------------------------*\
     #SET-SECTION
 \*------------------------------------*/
-
 .choose-set {
   margin-top: 2em;
 }
-
 .sets {
   width: 400px;
   text-align: center;
   overflow-x: auto;
   white-space: nowrap;
 }
-
 .set {
   display: inline-block;
   text-align: center;
   margin: 1em;
   cursor: pointer;
 }
-
 .set svg {
   width: 5em;
   height: 5em;
-
-
   //check if these transitions are appropriate
   &:hover {
     box-shadow: $hover-shadow;
     transition: $transition;
   }
-
   path {
     &:hover {
       opacity: 1;
@@ -95,12 +75,9 @@ svg path {
     }
   }
 }
-
-
 /*------------------------------------*\
     #PALETTE-SECTION
 \*------------------------------------*/
-
 .choose-palette {
   @include span-columns(4 of 10);
   @include shift(1);
@@ -110,7 +87,6 @@ svg path {
   vertical-align: top;
   position: relative;
 }
-
 .add-fabric-message {
   @include position(absolute, 55% 0 0 50%);
   transform: translate(-50%, -50%);
@@ -121,9 +97,7 @@ svg path {
   vertical-align: baseline;
   color: $mid-gray;
   font-size: 1.5em;
-
 }
-
 .palette {
   text-align: left;
   height: $block-height;
@@ -131,13 +105,10 @@ svg path {
   overflow-y: auto;
   //overflow: scroll;
 }
-
 .current-fabric {
   outline: 1.5px dashed $accent-darkest;
   outline-offset: 5px;
-
 }
-
 .fabric-preview {
   display: inline-block;
   padding-right: 10px;
@@ -147,8 +118,6 @@ svg path {
   cursor: pointer;
   border: $paper-margin solid $white;
   box-shadow: $default-shadow;
-
-
   &:after {
     content: "";
     padding-top: 112%;
@@ -156,24 +125,19 @@ svg path {
     display: block;
     // border-top: 14px;
   }
-
   .fabric-img-container {
     position: absolute;
     width: 100%;
     height: 100%;
     overflow: hidden;
-
     // img {
     //   width: 100%;
     // }
   }
 }
-
-
 /*------------------------------------*\
     #BUTTONS
 \*------------------------------------*/
-
 .save-project-btn {
   position: absolute;
   bottom: 15px;
@@ -181,7 +145,6 @@ svg path {
   width: 150px;
   padding: 0.5em;
 }
-
 .open-fabric-modal-btn,
 .clear-patches-btn,
 .remove-fabric-btn {
@@ -189,26 +152,21 @@ svg path {
   bottom: -1.5em;
   right: -1.1em;
 }
-
 .open-fabric-modal-btn {
   transition: all 1000ms ease-in-out;
 }
-
 .clear-patches-btn {
   right: -1.5em;
   bottom: -1.45em;
 }
-
 .remove-fabric-btn {
   font-size: 1.75em;
   right: -1.35em;
-
   i:after {
     width: 15px;
     height: 15px;
   }
 }
-
 .clear-patches-modal {
   @include pad();
   @include transition(all 0.4s ease);
@@ -225,12 +183,10 @@ svg path {
   visibility: hidden;
   opacity: 0;
   z-index: 1000;
-
   &:hover {
     box-shadow: $hover-shadow;
   }
 }
-
 .modal-options {
   display: block;
   text-align: center;
@@ -242,18 +198,15 @@ svg path {
   border-top: $default-border;
   padding-top: 1em;
 }
-
 .clear-patches-modal-close,
 .clear-patches-modal-confirm {
   text-align: left;
   margin: 0.5em;
   cursor: pointer;
-
   &:hover {
     color: $accent-text;
   }
 }
-
 .palette:hover > .icon-button {
   opacity: 1 !important;
   visibility: visible !important;
