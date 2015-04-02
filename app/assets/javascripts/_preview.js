@@ -57,7 +57,7 @@ $(function() {
       projectBlocks = 1;
       projectClass('single-block');
     } else if (projectId === 5) {
-      projectBlocks = 1;
+      projectBlocks = 6;
       projectClass('doll');
     };
 
