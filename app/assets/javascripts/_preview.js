@@ -19,6 +19,8 @@ $(function() {
 
     cleanUpPreview(previewBlockThumb);
 
+    // cleanUpPreview(finalBlock);
+
     drawPreview();
 
     initThumbnails();
