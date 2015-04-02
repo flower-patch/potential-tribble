@@ -194,6 +194,9 @@ $(function() {
     //JQ TIMEOUTS
 
     function initializePalette(timeout) {
+      if (palette.length === 0) {
+        return;
+      }
       setTimeout(function() {
         $('.fabric-preview').first().click();
         addFabricMessage();
@@ -417,8 +420,8 @@ $(function() {
       currSvg = $('.fabric-modal .current-block').children();
       $('.svg-editor-parent').append(currSvg);
 
+      initializePalette(1000);
       addFabricMessage();
-      initializePalette(300);
     });
 
     ////////////////////////////////////////////////////////////////////////////////
