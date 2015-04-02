@@ -11,6 +11,7 @@ $(function() {
 
     var $svg = $('.svg-editor svg');
 
+    addFabricMessage();
     var palette = [];
 
     drawPalette('.palette', palette);
