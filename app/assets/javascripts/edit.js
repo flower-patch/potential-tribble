@@ -434,7 +434,7 @@ $(function() {
       // area (.svg-editor-parent), in the main content.
       currSvg = $('.fabric-modal .current-block').children();
       $('.svg-editor-parent').append(currSvg);
-      addFabricMessage();
+      initializePalette(300);
     });
 
   ////////////////////////////////////////////////////////////////////////////////
@@ -480,7 +480,7 @@ $(function() {
   ////////////////////////////////////////////////////////////////////////////////
   //GET BY KEYWORD API CALL
 
-    //var results=[];
+
 
     $('.keyword-search').submit(function(e) {
       e.preventDefault();
