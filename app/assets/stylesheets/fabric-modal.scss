@@ -59,9 +59,9 @@
   display: inline-block;
   height: 210px;
   padding-top: 11px;
-  //overflow: auto;
   overflow-x: hidden;
   overflow-y: auto;
+
   .fabric-preview {
     margin: 10px;
     width: 80px;
@@ -85,7 +85,7 @@
   margin-bottom: 2em;
 }
 .search-bar input {
-  margin: 0;
+  margin: 1em 0 3em 0 !important;
 }
 .search-bar {
   margin-top: 1em;
@@ -199,8 +199,7 @@
 }
 .fabric-modal-list {
   margin-left: 15px;
-  //text-align: center;
-  color: $accent-darkest;
+
   .loading-spinner {
     width: 200px;
     height: 200px;
@@ -209,6 +208,12 @@
     top: 52%;
     left: 52%;
   }
+}
+
+.error {
+  text-align: center;
+  padding: 1.5em;
+  font-size: 1.2em;
 }
 .search-result {
   padding: 0;
@@ -220,6 +225,6 @@
     overflow: auto;
     height: 44px;
     word-wrap: break-word;
-    font-size: 1.3em;
+
   }
 }

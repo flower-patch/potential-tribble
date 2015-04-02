@@ -12,18 +12,6 @@ $(function() {
     var $svg = $('.svg-editor svg');
 
     var palette = [];
-    // Api.getPopularList(5).then(function(response) {
-    //   // The default palette is the first five results from the popular list
-    //   palette = response.results[0].results;
-    //   // palette.forEach(function(tile) {
-    //   //   tile.size = {
-    //   //     width: 50,
-    //   //     height: 50
-    //   //   };
-    //   // })
-    //   drawPalette('.palette', palette);
-    //   return palette;
-    // });
 
     drawPalette('.palette', palette);
 
@@ -124,9 +112,7 @@ $(function() {
         li.data('fabric', fabric);
         return li;
       }));
-      // if (!palette.length) {
-      //   $('.add-fabric-message').css('display', 'block');
-      // }
+      checkDuplicateSwatches(designItem);
     }
 
 
@@ -165,9 +151,7 @@ $(function() {
         li.data('fabric', fabric);
         return li;
       }));
-      // if (!palette.length) {
-      //   $('.add-fabric-message').css('display', 'block');
-      // }
+
     }
 
 
@@ -227,7 +211,6 @@ $(function() {
     $('.fabric-modal').children().on('click', '.remove-fabric-btn', onRemoveClick);
 
     function onRemoveClick(e) {
-      // e.stopPropagation();
       var img = $(this).parent().find('img');
       var fabricId = img.attr('data-id');
       var fabricSrc = img.attr('src');
@@ -247,13 +230,10 @@ $(function() {
 
     var timeout = 500;
 
-    ///REALLY BAD BUGGGG!
     setTimeout(function() {
-      //sets the first currFabric
-      //  $('.fabric-preview').first().click();
 
       $('.palette .fabric-preview').on('click', 'button', function(e) {
-        //debugger;
+
         e.stopPropagation();
         console.log('click rmv-btn');
         console.log(palette.valueOf());
@@ -262,9 +242,8 @@ $(function() {
         console.log(position);
         palette.splice(position, 1);
         drawPalette('.current-palette, .palette', palette);
-        //$('button', '.fabric-preview', 'palette').off();
         console.log('new palette:' + palette.valueOf());
-        //addClick();
+
       });
 
     }, timeout);
@@ -312,7 +291,6 @@ $(function() {
 
       if (!pattern) {
         pattern = svg.image(currFabric.preview_url, 0, 0, 810, 810)
-          // pattern = svg.image(currFabric.thumbnail_url, 0, 0, 810, 810)
           .toPattern(0, 0, 810, 810)
           .attr({
             id: patternId,
@@ -438,6 +416,8 @@ $(function() {
       // area (.svg-editor-parent), in the main content.
       currSvg = $('.fabric-modal .current-block').children();
       $('.svg-editor-parent').append(currSvg);
+
+      addFabricMessage();
       initializePalette(300);
     });
 
@@ -465,15 +445,11 @@ $(function() {
     $('.color-search').submit(function(e) {
       e.preventDefault();
       Api.getDesignByColor($('input', this).val()).done(function(response) {
-          var results = response.results[0].results;
-          var resultElements = apiResultToElements(results);
+        var results = response.results[0].results;
+        var resultElements = apiResultToElements(results);
 
-          $('.fabric-modal-list').empty().append(resultElements);
-        })
-        /*
-        $('.fabric-modal').toggleClass('show');
-        previewQuilt();
-        drawPalette('.current-palette', palette);*/
+        $('.fabric-modal-list').empty().append(resultElements);
+      })
     });
 
     $('.fabric-modal-box').on('click', function(e) {
@@ -483,23 +459,22 @@ $(function() {
 
     ////////////////////////////////////////////////////////////////////////////////
     //GET BY KEYWORD API CALL
+
     $('.keyword-search').submit(function(e) {
       e.preventDefault();
       Api.getDesignByKeyword($('input', this).val()).done(function(response) {
         var results = response.results[0].results;
         var resultElements = apiResultToElements(results);
-        var check = (results.length);
         if (results.length === 0) {
-          $('.fabric-modal-list').empty().append('There are no fabrics matching your keyword. Please try again.');
+          $('.fabric-modal-list').empty().append('<i class="fa fa-frown-o"></i> There are no fabrics matching your keyword. Please try again.');
+          $('.fabric-modal-list').addClass('error');
         } else {
           $('.fabric-modal-list').empty().append(resultElements);
 
         }
 
       });
-      // $('.fabric-modal').toggleClass('show');
-      // previewQuilt();
-      // drawPalette('.current-palette', palette);
+
     });
 
     $('.fabric-modal-box').on('click', function(e) {
@@ -566,20 +541,12 @@ $(function() {
 
       var designName = $('<div class="fabric-name-container"><h3 class="fabric-name">' + designItem.name + '</h3></div>');
 
-      /*
-      this keeps coming in as undefined.
-      Is it because of the underscore? Some privacy setting on api
-      var designer = $('<span class="designer-screen-name">'
-                      + designItem.sceen_name + '</span>');
-      */
-
       var li = $('<li></li>');
       li.data('item', designItem);
       li.addClass('fabric-preview card search-result');
       li.append(imgCont);
       li.append(btn);
       li.append(designName);
-      // li.append(designer);
 
       //Add swatches from modal to palette
       li.on('click', function() {
@@ -590,7 +557,6 @@ $(function() {
         })
         drawPalette('.current-palette, .palette', palette);
         li.remove();
-
       })
 
       return li;
