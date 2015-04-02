@@ -194,13 +194,12 @@ $(function() {
     //JQ TIMEOUTS
 
     function initializePalette(timeout) {
-      if (palette.length === 0) {
-        return;
-      }
       setTimeout(function() {
-        $('.fabric-preview').first().click();
         addFabricMessage();
       }, timeout);
+      if (palette.length > 0) {
+        $('.fabric-preview').first().click();
+      }
     }
 
     initializePalette(1000);
