@@ -480,14 +480,22 @@ $(function() {
   ////////////////////////////////////////////////////////////////////////////////
   //GET BY KEYWORD API CALL
 
+    //var results=[];
+
     $('.keyword-search').submit(function(e) {
       e.preventDefault();
       Api.getDesignByKeyword($('input', this).val()).done(function(response) {
         var results = response.results[0].results;
         var resultElements = apiResultToElements(results);
+        var check = (results.length);
+         if (results.length === 0) {
+           $('.fabric-modal-list').empty().append('There are no fabrics matching your keyword. Please try again.');
+         } else {
+         $('.fabric-modal-list').empty().append(resultElements);
 
-        $('.fabric-modal-list').empty().append(resultElements);
-      })
+        }
+
+      });
       // $('.fabric-modal').toggleClass('show');
       // previewQuilt();
       // drawPalette('.current-palette', palette);

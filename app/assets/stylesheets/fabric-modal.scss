@@ -236,6 +236,10 @@
 
 .fabric-modal-list {
   margin-left: 15px;
+  // font-size: 1.5em;
+  // line-height: 4em;
+  text-align: center;
+  color: $accent-darkest;
 
   .loading-spinner {
     width: 200px;
@@ -259,5 +263,6 @@
     overflow: auto;
     height: 44px;
     word-wrap: break-word;
+    font-size: 1.3em;
   }
 }
