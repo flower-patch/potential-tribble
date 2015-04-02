@@ -30,7 +30,7 @@
   $hero-image: 'pin_cushion.png';
 
   @include background(image-url($hero-image));
-  background-color: $accent-darkest;
+  background-color: $neutral-mid;
   background-position: top;
   background-repeat: no-repeat;
   background-size: cover;
