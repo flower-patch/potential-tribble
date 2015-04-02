@@ -1,3 +1,4 @@
+
 /*------------------------------------*\
     # PREVIEW PAGE INPUTS / BUTTONS
 \*------------------------------------*/
@@ -5,7 +6,7 @@
 .preview-view {
   @include outer-container;
   padding-bottom: 1em;
-  min-height: 560px;
+  min-height: 630px;
 }
 
 .my-new-quilt {
@@ -109,6 +110,7 @@
  margin-bottom: 2.358%;
  margin-right: 0;
  @include span-columns(8);
+ position: relative;
 
  svg {
    width: 400px;
@@ -126,10 +128,30 @@
 }
 
 .preview-project {
+  min-width: 400px;
+  max-width: 400px;
+  min-height: 400px;
 
-    svg {
-      padding: 2%;
-    }
+  &.queen svg {
+    width: 40px;
+  }
+
+  &.twin svg {
+    width: 50px;
+  }
+
+  &.lap svg {
+    width: 100px;
+  }
+
+  &.single-block svg {
+    width: 200px;
+    margin-top: 25%;
+  }
+
+  &.doll svg {
+    width: 200px;
+  }
 }
 
 .choose-preview-thumbnail {
@@ -138,7 +160,7 @@
 }
 
 .preview-thumbnails {
-  overflow-y: auto;
+  overflow-y: hidden;
   overflow-x: hidden;
 }
 
@@ -148,13 +170,13 @@
   margin: 1em;
   cursor: pointer;
   width: 6em;
-  // height: 6em;
+  height: 6em;
   box-shadow: $default-shadow;
+  overflow: hidden;
 
   transition: 0.3s outline, 0.3s;
   -webkit-transition: 0.3s outline, 0.3s outline;
   border-radius: 0px;
-  outline: 0px solid transparent;
 
   &:hover {
     box-shadow: $hover-shadow;
@@ -177,26 +199,48 @@
     outline-offset: 5px;
     border-radius: 2px;
   }
+
+}
+
+.project-preview-thumbnail {
+  border-bottom: 7px solid white;
+  border-right: 7px solid white;
 }
 
 .big-preview {
   opacity: 0;
   position: absolute;
+  left: 60px;
+  text-align: center;
+  box-shadow: 0px 1px 3px 8px #c0c0c0;
+  outline: 7px solid white;
 }
+
 .big-preview.show {
   transition: 0.3s opacity ease-out;
   -webkit-transition: 0.3s opacity ease-out;
   opacity: 1;
-  position: static;
 }
 
 .current-preview {
   @include span-columns(6 of 8);
   text-align: right;
+  line-height: 0;
 
   svg {
     background: $white;
     background: $light-pure-gray;
     height: 100%;
+    box-shadow: none;
+  }
+}
+
+
+
+.small-preview {
+  line-height: 0;
+
+  svg {
+    width: 100%;
   }
 }
