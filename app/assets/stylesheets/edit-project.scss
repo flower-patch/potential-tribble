@@ -1,9 +1,6 @@
 /*------------------------------------*\
     #EDIT-VIEW
 \*------------------------------------*/
-/*------------------------------------*\
-    #SVG-EDIT
-\*------------------------------------*/
 .edit-view {
   position: relative;
   height: 548px;
@@ -20,6 +17,10 @@
     box-shadow: $default-shadow;
   }
 }
+/*------------------------------------*\
+    #SVG-EDIT
+\*------------------------------------*/
+
 .svg-editor-parent {
   position: relative;
 }
@@ -63,7 +64,7 @@ svg path {
 .set svg {
   width: 5em;
   height: 5em;
-  //check if these transitions are appropriate
+
   &:hover {
     box-shadow: $hover-shadow;
     transition: $transition;
@@ -123,16 +124,12 @@ svg path {
     padding-top: 112%;
     visibility: hidden;
     display: block;
-    // border-top: 14px;
   }
   .fabric-img-container {
     position: absolute;
     width: 100%;
     height: 100%;
     overflow: hidden;
-    // img {
-    //   width: 100%;
-    // }
   }
 }
 /*------------------------------------*\

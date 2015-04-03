@@ -9,7 +9,6 @@ $(function() {
   var modalBlock = Snap('.current-block .svg-editor svg');
 
   if (previewBlockSvg) {
-    // || finalBlock || modalBlock
     runPreviewPage();
   }
 
@@ -18,8 +17,6 @@ $(function() {
     cleanUpPreview(previewBlockSvg);
 
     //cleanUpPreview(previewBlockThumb);
-
-    // cleanUpPreview(finalBlock);
 
     drawPreview();
 
@@ -36,7 +33,6 @@ $(function() {
 
   function drawPreview() {
     var projectId = $('.preview-block').data('project');
-    console.log(projectId);
     var projectBlocks;
 
     function projectClass(project) {
@@ -62,7 +58,6 @@ $(function() {
     };
 
     var svgXml = document.querySelector('.preview-block svg').outerHTML;
-    console.log(svgXml);
     var tiledSvgs = '';
 
     for (var x = 0; x < projectBlocks; ++x) {
@@ -71,34 +66,40 @@ $(function() {
 
     $('.preview-project').append(tiledSvgs);
 
+
+    var projectThumbnail = $('.preview-project').clone()
+      .removeClass('big-preview')
+      .addClass('small-preview');
+
+    $('.project-preview-thumbnail').append(projectThumbnail);
+
   }
 
 
 
   //////////////////////////////////////////////////////////////////////////////
-  //FUNCTIONS RELATED TO a
+  //FUNCTIONS RELATED TO THUMBNAIL TOGGLING
 
-    function initThumbnails () {
-      $('.preview-thumbnail').on('click', function(ev) {
-        clickThumbnail($(this))
-      });
-      clickThumbnail( $('.preview-thumbnail').eq(0) );
-    }
+  function initThumbnails() {
+    $('.preview-thumbnail').on('click', function(ev) {
+      clickThumbnail($(this))
+    });
+    clickThumbnail($('.preview-thumbnail').eq(0));
+  }
 
-    function clickThumbnail(thumb) {
-      var thumbIndex = thumb.index();
+  function clickThumbnail(thumb) {
+    var thumbIndex = thumb.index();
 
-      $('.preview-thumbnails .preview-thumbnail').removeClass('active');
-      thumb.addClass('active');
+    $('.preview-thumbnails .preview-thumbnail').removeClass('active');
+    thumb.addClass('active');
 
-      $('.current-preview .big-preview').removeClass('show');
-      $('.current-preview .big-preview').eq(thumbIndex).addClass('show');
-    }
+    $('.current-preview .big-preview').removeClass('show');
+    $('.current-preview .big-preview').eq(thumbIndex).addClass('show');
+  }
 
-    function findChildren(parent, position) {
-      var children = parent.children();
-      console.log(children);
-      var previewIndex = parent.index();
-    }
+  function findChildren(parent, position) {
+    var children = parent.children();
+    var previewIndex = parent.index();
+  }
 
-  });
+});
