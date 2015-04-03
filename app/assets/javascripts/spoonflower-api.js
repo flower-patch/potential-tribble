@@ -50,18 +50,8 @@ function setupSpoonflowerApi() {
     getDesignByKeyword: function(keyword) {
       var url = baseUrl + 'search?q=' + keyword;
       return fetchUrl(url);
-    },
+    }
 
-    /*
-    getDesignById: function(designId) {
-      var url = baseUrl + 'previewImage/' +
-        designId + '?' + 'print_width=' +
-        printWidth + '&print_height=' +
-        printHeight + '&preview_width_pixels=' +
-        previewWidth + '&preview_height_pixels=' +
-        previewHeight;
-      return fetchUrl(url);
-    }*/
 
   }
   return self;
