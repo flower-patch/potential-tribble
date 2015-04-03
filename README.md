@@ -1,3 +1,5 @@
+*currently optimized for Chrome
+
 #Terminology Used in this Project
 
 Quilt: Made up of many blocks.
