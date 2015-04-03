@@ -17,7 +17,7 @@ $(function() {
 
     cleanUpPreview(previewBlockSvg);
 
-    cleanUpPreview(previewBlockThumb);
+    //cleanUpPreview(previewBlockThumb);
 
     // cleanUpPreview(finalBlock);
 
