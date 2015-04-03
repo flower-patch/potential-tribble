@@ -105,7 +105,6 @@ $(function() {
     //CREATES FABRIC SWATCH PALETTE
 
     function drawPalette(location, palette) {
-      console.log(palette);
       $(location).html(palette.map(function(fabric) {
         var li = $('<li class="fabric-preview card"><button alt="Remove from palette" class="remove-fabric-btn icon-button"><i class="fa fa-minus-circle inner-button-icon"></i></button><div class="fabric-img-container"><img src="' + fabric.thumbnail_url + '"></div></li>');
         //.data(key, value) key= string 'fabric', value is fabric object
@@ -238,14 +237,10 @@ $(function() {
       $('.palette .fabric-preview').on('click', 'button', function(e) {
 
         e.stopPropagation();
-        console.log('click rmv-btn');
-        console.log(palette.valueOf());
         var parent = $(this).parent('.fabric-preview');
         var position = parent.index();
-        console.log(position);
         palette.splice(position, 1);
         drawPalette('.current-palette, .palette', palette);
-        console.log('new palette:' + palette.valueOf());
 
       });
 
@@ -396,7 +391,6 @@ $(function() {
     });
 
     $('.open-fabric-modal-btn').on('click', function() {
-      console.log('open fabric clicked');
       showPopularResults();
 
       previewQuilt();
@@ -413,7 +407,6 @@ $(function() {
 
     $('.close-fabric-modal-btn, .fabric-modal').on('click', function() {
       $('.fabric-modal').toggleClass('show');
-      console.log('close modal');
       $('body').removeClass('no-scroll');
       // Once the modal closes, move the svg-editor element back into its original
       // area (.svg-editor-parent), in the main content.
@@ -457,7 +450,6 @@ $(function() {
 
     $('.fabric-modal-box').on('click', function(e) {
       e.stopPropagation();
-      console.log('click fabric modal box');
     });
 
     ////////////////////////////////////////////////////////////////////////////////
@@ -487,13 +479,12 @@ $(function() {
     ////////////////////////////////////////////////////////////////////////////////
     //CHECK FOR DUPLICATES
 
+
+    //based on old logic, needs to be changed, not called
     function checkDuplicateSwatches(designItem) {
       var newSwatchId = designItem.id;
-      console.log(newSwatchId);
       var position = palette.indexOf(designItem);
-      console.log(position);
-      console.log(newSwatchId);
-      console.log(palette.valueOf());
+
       for (var object in palette) {
         var oldSwatch = palette[object];
         var oldSwatchId = oldSwatch.id;
@@ -507,7 +498,6 @@ $(function() {
             }, 10);
           }
         } catch (e) {
-          console.log(e.name + '' + e.message);
           return alert('Do not add the same fabric design more than once to your palette.');
         }
       }

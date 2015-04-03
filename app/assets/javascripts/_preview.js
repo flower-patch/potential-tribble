@@ -33,7 +33,6 @@ $(function() {
 
   function drawPreview() {
     var projectId = $('.preview-block').data('project');
-    console.log(projectId);
     var projectBlocks;
 
     function projectClass(project) {
@@ -59,7 +58,6 @@ $(function() {
     };
 
     var svgXml = document.querySelector('.preview-block svg').outerHTML;
-    console.log(svgXml);
     var tiledSvgs = '';
 
     for (var x = 0; x < projectBlocks; ++x) {
@@ -78,7 +76,7 @@ $(function() {
 
 
   //////////////////////////////////////////////////////////////////////////////
-  //FUNCTIONS RELATED TO a
+  //FUNCTIONS RELATED TO THUMBNAIL TOGGLING
 
   function initThumbnails() {
     $('.preview-thumbnail').on('click', function(ev) {
@@ -99,7 +97,6 @@ $(function() {
 
   function findChildren(parent, position) {
     var children = parent.children();
-    console.log(children);
     var previewIndex = parent.index();
   }
 

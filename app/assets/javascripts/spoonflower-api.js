@@ -28,7 +28,6 @@ function setupSpoonflowerApi() {
       var freshtastic = '&sort=freshtastic';
       var url = baseUrl + 'search?limit=' + limit + freshtastic;
       return fetchUrl(url);
-      console.log(url);
     },
 
     getDesignById: function(designId) {
