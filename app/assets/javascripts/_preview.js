@@ -17,7 +17,7 @@ $(function() {
 
     cleanUpPreview(previewBlockSvg);
 
-    cleanUpPreview(previewBlockThumb);
+    // cleanUpPreview(previewBlockThumb);
 
     // cleanUpPreview(finalBlock);
 
@@ -36,7 +36,6 @@ $(function() {
 
   function drawPreview() {
     var projectId = $('.preview-block').data('project');
-    console.log(projectId);
     var projectBlocks;
 
     function projectClass(project) {
@@ -71,11 +70,6 @@ $(function() {
 
     $('.preview-project').append(tiledSvgs);
 
-    var projectThumbnail = $('.preview-project').clone()
-    .removeClass('big-preview')
-    .addClass('small-preview');
-
-    $('.project-preview-thumbnail').append(projectThumbnail);
   }
 
 

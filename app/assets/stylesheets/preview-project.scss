@@ -170,7 +170,6 @@
   margin: 1em;
   cursor: pointer;
   width: 6em;
-  height: 6em;
   box-shadow: $default-shadow;
   overflow: hidden;
 
@@ -188,9 +187,12 @@
     text-align: center;
     box-shadow: none;
     padding-left: auto;
+    background: $light-pure-gray;
 
     path {
-      stroke: none;
+      fill: $light-pure-gray;
+      stroke: $mid-gray;
+      stroke-width:4px;
     }
   }
 
@@ -200,11 +202,6 @@
     border-radius: 2px;
   }
 
-}
-
-.project-preview-thumbnail {
-  border-bottom: 7px solid white;
-  border-right: 7px solid white;
 }
 
 .big-preview {
