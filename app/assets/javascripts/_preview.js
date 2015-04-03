@@ -66,13 +66,6 @@ $(function() {
 
     $('.preview-project').append(tiledSvgs);
 
-
-    var projectThumbnail = $('.preview-project').clone()
-      .removeClass('big-preview')
-      .addClass('small-preview');
-
-    $('.project-preview-thumbnail').append(projectThumbnail);
-
   }
 
 
