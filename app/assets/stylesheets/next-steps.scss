@@ -72,8 +72,9 @@
   margin-bottom: 1em;
 }
 
-
-// the following is for the modal, styling by chris
+/*------------------------------------*\
+#MODAL STYLING
+\*------------------------------------*/
 
 .fabric-chart {
   @include span-columns(11);
@@ -82,7 +83,6 @@
 
   h3 {
     font-size: 1.75em;
-    // text-align: center;
     margin-bottom: 20px;
   }
 
