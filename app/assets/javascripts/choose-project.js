@@ -2,6 +2,7 @@
   jQuery.mark = {
     jump: function (options) {
       var defaults = {
+        //set selector to dom element (link) you want to have the scroll
         selector: 'a.project-list-link'
       };
       if (typeof options == 'string') {
