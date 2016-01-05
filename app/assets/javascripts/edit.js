@@ -169,8 +169,8 @@ $(function() {
       currFabric = $(this).data('fabric');
       var designId = currFabric.id;
       //Api.getDesignById(designId).done(function(response) {
-      // var baseUrl = 'https://fakepi.herokuapp.com/api/v1/design/';
-      var baseUrl = 'http://api.v1.spoonflower.com/design/';
+      var baseUrl = 'https://fakepi.herokuapp.com/api/v1/design/';
+      // var baseUrl = 'http://api.v1.spoonflower.com/design/';
       var previewWidth = 400;
       var previewHeight = 400;
       var printWidth = 9;

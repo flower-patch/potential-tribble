@@ -8,7 +8,7 @@ exports.config = {
   suites: {};
 
   /* Global Test Information */
-  baseUrl: 'http://flowerpatch.spoonflower.com',
+  baseUrl: 'localhost:3000',
   allScriptsTimeout: 11000,
   getPageTimeout: 10000,
   params: {},
