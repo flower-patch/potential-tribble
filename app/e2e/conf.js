@@ -4,8 +4,10 @@ exports.config = {
   directConnect: false,
   
   /* List of Tests */
-  specs: [],
-  suites: {};
+  specs: [
+    'specs/dollQuilt.spec.js'
+  ],
+  suites: {},
 
   /* Global Test Information */
   baseUrl: 'localhost:3000',
