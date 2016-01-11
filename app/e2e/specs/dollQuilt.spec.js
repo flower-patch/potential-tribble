@@ -5,7 +5,13 @@ describe('Happy Path to create a doll quilt with the stripe pattern', function()
     var designBlockPage = require('../pageObjects/designBlock.page.js');
     var previewProjectPage = require('../pageObjects/previewProject.page.js');
     var nextStepsPage = require('../pageObjects/nextSteps.page.js');
-    var dollQuiltData = require('../helpers/testData/dollQuiltData.js');
+    var dollQuiltData = require('../helpers/data/dollQuiltData.js');
+    var url = require('../helpers/url.js');
+
+    beforeEach(function() {
+        browser.ignoreSynchronization = true;
+        browser.get('http://localhost:3000');
+    });
 
     it('should reach the welcome page', function (){});
     it('should click the "Start a new quilt" button', function (){});
