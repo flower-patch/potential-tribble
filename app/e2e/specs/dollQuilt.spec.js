@@ -18,7 +18,6 @@ describe('Happy Path to create a doll quilt with the stripe pattern', function()
     it('should wait for the animation to finish', function (){});
     it('should click the "Stripes" block design option', function (){});
 
-
     it('should reach the "Design Block" page', function (){});
     it('should wait for the animation to finish', function (){});
     it('should have the "Add Fabric Message" present', function(){});
