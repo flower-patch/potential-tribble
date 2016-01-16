@@ -93,5 +93,7 @@ The SVGs are stored in the database with lots of extra quotes.  If you try to ta
 
 
 #For testing
-Start up the rails server by entering: rails server on the command line.
-Tests are being run with fakePi, and the testing stack is protractor, webdriver and jasmine.
+Start up the rails server by entering:
+rails server
+
+Tests are being run with fakePi, and the testing stack is protractor, Selenium WebDriver and Jasmine.
